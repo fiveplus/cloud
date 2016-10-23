@@ -1,0 +1,493 @@
+/* Abel框架CSS */
+body{
+	font-family: "Microsoft YaHei";
+}
+
+.send-div{
+	margin-right: 15px;
+}
+.send-div .send-text{
+	width:100%;
+	height:500px;FF
+	border: 1px solid #ccc;
+	resize: none;
+	padding:5px;
+}
+.qqFace{
+	margin-top:4px;
+	background:#fff;
+	padding:2px;
+	border:1px #dfe6f6 solid;
+}
+.qqFace table td{
+	padding:0px;
+}
+.qqFace table td img{
+	cursor:pointer;
+	border:1px #fff solid;
+}
+.qqFace table td img:hover{
+	border:1px #0066cc solid;
+}
+.seletc-choose a.active{
+	border-color: #39D17E;
+}
+a{
+	color: inherit;
+}
+.seletc-choose a{
+	margin-right:5px;
+	position:relative;
+	display: inline-block;
+	padding:0px 20px;
+	margin-bottom: 5px;
+	line-height:30px;
+	background: #fff;
+	cursor: pointer;
+	border: 2px solid #fff;
+	transition:all 0.2s ease-in-out 0s;
+	border-radius:0px;
+	font-family: "微软雅黑";
+}
+.seletc-choose a:hover{
+	color: white;
+	background: #39D17E;
+}
+.seletc-choose a.active::before{
+	position:absolute;
+	content:"✔";
+	color:#fff;
+	right:2px;
+	top:-9px;
+	font-family:"Glyphicons Halfings";
+	z-index:889;
+	display: block;
+}
+.seletc-choose a.active::after{
+	width:0px;
+	height:0px;
+	border-top:30px solid #39D17E;
+	border-left:30px solid transparent;
+	position:absolute;
+	display:block;
+	right:0px;
+	content:"";
+	top:0px;
+	z-index:888;
+}
+.category-choose-wrap .category-title{
+	float:left;
+	width:80px;
+	font-size: 17px;
+	font-family: "微软雅黑";
+	color:#39D17E;
+	height:34px;
+	line-height: 34px;
+}
+
+.img-radius30{
+	border-radius:30px;
+	display:inline-block;
+	width:30px;
+	height:30px;
+	margin:1px 0 0 1px;
+	border-style:none;
+	border-width:0;
+	border:none;
+}
+.img-radius64{
+	border-radius:30px;
+	display:inline-block;
+	width:64px;
+	height:64px;
+}
+.img-radius37{
+	border-radius:30px;
+	display:inline-block;
+	width:37px;
+	height:37px;
+}
+#tx{
+	background:white;
+	position:absolute;
+	display:none;
+	box-shadow:0px 6px 12px rgba(0, 0, 0, 0.176);
+	border:1px solid rgba(0, 0, 0, 0.15);
+	padding:10px;
+	z-index: 3000;
+	min-width:235px;
+}
+#tx #datetimepicker{
+	border:1px solid #ccc;
+	padding: 5px;
+}
+em{
+	position:absolute;
+	top:-21px;
+	left:20px;
+	display:block;
+	height:0;
+	width:0;
+	font-size: 0;
+	line-height: 0;
+	border-color:transparent transparent #ccc transparent;
+	border-style:dashed dashed solid dashed;
+	border-width:10px;
+}
+m{
+	 position:absolute;
+	 top:-9px;
+	 left:-10px;
+	 display:block;
+	 height:0;
+	 width:0;
+	 font-size: 0;
+	 line-height: 0;
+	 border-color:transparent transparent #fff transparent;
+	 border-style:dashed dashed solid dashed;
+	 border-width:10px;
+}
+.w_btn_a_btn{
+	background:#FF8140 none repeat scroll 0% 0%;
+	border:1px solid #F77C3D;
+	color:#fff;
+	box-shadow:0px 1px 2px rgba(0, 0, 0, 0.25);
+	text-indent:0px;
+	width:100px;
+	height:38px;
+	line-height:39px;
+	font-size:14px;
+	display: inline-block;
+	padding:0 10px;
+	text-align: center;
+	outline: medium none;
+	margin: 10px 15px 0 0;
+}
+.w_btn_a_btn:HOVER{
+	color:#fff;
+	background: #f7671d none repeat scroll 0% 0%;
+}
+.clear{
+	clear: both;
+}
+.fenge{
+	height: 20px;
+}
+.index-bg{
+position:fixed;
+top:0;
+left:0;
+bottom:0;
+right:0;
+z-index:-1;
+}
+.index-bg > img {
+height:100%;
+width:100%;
+border:0;
+}
+/* 新增  */
+.cmenuright a:HOVER{
+	border-bottom: 4px solid #40C36B;
+	color: #40C36B;
+}
+.cmenuright .cur{
+	border-bottom: 4px solid #40C36B;
+	color: #40C36B;
+}
+/* project-main */
+.project-main{
+	padding: 20px;
+}
+.form{
+	width:500px;
+	margin: auto;
+	
+}
+.form-group{
+	padding:5px;
+}
+.form-group .input-text{
+	border:1px solid #ccc;
+	padding:8px;
+	width:280px;
+}
+
+.form-group #username{
+	color: red;
+	font-weight: bold;
+}
+
+#lean_overlay {
+    position: fixed;
+    z-index:20001;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+.leanmodel_div {
+	z-index:20002;
+    width: 600px;
+	padding: 8px; 
+    display:none;
+    background: #FFF;
+    border-radius: 5px; 
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.7); 
+    -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7); 
+    -moz-box-shadow: 0 0px 4px rgba(0,0,0,0.7);
+}
+#add_project_div p,#add_project_div p { 
+	color: #666; 
+	text-shadow: none;
+}
+#chat-div{
+	z-index:20002;
+    width: 600px;
+    display:none;
+  	background: #e3f1f4;
+    border-radius: 5px; 
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.7); 
+    -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7); 
+    -moz-box-shadow: 0 0px 4px rgba(0,0,0,0.7);
+}
+/* 项目成员表 */
+.u-table{
+	width:100%;
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+.u-table .th{
+	color:#707070;
+	font-weight: normal;
+	background: #F2F2F2 linear-gradient(to bottom, #F8F8F8 0%, #ECECEC 100%) repeat-x scroll 0% 0%;
+}
+.u-table tr:HOVER{
+	background: #f5f5f5;
+}
+.input-textarea{
+	width:280px;
+	height: 80px;
+	border: 1px solid #CCC;
+	padding: 8px;
+	resize: none;
+}
+.content-img-div{
+	 width:100px; 
+	 height:100px;
+	 overflow:hidden;
+	 float:left;
+	 margin: 5px;
+}
+.content-img-div img{
+	width:150px;
+}
+/* 聊天窗口 */
+#chat-div .chat-top{
+	border-bottom: 1px solid #ddd;
+	padding:10px;
+}
+#chat-div .chat-top .chat-top-left{
+	float:left;
+}
+#chat-div .chat-top .chat-top-right{
+	margin-left:10px;
+	float:left;
+}
+#chat-div .chat-top .chat-top-right .chat-top-right-top{
+	margin-top: 15px;
+	font-size:14px;
+}
+#chat-div .chat-center{
+	height: 300px;
+	background: #e4eff3;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+#chat-div .chat-text{
+	resize: none;
+	padding:5px;
+	border: none;
+	border-top: 1px solid #ddd;
+	width:98%;
+	background: #e4eff3;
+	padding:5px;
+	outline: none;
+}
+#chat-div .chat-center{
+	padding:0px;
+}
+.chat-to{
+	padding:5px;
+}
+.chat-to .item-left{
+	float:left;
+}
+.chat-to .item-right{
+	float:left;
+	margin:2px 10px 0 10px;
+	border-radius:5px;
+	background:#F8C301;
+	padding:5px;
+}
+.chat-to .item-right .arrow{
+	position:relative;
+	top:2px;
+	right:15px; /* 圆角的位置需要细心调试哦 */
+	width:0;
+	height:0;
+	font-size:0;
+	border:solid 5px;
+	border-color:#e4eff3 #F8C301 #e4eff3 #e4eff3;
+	float: left;
+}
+.chat-to .item-right .text{
+	float: left;
+	position:relative;
+	right:9px;
+}
+
+.chat-form{
+	padding:5px;
+}
+.chat-form .item-left{
+	float:right;
+}
+.chat-form .item-right{
+	float:right;
+	margin:2px 10px 0 6px;
+	border-radius:5px;
+	background:#a2caf7;
+	padding:5px;
+}
+.chat-form .item-right .arrow{
+	position:relative;
+	top:1px;
+	right:-15px; /* 圆角的位置需要细心调试哦 */
+	width:0;
+	height:0;
+	font-size:0;
+	border:solid 5px;
+	border-color:#e4eff3 #e4eff3 #e4eff3 #a2caf7;
+	float: right;
+}
+.chat-form .item-right .text{
+	float: right;
+	position:relative;
+	right:-5px;
+}
+
+.read-more{
+	clear:both;
+	background:#c8ffb0;
+	border:1px solid #ccc;
+	padding: 10px;
+}
+.read-more:HOVER{
+	cursor: pointer;
+	background: #d4ffd6;
+}
+
+#event_edit_container,#event_read_container{
+	display: none;
+}
+
+label {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+form ul {
+	padding: 0.3em;
+}
+
+select, input[type='text'], textarea {
+	width: 250px;
+	padding: 3px;
+}
+
+input[type='text'] {
+	width: 245px;
+}
+
+ul.formatted,ol.formatted {
+	display: block;
+	margin: 1em 0.5em;
+}
+
+ul.formatted li,ol.formatted li {
+	margin: 5px 30px;
+	display: auto;
+}
+
+ul.formatted li {
+	list-style-type: disc;
+}
+
+ol.formatted li {
+	list-style-type: decimal;
+}
+/* 帖子详情 */
+#content .main-content{
+	border:1px solid #ccc;
+	height:auto;
+	
+	margin-top: 10px;
+	background: white;
+}
+#content .main-content .user{
+	padding:10px;
+}
+#content .main-content .user .user-img{
+	float:left;
+}
+#content .main-content .user .user-content{
+	float:left;
+	margin:14px 0 0 10px;
+}
+.comment-input{
+	
+}
+.comment-button{
+	background: #ff8140;
+	color: #fff;
+	border: 1px solid #f77c3d;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+	font-weight: bold;
+	padding: 4px 20px;
+	cursor:pointer;
+}
+.disabled{
+	background: #ffc09f;
+	border: 1px solid #fbbd9e;
+	box-shadow: none;
+	cursor: default;
+}
+.arrow-up {
+	margin-top:-8px;
+	margin-left:49%;
+    width:0; 
+    height:0; 
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-bottom:10px solid #f2f2f5;
+}
+.arrow-up-border {
+	margin-left:49%;
+    width:0; 
+    height:0; 
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-bottom:10px solid #ccc;
+}
+
+.my-pass-input{
+	width: 200px;
+}

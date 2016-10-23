@@ -1,0 +1,42 @@
+.clear{
+	clear:both;
+}
+.center-top{
+	background: #f4f5fa;
+	padding:10px 30px;
+	
+}
+.center-top .project-stat{
+	float:left;
+	margin-right:80px;
+}
+.center-top .custom-stat{
+	float:left;
+}
+.stat-left{
+	float:left;
+	font-size:20px;
+}
+.stat-right{
+	float:right;
+	color:#999;
+}
+.stat-top{
+	padding:20px 0 15px 0;
+	border-bottom: 1px solid #ccc;
+}
+.center-center{
+	padding:10px 30px;
+	
+}
+.center-center .center-title{
+	font-size: 20px;
+	padding:20px 0 15px 0px;
+	border-bottom: 1px solid #ccc;
+	
+}
+.bottom{
+	margin-top:20px;
+	background: #f5f5fa;
+	height: 100px;
+}
