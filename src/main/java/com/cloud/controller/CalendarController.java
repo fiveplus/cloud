@@ -24,7 +24,11 @@ import com.cloud.service.CalendarService;
 import com.cloud.service.SysLogService;
 import com.cloud.service.UserService;
 import com.cloud.util.StringUtil;
-
+/**
+ * 日历列表
+ * @author hack
+ *
+ */
 @Controller  
 @RequestMapping("/") 
 public class CalendarController {
