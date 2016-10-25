@@ -19,7 +19,11 @@ import com.cloud.service.ContentService;
 import com.cloud.service.DepartmentService;
 import com.cloud.service.ProjectService;
 import com.cloud.util.StringUtil;
-
+/**
+ * 主页
+ * @author hack
+ *
+ */
 @Controller  
 @RequestMapping("/") 
 public class IndexController {
