@@ -121,7 +121,7 @@
 				      },
 				      height : function($calendar) {
 				    	  //outerHeight
-				         return $(window).height()-$(".cmenu").outerHeight(true) - 1;
+				         return $(window).height()-$(".cmenu").outerHeight(true)-1;
 				      },
 				      eventRender : function(calEvent, $event) {
 				         if (calEvent.end.getTime() < new Date().getTime()) {

@@ -16,7 +16,7 @@
 			<div style="position:relative">
 				<div class="cmenu" style="min-width:850px;">
 					<div class="cmenuleft">
-						<a href="calendar">日历</a>
+						<a href="calen">日历</a>
 						<a class="cur">事件审核</a>
 					</div>
 					<div class="cmenuright"></div>

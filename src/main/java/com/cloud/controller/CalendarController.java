@@ -43,7 +43,7 @@ public class CalendarController {
 	@Autowired
 	private SysLogService sysLogService;
 	
-	@RequestMapping("/calendar")
+	@RequestMapping("/calen")
 	public String calendar(HttpServletRequest request,Model model){
 		List<User> users = userService.findAll();
 		model.addAttribute("users",users);
