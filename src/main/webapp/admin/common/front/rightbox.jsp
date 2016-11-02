@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<a href="#addcontent" class="post<c:if test="${rightMenuId=='addcontent'}"> cur</c:if>"><i class="i1"></i>发帖</a>
 		<a href="#index" <c:if test="${rightMenuId==NULL}">class="cur"</c:if><c:if test="${rightMenuId=='index'}">class="cur"</c:if>><i class="i2"></i>浏览</a>
 		<a href="#applist" <c:if test="${rightMenuId=='applist'}">class="cur"</c:if>><i class="i3"></i>应用</a> 
-		<a href="#statistics" <c:if test="${rightMenuId=='statistics'}">class="cur"</c:if>><i class="i4"></i>统计</a> 
+		<a href="#stat" <c:if test="${rightMenuId=='stat'}">class="cur"</c:if>><i class="i4"></i>统计</a> 
 	</div>
 	<div class="rb">
   		<a href="#" class="ra1">&nbsp;</a>

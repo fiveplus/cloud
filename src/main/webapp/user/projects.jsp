@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<c:if test="${cp != null && fn:length(cp) > 0}">
 		<div>
 			<c:forEach items="${cp}" var="c">
-				<a href="project?id=${c.id}" ><i></i>${c.name}</a>
+				<a href="proj?id=${c.id}" ><i></i>${c.name}</a>
 			</c:forEach>
 		</div>
 	</c:if>

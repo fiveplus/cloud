@@ -21,7 +21,7 @@
 			<div style="position:relative">
 				<div class="cmenu" style="min-width: 850px;">
 					<div class="cmenuleft">
-						<a href="project?id=${project.id}" >项目记录</a>
+						<a href="proj?id=${project.id}" >项目记录</a>
 						<a href="progress?id=${project.id}" >项目进度</a>
 						<a class="cur">项目成员</a> 
 						<a href="projectset?id=${project.id}" >项目设置</a>

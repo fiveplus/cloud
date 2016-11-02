@@ -35,7 +35,7 @@
 				<!-- 项目/部门列表 -->
 				<div class="item" id="hb1">
 					<c:forEach items="${projects}" var="p">
-						<a href="project?id=${p.id}">${p.name}</a>
+						<a href="proj?id=${p.id}">${p.name}</a>
 					</c:forEach>
 					<div class="clear"></div>
 				</div>

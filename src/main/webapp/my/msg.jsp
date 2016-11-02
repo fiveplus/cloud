@@ -23,7 +23,7 @@
 						<a href="#">我的消息</a>
 					</div>
 					<div class="cmenuright">
-						<a href="my">资料</a>
+						<a href="config">资料</a>
 						<a href="#">统计</a>
 						<a href="#">访客</a>
 					</div>

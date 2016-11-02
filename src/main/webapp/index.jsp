@@ -34,7 +34,7 @@
 				<!-- 项目/部门列表 -->
 				<div class="item" id="hb1">
 					<c:forEach items="${projects}" var="p">
-						<a href="project?id=${p.id}">${p.name}</a>
+						<a href="proj?id=${p.id}">${p.name}</a>
 					</c:forEach>
 					<div class="clear"></div>
 				</div>
@@ -197,7 +197,7 @@
 					"<br />"+
 					time+
 					"<span style='font-size: 12px;'> "+
-							"<a href='content?id="+c.id+"'>"+
+							"<a href='cont?id="+c.id+"'>"+
 							c.str+"<br />"+imgs+
 							"</a>"+
 					"</span>"+
