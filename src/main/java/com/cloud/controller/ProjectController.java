@@ -33,7 +33,7 @@ public class ProjectController {
 	private UserProjectService userProjectService;
 	
 	
-	@RequestMapping("/project")
+	@RequestMapping("/proj")
 	public String project(int id,HttpServletRequest request,Model model){
 		Project p = projectService.get(id);
 		List<User> users = userProjectService.getUserToProjectId(id);

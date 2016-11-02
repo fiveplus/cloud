@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StatisticsController {
 	private static final Logger LOGGER = Logger.getLogger(StatisticsController.class);
 	
-	@RequestMapping("/statistics")
+	@RequestMapping("/stat")
 	public String statistics(HttpServletRequest request,Model model){
 		return "statistics/statistics";
 	}

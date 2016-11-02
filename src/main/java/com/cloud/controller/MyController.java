@@ -52,7 +52,7 @@ public class MyController {
 		return returnMap;
 	}
 	
-	@RequestMapping("my")
+	@RequestMapping("/config")
 	public String my(HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");

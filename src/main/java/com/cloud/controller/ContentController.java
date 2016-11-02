@@ -193,7 +193,7 @@ public class ContentController {
 		 return "content/contents";
 	 }
 	 
-	 @RequestMapping("/content")
+	 @RequestMapping("/cont")
 	 public String content(int id,HttpServletRequest request,Model model){
 		 Content c = contentService.get(id);
 		 
