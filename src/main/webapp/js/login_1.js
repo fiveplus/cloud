@@ -1,69 +1,37 @@
-
+window.onload = function() {
+    var oDiv = document.getElementById("tab");
+    var oLi = oDiv.getElementsByTagName("div")[0].getElementsByTagName("li");
+    var aCon = oDiv.getElementsByTagName("div")[1].getElementsByTagName("div");
+    var timer = null;
+    for (var i = 0; i < oLi.length; i++) {
+        oLi[i].index = i;
+        oLi[i].onmouseover = function() {
+            show(this.index);
+        }
+    }
+    function show(a) {
+        index = a;
+        var alpha = 0;
+        for (var j = 0; j < oLi.length; j++) {
+            oLi[j].className = "";
+            aCon[j].className = "";
+            aCon[j].style.opacity = 0;
+            aCon[j].style.filter = "alpha(opacity=0)";
+        }
+        oLi[index].className = "cur";
+        clearInterval(timer);
+        timer = setInterval(function() {
+            alpha += 2;
+            alpha > 100 && (alpha = 100);
+            aCon[index].style.opacity = alpha / 100;
+            aCon[index].style.filter = "alpha(opacity=" + alpha + ")";
+            alpha == 100 && clearInterval(timer);
+        },
+        5);
+    }
+}
 
 $(function(){
-	
-	$(".content .login .switch ul li").click(function(){
-		$(this).addClass(".switch ul li").siblings().removeClass();
-		var index=$(this).index();
-		$(".main .content .login .web_login > div").eq(index).show().siblings().hide();
-		var index=$(".switch ul li").index(this);
-		var width=$(".switch ul li").width();
-		$(".main .content .login .switch .switch_bg ").stop().animate({left:index*width},500)
-		});
-
-	
-   var length, 
-   currentIndex = 0, 
-   interval, 
-   hasStarted = false, //是否已经开始轮播 
-   t = 3000; //轮播时间间隔 
-  length = $('.tu').length; 
-  //将除了第一张图片隐藏 
-  $('.tu:not(:first)').hide(); 
-  //将第一个slider-item设为激活状态 
-  $('.pointer:first').addClass('pointer-selected'); 
-  //隐藏向前、向后翻按钮  
-  $('.pointer').hover(function(){ 
-   stop(); 
-   var preIndex = $(".pointer").filter(".pointer-selected").index(); //filter改变所有类名为.slider-item-selected的属性
-   currentIndex = $(this).index(); 
-   play(preIndex, currentIndex); 
-  }, function(){ 
-   start(); 
-  });  
-  /** 
-   * 从preIndex页翻到currentIndex页 
-   * preIndex 整数，翻页的起始页 
-   * currentIndex 整数，翻到的那页 
-   */
-  function play(preIndex, currentIndex){ 
-   $('.tu').eq(preIndex).fadeOut(500) 
-    .parent().children().eq(currentIndex).fadeIn(1000); 
-   $('.pointer').removeClass('pointer-selected'); 
-   $('.pointer').eq(currentIndex).addClass('pointer-selected'); 
-  } 
-  /** 
-   * 开始轮播 
-   */
-  function start(){ 
-   if(!hasStarted){ 
-    hasStarted = true; 
- 
-   } 
-  } 
-  /** 
-   * 停止轮播 
-   */
-  function stop() { 
-   clearInterval(interval); 
-   hasStarted = false; 
-  } 
-  //开始轮播 
-  start();
-	
-	
-	
-	
 	var input = $("input");
 	var error = $(".error:first");
 	input.blur(function(){
