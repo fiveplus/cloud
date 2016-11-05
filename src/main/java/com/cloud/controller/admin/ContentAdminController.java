@@ -14,7 +14,7 @@ import com.cloud.entity.Content;
 import com.cloud.service.ContentService;
 import com.cloud.util.PageUtil;
 /**
- * 发布微博
+ * 发布
  * @author hack
  *
  */
