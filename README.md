@@ -6,6 +6,6 @@
 2.下载maven插件<br/>
 3.下载EGIT插件<br/>
 * 测试地址<br/>
-<a href="http://ihack.nat123.net:7070/cloud">http://ihack.nat123.net:7070/cloud</a>
+<a href="http://ihack.nat123.net:7070/cloud">http://ihack.nat123.net:7070/cloud</a><br/>
 *使用框架<br/>
 SpringMVC+Hibernate+ehcache+maven
