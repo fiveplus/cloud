@@ -138,7 +138,7 @@
 					"<br />"+
 					time+
 					"<span style='font-size: 12px;'> "+
-							"<a href='content?id="+c.id+"'>"+
+							"<a href='cont?id="+c.id+"'>"+
 							c.str+"<br />"+imgs+
 							"</a>"+
 					"</span>"+
