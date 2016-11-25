@@ -89,7 +89,7 @@
 			     	  form.find("label[name='start']").html(start);
 			     	  form.find("label[name='title']").html(l.title);
 			     	  form.find("label[name='content']").html(l.content);
-			     	 
+			     	  
 			     	  $(".calexam_a").leanModal();
 			      }
 			    });

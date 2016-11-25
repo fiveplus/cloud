@@ -143,8 +143,6 @@ public class ContentController {
 		 User user = (User)session.getAttribute("user");
 		 Map<String,Object> returnMap = new HashMap<String, Object>();
 		 
-		 
-		 
 		 String remindTime = request.getParameter("remindTime");
 		 if(remindTime != null && !remindTime.equals("")){
 			 c.setRemindTime(StringUtil.getStringToLong(remindTime, StringUtil.DATE_FORMAT2));
@@ -193,16 +191,12 @@ public class ContentController {
 		 return "content/contents";
 	 }
 	 
-	 @RequestMapping("/cont")
+	 @RequestMapping("/content/cont")
 	 public String content(int id,HttpServletRequest request,Model model){
+		 
 		 Content c = contentService.get(id);
 		 
 		 model.addAttribute("content",c);
-		 
-		 List<Project> projects = projectService.findAll();
-		 List<Department> depts = departmentService.findAll();
-		 model.addAttribute("projects",projects);
-		 model.addAttribute("depts",depts);
 		 
 		 return "content/content";
 	 }

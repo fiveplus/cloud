@@ -68,7 +68,15 @@
 				<div class="space_h_30 clear"></div>
 			</div>
 		</div>
+		
 		<script type="text/javascript">
+		
+			function show_cont(id){
+				$("#cont-div").load("content/cont?id="+id,function(){
+					$("#cont-a").click();
+				});
+			}
+		
 			$(document).ready(function(){
 				var hbout;
 				//中间头部js
@@ -197,7 +205,7 @@
 					"<br />"+
 					time+
 					"<span style='font-size: 12px;'> "+
-							"<a href='cont?id="+c.id+"'>"+
+							"<a href='javascript:show_cont("+c.id+")' >"+
 							c.str+"<br />"+imgs+
 							"</a>"+
 					"</span>"+

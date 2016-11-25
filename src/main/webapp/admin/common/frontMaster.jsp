@@ -68,7 +68,6 @@
 	<div class="index-bg">
 		<img src="images/bg01.jpg" />
 	</div>
-	
 	<div id="add_project_div" class="leanmodel_div">
 		<form action="project/add" role="form" class="form" id="add_project" >
 			<div style="padding:20px 5px;"><font size="+2"><b>项目新建</b></font> <span style="color:#999;"> >>请输入项目详细信息 </span> </div>
@@ -141,6 +140,7 @@
 		</form>
 	</div>
 	
+	
 	<div class="popadd">
 		<i><img src="images/main_56.png" width="64" height="64" /></i>
 		<div class="popadd_r"><b>刘孟云</b>集团·网络部 <br />
@@ -152,7 +152,9 @@
 		<div class="clear"></div>
 	</div>
 	
-	
+	<a id="cont-a" rel='leanModal' href='#cont-div'></a>
+	<div id="cont-div" style="padding:0;height:500px;overflow-y:auto;">
+	</div>
 	
 	<script type="text/javascript">
 		//高度全屏自适应
@@ -219,6 +221,8 @@
 		
 		
 		$(document).ready(function(){
+			//数据初始化
+			$("#cont-a").leanModal({top:10});
 			
 			//左侧数据加载
 			var dataid = '${dataid}';

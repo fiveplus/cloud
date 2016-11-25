@@ -50,8 +50,6 @@ public class IndexController {
 			 model.addAttribute("projects",projects);
 			 model.addAttribute("depts",depts);
 			 
-			
-			 
 			 return "index";
 		 }
 	 }
