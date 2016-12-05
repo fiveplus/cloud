@@ -164,8 +164,6 @@
 			$(".contentbox").css("min-height",mainH);
 			$(".itembox").width($('.contentbox').width());
 			
-			
-			
 		}
 		
 		$(window).resize(function(){
