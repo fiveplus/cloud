@@ -153,10 +153,17 @@
 	</div>
 	
 	<a id="cont-a" rel='leanModal' href='#cont-div'></a>
-	<div id="cont-div" style="padding:0;height:500px;overflow-y:auto;">
+	<div id="cont-div" style="padding:0;height:500px;overflow-y:auto;background: #f2f2f5;">
 	</div>
 	
 	<script type="text/javascript">
+	
+		function show_cont(id){
+			$("#cont-div").load("content/cont?id="+id,function(){
+				$("#cont-a").click();
+			});
+		}
+	
 		//高度全屏自适应
 		function resizediv(){
 			var mainH=$(window).height();

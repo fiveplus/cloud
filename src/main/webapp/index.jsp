@@ -71,12 +71,6 @@
 		
 		<script type="text/javascript">
 		
-			function show_cont(id){
-				$("#cont-div").load("content/cont?id="+id,function(){
-					$("#cont-a").click();
-				});
-			}
-		
 			$(document).ready(function(){
 				var hbout;
 				//中间头部js

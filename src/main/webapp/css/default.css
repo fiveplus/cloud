@@ -437,12 +437,11 @@ ol.formatted li {
 /* 帖子详情 */
 #content .main-content{
 	height:auto;
-	
-	margin: 3px;
 	background: white;
 }
 #content .main-content .user{
 	padding:10px;
+	background: #f2f2f5;
 }
 #content .main-content .user .user-img{
 	float:left;

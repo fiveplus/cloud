@@ -4,7 +4,7 @@
 <%@taglib uri="/date-tag" prefix="date" %>
 
 	<!-- 项目/部门列表 -->
-	<div id="content" style="width:850px;margin: auto;">
+	<div id="content" style="margin: auto;border-top: 3px solid #3dc768;">
 		<div class="main-content" style="position: relative; ">
 			<!-- 这里显示详细内容 -->
 			<div class="user">
