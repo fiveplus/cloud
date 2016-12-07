@@ -154,7 +154,7 @@
 					"<br />"+
 					time+
 					"<span style='font-size: 12px;'> "+
-							"<a href='cont?id="+c.id+"'>"+
+							"<a href='javascript:show_cont("+c.id+")'>"+
 							c.str+"<br />"+imgs+
 							"</a>"+
 					"</span>"+
