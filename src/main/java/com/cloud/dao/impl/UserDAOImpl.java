@@ -29,8 +29,8 @@ public class UserDAOImpl extends BaseDAOImpl<User> implements UserDAO{
 
 	public List<User> getList(int page, int pageSize, String[] columns,
 			Object[] objs) {
-		String hql = "FROM User WHERE 1 = 1 ";
-		List list = this.getHQLList(hql, columns, objs);
+		String hql = "FROM User WHERE 1 = 1 limit";
+		List list = this.getList(page,pageSize,hql, columns, objs);
 		return list;
 	}
 
