@@ -18,8 +18,8 @@ public interface ContentService {
     List<Content> getList(int page,int pageSize,String[] columns,Object[] objs);
     int getListCount(String[] columns,Object[] objs);
     
-	List<Content> getListToDeptId(int page, int pageSize,int deptId);
-	int getListCountToDeptId(int deptId);
+	List<Content> getListToDeptIdAndThemeId(int page, int pageSize,int deptId,int themeId);
+	int getListCountToDeptIdAndThemeId(int deptId,int themeId);
 	
 	int getListCountToUserId(int userId);
 	List<Content> getListToUserId(int page,int pageSize,int userId);

@@ -55,10 +55,15 @@ public class ContentController {
 			 User user = (User) session.getAttribute("user");
 			 deptId = user.getDept().getId();
 		 }
+		 String _themeId = request.getParameter("themeId");
+		 int themeId = 0;
+		 if(!"".equals(_themeId)){
+			 themeId = Integer.parseInt(_themeId);
+		 }
 		 
-		 int count = contentService.getListCountToDeptId(deptId);
+		 int count = contentService.getListCountToDeptIdAndThemeId(deptId,themeId);
 		 PageUtil pu = new PageUtil(page, count, pageSize);
-		 List<Content> list = contentService.getListToDeptId(page,pageSize,deptId);
+		 List<Content> list = contentService.getListToDeptIdAndThemeId(page,pageSize,deptId,themeId);
 		 for(Content c:list){
 			 c.setStr(StringUtil.HTML2Text(c.getContent()));
 			 c.setImgs(StringUtil.getImgStr(c.getContent()));
@@ -178,15 +183,17 @@ public class ContentController {
 	 
 	 @RequestMapping("/contents")
 	 public String contents(int deptId,HttpServletRequest request,Model model){
-		 
+		 String _themeId = request.getParameter("themeId");
 		 Department dept = departmentService.get(deptId);
 		 
 		 List<Project> projects = projectService.findAll();
 		 List<Department> depts = departmentService.findAll();
+		 List<Theme> themes = themeService.findAll();
 		 model.addAttribute("projects",projects);
 		 model.addAttribute("depts",depts);
 		 model.addAttribute("dept",dept);
-		 
+		 model.addAttribute("themes",themes);
+		 model.addAttribute("themeId",_themeId);
 		 
 		 return "content/contents";
 	 }

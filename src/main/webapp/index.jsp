@@ -23,8 +23,8 @@
 						<a href="#" id="h1">我的项目</a> 
 						<a href="#" id="h2">其他部门</a> </div>
               		<div class="cmenuright">
-              			<a href="calen" class="cmra1">&nbsp;</a>
-              			<a href="#" class="cmra2">&nbsp;</a> 
+              			<a href="#" id="h4" class="cmra1">&nbsp;</a>
+              			<a href="#" id="h3" class="cmra2">&nbsp;</a> 
               			<a href="#">沟通</a>
               			<a href="#">记录</a>
               			<a href="#">文档</a>
@@ -32,7 +32,7 @@
               		<div class="clear"></div>
 				</div>
 				<!-- 项目/部门列表 -->
-				<div class="item" id="hb1">
+				<div class="item deptmenu" id="hb1">
 					<c:forEach items="${projects}" var="p">
 						<a href="proj?id=${p.id}">${p.name}</a>
 					</c:forEach>
@@ -45,17 +45,12 @@
            			<div class="clear"></div>
 				</div>
 				<div class="item altmenu" id="hb3">
-					<a href="#">分享</a>
-					<a href="#">汇报</a>
-					<a href="#">计划</a>
-					<a href="#">总结</a>
-					<a href="#">报告</a>
-					<a href="#">项目</a>
-					<a href="#">分析</a>
-					<a href="#">新年</a>
-					<a href="#">2016</a>
+					<c:forEach items="${themes}" var="t">
+						<a href="index?themeId=${t.id}">${t.name}</a>
+					</c:forEach>
               		<div class="clear"></div>
            		</div>
+           		
            		<div class="space_h_40"></div>
            		<div id="list-content" style="min-height:750px;">
            			<ul class="list_1" id="list_1" style="position: relative">
@@ -73,6 +68,7 @@
 		
 			$(document).ready(function(){
 				var hbout;
+				$('.datetimepicker').datetimepicker();
 				//中间头部js
 				$('#h1, #hb1').hover(function(){
 					$("#hb1").show();
@@ -81,7 +77,7 @@
 					if(hbout){
 						clearTimeout(hbout);
 					}
-					},function(){
+				},function(){
 					$("#hb1").stop(true).animate({ top: "-100px" , opacity:"0" }, 300);
 					$("#h1").removeClass("h");
 					hbout=setTimeout(function(){$("#hb1").hide()},300);
@@ -94,7 +90,7 @@
 						clearTimeout(hbout);
 					}
 				},function(){
-					$("#hb2").stop(true).animate({ top: "-100px" , opacity:"0" }, 300);
+					$("#hb2").stop(true).animate({ top: "-200px" , opacity:"0" }, 300);
 					$("#h2").removeClass("h");
 					hbout=setTimeout(function(){$("#hb2").hide()},300);
 				});
@@ -105,15 +101,16 @@
 						clearTimeout(hbout);
 					}
 				},function(){
-					$("#hb3").stop(true).animate({ top: "-200px",opacity:"0" }, 300);
+					$("#hb3").stop(true).animate({ top: "-300px",opacity:"0" }, 300);
 					hbout=setTimeout(function(){$("#hb3").hide()},300);
 				});
 				
+				var themeId = '${themeId}';
 				var $list = $("#list_1"),
 				$handler=$("li",$list),
 				page = 1,
 				isLoading = false,
-				apiURL = "content/list",
+				apiURL = "content/list?themeId="+themeId,
 				lastRequestTimestamp = 0,
 				fadeInDelay = 2000,
 				$window = $(window),

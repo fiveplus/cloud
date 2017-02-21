@@ -23,8 +23,8 @@
 						<a href="#" id="h2">其他部门</a> 
 					</div>
 					<div class="cmenuright">
-              			<a href="calendar" class="cmra1">&nbsp;</a>
-              			<a href="#" class="cmra2">&nbsp;</a> 
+              			<a href="#" class="cmra1">&nbsp;</a>
+              			<a href="#" id="h3" class="cmra2">&nbsp;</a> 
               			<a href="#">沟通</a>
               			<a href="#">记录</a>
               			<a href="#">文档</a>
@@ -45,15 +45,9 @@
            			<div class="clear"></div>
 				</div>
 				<div class="item altmenu" id="hb3">
-					<a href="#">分享</a>
-					<a href="#">汇报</a>
-					<a href="#">计划</a>
-					<a href="#">总结</a>
-					<a href="#">报告</a>
-					<a href="#">项目</a>
-					<a href="#">分析</a>
-					<a href="#">新年</a>
-					<a href="#">2016</a>
+					<c:forEach items="${themes}" var="t">
+						<a href="contents?themeId=${t.id}&deptId=${dept.id}">${t.name}</a>
+					</c:forEach>
               		<div class="clear"></div>
            		</div>
            		<div class="space_h_40"></div>
@@ -110,11 +104,12 @@
 					hbout=setTimeout(function(){$("#hb3").hide()},300);
 				});
 				var deptId = '${dept.id}';
+				var themeId = '${themeId}';
 				var $list = $("#list_1"),
 				$handler=$("li",$list),
 				page = 1,
 				isLoading = false,
-				apiURL = "content/list?deptId="+deptId,
+				apiURL = "content/list?deptId="+deptId+"&themeId="+themeId,
 				lastRequestTimestamp = 0,
 				fadeInDelay = 2000,
 				$window = $(window),

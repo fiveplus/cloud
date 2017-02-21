@@ -18,7 +18,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="rb">
   		<a href="#" class="ra1">&nbsp;</a>
-  		<a href="#" class="ra2">&nbsp;</a><i></i>
+  		<!-- 日历 -->
+  		<a href="calen" class="ra2">&nbsp;</a><i></i>
   		<a href="#" class="ra3">&nbsp;</a><i></i>
   		<a href="logout" class="ra4">&nbsp;</a>
   	</div>

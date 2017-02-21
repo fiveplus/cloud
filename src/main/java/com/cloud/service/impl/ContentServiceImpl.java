@@ -67,12 +67,12 @@ public class ContentServiceImpl implements ContentService{
 		return contentDAO.getListCount(columns, objs);
 	}
 
-	public List<Content> getListToDeptId(int page, int pageSize, int deptId) {
-		return contentDAO.getListToDeptId(page, pageSize, deptId);
+	public List<Content> getListToDeptIdAndThemeId(int page, int pageSize, int deptId,int themeId) {
+		return contentDAO.getListToDeptIdAndThemeId(page, pageSize, deptId, themeId);
 	}
 
-	public int getListCountToDeptId(int deptId) {
-		return contentDAO.getListCountToDeptId(deptId);
+	public int getListCountToDeptIdAndThemeId(int deptId,int themeId) {
+		return contentDAO.getListCountToDeptIdAndThemeId(deptId,themeId);
 	}
 
 	public int getListCountToUserId(int userId) {
@@ -91,6 +91,8 @@ public class ContentServiceImpl implements ContentService{
 	public int getListCountToProjectId(int projectId) {
 		return contentDAO.getListCountToProjectId(projectId);
 	}
+
+	
 	
 	
 	

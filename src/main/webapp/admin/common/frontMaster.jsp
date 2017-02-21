@@ -167,10 +167,11 @@
 		//高度全屏自适应
 		function resizediv(){
 			var mainH=$(window).height();
+			var mainWidth = $("#main").width();
 			$(".leftmenu").height(mainH-320);
 			$(".contentbox").css("min-height",mainH);
 			$(".itembox").width($('.contentbox').width());
-			
+			$(".item").width(mainWidth - 24);
 		}
 		
 		$(window).resize(function(){

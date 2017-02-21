@@ -26,14 +26,21 @@ public class ContentDAOImpl extends BaseDAOImpl<Content> implements ContentDAO{
 		return count;
 	}
 
-	public List<Content> getListToDeptId(int page, int pageSize, int deptId) {
-		String hql = "FROM Content c WHERE c.user.dept.id=:deptId AND c.status = 'Y' ORDER BY c.createTime desc ";
+	public List<Content> getListToDeptIdAndThemeId(int page, int pageSize, int deptId,int themeId) {
+		String hql = "FROM Content c WHERE c.user.dept.id=:deptId AND c.status = 'Y' ";
+		if(themeId > 0){
+			hql += " AND c.theme.id = " + themeId;
+		}
+		hql += " ORDER BY c.createTime desc ";
 		List list = this.getList(page,pageSize,hql, new String[]{"deptId"}, new Object[]{deptId});
 		return list;
 	}
 
-	public int getListCountToDeptId(int deptId) {
+	public int getListCountToDeptIdAndThemeId(int deptId,int themeId) {
 		String hql = "SELECT COUNT(*) FROM Content c WHERE c.user.dept.id=:deptId AND c.status = 'Y' ";
+		if(themeId > 0){
+			hql += " AND c.theme.id = " + themeId;
+		}
 		int count = this.getCount(hql, new String[]{"deptId"}, new Object[]{deptId});
 		return count;
 	}

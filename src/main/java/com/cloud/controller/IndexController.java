@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cloud.entity.Content;
 import com.cloud.entity.Department;
 import com.cloud.entity.Project;
+import com.cloud.entity.Theme;
 import com.cloud.entity.User;
 import com.cloud.service.ContentService;
 import com.cloud.service.DepartmentService;
 import com.cloud.service.ProjectService;
+import com.cloud.service.ThemeService;
 import com.cloud.util.StringUtil;
 /**
  * 主页
@@ -35,20 +37,26 @@ public class IndexController {
 	 private DepartmentService departmentService;
 	 @Autowired
 	 private ContentService contentService;
+	 @Autowired
+	 private ThemeService themeService;
 	 
 	 
 	 @RequestMapping("/index")
 	 public String index(HttpServletRequest request,Model model){
 		 HttpSession session = request.getSession();
 		 User user = (User) session.getAttribute("user");
+		 String themeId = request.getParameter("themeId");
 		 if(user == null){
 			 return "login";
 		 }else{
 			 //TODO 登录验证成功
 			 List<Project> projects = projectService.findAll();
 			 List<Department> depts = departmentService.findAll();
+			 List<Theme> themes = themeService.findAll();
 			 model.addAttribute("projects",projects);
 			 model.addAttribute("depts",depts);
+			 model.addAttribute("themes",themes);
+			 model.addAttribute("themeId",themeId);
 			 
 			 return "index";
 		 }

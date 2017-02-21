@@ -160,7 +160,7 @@ float:right;
 /*阴影效果*/
 .popbox, .btn2 { -moz-box-shadow:1px 1px 4px #ddd; -ms-box-shadow:1px 1px 4px #ddd; -wekit-box-shadow:1px 1px 4px #ddd; -o-box-shadow:1px 1px 4px #ddd; box-shadow:1px 1px 4px #ddd }
 /*0203增加*/
-.item { background:#fff; border:solid 1px #40c36b; border-top:none; padding:10px; text-align:center; position:absolute; top:-200px; display:none;z-index:1; }
+.item { background:#fff; border:solid 1px #40c36b; border-top:none; padding:10px; text-align:center; position:absolute; top:-200px; display:none;z-index:1;}
 .item a { display:block; background:url(../images/alt_022.png) no-repeat 5px center #fafafa; width:170px; line-height:30px; height:30px; margin-right:6px; margin-bottom:6px; border:solid 1px #ededed; padding:0 5px 0 35px; color:#333; float:left; text-align:left; overflow:hidden; }
 .item a:hover { background:url(../images/alt_02.png) no-repeat 5px center #40c36b; border:solid 1px #40c36b; color:#fff; }
 .altmenu a { background:url(../images/alt_011.png) no-repeat 5px center #fafafa; width:40px; }
