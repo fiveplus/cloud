@@ -123,7 +123,7 @@
 					<input type="hidden" name="width" id="width" value="0" />
 					<input type="hidden" name="height" id="height" value="0" />
 					<input type="file" name="file" id="file" accept="image/png,image/jpg,image/jpeg" onchange="changeToop()"  style="display:none;"  />
-					<img src="${user.portrait}" id="target"  />
+					<img src="${user.portrait}" width="200" id="target"  />
 					<br/><br/>
 					<button class="button button-primary button-rounded button-small" type="button" onclick="Id('file').click()">
 						<i class="icon-ok bigger-110"></i>
