@@ -14,6 +14,7 @@
 		<script charset="utf-8" src="js/kindeditor-4.1.10/kindeditor.js"></script>
 		<script charset="utf-8" src="js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 		<script charset="utf-8" src="js/kindeditor-4.1.10/plugins/code/prettify.js"></script>
+		<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
 		<!-- main content -->
@@ -48,6 +49,7 @@
 				<div class="post" style="padding-left:25px;padding-bottom:20px;min-height: 830px;">
 					<form action="content/add" method="post" id="add_content">
 						<input type="hidden" name="isPublic" value="N" />
+						<input type="hidden" name="address" value="" />
 						<div class="fenge"></div>
 						<div class="category-choose-wrap">
 							<div class="category-title">项目：</div>
@@ -86,8 +88,11 @@
 						<div class="send-div">
 							<textarea id="send-text" name="content" class="send-text" >${content.content}<%=htmlspecialchars(htmlData)%></textarea>
 						</div>
-						<div style="float:right;">
-							<a href="javascript:add_content()" class="w_btn_a_btn" >发布</a>
+						<div>
+							<div style="float:left;margin:15px 0 0 0;padding:4px 0 0 15px;background: url(images/libg02.png) no-repeat 0 7px;font-size: 12px;color:#666;"><b id="address"></b></div>
+							<div style="float:right;">
+								<a href="javascript:add_content()" class="w_btn_a_btn" >发布</a>
+							</div>
 						</div>
 						<div class="clear"></div>
 					</form>
@@ -105,6 +110,9 @@
 			</div>
 		</div>
 		<script type="text/javascript">
+			//console.log(returnCitySN["cip"]+','+returnCitySN["cname"])//117.89.35.98,江苏省南京市
+			$("#add_content input[name='address']").val(returnCitySN["cname"]);
+			$("#address").html(returnCitySN["cname"]);
 			var editor;
 			function editor_init(){
 				if($("#send-text")){
