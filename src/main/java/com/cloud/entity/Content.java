@@ -31,6 +31,8 @@ public class Content implements Serializable{
 	private String str;
 	private List<String> imgs;
 	
+	private String address;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false)
@@ -129,6 +131,14 @@ public class Content implements Serializable{
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	@Column(name = "ADDRESS")
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 	
