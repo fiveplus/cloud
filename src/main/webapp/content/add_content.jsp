@@ -159,6 +159,8 @@
 				var alldata = $("#add_content").serialize();
 				var remindTime = $("#datetimepicker").val();
 				alldata += "&remindTime="+remindTime;
+				var text = editor.html();
+				if(text=='') return;
 				$.ajax({
 					type:"POST",
 					url:action,
