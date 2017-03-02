@@ -32,6 +32,9 @@ import com.cloud.util.StringUtil;
 @Controller  
 @RequestMapping("/") 
 public class ContentController {
+	
+	 private static final int CONTENT_LENGTH = 100;
+	
 	 private static final Logger LOGGER = Logger.getLogger(ContentController.class);
 	 
 	 @Autowired
@@ -65,7 +68,9 @@ public class ContentController {
 		 PageUtil pu = new PageUtil(page, count, pageSize);
 		 List<Content> list = contentService.getListToDeptIdAndThemeId(page,pageSize,deptId,themeId);
 		 for(Content c:list){
-			 c.setStr(StringUtil.HTML2Text(c.getContent()));
+			 String str = StringUtil.HTML2Text(c.getContent());
+			 str = str.length() <= CONTENT_LENGTH ? str : (str.substring(0,CONTENT_LENGTH - 1) + "...");
+			 c.setStr(str);
 			 c.setImgs(StringUtil.getImgStr(c.getContent()));
 		 }
 		 returnMap.put("contents", list);
