@@ -1,0 +1,56 @@
+package com.cloud.controller;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cloud.entity.Comment;
+import com.cloud.entity.User;
+import com.cloud.service.CommentService;
+import com.cloud.util.StringUtil;
+
+@Controller
+@RequestMapping("/")
+public class CommentController {
+	public static final Logger LOGGER = Logger.getLogger(CommentController.class);
+	
+	@Autowired
+	private CommentService commentService;
+	
+	@RequestMapping("/save")
+	public @ResponseBody Map<String,Object> save(Comment comment,HttpServletRequest request,Model model){
+		String message = "恭喜您，评论成功！";
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		
+		comment.setUser(user);
+		comment.setCreateTime(StringUtil.getDateToLong(new Date()));
+		
+		commentService.save(comment);
+		
+		returnMap.put("message", message);
+		
+		return returnMap;
+	}
+	
+	@RequestMapping("/list")
+	public @ResponseBody Map<String,Object> list(int page,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		
+		
+		return returnMap;
+	}
+	
+	
+}
