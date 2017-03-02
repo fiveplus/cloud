@@ -66,6 +66,7 @@
 			</div>
 		</div>
 		<script type="text/javascript">
+		
 			$(document).ready(function(){
 				//中间头部js
 				var hbout;

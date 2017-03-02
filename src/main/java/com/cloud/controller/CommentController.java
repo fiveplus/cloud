@@ -2,6 +2,7 @@ package com.cloud.controller;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,7 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
-	@RequestMapping("/save")
+	@RequestMapping("/comment/save")
 	public @ResponseBody Map<String,Object> save(Comment comment,HttpServletRequest request,Model model){
 		String message = "恭喜您，评论成功！";
 		HttpSession session = request.getSession();
@@ -39,15 +40,19 @@ public class CommentController {
 		
 		commentService.save(comment);
 		
+		returnMap.put("comment", comment);
 		returnMap.put("message", message);
 		
 		return returnMap;
 	}
 	
-	@RequestMapping("/list")
-	public @ResponseBody Map<String,Object> list(int page,HttpServletRequest request,Model model){
+	@RequestMapping("/comment/list")
+	public @ResponseBody Map<String,Object> list(int page,int contentId,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		
+		List<Comment> comments = commentService.getListToContentId(page,100,contentId);
+		
+		returnMap.put("comments", comments);
 		
 		return returnMap;
 	}

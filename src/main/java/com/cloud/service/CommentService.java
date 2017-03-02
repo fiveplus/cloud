@@ -13,4 +13,5 @@ public interface CommentService {
     void update(Comment entity);  
     void delete(Integer id);  
     void flush();
+    public List<Comment> getListToContentId(int page,int pageSize,int contentId);
 }

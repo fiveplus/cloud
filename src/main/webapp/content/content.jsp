@@ -36,22 +36,37 @@
 			<!-- 评论区 -->
 			<div style="background: #f2f2f5;">
 				<div style="padding:10px;border-bottom: 1px solid #ccc;">
-					<input type="text" value="" class="comment-input" style="width:99%"  />
-					<div align="right" style="padding-top: 5px;" >
-						<input type="button" disabled="disabled" class="comment-button disabled"   value="评论" />
-					</div>
+					<form action="comment/save" method="post" id="comment_form">
+						<input type="hidden" name="cont.id" value="${content.id}" />
+						<input type="text" value="" name="content" class="comment-input" style="width:99%"  />
+						<div align="right" style="padding-top: 5px;" >
+							<input type="button" disabled="disabled" class="comment-button disabled"   value="评论" />
+						</div>
+					</form>
 				</div>
-				<div>
+				<div class="commit_list_div">
+					<!-- 
 					<div style="padding: 5px;" align="center">
 						此帖当前暂无评论。
 					</div>
+					
+					<div class="commit_item">
+						<span class="commit_user"><img class="img-radius37" src="" /></span>
+						<div class="commit_content">
+							<a href="#">姓名</a>：评论内容
+							<br />
+							<font color="gray">2017-12-12 12:12:12</font>
+						</div>
+						<div class="clear"></div>
+					</div>
+					 -->
 				</div>
 			</div>
 		</div>
      </div>
 	
 	<script type="text/javascript">
-		
+	
 		$(document).ready(function(){
 			//中间头部js
 			var hbout;
@@ -102,8 +117,98 @@
 			});
 			
 			$(".comment-button").click(function(){
-				$(".comment-input").val("");
+				var val = $(".comment-input").val();
+				if(val != null){
+					var form = $("#comment_form");
+					var action = form.attr("action");
+					var alldata = form.serialize();
+					$.ajax({
+						type:"POST",
+						url:action,
+						data:alldata,
+						error: function(request) {
+							//alert("服务器连接失败!");
+						},
+						success: function(data) {
+							$(".comment-input").val("");
+							$(".comment-button").attr("disabled","disabled");
+							$(".comment-button").addClass("disabled");
+							var vdata = eval("("+data+")");
+							//后续处理
+							var comment = vdata.comment;
+							var html = show_comment(comment);
+							$(".commit_list_div").prepend(html);
+							
+						}
+					});
+				}
 			});
 			
+			var contentId = '${content.id}';
+			init_comments(contentId);
+			
 		});
+		
+		function init_comments(contentId){
+			$.ajax({
+				type:"POST",
+				url:"comment/list",
+				data:{page:1,contentId:contentId},
+				error: function(request) {
+					//alert("服务器连接失败!");
+				},
+				success: function(data) {
+					var vdata = eval("("+data+")");
+					
+					//后续处理
+					var comments = vdata.comments;
+					var html = show_comments(comments);
+					$(".commit_list_div").html(html);
+					
+				}
+			});
+		}
+		
+		function show_comment(comment){
+			if($(".no-comment")) $(".no-comment").remove();
+			var html = "";
+			var c = comment;
+			var date = new Date(c.createTime);
+			var time = date.Format("yyyy-MM-dd HH:mm:ss");
+			html += "<div class='commit_item'>"
+					+"<span class='commit_user'><img class='img-radius37' src='"+c.user.portrait+"' /></span>"
+					+"<div class='commit_content'>"
+						+"<a href='#'>"+c.user.username+"</a>："+c.content
+						+"<br />"
+						+"<font color='gray'>"+time+"</font>"
+					+"</div>"
+					+"<div class='clear'></div>"
+					+"</div>";
+			return html;
+		}
+		
+		function show_comments(comments){
+			var html = "";
+			if(comments.length > 0){
+				for(var i = 0;i < comments.length;i++){
+					var c = comments[i];
+					var date = new Date(c.createTime);
+					var time = date.Format("yyyy-MM-dd HH:mm:ss");
+					var str = "<div class='commit_item'>"
+					+"<span class='commit_user'><img class='img-radius37' src='"+c.user.portrait+"' /></span>"
+					+"<div class='commit_content'>"
+						+"<a href='#'>"+c.user.username+"</a>："+c.content
+						+"<br />"
+						+"<font color='gray'>"+time+"</font>"
+					+"</div>"
+					+"<div class='clear'></div>"
+					+"</div>";
+					html+=str;
+				}
+			}else{
+				html+="<div class='no-comment' align='center'>此帖当前暂无评论。</div>";
+			}
+			return html;
+		}
+		
 	</script>

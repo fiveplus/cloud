@@ -500,3 +500,18 @@ ol.formatted li {
     -moz-box-shadow: 0 0px 4px rgba(0,0,0,0.7);
 }
 
+/* 评论列表 */
+.commit_list_div .commit_item{
+	padding: 5px;
+}
+.commit_list_div .commit_item .commit_user{
+	float:left;
+}
+.commit_list_div .commit_item .commit_content{
+	float:left;
+	padding:0 0 0 10px;
+}
+.commit_list_div .no-comment{
+	padding:10px;
+}
+

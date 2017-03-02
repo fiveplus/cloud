@@ -208,7 +208,7 @@
 				url : action,
 				data:alldata,
 				error : function(request) {
-					alert("服务器连接异常!");
+					//alert("服务器连接异常!");
 				},
 				success : function(data) {
 					var vdata = eval("(" + data + ")");
@@ -343,7 +343,7 @@
 						url:"user/info?id="+id,
 						async:false,
 						error:function(request){
-							alert("数据请求错误!");
+							//alert("数据请求错误!");
 						},
 						success:function(data){
 							var user = eval("("+data+")");
@@ -411,7 +411,7 @@
 				type:"POST",
 				url:"rong/get_messages?id="+uid,
 				error: function(request) {
-					alert("服务器连接失败!");
+					//alert("服务器连接失败!");
 				},
 				success: function(data) {
 					
@@ -461,7 +461,7 @@
 				url:action,
 				data:alldata,
 				error:function(request){
-					alert("服务器连接失败!");
+					//alert("服务器连接失败!");
 				},
 				success:function(data){
 					var vdata = eval("("+data+")");

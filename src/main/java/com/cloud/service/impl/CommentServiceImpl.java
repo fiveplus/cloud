@@ -52,6 +52,11 @@ public class CommentServiceImpl implements CommentService{
 	public void flush() {
 		commentDAO.flush();
 	}
+
+	public List<Comment> getListToContentId(int page, int pageSize,
+			int contentId) {
+		return commentDAO.getListToContentId(page,pageSize,contentId);
+	}
 	
 	
 	
