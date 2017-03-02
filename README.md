@@ -10,4 +10,4 @@
 * 使用框架<br/>
 SpringMVC+Hibernate+ehcache+maven
 * 2017-02-28<br/>
-1.tbl_content新增字段 address(帖子发布地址)
+tbl_content新增字段 address(帖子发布地址)
