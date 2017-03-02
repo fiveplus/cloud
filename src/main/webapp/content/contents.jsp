@@ -202,7 +202,7 @@
 				"<div class='lib'>"+
 					"<a href='#' class='la2'>("+c.readCount+")</a>"+
 					"<a href='#' class='la1'>(0)</a>"+
-					"<b>山东省济南市舜泰广场8号楼东12B</b>"+
+					"<b>"+c.address+"</b>"+
 				"</div>"+
 				"</li>";
 					return st;
