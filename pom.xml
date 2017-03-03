@@ -261,6 +261,15 @@
             <version>2.3</version>  
             <configuration>  
                 <webXml>src/main/webapp/WEB-INF/web.xml</webXml>  
+                <webResources>
+                	<resource>
+                        <directory>lib/</directory>
+                        <targetPath>src/main/webapp/WEB-INF/lib</targetPath>
+                        <includes>
+                            <include>**/*.jar</include>
+                        </includes>
+                    </resource>
+                </webResources>
             </configuration>  
         </plugin>  
 
@@ -279,7 +288,7 @@
             </configuration>  
         </plugin>  
 
-        <!-- 部署至本机 -->  
+        <!-- 部署至本机 --> 
         <plugin>  
             <groupId>org.codehaus.cargo</groupId>  
             <artifactId>cargo-maven2-plugin</artifactId>  
@@ -294,7 +303,8 @@
                     <home>/Users/zhangshenwu/softwares/apache-tomcat-7.0.68</home>  
                 </configuration>  
             </configuration>  
-        </plugin>  
+        </plugin> 
+         
     </plugins>  
 
   </build>

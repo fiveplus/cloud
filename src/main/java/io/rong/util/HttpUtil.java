@@ -1,4 +1,4 @@
-﻿package io.rong.util;
+package io.rong.util;
 
 import io.rong.models.SdkHttpResult;
 
@@ -12,7 +12,6 @@ import java.net.ProtocolException;
 import java.net.URL;
 
 public class HttpUtil {
-
 	private static final String APPKEY = "RC-App-Key";
 	private static final String NONCE = "RC-Nonce";
 	private static final String TIMESTAMP = "RC-Timestamp";
