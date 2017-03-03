@@ -105,7 +105,11 @@
 					hbout=setTimeout(function(){$("#hb3").hide()},300);
 				});
 				$(document).on('click','#list_1 li .lib .la1',function(){
-					$(this).css("background","url(images/libg04.png) no-repeat 0 6px");
+					$(this).css("background","url(images/libg04.png) no-repeat 0 4px");
+					var val = $(this).html();
+					var num = val.substring(1,val.length-1);
+					num = parseInt(num) + 1;
+					$(this).html("("+num+")");
 				});
 				
 				var themeId = '${themeId}';
