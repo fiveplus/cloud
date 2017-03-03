@@ -1,5 +1,6 @@
 package com.cloud.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cloud.entity.Praise;
 import com.cloud.entity.User;
 import com.cloud.service.PraiseService;
+import com.cloud.util.StringUtil;
 
 @Controller
 @RequestMapping("/")
@@ -29,6 +32,24 @@ public class PraiseController {
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		Map<String,Object> returnMap = new HashMap<String, Object>();
+		
+		Praise praise = praiseService.getPraiseByContentIdAndUserId(contentId, user.getId());
+		int code = 200;
+		String msg = "点赞成功。";
+		if(praise != null){
+			praiseService.delete(praise.getId());
+			code = 201;
+			msg = "消赞成功。";
+		}else{
+			praise = new Praise();
+			praise.setContentId(contentId);
+			praise.setCreateTime(StringUtil.getDateToLong(new Date()));
+			praise.setUserId(user.getId());
+			praiseService.save(praise);
+		}
+		
+		returnMap.put("code", code);
+		returnMap.put("msg", msg);
 		
 		
 		

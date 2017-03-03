@@ -47,11 +47,15 @@ public class PraiseServiceImpl implements PraiseService{
 	}
 
 	public void delete(Integer id) {
-		
+		praiseDAO.delete(id);
 	}
 
 	public void flush() {
 		praiseDAO.flush();
+	}
+
+	public Praise getPraiseByContentIdAndUserId(int contentId, int userId) {
+		return praiseDAO.getPraiseByContentIdAndUserId(contentId, userId);
 	}
 	
 	

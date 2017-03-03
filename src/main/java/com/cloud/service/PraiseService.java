@@ -13,4 +13,7 @@ public interface PraiseService {
     void update(Praise entity);  
     void delete(Integer id);  
     void flush();
+    
+    public Praise getPraiseByContentIdAndUserId(int contentId,int userId);
+    
 }
