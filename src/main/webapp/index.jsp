@@ -105,11 +105,35 @@
 					hbout=setTimeout(function(){$("#hb3").hide()},300);
 				});
 				$(document).on('click','#list_1 li .lib .la1',function(){
-					$(this).css("background","url(images/libg04.png) no-repeat 0 4px");
-					var val = $(this).html();
-					var num = val.substring(1,val.length-1);
-					num = parseInt(num) + 1;
-					$(this).html("("+num+")");
+					var contentId = $(this).attr("data-id");
+					$.ajax({
+						type:"POST",
+						url:"praise/save",
+						data:{contentId:contentId},
+						error: function(request) {
+							//alert("服务器连接失败!");
+						},
+						success: function(data) {
+							var val = $(this).html();
+							var num = val.substring(1,val.length-1);
+							
+							var vdata = eval("("+data+")");
+							if(vdata.code == 200){
+								//点赞
+								$(this).css("background","url(images/libg04.png) no-repeat 0 4px");
+								num = parseInt(num) + 1;
+								$(this).html("("+num+")");
+							}else{
+								//消赞
+								$(this).css("background","url(images/libg04.png) no-repeat 0 -13px");
+								num = parseInt(num) - 1;
+								$(this).html("("+num+")");
+							}
+							
+						}
+					});
+					
+					
 				});
 				
 				var themeId = '${themeId}';
