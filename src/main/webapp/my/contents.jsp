@@ -146,7 +146,7 @@
 				"<div class='lib'>"+
 					"<a href='#del' data-id='"+c.id+"' class='del' style='float:right;margin:0 8px 0 0;'>删除</a>"+
 					"<a href='#' class='la2' style='margin-top:1px;'>("+c.readCount+")</a>"+
-					"<b>山东省济南市舜泰广场8号楼东12B</b>"+
+					"<b>"+c.address+"</b>"+
 				"</div>"+
 				"</li>";
 					return st;
