@@ -23,7 +23,7 @@ function rong_init() {
 		type : "POST",
 		url : "rong/get_token",
 		error : function(request) {
-			alert("服务器连接异常!");
+			//alert("服务器连接异常!");
 		},
 		success : function(data) {
 			var vdata = eval("(" + data + ")");
