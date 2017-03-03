@@ -1,7 +1,5 @@
 package com.cloud.util;
 
-import java.util.List;
-
 import io.rong.ApiHttpClient;
 import io.rong.models.ChatroomInfo;
 import io.rong.models.FormatType;
@@ -11,8 +9,9 @@ import io.rong.models.SdkHttpResult;
 import io.rong.models.TxtMessage;
 import io.rong.models.VoiceMessage;
 
+import java.util.List;
+
 public class RongAPI {
-	
 	private static String RONGYUN_KEY;
 	private static String RONGYUN_SEC;
 	
@@ -200,5 +199,4 @@ public class RongAPI {
 				RONGYUN_SEC, groupId.toString(), groupName,
 				FormatType.json);
 	}
-
 }

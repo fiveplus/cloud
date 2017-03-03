@@ -1,4 +1,8 @@
-﻿package io.rong;
+package io.rong;
+
+import java.net.HttpURLConnection;
+import java.net.URLEncoder;
+import java.util.List;
 
 import io.rong.models.ChatroomInfo;
 import io.rong.models.FormatType;
@@ -7,13 +11,8 @@ import io.rong.models.Message;
 import io.rong.models.SdkHttpResult;
 import io.rong.util.HttpUtil;
 
-import java.net.HttpURLConnection;
-import java.net.URLEncoder;
-import java.util.List;
-
 public class ApiHttpClient {
-
-	private static final String RONGCLOUDURI = "http://api.cn.ronghub.com";
+private static final String RONGCLOUDURI = "http://api.cn.ronghub.com";
 	
 	private static final String UTF8 = "UTF-8";
 

@@ -1,5 +1,7 @@
 package com.cloud.controller;
 
+import io.rong.models.SdkHttpResult;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,8 +10,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import io.rong.models.SdkHttpResult;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +24,7 @@ import com.cloud.service.MessageService;
 import com.cloud.service.UserService;
 import com.cloud.util.RongAPI;
 import com.cloud.util.StringUtil;
+
 
 @Controller  
 @RequestMapping("/rong") 
