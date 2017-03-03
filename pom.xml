@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.abel</groupId>
+  <groupId>com.hack</groupId>
   <artifactId>cloud</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
@@ -9,10 +9,11 @@
   <url>http://maven.apache.org</url>  
   
   <properties>  
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
-      <spring.version>4.1.4.RELEASE</spring.version>  
-      <hibernate.version>4.3.8.Final</hibernate.version>  
-      <jackson.version>2.5.0</jackson.version>  
+	<jdk.version>1.7</jdk.version>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+	<spring.version>4.1.4.RELEASE</spring.version>  
+	<hibernate.version>4.3.8.Final</hibernate.version>  
+	<jackson.version>2.5.0</jackson.version>  
   </properties>  
   
   <dependencies>
@@ -183,12 +184,18 @@
 	</dependency>
 
     <!-- servlet -->  
-    <dependency>  
-        <groupId>javax.servlet</groupId>  
-        <artifactId>servlet-api</artifactId>  
-        <version>3.0-alpha-1</version>  
-        <scope>provided</scope>  
-    </dependency>  
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>3.0.1</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>javax.servlet.jsp</groupId>
+        <artifactId>jsp-api</artifactId>
+        <version>2.2</version>
+        <scope>provided</scope>
+    </dependency>
     
 	<dependency>
 		<groupId>commons-fileupload</groupId>
@@ -243,70 +250,83 @@
   
   <build>
   	<finalName>cloud</finalName>  
-  	
+  	<resources>
+  		<resource>
+			<directory>src/main/resources</directory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+		</resource>
+  	</resources>
   	<plugins>  
-        <!-- Run the JUnit unit tests in an isolated classloader -->  
+		<!-- compiler插件, 设定JDK版本 -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>2.3.2</version>
+            <configuration>
+                <source>${jdk.version}</source>
+                <target>${jdk.version}</target>
+                <showWarnings>true</showWarnings>
+            </configuration>
+        </plugin>
+		<!-- eclipse插件, 设定wtp版本并添加springIDE nature -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-eclipse-plugin</artifactId>
+            <version>2.9</version>
+            <configuration>
+                <wtpversion>2.0</wtpversion>
+                <additionalProjectnatures>
+                    <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                </additionalProjectnatures>
+            </configuration>
+        </plugin>
         <plugin>  
             <groupId>org.apache.maven.plugins</groupId>  
-            <artifactId>maven-surefire-plugin</artifactId>  
-            <version>2.4.2</version>  
-            <configuration>  
-                <skipTests>true</skipTests>  
-            </configuration>  
+            <artifactId>maven-install-plugin</artifactId>  
+            <version>2.4</version>  
+            <executions>
+                <execution>
+                    <phase>install</phase>
+                    <goals>
+                        <goal>install-file</goal>
+                    </goals>
+                    <configuration>
+                        <packaging>war</packaging>
+                        <artifactId>${project.artifactId}</artifactId>
+                        <groupId>${project.groupId}</groupId>
+                        <version>${project.version}</version>
+                        <file>
+                            ${project.build.directory}/${project.artifactId}.war
+                        </file>
+                    </configuration>
+                </execution>
+            </executions>
         </plugin>  
-
-        <plugin>  
-            <groupId>org.apache.maven.plugins</groupId>  
-            <artifactId>maven-war-plugin</artifactId>  
-            <version>2.3</version>  
-            <configuration>  
-                <webXml>src/main/webapp/WEB-INF/web.xml</webXml>  
-                <webResources>
-                	<resource>
-                        <directory>lib/</directory>
-                        <targetPath>src/main/webapp/WEB-INF/lib</targetPath>
-                        <includes>
-                            <include>**/*.jar</include>
-                        </includes>
-                    </resource>
-                </webResources>
-            </configuration>  
-        </plugin>  
-
-        <!-- generate java doc -->  
-        <plugin>  
-            <groupId>org.apache.maven.plugins</groupId>  
-            <artifactId>maven-javadoc-plugin</artifactId>  
-            <version>2.9.1</version>  
-            <configuration>  
-                <javadocDirectory>target/javadoc</javadocDirectory>  
-                <reportOutputDirectory>target/javadoc</reportOutputDirectory>  
-                <charset>UTF-8</charset>  
-                <encoding>UTF-8</encoding>  
-                <docencoding>UTF-8</docencoding>  
-                <show>private</show>  
-            </configuration>  
-        </plugin>  
-
-        <!-- 部署至本机 --> 
-        <plugin>  
-            <groupId>org.codehaus.cargo</groupId>  
-            <artifactId>cargo-maven2-plugin</artifactId>  
-            <version>1.0</version>  
-            <configuration>  
-                <container>  
-                    <containerId>tomcat7x</containerId>  
-                    <home>/Users/zhangshenwu/softwares/apache-tomcat-7.0.68</home>  
-                </container>  
-                <configuration>  
-                    <type>existing</type>  
-                    <home>/Users/zhangshenwu/softwares/apache-tomcat-7.0.68</home>  
-                </configuration>  
-            </configuration>  
-        </plugin> 
+		<plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <version>2.0-beta-1</version>
+            <configuration>
+                <path>/cloud</path>
+                <uriEncoding>UTF-8</uriEncoding>
+                <port>8080</port>
+            </configuration>
+        </plugin>
          
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+			<webResources>
+             	<resource>
+              		<directory>src/main/webapp</directory>
+				</resource>
+             </webResources>
+            </configuration>
+        </plugin>
     </plugins>  
-
   </build>
-  
 </project>
