@@ -104,6 +104,9 @@
 					$("#hb3").stop(true).animate({ top: "-300px",opacity:"0" }, 300);
 					hbout=setTimeout(function(){$("#hb3").hide()},300);
 				});
+				$(document).on('click','#list_1 li .lib .la1',function(){
+					$(this).css("background","url(images/libg04.png) no-repeat 0 6px");
+				});
 				
 				var themeId = '${themeId}';
 				var $list = $("#list_1"),
@@ -203,11 +206,15 @@
 				"</div>"+
 				"<div class='lib'>"+
 					"<a href='#' class='la2'>("+c.readCount+")</a>"+
-					"<a href='#' class='la1'>(0)</a>"+
+					"<a href='#' data-id='"+c.id+"' class='la1'>(0)</a>"+
 					"<b>"+c.address+"</b>"+
 				"</div>"+
 				"</li>";
 					return st;
+				}
+				
+				function praise(obj){
+					$(obj).css("background","url(../images/lib06.png) no-repeat 0 0px");
 				}
 				
 				function onLoadData(response){
@@ -229,6 +236,7 @@
 				  
 				$document.on('scroll', onScroll);
 				loadData();
+				
 				
 			});
 		</script>
