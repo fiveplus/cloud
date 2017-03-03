@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.entity.Content;
 import com.cloud.entity.Department;
+import com.cloud.entity.Praise;
 import com.cloud.entity.Project;
 import com.cloud.entity.Theme;
 import com.cloud.entity.User;
 import com.cloud.service.ContentService;
 import com.cloud.service.DepartmentService;
+import com.cloud.service.PraiseService;
 import com.cloud.service.ProjectService;
 import com.cloud.service.ThemeService;
 import com.cloud.util.JacksonUtil;
@@ -49,13 +51,16 @@ public class ContentController {
 	 @Autowired
 	 private DepartmentService departmentService;
 	 
+	 @Autowired
+	 private PraiseService praiseService;
+	 
 	 @RequestMapping("/content/list")
 	 public @ResponseBody String list(int page,int deptId,HttpServletRequest request,Model model){
 		 HttpSession session = request.getSession();
+		 User user = (User) session.getAttribute("user");
 		 int pageSize = 10;
 		 Map<String,Object> returnMap = new HashMap<String, Object>();
 		 if(deptId == 0){
-			 User user = (User) session.getAttribute("user");
 			 deptId = user.getDept().getId();
 		 }
 		 String _themeId = request.getParameter("themeId");
@@ -72,6 +77,11 @@ public class ContentController {
 			 str = str.length() <= CONTENT_LENGTH ? str : (str.substring(0,CONTENT_LENGTH - 1) + "...");
 			 c.setStr(str);
 			 c.setImgs(StringUtil.getImgStr(c.getContent()));
+			 //是否被赞
+			 Praise p = praiseService.getPraiseByContentIdAndUserId(c.getId(), user.getId());
+			 c.setIsPraise(p == null ? -1 : 0);
+			 int pcount = praiseService.getCountByContentId(c.getId());
+			 c.setPraiseCount(pcount);
 		 }
 		 returnMap.put("contents", list);
 		 returnMap.put("pu", pu);
@@ -115,7 +125,6 @@ public class ContentController {
 	 public @ResponseBody String plist(int page,int projectId,HttpServletRequest request,Model model){
 		 int pageSize = 10;
 		 Map<String,Object> returnMap = new HashMap<String, Object>();
-		 
 		 
 		 int count = contentService.getListCountToUserId(projectId);
 		 PageUtil pu = new PageUtil(page, count, pageSize);

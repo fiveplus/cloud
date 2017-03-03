@@ -33,6 +33,9 @@ public class Content implements Serializable{
 	
 	private String address;
 	
+	private int isPraise;
+	private int praiseCount;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false)
@@ -139,6 +142,22 @@ public class Content implements Serializable{
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	@Transient
+	public int getIsPraise() {
+		return isPraise;
+	}
+	public void setIsPraise(int isPraise) {
+		this.isPraise = isPraise;
+	}
+	
+	@Transient
+	public int getPraiseCount() {
+		return praiseCount;
+	}
+	public void setPraiseCount(int praiseCount) {
+		this.praiseCount = praiseCount;
 	}
 	
 	

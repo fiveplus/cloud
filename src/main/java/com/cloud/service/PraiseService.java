@@ -15,5 +15,6 @@ public interface PraiseService {
     void flush();
     
     public Praise getPraiseByContentIdAndUserId(int contentId,int userId);
+    public int getCountByContentId(int contentId);
     
 }

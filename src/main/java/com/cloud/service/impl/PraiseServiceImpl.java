@@ -57,6 +57,10 @@ public class PraiseServiceImpl implements PraiseService{
 	public Praise getPraiseByContentIdAndUserId(int contentId, int userId) {
 		return praiseDAO.getPraiseByContentIdAndUserId(contentId, userId);
 	}
+
+	public int getCountByContentId(int contentId) {
+		return praiseDAO.getCountByContentId(contentId);
+	}
 	
 	
 	
