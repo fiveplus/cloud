@@ -16,6 +16,7 @@
 	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<script src="css/bootstrap/js/bootstrap.min.js"></script>
 	
+	
 	<link href="css/main.css" rel="stylesheet" type="text/css" />
 	<link href="css/default.css" rel="stylesheet" type="text/css" />
 	
@@ -53,6 +54,9 @@
 	<script src="css/bootstrap/js/bootstrap-switch.js"></script>
 	<script src="js/jquery.leanModal.min.js"></script>
 	
+	<!-- jquery confirm -->
+	<link href="css/jquery-confirm/jquery-confirm.css" rel="stylesheet" type="text/css" />
+	<script src="css/jquery-confirm/jquery-confirm.js"></script>
 	
 	
 	<fms:ContentPlaceHolder id="source" />	
@@ -77,22 +81,24 @@
 		<form action="project/add" role="form" class="form" id="add_project" >
 			<div style="padding:20px 5px;"><font size="+2"><b>项目新建</b></font> <span style="color:#999;"> >>请输入项目详细信息 </span> </div>
 			<div class="form-group">
-				<span class="label">项目名称：</span>
+				<span class="control-label">项目名称：</span>
 				<input type="text" name="name" class="input-text" placeholder="项目名称"  />
 			</div>
 			<div class="form-group">
-				<span class="label" >允许加入：</span>
+				<span class="control-label" >允许加入：</span>
 				<input type="checkbox" checked />
 			</div>
 			
 			<div class="form-group">
-				<span class="label" >是否验证：</span>
+				<span class="control-label" >是否验证：</span>
 				<input type="checkbox" checked />
 			</div>
 			
 			<div class="form-group" style="padding:10px 0 20px 0;">
-				<span class="label" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				<a href="javascript:add_project()" class="button button-primary button-rounded button-small">确认</a>
+				<span class="control-label" style="padding-left: 65px;">
+				&nbsp;
+				</span>
+				<a href="javascript:add_project()" class="btn btn-large btn-primary">项目新增</a>
 			</div>
 		</form>
 	</div>
@@ -104,12 +110,17 @@
 				<img src="" class="img-radius64" />
 			</div>
 			<div class="chat-top-right">
-				<div class="chat-top-right-top">张三</div>
-				<div class="chat-top-right-bottom">超级管理-开发工程师</div>
+				<div class="chat-top-right-top">
+					<!-- 姓名 -->
+				</div>
+				<div class="chat-top-right-bottom">
+					<!-- 职位 -->
+				</div>
 			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="chat-center">
+			<!-- 聊天对话框 -->
 			<!-- 
 			<div class="chat-to">
 				<div class="item-left">
@@ -148,9 +159,9 @@
 	
 	<div class="popadd">
 		<i><img src="images/main_56.png" width="64" height="64" /></i>
-		<div class="popadd_r"><b>刘孟云</b>集团·网络部 <br />
-		邮箱：liumengyun@shengquan.com<br />
-		职位：网络推广专员<br /><br />
+		<div class="popadd_r"><b><!-- 姓名 --></b><!-- 分组 --> <br />
+		邮箱：<!-- 邮箱 --><br />
+		职位：<!-- 职位 --><br /><br />
 		<img src="images/main_66.png" width="81" height="33" />
 		<img src="images/main_68.png" width="81" height="33" />
 		</div>
@@ -193,8 +204,8 @@
 			var html = "<i><img class='img-radius64' src='"+img_url+"' width='64' height='64' /></i>"
 			+"<div class='popadd_r'><b>"+u.username+"</b>   "+u.dept.name+" <br />邮箱："+u.loginName+"<br />"
 			+"职位："+u.post+"<br /><br />"
-			+"<a id='show-chat-a' onclick='show_chat("+ u.id +")' rel='leanModal' href='#chat-div'><img src='images/main_66.png' width='81' height='33' /></a>"
-			+" <img src='images/main_68.png' width='81' height='33' /></div>"
+			+"<a id='show-chat-a' class='btn btn-success' onclick='show_chat("+ u.id +")' rel='leanModal' href='#chat-div'>发消息</a>"
+			+"&nbsp;&nbsp;&nbsp;<a href='#' class='btn btn-danger'>去看看</a></div>"
 			+"<div class='clear'></div>";
 			return html;
 		}

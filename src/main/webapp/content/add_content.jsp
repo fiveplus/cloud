@@ -160,28 +160,28 @@
 				var remindTime = $("#datetimepicker").val();
 				alldata += "&remindTime="+remindTime;
 				var text = editor.html();
-				if(text=='') return;
+				if(text==''){
+					$.alert({title:'提示信息',content:'请输入内容！',type: 'blue'});
+					return;
+				} 
 				$.ajax({
 					type:"POST",
 					url:action,
 					data:alldata,
 					error: function(request) {
-						alert("服务器连接失败!");
+						//alert("服务器连接失败!");
 					},
 					success: function(data) {
 						
 						var vdata = eval("("+data+")");
 						
 						if(vdata.code == 200){
-							alert(vdata.message);
+							$.alert({title:'提示信息',content:'发布成功！',type: 'blue'});
 							window.location.href="index?rightMenuId=index";
 						}else{
-							alert(vdata.message);
+							$.alert({title:'提示信息',content:'发布失败！',type: 'red'});
 						}
-						
 						//KindEditor.instances[0].html("");
-						
-						
 					}
 				});
 			}
@@ -199,6 +199,7 @@
 			
 			$(document).ready(function(){
 				editor_init();
+							
 				//是否公开
 				$("a.post5").toggle(function(){
 					$(this).html("公开");
