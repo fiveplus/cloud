@@ -456,6 +456,8 @@
 		function add_project(){
 			var action = $("#add_project").attr("action");
 			var alldata = $("#add_project").serialize();
+			var name = $("#add_project input[name='name']").val();
+			if(name == '') return;
 			$.ajax({
 				type:"POST",
 				url:action,
