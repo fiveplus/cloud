@@ -153,7 +153,7 @@
 	</div>
 	
 	<a id="cont-a" rel='leanModal' href='#cont-div'></a>
-	<div id="cont-div" style="padding:0;height:500px;overflow-y:auto;background: #f2f2f5;">
+	<div id="cont-div" style="padding:0;background: #f2f2f5;">
 	</div>
 	
 	<script type="text/javascript">

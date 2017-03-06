@@ -109,7 +109,9 @@ public class ContentController {
 		 PageUtil pu = new PageUtil(page, count, pageSize);
 		 List<Content> list = contentService.getListToUserId(page,pageSize,userId);
 		 for(Content c:list){
-			 c.setStr(StringUtil.HTML2Text(c.getContent()));
+			 String str = StringUtil.HTML2Text(c.getContent());
+			 str = str.length() <= CONTENT_LENGTH ? str : (str.substring(0,CONTENT_LENGTH - 1) + "...");
+			 c.setStr(str);
 			 c.setImgs(StringUtil.getImgStr(port,c.getContent()));
 		 }
 		 returnMap.put("contents", list);
@@ -133,7 +135,9 @@ public class ContentController {
 		 PageUtil pu = new PageUtil(page, count, pageSize);
 		 List<Content> list = contentService.getListToProjectId(page,pageSize,projectId);
 		 for(Content c:list){
-			 c.setStr(StringUtil.HTML2Text(c.getContent()));
+			 String str = StringUtil.HTML2Text(c.getContent());
+			 str = str.length() <= CONTENT_LENGTH ? str : (str.substring(0,CONTENT_LENGTH - 1) + "...");
+			 c.setStr(str);
 			 c.setImgs(StringUtil.getImgStr(port,c.getContent()));
 		 }
 		 returnMap.put("contents", list);
@@ -219,7 +223,8 @@ public class ContentController {
 	 public String content(int id,HttpServletRequest request,Model model){
 		 
 		 Content c = contentService.get(id);
-		 
+		 int pcount = praiseService.getCountByContentId(c.getId());
+		 c.setPraiseCount(pcount);
 		 model.addAttribute("content",c);
 		 
 		 return "content/content";

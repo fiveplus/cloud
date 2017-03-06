@@ -440,7 +440,7 @@ ol.formatted li {
 	background: white;
 }
 #content .main-content .user{
-	padding:10px;
+	padding:10px 20px;
 	background: #f2f2f5;
 }
 #content .main-content .user .user-img{
@@ -448,7 +448,7 @@ ol.formatted li {
 }
 #content .main-content .user .user-content{
 	float:left;
-	margin:14px 0 0 10px;
+	margin:10px 0 0 10px;
 }
 .comment-input{
 	
@@ -502,7 +502,8 @@ ol.formatted li {
 
 /* 评论列表 */
 .commit_list_div .commit_item{
-	padding: 5px;
+	padding: 10px;
+	border-bottom:1px solid #ddd;
 }
 .commit_list_div .commit_item .commit_user{
 	float:left;
@@ -510,6 +511,7 @@ ol.formatted li {
 .commit_list_div .commit_item .commit_content{
 	float:left;
 	padding:0 0 0 10px;
+	width:810px;
 }
 .commit_list_div .no-comment{
 	padding:10px;

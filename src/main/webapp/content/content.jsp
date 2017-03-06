@@ -12,56 +12,59 @@
 					<img class="img-radius64" src="${content.user.portrait}" />
 				</span>
 				<div class="user-content">
-					${content.user.username} 
-					${content.user.group.parent.name}·${content.user.group.name}
+					<font size="+2"><b>${content.user.username}</b></font> 
+					&nbsp;&nbsp;${content.user.group.parent.name}·${content.user.group.name}
 					<br />
 					<date:date value="${content.createTime}" /> 来自 碎片云 suipianyun.com
 				</div>
 				<div class="clear"></div>
 			</div>
-			<div style="margin: 10px;">
+			<div style="height:400px;overflow-y:auto;">
+				<div style="margin: 20px;min-height:200px;">
 				${content.content}
-			</div>
-			<div style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;padding-top: 5px;padding-bottom:10px;height:17px;">
-				<div style="float:left;width:24%;text-align: center;border-right:1px solid #ccc;"><a href="#">收藏</a></div>
-				<div style="float:left;width:25%;text-align: center;border-right:1px solid #ccc;">
-					<a href="#">评论</a>
-					<div class="arrow-up-border"></div>
-					<div class="arrow-up"></div>	
 				</div>
-				<div style="float:left;width:25%;text-align: center;border-right:1px solid #ccc;"><a href="#">阅读(${content.readCount})</a></div>
-				<div style="float:left;width:25%;text-align: center;"><a href="#">赞(0)</a></div>
-				<div class="clear"></div>
-			</div>
-			<!-- 评论区 -->
-			<div style="background: #f2f2f5;">
-				<div style="padding:10px;border-bottom: 1px solid #ccc;">
-					<form action="comment/save" method="post" id="comment_form">
-						<input type="hidden" name="cont.id" value="${content.id}" />
-						<input type="text" value="" name="content" class="comment-input" style="width:99%"  />
-						<div align="right" style="padding-top: 5px;" >
-							<input type="button" disabled="disabled" class="comment-button disabled"   value="评论" />
-						</div>
-					</form>
-				</div>
-				<div class="commit_list_div">
-					<!-- 
-					<div style="padding: 5px;" align="center">
-						此帖当前暂无评论。
+				<div style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;padding-top: 5px;padding-bottom:10px;height:17px;">
+					<div style="float:left;width:24%;text-align: center;border-right:1px solid #ccc;"><a href="#">收藏</a></div>
+					<div style="float:left;width:25%;text-align: center;border-right:1px solid #ccc;">
+						<a href="#">评论</a>
+						<div class="arrow-up-border"></div>
+						<div class="arrow-up"></div>	
 					</div>
-					
-					<div class="commit_item">
-						<span class="commit_user"><img class="img-radius37" src="" /></span>
-						<div class="commit_content">
-							<a href="#">姓名</a>：评论内容
-							<br />
-							<font color="gray">2017-12-12 12:12:12</font>
-						</div>
-						<div class="clear"></div>
+					<div style="float:left;width:25%;text-align: center;border-right:1px solid #ccc;"><a href="#">阅读(${content.readCount})</a></div>
+					<div style="float:left;width:25%;text-align: center;"><a href="#">赞(${content.praiseCount})</a></div>
+					<div class="clear"></div>
+				</div>
+				<!-- 评论区 -->
+				<div style="background: #f2f2f5;">
+					<div style="padding:15px 20px;border-bottom: 1px solid #ccc;">
+						<form action="comment/save" method="post" id="comment_form">
+							<input type="hidden" name="cont.id" value="${content.id}" />
+							<input type="text" value="" name="content" class="comment-input" style="width:99%"  />
+							<div align="right" style="padding-top: 5px;" >
+								<input type="button" disabled="disabled" class="comment-button disabled"   value="评论" />
+							</div>
+						</form>
 					</div>
-					 -->
+					<div class="commit_list_div">
+						<!-- 
+						<div style="padding: 5px;" align="center">
+							此帖当前暂无评论。
+						</div>
+						
+						<div class="commit_item">
+							<span class="commit_user"><img class="img-radius37" src="" /></span>
+							<div class="commit_content">
+								<a href="#">姓名</a>：评论内容
+								<br />
+								<font color="gray">2017-12-12 12:12:12</font>
+							</div>
+							<div class="clear"></div>
+						</div>
+						 -->
+					</div>
 				</div>
 			</div>
+			
 		</div>
      </div>
 	
