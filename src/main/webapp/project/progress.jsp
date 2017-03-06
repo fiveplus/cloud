@@ -14,6 +14,7 @@
 		<script type="text/javascript" src="js/ztree/jquery.ztree.core-3.5.js"></script>
 		<script type="text/javascript" src="js/ztree/jquery.ztree.excheck-3.5.js"></script>
 		<script type="text/javascript" src="js/ztree/jquery.ztree.exedit-3.5.js"></script>
+		
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
 		<!-- main content -->
@@ -54,12 +55,12 @@
 							<strong>${fn:length(users)+1}人</strong>
 						</div>
 					</div>
-					<div class="row">
+					<div>
 						<div>
 							<div class ="gantt"></div> 
 							<div>
 								<!-- 实施人 -->
-								<table class="u-table" cellpadding="10" border="1" bordercolor="#ddd">
+								<table class="table" cellpadding="10" border="1" bordercolor="#ddd">
 									<tr class="th">
 										<td width="50">执行者</td>
 										<td>指派时间</td>
@@ -84,7 +85,7 @@
 													<a name="update_progress" onclick="update_set(${ps.id})" href="#update_project_progress_div" class="button button-glow button-rounded button-highlight button-small">修改</a>
 													<a href="javascript:delete_progress(${ps.id})" class="button button-glow button-rounded button-caution button-small">删除</a>
 													<script type="text/javascript">
-														$('a[name="update_progress"]').leanModal();
+														$('a[name="update_progress"]').leanModal({top:0});
 													</script>
 												</c:if>
 											</td>
@@ -96,7 +97,7 @@
 							<div>
 								<a id="add_project_progress" href="#add_project_progress_div"  class="button button-primary button-rounded button-small">新增项目计划</a>
 								<script type="text/javascript">
-									$('#add_project_progress').leanModal();
+									$('#add_project_progress').leanModal({top:0});
 								</script>
 							</div>
 						</div>
@@ -105,29 +106,26 @@
 				<div class="space_h_30 clear"></div>
 			</div>
 		</div>
-		<link rel="stylesheet" type="text/css" media="all" href="css/date/daterangepicker-bs3.css" />
-		<script type="text/javascript" src="css/date/bootstrap.min.js"></script>
-		<script type="text/javascript" src="css/date/moment.js"></script>
-		<script type="text/javascript" src="css/date/daterangepicker.js"></script>
+		
 	
 		<div id="add_project_progress_div" class="leanmodel_div">
 			<form action="progress/add" role="form" class="form" id="add_project_progress_form">
 				<div style="padding:20px 5px;"><font size="+2"><b>项目计划新增</b></font> <span style="color:#999;"> >>请输入项目计划信息 </span> </div>
 				<div class="form-group" style="margin:5px 0;">
-					<span class="label" >执行成员：</span>
+					<span class="control-label" >执行成员：</span>
 					<a id="add_progress_user" href="#add_project_user_div" ><b>请选择</b></a>
 					<script type="text/javascript">
-						$('#add_progress_user').leanModal();
+						$('#add_progress_user').leanModal({top:0});
 					</script>
 				</div>
 				<div class="form-group">
-					<span class="label">事件名称：</span>
+					<span class="control-label">事件名称：</span>
 					<input type="hidden" name="project.id" value="${project.id}" />
 					<input type="hidden" name="user.id" value="" />
 					<input type="text" name="title" class="input-text" placeholder="事件名称"  />
 				</div>
 				<div class="form-group">
-					<span class="label">事件时间：</span>
+					<span class="control-label">事件时间：</span>
 					<input class="input-text" type="text" placeholder="事件时间" readonly="readonly" id="dateRangePicker" name="dateRangePicker" />
 				</div>
 				<div class="form-group" >
@@ -144,28 +142,32 @@
 	
 		<div id="add_project_user_div" class="leanmodel_div">
 			<form action="project/useradd" role="form" class="form" id="add_project_user_form">
-				<div style="padding:20px 5px;"><font size="+2"><b>项目成员选择</b></font> <span style="color:#999;"> >>请选择项目成员 </span> </div>
-				<div class="form-group" style="float: left;width:45%;min-height: 250px;">
-					<ul id="treeDemo" class="ztree"></ul>
-				</div>
-				<div class="form-group"  style="float: left;width: 45%;margin-top:10px;padding:0; padding-top: 15px;background: #e9eaf5;border-radius: 5px;box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);">
-					<div align="center" style="padding-bottom:10px;">
-						<img class="img-radius64" id="userpic" src="images/liimg.jpg" style="margin-bottom: 5px;" /><br />
-						<label id="username">未选择</label>
-						<input type="hidden" name="userid" value="" />
+				<div style="padding:20px 10px;"><font size="+2"><b>项目成员选择</b></font> <span style="color:#999;"> >>请选择项目成员 </span> </div>
+				<div style="height:400px;overflow-y:auto;">
+					<div class="form-group" style="float: left;width:45%;min-height: 250px;">
+						<ul id="treeDemo" class="ztree"></ul>
 					</div>
-					<div style="margin:0 10px;border-top: 1px solid #ddd;">
-						<p>
-							╭⌒ 男人 就得活出自己 高傲的姿态. Ending
-						</p>
+					<div class="form-group"  style="float: left;width: 45%;margin-top:10px;padding:0; padding-top: 15px;background: #e9eaf5;border-radius: 5px;box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);">
+						<div align="center" style="padding-bottom:10px;">
+							<img class="img-radius64" id="userpic" src="images/liimg.jpg" style="margin-bottom: 5px;" /><br />
+							<label id="username">未选择</label>
+							<input type="hidden" name="userid" value="" />
+						</div>
+						<div style="margin:0 10px;border-top: 1px solid #ddd;">
+							<p>
+								╭⌒ 男人 就得活出自己 高傲的姿态. Ending
+							</p>
+						</div>
 					</div>
+					<div class="clear"></div>
 				</div>
-				<div class="clear"></div>
-				<div class="form-group" style="padding:15px 0 20px 0;">
-					<span class="label" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					<a href="javascript:set_user()" class="button button-primary button-rounded button-small">确认</a>
-					<a href="javascript:user_cancel()" class="button button-primary button-rounded button-small">取消</a>
-				</div>
+					<div class="form-group" style="padding:15px 0 20px 0;">
+						<span class="label" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<a href="javascript:set_user()" class="button button-primary button-rounded button-small">确认</a>
+						<a href="javascript:user_cancel()" class="button button-primary button-rounded button-small">取消</a>
+					</div>
+				
+				
 			</form>
 		</div>
 		

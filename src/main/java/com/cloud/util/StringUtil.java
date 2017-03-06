@@ -106,6 +106,21 @@ public class StringUtil {
 		return pics;
 	}
 	
+	public static Map<String,Long> getBetweenTime2(String temp){
+		String before = temp.split("-")[0].trim();
+		String after = temp.split("-")[1].trim();
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("beforeTime", getStringToLong(before+" 00:00:00","yyyy-MM-dd HH:mm:ss"));
+		map.put("afterTime", getStringToLong(after+" 23:59:59","yyyy-MM-dd HH:mm:ss"));
+		return map;
+	}
+	
+	public static String getBetweenToString2(long startTime,long endTime){
+		String before = getLongToString(startTime,"yyyy-MM-dd");
+		String after = getLongToString(endTime,"yyyy-MM-dd");
+		return before + " - " + after;
+	}
+	
 	/**
 	 * 格式转换
 	 * @param temp DatePicker 传输数据格式 [dd/MM/yyyy - dd/MM/yyyy)

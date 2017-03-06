@@ -12,10 +12,16 @@
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
-	<!-- bootstrap -->
-	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<script src="css/bootstrap/js/bootstrap.min.js"></script>
 	
+	<!-- bootstrap -->
+	<!-- 
+	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script src="css/bootstrap/js/bootstrap.min.js"></script>
+	 -->
+	 <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script src="css/bootstrap/js/bootstrap.min.js"></script>
 	
 	<link href="css/main.css" rel="stylesheet" type="text/css" />
 	<link href="css/default.css" rel="stylesheet" type="text/css" />
@@ -26,7 +32,6 @@
 	<link href="css/buttons.css" rel="stylesheet" type="text/css" />
 	
 	<!-- scroll插件 -->
-	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery.jscroll.js"></script>
 	<script type="text/javascript" src="js/jquery.scrollto.js"></script>
 	<!-- QQ表情库 -->
@@ -35,6 +40,12 @@
 	<!-- 时间选择插件 -->
 	<link href="css/jquery.datetimepicker.css" rel="stylesheet" type="text/css" />
 	<script src="js/jquery.datetimepicker.js"></script>
+	
+	<link rel="stylesheet" type="text/css" media="all" href="css/date/daterangepicker-bs3.css" />
+	<!-- <script type="text/javascript" src="css/date/bootstrap.min.js"></script> -->
+	<script type="text/javascript" src="css/date/moment.js"></script>
+	<script type="text/javascript" src="css/date/daterangepicker.js"></script>
+	
 	
 	<!-- 滚动条插件 -->
 	<link rel="stylesheet" href="js/scroll/jquery.mCustomScrollbar.css" type="text/css" />
@@ -57,6 +68,8 @@
 	<!-- jquery confirm -->
 	<link href="css/jquery-confirm/jquery-confirm.css" rel="stylesheet" type="text/css" />
 	<script src="css/jquery-confirm/jquery-confirm.js"></script>
+	
+	
 	
 	
 	<fms:ContentPlaceHolder id="source" />	
@@ -486,8 +499,8 @@
 					var vdata = eval("("+data+")");
 					//alert(vdata.message);
 					if(vdata.code==200){
-						alert(vdata.message);
-						window.location.href="project?id="+vdata.id;
+						$.alert({title:'提示信息',content:'项目创建成功！',type:'blue'});
+						window.location.href="proj?id="+vdata.id;
 					}
 					
 					//$("#add_project_div").attr("style","");

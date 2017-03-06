@@ -1,4 +1,4 @@
-//! moment.js
+﻿//! moment.js
 //! version : 2.5.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
@@ -637,12 +637,12 @@
             }
         },
 
-        _months : "January_February_March_April_May_June_July_August_September_October_November_December".split("_"),
+        _months: "一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月".split("_"),
         months : function (m) {
             return this._months[m.month()];
         },
 
-        _monthsShort : "Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec".split("_"),
+        _monthsShort : "一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月".split("_"),
         monthsShort : function (m) {
             return this._monthsShort[m.month()];
         },
@@ -668,17 +668,17 @@
             }
         },
 
-        _weekdays : "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),
+        _weekdays: "星期日_星期一_星期二_星期三_星期四_星期五_星期六".split("_"),
         weekdays : function (m) {
             return this._weekdays[m.day()];
         },
 
-        _weekdaysShort : "Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_"),
+        _weekdaysShort: "星期日_星期一_星期二_星期三_星期四_星期五_星期六".split("_"),
         weekdaysShort : function (m) {
             return this._weekdaysShort[m.day()];
         },
 
-        _weekdaysMin : "Su_Mo_Tu_We_Th_Fr_Sa".split("_"),
+        _weekdaysMin: "周日_周一_周二_周三_周四_周五_周六".split("_"),
         weekdaysMin : function (m) {
             return this._weekdaysMin[m.day()];
         },
@@ -706,7 +706,7 @@
 
         _longDateFormat : {
             LT : "h:mm A",
-            L : "MM/DD/YYYY",
+            L: "YYYY-MM-DD",
             LL : "MMMM D YYYY",
             LLL : "MMMM D YYYY LT",
             LLLL : "dddd, MMMM D YYYY LT"

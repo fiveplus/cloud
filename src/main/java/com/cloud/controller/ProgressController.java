@@ -80,7 +80,7 @@ public class ProgressController {
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		
 		String dateRangePicker = (String)request.getParameter("dateRangePicker");
-		Map<String,Long> betweens = StringUtil.getBetweenTime(dateRangePicker);
+		Map<String,Long> betweens = StringUtil.getBetweenTime2(dateRangePicker);
 		pg.setStartTime(betweens.get("beforeTime"));
 		pg.setEndTime(betweens.get("afterTime"));
 		pg.setCreateTime(StringUtil.getDateToLong(new Date()));
@@ -105,7 +105,7 @@ public class ProgressController {
 		
 		Progress progress = progressService.get(id);
 		returnMap.put("progress", progress);
-		returnMap.put("dateRangePicker", StringUtil.getBetweenToString(progress.getStartTime(), progress.getEndTime()));
+		returnMap.put("dateRangePicker", StringUtil.getBetweenToString2(progress.getStartTime(), progress.getEndTime()));
 
 		return returnMap;
 	}
@@ -116,7 +116,7 @@ public class ProgressController {
 		
 		String dateRangePicker = (String)request.getParameter("dateRangePicker");
 		
-		Map<String,Long> betweens = StringUtil.getBetweenTime(dateRangePicker);
+		Map<String,Long> betweens = StringUtil.getBetweenTime2(dateRangePicker);
 		pg.setStartTime(betweens.get("beforeTime"));
 		pg.setEndTime(betweens.get("afterTime"));
 		

@@ -50,7 +50,7 @@
 						<form action="comment/save" method="post" id="comment_form">
 							<input type="hidden" name="cont.id" value="${content.id}" />
 							<input type="text" value="" name="content" class="comment-input" style="width:99%"  />
-							<div align="right" style="padding-top: 5px;" >
+							<div align="right" style="padding-top: 15px;" >
 								<input type="button" disabled="disabled" class="comment-button disabled" value="评论" />
 							</div>
 						</form>
