@@ -19,29 +19,39 @@
 				</div>
 				<div class="clear"></div>
 			</div>
-			<div style="height:400px;overflow-y:auto;">
-				<div style="margin: 20px;min-height:200px;">
+			<div style="height:400px;overflow-y:auto;background: #f2f2f5;">
+				<div style="padding:20px;min-height:200px;background: #fff;">
 				${content.content}
 				</div>
-				<div style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;padding-top: 5px;padding-bottom:10px;height:17px;">
+				<div class="content_div" style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;padding-top: 5px;padding-bottom:10px;height:17px;">
 					<div style="float:left;width:24%;text-align: center;border-right:1px solid #ccc;"><a href="#">收藏</a></div>
 					<div style="float:left;width:25%;text-align: center;border-right:1px solid #ccc;">
-						<a href="#">评论</a>
+						<a href="javascript:void(0)" data-id="comment_div">评论</a>
 						<div class="arrow-up-border"></div>
 						<div class="arrow-up"></div>	
 					</div>
-					<div style="float:left;width:25%;text-align: center;border-right:1px solid #ccc;"><a href="#">阅读(${content.readCount})</a></div>
-					<div style="float:left;width:25%;text-align: center;"><a href="#">赞(${content.praiseCount})</a></div>
+					<div style="float:left;width:25%;text-align: center;border-right:1px solid #ccc;">
+						<a href="javascript:void(0)">阅读(${content.readCount})</a>
+					</div>
+					<div style="float:left;width:25%;text-align: center;">
+						<a href="javascript:void(0)" data-id="praise_div">赞(${content.praiseCount})</a>
+					</div>
 					<div class="clear"></div>
 				</div>
+				<!-- 点赞区域 -->
+				<div id="praise_div" class="content-bot" style="background: #f2f2f5;display: none;">
+					<c:forEach items="${users}" var="u">
+						<img class="img-radius37" style="margin:10px;" src="${u.portrait}" alt="${u.username}" />
+					</c:forEach>
+				</div>
 				<!-- 评论区 -->
-				<div style="background: #f2f2f5;">
+				<div id="comment_div" class="content-bot" style="background: #f2f2f5;">
 					<div style="padding:15px 20px;border-bottom: 1px solid #ccc;">
 						<form action="comment/save" method="post" id="comment_form">
 							<input type="hidden" name="cont.id" value="${content.id}" />
 							<input type="text" value="" name="content" class="comment-input" style="width:99%"  />
 							<div align="right" style="padding-top: 5px;" >
-								<input type="button" disabled="disabled" class="comment-button disabled"   value="评论" />
+								<input type="button" disabled="disabled" class="comment-button disabled" value="评论" />
 							</div>
 						</form>
 					</div>
@@ -66,7 +76,8 @@
 			</div>
 			
 		</div>
-     </div>
+		
+    </div>
 	
 	<script type="text/javascript">
 	
@@ -119,6 +130,20 @@
 				}
 			});
 			
+			$(".content_div div a").click(function(){
+				var id = $(this).attr("data-id");
+				if(id){
+					$(".content-bot").hide();
+					$("#"+id).show();
+					$(".content_div div .arrow-up-border").remove();
+					$(".content_div div .arrow-up").remove();
+					var html = "<div class='arrow-up-border'></div><div class='arrow-up'></div>";
+					$(this).parent().append(html);
+				}
+				
+			});
+			
+			
 			$(".comment-button").click(function(){
 				var val = $(".comment-input").val();
 				if(val != null){
@@ -149,7 +174,6 @@
 			
 			var contentId = '${content.id}';
 			init_comments(contentId);
-			
 		});
 		
 		function init_comments(contentId){

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cloud.dao.PraiseDAO;
 import com.cloud.entity.Praise;
+import com.cloud.entity.User;
 
 @Repository("praiseDAO")
 public class PraiseDAOImpl extends BaseDAOImpl<Praise> implements PraiseDAO{
@@ -25,5 +26,12 @@ public class PraiseDAOImpl extends BaseDAOImpl<Praise> implements PraiseDAO{
 		int count = this.getCount(hql, new String[]{"contentId"}, new Object[]{contentId});
 		return count;
 	}
+
+	public List<User> getUserListByContentId(int contentId) {
+		String sql = "select u.* from tbl_praise p left join tbl_user u on p.user_id = u.id where p.content_id = ? ";
+		List list = this.getSQLList(sql, new Object[]{contentId}, User.class);
+		return list;
+	}
+	
 
 }

@@ -3,6 +3,7 @@ package com.cloud.service;
 import java.util.List;
 
 import com.cloud.entity.Praise;
+import com.cloud.entity.User;
 
 public interface PraiseService {
 	Praise load(Integer id);
@@ -16,5 +17,7 @@ public interface PraiseService {
     
     public Praise getPraiseByContentIdAndUserId(int contentId,int userId);
     public int getCountByContentId(int contentId);
+    
+    public List<User> getUserListByContentId(int contentId);
     
 }

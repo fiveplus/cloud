@@ -226,7 +226,8 @@ public class ContentController {
 		 int pcount = praiseService.getCountByContentId(c.getId());
 		 c.setPraiseCount(pcount);
 		 model.addAttribute("content",c);
-		 
+		 List<User> users = praiseService.getUserListByContentId(id);
+		 model.addAttribute("users",users);
 		 return "content/content";
 	 }
 	 

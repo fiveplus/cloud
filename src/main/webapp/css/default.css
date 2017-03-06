@@ -416,6 +416,9 @@ select, input[type='text'], textarea {
 input[type='text'] {
 	width: 245px;
 }
+input:focus { 
+	outline:none;
+}
 
 ul.formatted,ol.formatted {
 	display: block;
@@ -469,20 +472,20 @@ ol.formatted li {
 	cursor: default;
 }
 .arrow-up {
-	margin-top:-8px;
-	margin-left:49%;
+	margin-top:-9px;
+	margin-left:45%;
     width:0; 
     height:0; 
-    border-left:5px solid transparent;
-    border-right:5px solid transparent;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
     border-bottom:10px solid #f2f2f5;
 }
 .arrow-up-border {
-	margin-left:49%;
+	margin-left:45%;
     width:0; 
     height:0; 
-    border-left:5px solid transparent;
-    border-right:5px solid transparent;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
     border-bottom:10px solid #ccc;
 }
 

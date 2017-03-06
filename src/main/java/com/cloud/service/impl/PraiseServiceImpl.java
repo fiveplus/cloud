@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.cloud.dao.PraiseDAO;
 import com.cloud.entity.Message;
 import com.cloud.entity.Praise;
+import com.cloud.entity.User;
 import com.cloud.service.PraiseService;
 import com.cloud.util.BeanUtil;
 
@@ -60,6 +61,10 @@ public class PraiseServiceImpl implements PraiseService{
 
 	public int getCountByContentId(int contentId) {
 		return praiseDAO.getCountByContentId(contentId);
+	}
+
+	public List<User> getUserListByContentId(int contentId) {
+		return praiseDAO.getUserListByContentId(contentId);
 	}
 	
 	
