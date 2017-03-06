@@ -45,8 +45,8 @@
 						</div>
 					</div>
 					
-					<div class="row">
-						<table class="u-table" cellpadding="10" border="1" bordercolor="#ddd">
+					<div>
+						<table class="table table-hover" cellpadding="10" border="1" bordercolor="#ddd">
 							<tr>
 								<td><h3>基本资料</h3></td>
 							</tr>

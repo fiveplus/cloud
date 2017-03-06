@@ -12,8 +12,13 @@
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
+	<!-- bootstrap -->
+	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script src="css/bootstrap/js/bootstrap.min.js"></script>
+	
 	<link href="css/main.css" rel="stylesheet" type="text/css" />
 	<link href="css/default.css" rel="stylesheet" type="text/css" />
+	
 	
 	<!-- switchs插件 -->
 	<link href="css/bootstrap/bootstrap-switch.css" rel="stylesheet" type="text/css" />

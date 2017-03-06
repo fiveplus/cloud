@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<a href="#here" user-id="${cu.id}" count="${cu.messageCount}" >
 							<i>
 								<c:if test="${cu.portrait != ''}">
-									<img src="${cu.portrait }" class="img-radius30" />
+									<img src="${cu.portrait}" style="margin-top: -15px;" class="img-radius30" />
 								</c:if>
 							</i>
 							<b>${cu.username}</b> ${cu.mobile}</a> 

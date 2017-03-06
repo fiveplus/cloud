@@ -1,4 +1,13 @@
 /* Abel框架CSS */
+*{
+	box-sizing: content-box;
+	padding: 0;
+	margin: 0;
+}
+a:HOVER{
+	text-decoration: none;
+}
+
 body{
 	font-family: "Microsoft YaHei";
 }
