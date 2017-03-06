@@ -3,6 +3,7 @@
 	box-sizing: content-box;
 	padding: 0;
 	margin: 0;
+	font-family: "黑体";
 }
 a:HOVER{
 	text-decoration: none;
