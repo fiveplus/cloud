@@ -56,6 +56,7 @@ public class ContentController {
 	 
 	 @RequestMapping("/content/list")
 	 public @ResponseBody String list(int page,int deptId,HttpServletRequest request,Model model){
+		 int port = request.getLocalPort();
 		 HttpSession session = request.getSession();
 		 User user = (User) session.getAttribute("user");
 		 int pageSize = 10;
@@ -76,7 +77,7 @@ public class ContentController {
 			 String str = StringUtil.HTML2Text(c.getContent());
 			 str = str.length() <= CONTENT_LENGTH ? str : (str.substring(0,CONTENT_LENGTH - 1) + "...");
 			 c.setStr(str);
-			 c.setImgs(StringUtil.getImgStr(c.getContent()));
+			 c.setImgs(StringUtil.getImgStr(port,c.getContent()));
 			 //是否被赞
 			 Praise p = praiseService.getPraiseByContentIdAndUserId(c.getId(), user.getId());
 			 c.setIsPraise(p == null ? -1 : 0);
@@ -96,6 +97,7 @@ public class ContentController {
 	 
 	 @RequestMapping("/content/mylist")
 	 public @ResponseBody String list(int page,HttpServletRequest request,Model model){
+		 int port = request.getLocalPort();
 		 HttpSession session = request.getSession();
 		 User user = (User)session.getAttribute("user");
 		 int userId = user.getId();
@@ -108,7 +110,7 @@ public class ContentController {
 		 List<Content> list = contentService.getListToUserId(page,pageSize,userId);
 		 for(Content c:list){
 			 c.setStr(StringUtil.HTML2Text(c.getContent()));
-			 c.setImgs(StringUtil.getImgStr(c.getContent()));
+			 c.setImgs(StringUtil.getImgStr(port,c.getContent()));
 		 }
 		 returnMap.put("contents", list);
 		 returnMap.put("pu", pu);
@@ -123,6 +125,7 @@ public class ContentController {
 	 
 	 @RequestMapping("/content/plist")
 	 public @ResponseBody String plist(int page,int projectId,HttpServletRequest request,Model model){
+		 int port = request.getLocalPort();
 		 int pageSize = 10;
 		 Map<String,Object> returnMap = new HashMap<String, Object>();
 		 
@@ -131,7 +134,7 @@ public class ContentController {
 		 List<Content> list = contentService.getListToProjectId(page,pageSize,projectId);
 		 for(Content c:list){
 			 c.setStr(StringUtil.HTML2Text(c.getContent()));
-			 c.setImgs(StringUtil.getImgStr(c.getContent()));
+			 c.setImgs(StringUtil.getImgStr(port,c.getContent()));
 		 }
 		 returnMap.put("contents", list);
 		 returnMap.put("pu", pu);

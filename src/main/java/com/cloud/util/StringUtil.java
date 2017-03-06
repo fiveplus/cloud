@@ -83,7 +83,7 @@ public class StringUtil {
 		return textStr;// 返回文本字符串
 	}
 	
-	public static List<String> getImgStr(String html) {
+	public static List<String> getImgStr(int port,String html) {
 		html = html.replaceAll("\r\n", "");
 		String img = "";
 		Pattern p_image;
@@ -96,8 +96,8 @@ public class StringUtil {
 			img = img + "," + m_image.group();
 			Matcher m = Pattern.compile("src\\s*=\\s*\"?(.*?)(\"|>|\\s+)").matcher(img);
 			while (m.find()) {
-				int width = ImageUtil.getImageWidth(m.group(1));
-				if(width > 100){
+				int width = ImageUtil.getImageWidth(port,m.group(1));
+				if(width > 100 || width == -1){
 					pics.add(m.group(1));
 				}
 			}

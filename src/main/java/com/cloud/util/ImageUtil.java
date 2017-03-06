@@ -14,18 +14,18 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
 public class ImageUtil {
-	public static int getImageWidth(String url){
+	public static int getImageWidth(int port,String url){
 		try{
 			if(url.indexOf("attached")>-1){
-				url = "http://127.0.0.1:8080"+url;
+				url = "http://127.0.0.1:"+port+url;
 			}
 			InputStream is = new URL(url).openStream();
 			BufferedImage img = ImageIO.read(is);
 			return img.getWidth();
 		}catch(Exception e){
-			e.printStackTrace();
+			//e.printStackTrace();
+			return -1;
 		}
-		return 0;
 	}
 	
 	public static void cutImage(String path,int x,int y,int width,int height){

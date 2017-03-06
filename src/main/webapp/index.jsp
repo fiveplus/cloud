@@ -210,7 +210,7 @@
 					var date = new Date(c.createTime);
 					var time = date.Format("yyyy-MM-dd HH:mm:ss");
 					var imgs = "";
-					for(var i =0;i<c.imgs;i++){
+					for(var i =0;i<c.imgs.length;i++){
 						var s = "<div class='content-img-div'>";
 						s+="<img src='"+c.imgs[i]+"' />";
 						s+= "</div>";
