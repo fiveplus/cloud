@@ -109,11 +109,11 @@
 		
 	
 		<div id="add_project_progress_div" class="leanmodel_div">
-			<form action="progress/add" role="form" class="form" id="add_project_progress_form">
+			<form action="progress/add" role="form" class="form" id="add_project_progress_form" style="margin: auto;width: 580px;">
 				<div style="padding:20px 5px;"><font size="+2"><b>项目计划新增</b></font> <span style="color:#999;"> >>请输入项目计划信息 </span> </div>
 				<div class="form-group" style="margin:5px 0;">
 					<span class="control-label" >执行成员：</span>
-					<a id="add_progress_user" href="#add_project_user_div" ><b>请选择</b></a>
+					<a id="add_progress_user" href="#add_project_user_div" ><b>请选择 +</b></a>
 					<script type="text/javascript">
 						$('#add_progress_user').leanModal({top:0});
 					</script>
@@ -133,9 +133,10 @@
 					<textarea name="content" class="input-textarea"></textarea>
 				</div>
 				
-				<div class="form-group" style="padding:15px 0 20px 0;">
-					<span class="label" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					<a href="javascript:add_project_progress()" class="button button-primary button-rounded button-small">确认</a>
+				<div class="form-group" style="padding:0 0 10px 0;width: 375px;">
+					<span class="control-label">&nbsp;</span>
+					<a href="javascript:add_project_progress()" style="float: right;" class="button button-primary button-rounded button-small">确认新增</a>
+					<div class="clear"></div>
 				</div>
 			</form>
 		</div>

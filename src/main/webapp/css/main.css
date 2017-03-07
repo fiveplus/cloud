@@ -42,14 +42,14 @@ input, textarea { font-size:1em; font-family:simsun; color:#000 }
 .leftmenu li div div a b { color:#fff; display:block; width:55px; float:left }
 .popadd { 
 	background:url(../images/lmpop01.png) no-repeat scroll 0px 0px transparent;
-	width:364px; 
+	width:394px; 
 	height:175px; 
 	position:absolute; 
 	top:0; 
 	margin:0 0 0 240px; 
 	display:none; 
 	z-index:20000; 
-	padding:30px 40px 
+	padding:30px 40px;
 }
 .popadd i { float:left }
 .popadd_r { float:left; padding-left:20px; line-height:20px; color:#999; width:250px; overflow:hidden }

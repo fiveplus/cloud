@@ -54,11 +54,11 @@
 							<strong>${fn:length(users)+1}人</strong>
 						</div>
 					</div>
-					<div class="row">
+					<div >
 						<div>
 							<div>
 								<!-- 成员表 -->
-								<table class="u-table" cellpadding="10" border="1" bordercolor="#ddd">
+								<table class="table" cellpadding="10" border="1" bordercolor="#ddd">
 									<tr class="th">
 										<td width="20px">
 											<label class="center">
@@ -77,10 +77,10 @@
 											</label>
 										</td>
 										<td>
-											<img style="vertical-align:middle;" class="img-radius30" src="${project.user.portrait }"  /> ${project.user.username} <font color="red"><b>[项目主人]</b></font> 
+											<img style="vertical-align:middle;" class="img-radius30" src="${project.user.portrait }"  /> <font>${project.user.username}</font> <font color="red"><b>[项目主人]</b></font> 
 										</td>
-										<td><date:date value="${project.createTime}" /></td>
-										<td class="hidden-400">
+										<td style="vertical-align:middle;"><date:date value="${project.createTime}" /></td>
+										<td  style="vertical-align:middle;" class="hidden-400">
 											<span class="label label-sm label-success">在线</span>
 										</td>
 										<td>
