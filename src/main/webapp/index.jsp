@@ -234,8 +234,8 @@
 					"</span>"+
 				"</div>"+
 				"<div class='lib'>"+
-					"<a href='#' class='la2'>("+c.readCount+")</a>"+
-					"<a href='#' data-id='"+c.id+"' class='la1' "+style+" >("+c.praiseCount+")</a>"+
+					"<a href='javascript:void(0)' class='la2'>("+c.readCount+")</a>"+
+					"<a href='javascript:void(0)' data-id='"+c.id+"' class='la1' "+style+" >("+c.praiseCount+")</a>"+
 					"<b>"+c.address+"</b>"+
 				"</div>"+
 				"</li>";

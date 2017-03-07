@@ -145,7 +145,7 @@
 				"</div>"+
 				"<div class='lib'>"+
 					"<a href='#del' data-id='"+c.id+"' class='del' style='float:right;margin:0 8px 0 0;'>删除</a>"+
-					"<a href='#' class='la2' style='margin-top:1px;'>("+c.readCount+")</a>"+
+					"<a href='javascript:void(0)' class='la2' style='margin-top:1px;'>("+c.readCount+")</a>"+
 					"<b>"+c.address+"</b>"+
 				"</div>"+
 				"</li>";

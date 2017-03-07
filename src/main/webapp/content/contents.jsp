@@ -201,8 +201,8 @@
 					"</span>"+
 				"</div>"+
 				"<div class='lib'>"+
-					"<a href='#' class='la2'>("+c.readCount+")</a>"+
-					"<a href='#' class='la1'>(0)</a>"+
+					"<a href='javascript:void(0)' class='la2'>("+c.readCount+")</a>"+
+					"<a href='javascript:void(0)' class='la1'>(0)</a>"+
 					"<b>"+c.address+"</b>"+
 				"</div>"+
 				"</li>";
