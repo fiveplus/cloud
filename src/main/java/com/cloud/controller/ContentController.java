@@ -223,6 +223,11 @@ public class ContentController {
 	 public String content(int id,HttpServletRequest request,Model model){
 		 
 		 Content c = contentService.get(id);
+		 
+		 //阅读数++
+		 c.setReadCount(c.getReadCount()+1);
+		 contentService.update(c);
+		 
 		 int pcount = praiseService.getCountByContentId(c.getId());
 		 c.setPraiseCount(pcount);
 		 model.addAttribute("content",c);
