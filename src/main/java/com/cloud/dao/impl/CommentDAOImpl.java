@@ -17,4 +17,10 @@ public class CommentDAOImpl extends BaseDAOImpl<Comment> implements CommentDAO{
 		return list;
 	}
 
+	public int getListCountToUserId(int userId) {
+		String hql = "SELECT COUNT(*) FROM Comment c WHERE c.user.id=:userId ";
+		int count = this.getCount(hql, new String[]{"userId"}, new Object[]{userId});
+		return count;
+	}
+
 }

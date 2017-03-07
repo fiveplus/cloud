@@ -183,8 +183,13 @@
 		<div class="clear"></div>
 	</div>
 	
+	<!-- 帖子详情填充 -->
 	<a id="cont-a" rel='leanModal' href='#cont-div'></a>
 	<div id="cont-div" style="padding:0;background: #f2f2f5;">
+	</div>
+	
+	<!-- 用户详情 -->
+	<div id="user-div" style="padding:0;background: #f2f2f5;display: none;position: absolute;">
 	</div>
 	
 	<script type="text/javascript">
@@ -219,7 +224,7 @@
 			var html = "<i><img class='img-radius64' src='"+img_url+"' width='64' height='64' /></i>"
 			+"<div class='popadd_r'><b>"+u.username+"</b>   "+u.dept.name+" <br />邮箱："+u.loginName+"<br />"
 			+"职位："+u.post+"<br /><br />"
-			+"<a id='show-chat-a' class='btn btn-success' onclick='show_chat("+ u.id +")' rel='leanModal' href='#chat-div'>发消息</a>"
+			+"<a name='show-chat-a' class='btn btn-success' onclick='show_chat("+ u.id +")' rel='leanModal' href='#chat-div'>发消息</a>"
 			+"&nbsp;&nbsp;&nbsp;<a href='#' class='btn btn-danger'>去看看</a></div>"
 			+"<div class='clear'></div>";
 			return html;
@@ -383,7 +388,7 @@
 							var val = get_user_info(user);
 							
 							$('.popadd').html(val);
-							$("#show-chat-a").leanModal();
+							$("a[name='show-chat-a']").leanModal();
 						}
 					});
 					//$('#div01').css("top",temp);

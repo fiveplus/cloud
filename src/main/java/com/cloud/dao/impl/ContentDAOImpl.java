@@ -69,4 +69,10 @@ public class ContentDAOImpl extends BaseDAOImpl<Content> implements ContentDAO{
 		int count = this.getCount(hql, new String[]{"projectId"}, new Object[]{projectId});
 		return count;
 	}
+
+	public int getReadCountSumToUserId(int userId) {
+		String hql = "SELECT SUM(c.readCount) FROM Content c WHERE c.user.id=:userId ";
+		int sum = this.getCount(hql, new String[]{"userId"}, new Object[]{userId});
+		return sum;
+	}
 }

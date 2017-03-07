@@ -57,6 +57,10 @@ public class CommentServiceImpl implements CommentService{
 			int contentId) {
 		return commentDAO.getListToContentId(page,pageSize,contentId);
 	}
+
+	public int getListCountToUserId(int userId) {
+		return commentDAO.getListCountToUserId(userId);
+	}
 	
 	
 	

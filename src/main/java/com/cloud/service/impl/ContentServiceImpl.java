@@ -92,6 +92,10 @@ public class ContentServiceImpl implements ContentService{
 		return contentDAO.getListCountToProjectId(projectId);
 	}
 
+	public int getReadCountSumToUserId(int userId) {
+		return contentDAO.getReadCountSumToUserId(userId);
+	}
+
 	
 	
 	

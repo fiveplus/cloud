@@ -26,5 +26,6 @@ public interface ContentService {
 	
 	List<Content> getListToProjectId(int page,int pageSize,int projectId);
 	int getListCountToProjectId(int projectId);
+	int getReadCountSumToUserId(int userId);
 	
 }

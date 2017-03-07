@@ -104,6 +104,24 @@
 					$("#hb3").stop(true).animate({ top: "-300px",opacity:"0" }, 300);
 					hbout=setTimeout(function(){$("#hb3").hide()},300);
 				});
+				/* 移出详情 */
+				$("#user-div").mouseleave(function(){
+					$("#user-div").hide();
+				});
+				/* 移入用户头像 */
+				$(document).on('mouseover mouseout','#list_1 li .libox .hphoto',function(event){
+					if(event.type == "mouseover"){
+						var x = event.pageX + 10;
+						var y = event.pageY + 10;
+						var id = $(this).attr("data-id");
+						$("#user-div").load("user/user?id="+id,function(){
+							$("#user-div").css({"left":x+"px","top":y+"px"});
+							$("#user-div").show();
+						});
+					}else if(event.type == "mouseout"){
+						//鼠标离开
+					}
+				});
 				$(document).on('click','#list_1 li .lib .la1',function(){
 					var contentId = $(this).attr("data-id");
 					var val = $(this).html();
@@ -130,7 +148,6 @@
 							
 						}
 					});
-					
 					
 				});
 				
@@ -218,8 +235,8 @@
 					}
 					var st = "<li>"+
 						"<div class='libox'>"+
-					"<a href='#' class='share'>"+c.theme.name+"</a>"+
-					"<a href='#' class='hphoto'><img src='"+c.user.portrait+"'"+
+					"<a href='index?themeId="+c.theme.id+"' class='share'>"+c.theme.name+"</a>"+
+					"<a href='javascript:void(0)' data-id='"+c.user.id+"' class='hphoto'><img src='"+c.user.portrait+"'"+
 							"class='img-radius30'  />"+
 					"</a>"+
 					"<b><a href='#'>"+c.user.username+"</a>"+

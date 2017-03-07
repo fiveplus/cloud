@@ -18,4 +18,7 @@ public interface ContentDAO extends BaseDAO<Content, Serializable>{
 	List<Content> getListToProjectId(int page,int pageSize,int projectId);
 	public int getListCountToProjectId(int projectId);
 	
+	public int getReadCountSumToUserId(int userId);
+	
+	
 }

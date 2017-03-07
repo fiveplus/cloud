@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,9 +23,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloud.controller.bo.GroupBO;
 import com.cloud.controller.bo.TreeBO;
+import com.cloud.dao.CommentDAO;
 import com.cloud.entity.Group;
 import com.cloud.entity.Project;
 import com.cloud.entity.User;
+import com.cloud.service.CommentService;
+import com.cloud.service.ContentService;
 import com.cloud.service.GroupService;
 import com.cloud.service.MessageService;
 import com.cloud.service.ProjectService;
@@ -49,6 +53,12 @@ public class UserController {
 	 
 	 @Autowired
 	 private ProjectService projectService;
+	 
+	 @Autowired
+	 private ContentService contentService;
+	 
+	 @Autowired
+	 private CommentService commentService;
 	 
 	 @RequestMapping("/login")
 	 public @ResponseBody String login(String email,String password,HttpServletRequest request) throws Exception{
@@ -137,8 +147,6 @@ public class UserController {
 			trees.add(new TreeBO(g.getId(), g.getParent().getId(), g.getName(), true,""));
 		 }
 		 
-		 
-		 
 		 return trees;
 	 }
 	 
@@ -216,6 +224,24 @@ public class UserController {
 		 returnMap.put("returnCode", returnCode);
 		 
 		 return returnMap;
+	 }
+	 
+	 @RequestMapping("/user")
+	 public String user(int id,HttpServletRequest request,Model model){
+		 User u = userService.get(id);
+		 //帖子数
+		 int count = contentService.getListCountToUserId(id);
+		 //评论数
+		 int ccount = commentService.getListCountToUserId(id);
+		 //阅读数
+		 int sum = contentService.getReadCountSumToUserId(id);
+		 
+		 model.addAttribute("u",u);
+		 model.addAttribute("count",count);
+		 model.addAttribute("ccount",ccount);
+		 model.addAttribute("sum",sum);
+		 
+		 return "user/user";
 	 }
 	 
 }

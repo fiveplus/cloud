@@ -14,4 +14,5 @@ public interface CommentService {
     void delete(Integer id);  
     void flush();
     public List<Comment> getListToContentId(int page,int pageSize,int contentId);
+    public int getListCountToUserId(int userId);
 }

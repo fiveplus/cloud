@@ -533,3 +533,33 @@ ol.formatted li {
 	padding:10px;
 }
 
+/* 移入移除显示用户 */
+#user-div{
+	background: #FFF;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.7); 
+    -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7); 
+    -moz-box-shadow: 0 0px 4px rgba(0,0,0,0.7);
+}
+.content-user{
+	background: #FFF;
+}
+.content-user .user-top{
+	padding:20px 20px 0 20px;
+}
+.content-user .user-top .user-left{
+	float: left;
+	margin-right: 15px;
+}
+.content-user .user-top .user-right{
+	float: left;
+}
+.content-user .user-stat{
+	margin-top: 15px; 
+	border-top: 1px solid #ccc;
+	background: #eee;
+	padding:0 0 0 10px;
+}
+.content-user .user-stat .stat-item{
+	float: left;
+	padding:10px;
+}

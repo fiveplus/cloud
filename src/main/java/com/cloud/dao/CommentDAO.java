@@ -8,4 +8,5 @@ import com.cloud.entity.Comment;
 
 public interface CommentDAO extends BaseDAO<Comment, Serializable>{
 	public List<Comment> getListToContentId(int page,int pageSize,int contentId);
+	public int getListCountToUserId(int userId);
 }
