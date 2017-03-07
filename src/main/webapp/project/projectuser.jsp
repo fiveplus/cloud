@@ -57,6 +57,12 @@
 					<div >
 						<div>
 							<div>
+								<div align="right" style="margin-bottom: 10px;">
+									<a id="add_project_user" href="#add_project_user_div"  class="btn btn-primary">添加成员 +</a>
+									<script type="text/javascript">
+										$('#add_project_user').leanModal({top:0});
+									</script>
+								</div>
 								<!-- 成员表 -->
 								<table class="table" cellpadding="10" border="1" bordercolor="#ddd">
 									<tr class="th">
@@ -95,25 +101,19 @@
 												</label>
 											</td>
 											<td>
-												<img style="vertical-align:middle;" class="img-radius30" src="${u.portrait }"  /> ${u.username} 
+												<img style="vertical-align:middle;" class="img-radius30" src="${u.portrait }"  /> 
+												<font>${u.username}</font> 
 											</td>
-											<td><date:date value="${u.createTime}" /></td>
-											<td class="hidden-400">
+											<td style="vertical-align:middle;"><date:date value="${u.createTime}" /></td>
+											<td style="vertical-align:middle;" class="hidden-400">
 												<span class="label label-sm label-success">在线</span>
 											</td>
-											<td>
-												<a href="javascript:delete_project_user(${u.id})" class="button button-primary button-rounded button-small">删除</a>
+											<td style="vertical-align:middle;">
+												<a href="javascript:delete_project_user(${u.id})" class="button button-rounded button-caution button-small">删除</a>
 											</td>
 										</tr>
 									</c:forEach>
 								</table>
-							</div>
-							<div class="fenge"></div>
-							<div>
-								<a id="add_project_user" href="#add_project_user_div"  class="button button-primary button-rounded button-small">添加</a>
-								<script type="text/javascript">
-									$('#add_project_user').leanModal();
-								</script>
 							</div>
 						</div>
 					</div>
@@ -124,27 +124,31 @@
 		
 		<div id="add_project_user_div" class="leanmodel_div">
 			<form action="projectuser/add" role="form" class="form" id="add_project_user_form">
-				<div style="padding:20px 5px;"><font size="+2"><b>项目成员新增</b></font> <span style="color:#999;"> >>请选择项目成员 </span> </div>
-				<div class="form-group" style="float: left;width:45%;">
-					<ul id="treeDemo" class="ztree"></ul>
+				<div class="modal-header">
+					<h4 class="modal-title">项目成员新增 <small> >>请选择项目成员 </small> </h4>
 				</div>
-				<div class="form-group"  style="float: left;width: 45%;margin-top:10px;padding:0; padding-top: 15px;background: #e9eaf5;border-radius: 5px;box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);">
-					<div align="center" style="padding-bottom:10px;">
-						<img class="img-radius64" id="userpic" src="images/liimg.jpg" style="margin-bottom: 5px;" /><br />
-						<label id="username">未选择</label>
-						<input type="hidden" name="user.id" value="" />
-						<input type="hidden" name="project.id" value="${project.id}" />
+				<div class="modal-body" style="height:400px;overflow-y:auto;">
+					<div class="form-group" style="float: left;width:45%;">
+						<ul id="treeDemo" class="ztree"></ul>
 					</div>
-					<div style="margin:0 10px;border-top: 1px solid #ddd;">
-						<p>
-							╭⌒ 男人 就得活出自己 高傲的姿态. Ending
-						</p>
+					<div class="form-group"  style="float: left;width: 45%;margin-top:10px;padding:0; padding-top: 15px;background: #e9eaf5;border-radius: 5px;box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);">
+						<div align="center" style="padding-bottom:10px;">
+							<img class="img-radius64" id="userpic" src="images/liimg.jpg" style="margin-bottom: 5px;" /><br />
+							<label id="username">未选择</label>
+							<input type="hidden" name="user.id" value="" />
+							<input type="hidden" name="project.id" value="${project.id}" />
+						</div>
+						<div style="margin:0 10px;border-top: 1px solid #ddd;">
+							<p>
+								╭⌒ 男人 就得活出自己 高傲的姿态. Ending
+							</p>
+						</div>
 					</div>
+					<div class="clear"></div>
 				</div>
-				<div class="clear"></div>
-				<div class="form-group" style="padding:10px 0 20px 0;">
-					<span class="label" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					<a href="javascript:add_project_user()" class="button button-primary button-rounded button-small">确认</a>
+				
+				<div class="modal-footer">
+					<a href="javascript:add_project_user()" class="btn btn-primary">确认新增</a>
 				</div>
 			</form>
 		</div>

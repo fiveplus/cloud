@@ -283,7 +283,7 @@ border:0;
 }
 .input-textarea{
 	width:280px;
-	height: 80px;
+	height: 100px;
 	border: 1px solid #CCC;
 	padding: 8px;
 	resize: none;
@@ -427,6 +427,9 @@ input[type='text'] {
 	width: 245px;
 }
 input:focus { 
+	outline:none;
+}
+textarea:focus { 
 	outline:none;
 }
 

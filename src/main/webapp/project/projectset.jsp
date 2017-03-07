@@ -37,24 +37,23 @@
 						<div class="fenge"></div>
 						<div class="fenge"></div>
 						<div class="form-group">
-							<span class="label">项目名称：</span>
+							<span class="control-label">项目名称：</span>
 							<input type="hidden" name="id" value="${project.id }" />
 							<input type="text" name="name" value="${project.name}" class="input-text" placeholder="项目名称"  />
 						</div>
 						<div class="form-group">
-							<span class="label" >允许加入：</span>
+							<span class="control-label" >允许加入：</span>
 							<input type="checkbox" class="switch" checked />
 							
 						</div>
 						
 						<div class="form-group">
-							<span class="label" >是否验证：</span>
+							<span class="control-label" >是否验证：</span>
 							<input type="checkbox" class="switch" checked />
 						</div>
 						
 						<div class="form-group" style="padding:10px 0 0 0;">
-							<span class="label" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-							<a href="javascript:update_project('update_project')" class="button button-primary button-rounded button-small">保存</a>
+							<a href="javascript:update_project('update_project')" class="btn btn-primary">保存设置</a>
 						</div>
 					</form>
 				</div>

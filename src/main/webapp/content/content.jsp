@@ -41,7 +41,7 @@
 				<!-- 点赞区域 -->
 				<div id="praise_div" class="content-bot" style="background: #f2f2f5;min-height:100px;display: none;">
 					<c:forEach items="${users}" var="u">
-						<img class="img-radius37" style="margin:10px;" src="${u.portrait}" alt="${u.username}" />
+						<img class="img-radius37" style="margin:10px 5px 10px 5px;" src="${u.portrait}" alt="${u.username}" />
 					</c:forEach>
 				</div>
 				<!-- 评论区 -->

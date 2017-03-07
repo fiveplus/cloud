@@ -92,26 +92,28 @@
 	</div>
 	<div id="add_project_div" class="leanmodel_div">
 		<form action="project/add" role="form" class="form" id="add_project" >
-			<div style="padding:20px 5px;"><font size="+2"><b>项目新建</b></font> <span style="color:#999;"> >>请输入项目详细信息 </span> </div>
-			<div class="form-group">
-				<span class="control-label">项目名称：</span>
-				<input type="text" name="name" class="input-text" placeholder="项目名称"  />
+			<div class="modal-header" >
+				<h4 class="modal-title">项目新建 <small> >>请输入项目详细信息 </small> </h4> 
 			</div>
-			<div class="form-group">
-				<span class="control-label" >允许加入：</span>
-				<input type="checkbox" checked />
+			<div class="modal-body">
+				<div class="form-group">
+					<span class="control-label">项目名称：</span>
+					<input type="text" name="name" class="input-text" placeholder="项目名称"  />
+				</div>
+				<div class="form-group">
+					<span class="control-label" >允许加入：</span>
+					<input type="checkbox" checked />
+				</div>
+				
+				<div class="form-group">
+					<span class="control-label" >是否验证：</span>
+					<input type="checkbox" checked />
+				</div>
 			</div>
 			
-			<div class="form-group">
-				<span class="control-label" >是否验证：</span>
-				<input type="checkbox" checked />
-			</div>
 			
-			<div class="form-group" style="padding:10px 0 20px 0;">
-				<span class="control-label" style="padding-left: 65px;">
-				&nbsp;
-				</span>
-				<a href="javascript:add_project()" class="btn btn-large btn-primary">项目新增</a>
+			<div class="modal-footer" >
+				<a href="javascript:add_project()" class="btn btn-primary">项目新增 +</a>
 			</div>
 		</form>
 	</div>

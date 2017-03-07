@@ -59,6 +59,12 @@
 						<div>
 							<div class ="gantt"></div> 
 							<div>
+								<div align="right" style="margin-bottom: 10px;">
+									<a id="add_project_progress" href="#add_project_progress_div"  class="btn btn-primary">新增项目计划 +</a>
+									<script type="text/javascript">
+										$('#add_project_progress').leanModal({top:0});
+									</script>
+								</div>
 								<!-- 实施人 -->
 								<table class="table" cellpadding="10" border="1" bordercolor="#ddd">
 									<tr class="th">
@@ -93,13 +99,7 @@
 									</c:forEach>
 								</table>
 							</div>
-							<div class="fenge"></div>
-							<div>
-								<a id="add_project_progress" href="#add_project_progress_div"  class="button button-primary button-rounded button-small">新增项目计划</a>
-								<script type="text/javascript">
-									$('#add_project_progress').leanModal({top:0});
-								</script>
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -110,32 +110,36 @@
 	
 		<div id="add_project_progress_div" class="leanmodel_div">
 			<form action="progress/add" role="form" class="form" id="add_project_progress_form" style="margin: auto;width: 580px;">
-				<div style="padding:20px 5px;"><font size="+2"><b>项目计划新增</b></font> <span style="color:#999;"> >>请输入项目计划信息 </span> </div>
-				<div class="form-group" style="margin:5px 0;">
-					<span class="control-label" >执行成员：</span>
-					<a id="add_progress_user" href="#add_project_user_div" ><b>请选择 +</b></a>
-					<script type="text/javascript">
-						$('#add_progress_user').leanModal({top:0});
-					</script>
+				<div class="modal-header">
+					<h4 class="modal-title">项目计划新增 <small> >>请输入项目计划信息 </small> </h4> 
 				</div>
-				<div class="form-group">
-					<span class="control-label">事件名称：</span>
-					<input type="hidden" name="project.id" value="${project.id}" />
-					<input type="hidden" name="user.id" value="" />
-					<input type="text" name="title" class="input-text" placeholder="事件名称"  />
-				</div>
-				<div class="form-group">
-					<span class="control-label">事件时间：</span>
-					<input class="input-text" type="text" placeholder="事件时间" readonly="readonly" id="dateRangePicker" name="dateRangePicker" />
-				</div>
-				<div class="form-group" >
-					<div style="float:left;margin-right: 6px;">事件内容：</div>
-					<textarea name="content" class="input-textarea"></textarea>
+				<div class="modal-body">
+					<div class="form-group">
+						<span class="control-label" >执行成员：</span>
+						<a id="add_progress_user" href="#add_project_user_div" ><b>请选择 +</b></a>
+						<script type="text/javascript">
+							$('#add_progress_user').leanModal({top:0});
+						</script>
+					</div>
+					<div class="form-group">
+						<span class="control-label">事件名称：</span>
+						<input type="hidden" name="project.id" value="${project.id}" />
+						<input type="hidden" name="user.id" value="" />
+						<input type="text" name="title" class="input-text" placeholder="事件名称"  />
+					</div>
+					<div class="form-group">
+						<span class="control-label">事件时间：</span>
+						<input class="input-text" type="text" placeholder="事件时间" readonly="readonly" id="dateRangePicker" name="dateRangePicker" />
+					</div>
+					<div class="form-group" >
+						<div style="float:left;margin-right: 6px;">事件内容：</div>
+						<textarea name="content" class="input-textarea"></textarea>
+					</div>
 				</div>
 				
-				<div class="form-group" style="padding:0 0 10px 0;width: 375px;">
+				<div class="modal-footer">
 					<span class="control-label">&nbsp;</span>
-					<a href="javascript:add_project_progress()" style="float: right;" class="button button-primary button-rounded button-small">确认新增</a>
+					<a href="javascript:add_project_progress()"  class="btn btn-primary">确认新增 +</a>
 					<div class="clear"></div>
 				</div>
 			</form>
@@ -143,8 +147,10 @@
 	
 		<div id="add_project_user_div" class="leanmodel_div">
 			<form action="project/useradd" role="form" class="form" id="add_project_user_form">
-				<div style="padding:20px 10px;"><font size="+2"><b>项目成员选择</b></font> <span style="color:#999;"> >>请选择项目成员 </span> </div>
-				<div style="height:400px;overflow-y:auto;">
+				<div class="modal-header">
+					<h4>项目成员选择 <small> >>请选择项目成员 </small> </h4>
+				</div>
+				<div class="modal-body" style="height:400px;overflow-y:auto;">
 					<div class="form-group" style="float: left;width:45%;min-height: 250px;">
 						<ul id="treeDemo" class="ztree"></ul>
 					</div>
@@ -162,40 +168,40 @@
 					</div>
 					<div class="clear"></div>
 				</div>
-					<div class="form-group" style="padding:15px 0 20px 0;">
-						<span class="label" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<a href="javascript:set_user()" class="button button-primary button-rounded button-small">确认</a>
-						<a href="javascript:user_cancel()" class="button button-primary button-rounded button-small">取消</a>
-					</div>
-				
-				
+				<div class="modal-footer">
+					<a href="javascript:set_user()" class="btn btn-primary">确认</a>
+					<a href="javascript:user_cancel()" class="btn btn-default">取消</a>
+				</div>
 			</form>
 		</div>
 		
 		<div id="update_project_progress_div" class="leanmodel_div">
 			<form action="progress/update" role="form" class="form" id="update_project_progress_form">
-				<div style="padding:20px 5px;"><font size="+2"><b>项目计划修改</b></font> <span style="color:#999;"> >>请输入项目计划信息 </span> </div>
-				<div class="form-group" style="margin:5px 0;">
-					<span class="control-label" id="user_name">执行成员：</span>
-					<input type="hidden" name="id" value="" />
+				<div class="modal-header">
+					<h4 class="modal-title">项目计划修改 <small> >>请输入项目计划信息 </small> </h4>
 				</div>
-				<div class="form-group">
-					<span class="control-label">事件名称：</span>
-					<input type="hidden" name="project.id" value="${project.id}" />
-					<input type="text" name="title" class="input-text" placeholder="事件名称"  />
-				</div>
-				<div class="form-group">
-					<span class="control-label">事件时间：</span>
-					<input class="input-text" type="text" placeholder="事件时间" readonly="readonly" id="dateRangePicker2" name="dateRangePicker" />
-				</div>
-				<div class="form-group" >
-					<div style="float:left;margin-right: 6px;">事件内容：</div>
-					<textarea name="content" class="input-textarea"></textarea>
+				<div class="modal-body">
+					<div class="form-group">
+						<span class="control-label" id="user_name">执行成员：</span>
+						<input type="hidden" name="id" value="" />
+					</div>
+					<div class="form-group">
+						<span class="control-label">事件名称：</span>
+						<input type="hidden" name="project.id" value="${project.id}" />
+						<input type="text" name="title" class="input-text" placeholder=""  />
+					</div>
+					<div class="form-group">
+						<span class="control-label">事件时间：</span>
+						<input class="input-text" type="text" placeholder="" readonly="readonly" id="dateRangePicker2" name="dateRangePicker" />
+					</div>
+					<div class="form-group" >
+						<div style="float:left;margin-right: 6px;">事件内容：</div>
+						<textarea name="content" class="input-textarea"></textarea>
+					</div>
 				</div>
 				
-				<div class="form-group" style="padding:15px 0 20px 0;">
-					<span class="control-label" >&nbsp;</span>
-					<a href="javascript:update_project_progress()" class="button button-primary button-rounded button-small">确认</a>
+				<div class="modal-footer" >
+					<a href="javascript:update_project_progress()" class="btn btn-primary">确认修改</a>
 				</div>
 			</form>
 		</div>
@@ -427,8 +433,8 @@
 						$("#update_project_progress_div input[name='title']").val(pg.title);
 						$("#update_project_progress_div textarea[name='content']").html(pg.content);
 						$("#update_project_progress_div input[name='dateRangePicker']").val(vdata.dateRangePicker);
-						var start = vdata.dateRangePicker.split("-")[0].trim();
-						var end = vdata.dateRangePicker.split("-")[1].trim();
+						var start = vdata.dateRangePicker.split(" - ")[0].trim();
+						var end = vdata.dateRangePicker.split(" - ")[1].trim();
 						$('#dateRangePicker2').daterangepicker({
 							startDate:start,
 							endDate:end
