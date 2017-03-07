@@ -173,7 +173,7 @@
 				type:"POST",
 				url:"user/trees",
 				error: function(request) {
-					alert("服务器连接失败!");
+					//alert("服务器连接失败!");
 				},
 				success: function(data) {
 					var trees = eval("("+data+")");
@@ -301,7 +301,7 @@
 						url:action,
 						data:alldata,
 						error:function(request){
-							alert("服务器连接失败!");
+							//alert("服务器连接失败!");
 						},
 						success:function(data){
 							var vdata = eval("("+data+")");
@@ -317,23 +317,29 @@
 				
 				function delete_project_user(userid){
 					var projectid = '${project.id}';
-					if(confirm("确认删除？")){
-						$.ajax({
-							cache:true,
-							type:"POST",
-							url:"projectuser/delete",
-							data:{userid:userid,projectid:projectid},
-							error:function(request){
-								alert("服务器连接失败!");
-							},
-							success:function(data){
-								var vdata = eval("("+data+")");
-								//alert(vdata.message);
-								
-								window.location.href = 'projectuser?id='+vdata.projectId;
-							}
-						});
-					}
+					$.confirm({
+						title:'提示信息',
+						content:'确认删除？确认删除后无法恢复！！！',
+						confirm:function(){
+							$.ajax({
+								cache:true,
+								type:"POST",
+								url:"projectuser/delete",
+								data:{userid:userid,projectid:projectid},
+								error:function(request){
+									//alert("服务器连接失败!");
+								},
+								success:function(data){
+									var vdata = eval("("+data+")");
+									//alert(vdata.message);
+									
+									window.location.href = 'projectuser?id='+vdata.projectId;
+								}
+							});
+						},
+						cancel:function(){}
+					});
+					
 				}
 		
 		</script>

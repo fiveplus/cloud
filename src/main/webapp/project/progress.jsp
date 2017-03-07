@@ -253,7 +253,7 @@
 				url:"user/trees",
 				async:false,
 				error:function(request){
-					alert("数据请求错误!");
+					//alert("数据请求错误!");
 				},
 				success:function(data){
 					var trees = eval("("+data+")");
@@ -388,19 +388,25 @@
 			}
 			
 			function delete_progress(id){
-				if(confirm("确认删除?")){
-					$.ajax({
-						cache:true,
-						type:"POST",
-						url:"progress/delete?id="+id,
-						error: function(request) {
-						},
-						success: function(data) {
-							var vdata = eval("("+data+")");
-							window.location = "progress?id="+vdata.projectId;
-						}
-					});
-				}
+				$.confirm({
+					title:'提示信息',
+					content:'确认删除？删除后无法恢复！！！',
+					confirm:function(){
+						$.ajax({
+							cache:true,
+							type:"POST",
+							url:"progress/delete?id="+id,
+							error: function(request) {
+							},
+							success: function(data) {
+								var vdata = eval("("+data+")");
+								window.location = "progress?id="+vdata.projectId;
+							}
+						});
+					},
+					cancel:function(){}
+				});
+				
 			}
 			
 			function update_set(id){
@@ -409,7 +415,7 @@
 					type:"POST",
 					url:"progress/updateInit?id="+id,
 					error: function(request) {
-						alert("服务器连接失败!");
+						//alert("服务器连接失败!");
 					},
 					success: function(data) {
 						var vdata = eval("("+data+")");
@@ -439,7 +445,7 @@
 					url:action,
 					data:alldata,
 					error:function(request){
-						alert("服务器连接失败!");
+						//alert("服务器连接失败!");
 					},
 					success:function(data){
 						var vdata = eval("("+data+")");
@@ -466,7 +472,7 @@
 					url:action,
 					data:alldata,
 					error:function(request){
-						alert("服务器连接失败!");
+						//alert("服务器连接失败!");
 					},
 					success:function(data){
 						var vdata = eval("("+data+")");

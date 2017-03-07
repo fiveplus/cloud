@@ -186,7 +186,7 @@
 				img.src = getFileUrl(fileId);
 				img.onload= function(){
 					if(img.width > 760 || img.height > 500){
-						alert("请选择小于760*500的图片。");
+						$.alert("请选择小于760*500的图片。");
 					}else{
 						imgPre.src = getFileUrl(fileId);
 						cq();
@@ -288,9 +288,9 @@
 					success:function(data){
 						var vdata = eval("("+data+")");
 						if(vdata.returnCode=='0'){
-							alert("密码修改成功，重新登录生效！");
+							$.alert({title:'提示信息',content:"密码修改成功，重新登录生效！",type:'blue'});
 						}else{
-							alert("密码修改失败，请检查后重新输入!");
+							$.alert({title:'提示信息',content:"密码修改失败，请检查后重新输入!",type:'red'});
 						}
 					}
 				});

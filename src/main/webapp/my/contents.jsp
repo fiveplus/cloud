@@ -174,19 +174,26 @@
 				
 				$(".list_1").delegate('.del','click',function(){
 					var dataid = $(this).attr("data-id");
-					if(confirm("确认删除?")){
-						$.ajax({
-							url:'content/del',
-							data:{id:dataid},
-							success:function(data){
-								alert("删除成功!");
-								//删除完成后移除
-								$(".list_1 li[data-id='"+dataid+"']").remove();
-								loadData();
-							}
-						});
-						
-					}
+					$.confirm({
+						title:'提示信息',
+						content:'确认删除吗？删除后无法恢复！！！',
+						confirm:function(){
+							$.ajax({
+								url:'content/del',
+								data:{id:dataid},
+								success:function(data){
+									$.alert({title:'提示信息',content:'删除成功！',type:'red'});
+									//删除完成后移除
+									$(".list_1 li[data-id='"+dataid+"']").remove();
+									loadData();
+								}
+							});
+						},
+						cancel:function(){
+							//取消
+						}
+					});
+					
 				});
 				
 			});

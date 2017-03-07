@@ -161,7 +161,7 @@
 				alldata += "&remindTime="+remindTime;
 				var text = editor.html();
 				if(text==''){
-					$.alert({title:'提示信息',content:'请输入内容！',type: 'blue'});
+					$.alert({title:'提示信息',content:'请输入内容！',type: 'red'});
 					return;
 				} 
 				$.ajax({
