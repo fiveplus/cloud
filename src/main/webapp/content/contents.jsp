@@ -104,6 +104,36 @@
 					$("#hb3").stop(true).animate({ top: "-200px",opacity:"0" }, 300);
 					hbout=setTimeout(function(){$("#hb3").hide()},300);
 				});
+				$(document).on('click','#list_1 li .lib .la1',function(){
+					var contentId = $(this).attr("data-id");
+					var val = $(this).html();
+					var num = val.substring(1,val.length-1);
+					var a = $(this);
+					$.ajax({
+						type:"POST",
+						url:"praise/save",
+						data:{contentId:contentId},
+						success: function(data) {
+							
+							var vdata = eval("("+data+")");
+							if(vdata.code == 200){
+								//点赞
+								a.css("background","url(images/libg04.png) no-repeat 0 4px");
+								num = parseInt(num) + 1;
+								a.html("("+num+")");
+							}else{
+								//消赞
+								a.css("background","url(images/libg04.png) no-repeat 0 -13px");
+								num = parseInt(num) - 1;
+								a.html("("+num+")");
+							}
+							
+						}
+					});
+				});
+				
+				
+				
 				var deptId = '${dept.id}';
 				var themeId = '${themeId}';
 				var $list = $("#list_1"),
@@ -174,6 +204,9 @@
 				
 				//组装发布文章
 				function get_content(c){
+					var off = "style='background:url(images/libg04.png) no-repeat 0 -13px'";
+					var on = "style='background:url(images/libg04.png) no-repeat 0 4px'";
+					var style = c.isPraise == 0 ? on : off;
 					var date = new Date(c.createTime);
 					var time = date.Format("yyyy-MM-dd HH:mm:ss");
 					var imgs = "";
@@ -202,7 +235,7 @@
 				"</div>"+
 				"<div class='lib'>"+
 					"<a href='javascript:void(0)' class='la2'>("+c.readCount+")</a>"+
-					"<a href='javascript:void(0)' class='la1'>(0)</a>"+
+					"<a href='javascript:void(0)' data-id='"+c.id+"' class='la1' "+style+" >("+c.praiseCount+")</a>"+
 					"<b>"+c.address+"</b>"+
 				"</div>"+
 				"</li>";

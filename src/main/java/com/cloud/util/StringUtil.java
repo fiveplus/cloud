@@ -107,8 +107,8 @@ public class StringUtil {
 	}
 	
 	public static Map<String,Long> getBetweenTime2(String temp){
-		String before = temp.split("-")[0].trim();
-		String after = temp.split("-")[1].trim();
+		String before = temp.split(" - ")[0].trim();
+		String after = temp.split(" - ")[1].trim();
 		Map<String, Long> map = new HashMap<String, Long>();
 		map.put("beforeTime", getStringToLong(before+" 00:00:00","yyyy-MM-dd HH:mm:ss"));
 		map.put("afterTime", getStringToLong(after+" 23:59:59","yyyy-MM-dd HH:mm:ss"));

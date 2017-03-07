@@ -12,7 +12,7 @@ public class CommentDAOImpl extends BaseDAOImpl<Comment> implements CommentDAO{
 
 	public List<Comment> getListToContentId(int page, int pageSize,
 			int contentId) {
-		String hql = "FROM Comment c where c.cont.id =:contentId ";
+		String hql = "FROM Comment c WHERE c.cont.id =:contentId ORDER BY c.createTime DESC ";
 		List list = this.getList(page, pageSize, hql, new String[]{"contentId"}, new Object[]{contentId});
 		return list;
 	}

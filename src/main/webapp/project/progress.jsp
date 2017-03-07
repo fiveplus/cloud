@@ -82,8 +82,8 @@
 											</td>
 											<td>
 												<c:if test="${ps.status=='Y'}">
-													<a name="update_progress" onclick="update_set(${ps.id})" href="#update_project_progress_div" class="button button-glow button-rounded button-highlight button-small">修改</a>
-													<a href="javascript:delete_progress(${ps.id})" class="button button-glow button-rounded button-caution button-small">删除</a>
+													<a name="update_progress" onclick="update_set(${ps.id})" href="#update_project_progress_div" class="button button-rounded button-highlight button-small">修改</a>
+													<a href="javascript:delete_progress(${ps.id})" class="button button-rounded button-caution button-small">删除</a>
 													<script type="text/javascript">
 														$('a[name="update_progress"]').leanModal({top:0});
 													</script>
@@ -176,25 +176,25 @@
 			<form action="progress/update" role="form" class="form" id="update_project_progress_form">
 				<div style="padding:20px 5px;"><font size="+2"><b>项目计划修改</b></font> <span style="color:#999;"> >>请输入项目计划信息 </span> </div>
 				<div class="form-group" style="margin:5px 0;">
-					<span class="label" id="user_name">执行成员：</span>
+					<span class="control-label" id="user_name">执行成员：</span>
 					<input type="hidden" name="id" value="" />
 				</div>
 				<div class="form-group">
-					<span class="label">事件名称：</span>
+					<span class="control-label">事件名称：</span>
 					<input type="hidden" name="project.id" value="${project.id}" />
 					<input type="text" name="title" class="input-text" placeholder="事件名称"  />
 				</div>
 				<div class="form-group">
-					<span class="label">事件时间：</span>
+					<span class="control-label">事件时间：</span>
 					<input class="input-text" type="text" placeholder="事件时间" readonly="readonly" id="dateRangePicker2" name="dateRangePicker" />
 				</div>
 				<div class="form-group" >
-					<span class="label">事件内容：</span>
+					<div style="float:left;margin-right: 6px;">事件内容：</div>
 					<textarea name="content" class="input-textarea"></textarea>
 				</div>
 				
 				<div class="form-group" style="padding:15px 0 20px 0;">
-					<span class="label" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<span class="control-label" >&nbsp;</span>
 					<a href="javascript:update_project_progress()" class="button button-primary button-rounded button-small">确认</a>
 				</div>
 			</form>
@@ -421,7 +421,7 @@
 						var vdata = eval("("+data+")");
 						var pg = vdata.progress;
 						$("#update_project_progress_div input[name='id']").val(pg.id);
-						$("#update_project_progress_div #user_name").html("执行成员："+pg.user.username);
+						$("#update_project_progress_div #user_name").html("执行成员：&nbsp;<b>"+pg.user.username+"</b>");
 						$("#update_project_progress_div input[name='title']").val(pg.title);
 						$("#update_project_progress_div textarea[name='content']").html(pg.content);
 						$("#update_project_progress_div input[name='dateRangePicker']").val(vdata.dateRangePicker);
