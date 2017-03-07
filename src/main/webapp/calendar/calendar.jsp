@@ -170,7 +170,7 @@
 			            		   type:"POST",
 			            		   success:function(data){
 			            			   var vdata = eval("("+data+")");
-			            			   alert(vdata.message);
+			            			   $.alert({title:'提示信息',content:vdata.message,type:'blue'});
 			            		   }
 			            	   });
 			            	   
