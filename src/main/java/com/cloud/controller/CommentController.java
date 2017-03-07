@@ -46,6 +46,17 @@ public class CommentController {
 		return returnMap;
 	}
 	
+	@RequestMapping("/comment/delete")
+	public @ResponseBody Map<String,Object> delete(int id,HttpServletRequest request,Model model){
+		String message = "恭喜您，删除成功！";
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		
+		commentService.delete(id);
+		
+		returnMap.put("message", message);
+		return returnMap;
+	}
+	
 	@RequestMapping("/comment/list")
 	public @ResponseBody Map<String,Object> list(int page,int contentId,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();

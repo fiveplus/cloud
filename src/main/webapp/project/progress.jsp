@@ -391,20 +391,22 @@
 				$.confirm({
 					title:'提示信息',
 					content:'确认删除？删除后无法恢复！！！',
-					confirm:function(){
-						$.ajax({
-							cache:true,
-							type:"POST",
-							url:"progress/delete?id="+id,
-							error: function(request) {
-							},
-							success: function(data) {
-								var vdata = eval("("+data+")");
-								window.location = "progress?id="+vdata.projectId;
-							}
-						});
-					},
-					cancel:function(){}
+					buttons:{
+						confirm:function(){
+							$.ajax({
+								cache:true,
+								type:"POST",
+								url:"progress/delete?id="+id,
+								error: function(request) {
+								},
+								success: function(data) {
+									var vdata = eval("("+data+")");
+									window.location = "progress?id="+vdata.projectId;
+								}
+							});
+						},
+						cancel:function(){}
+					}
 				});
 				
 			}

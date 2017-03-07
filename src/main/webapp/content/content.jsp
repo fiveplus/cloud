@@ -140,7 +140,6 @@
 					var html = "<div class='arrow-up-border'></div><div class='arrow-up'></div>";
 					$(this).parent().append(html);
 				}
-				
 			});
 			
 			
@@ -174,6 +173,30 @@
 			
 			var contentId = '${content.id}';
 			init_comments(contentId);
+			
+			$(document).off('click','.commit_list_div .commit_item .commit_content .del').on('click','.commit_list_div .commit_item .commit_content .del',function(){
+				var obj = $(this);
+				var id = obj.attr("data-id");
+				$.confirm({
+					title:'提示信息',
+					content:'确认删除？确认删除后无法恢复！！！',
+					buttons:{
+						confirm:function(){
+							obj.parent().parent().parent().remove();
+							$.ajax({
+								type:"POST",
+								url:"comment/delete",
+								data:{id:id},
+								success:function(data){
+									
+								}
+							});
+						},
+						cancel:function(){}
+					}
+				});
+			});
+			
 		});
 		
 		function init_comments(contentId){
@@ -205,9 +228,9 @@
 			html += "<div class='commit_item'>"
 					+"<span class='commit_user'><img class='img-radius37' src='"+c.user.portrait+"' /></span>"
 					+"<div class='commit_content'>"
-						+"<a href='#'>"+c.user.username+"</a>："+c.content
-						+"<br />"
-						+"<font color='gray'>"+time+"</font>"
+						+"<div><a href='#'>"+c.user.username+"</a>："+c.content+"</div>"
+						+"<div style='margin-top:2px;'><font color='gray'>"+time+"</font>  "
+						+"<a data-id='"+c.id+"' href='javascript:void(0)' class='del'><b>删除评论</b></a></div>"
 					+"</div>"
 					+"<div class='clear'></div>"
 					+"</div>";
@@ -216,17 +239,23 @@
 		
 		function show_comments(comments){
 			var html = "";
+			var user_id = '${user.id}';
 			if(comments.length > 0){
 				for(var i = 0;i < comments.length;i++){
 					var c = comments[i];
+					var del_a = "<a data-id='"+c.id+"' href='javascript:void(0)' class='del'><b>删除评论</b></a>";
+					if(c.user.id != user_id){
+						del_a = "";
+					}
 					var date = new Date(c.createTime);
 					var time = date.Format("yyyy-MM-dd HH:mm:ss");
 					var str = "<div class='commit_item'>"
 					+"<span class='commit_user'><img class='img-radius37' src='"+c.user.portrait+"' /></span>"
 					+"<div class='commit_content'>"
-						+"<a href='#'>"+c.user.username+"</a>："+c.content
-						+"<br />"
-						+"<font color='gray'>"+time+"</font>"
+						+"<div><a href='#'>"+c.user.username+"</a>："+c.content+"</div>"
+						+"<div style='margin-top:2px;'><font color='gray'>"+time+"</font>  "
+						+ del_a
+						+"</div>"
 					+"</div>"
 					+"<div class='clear'></div>"
 					+"</div>";

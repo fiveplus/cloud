@@ -177,20 +177,22 @@
 					$.confirm({
 						title:'提示信息',
 						content:'确认删除吗？删除后无法恢复！！！',
-						confirm:function(){
-							$.ajax({
-								url:'content/del',
-								data:{id:dataid},
-								success:function(data){
-									$.alert({title:'提示信息',content:'删除成功！',type:'red'});
-									//删除完成后移除
-									$(".list_1 li[data-id='"+dataid+"']").remove();
-									loadData();
-								}
-							});
-						},
-						cancel:function(){
-							//取消
+						buttons:{
+							confirm:function(){
+								$.ajax({
+									url:'content/del',
+									data:{id:dataid},
+									success:function(data){
+										$.alert({title:'提示信息',content:'删除成功！',type:'red'});
+										//删除完成后移除
+										$(".list_1 li[data-id='"+dataid+"']").remove();
+										loadData();
+									}
+								});
+							},
+							cancel:function(){
+								//取消
+							}
 						}
 					});
 					

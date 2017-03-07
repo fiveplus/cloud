@@ -46,7 +46,7 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	public void delete(Integer id) {
-		
+		commentDAO.delete(id);
 	}
 
 	public void flush() {
