@@ -20,7 +20,7 @@
 	<script src="css/bootstrap/js/bootstrap.min.js"></script>
 	 -->
 	 <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script src="css/bootstrap/js/bootstrap.min.js"></script>
 	
 	<link href="css/main.css" rel="stylesheet" type="text/css" />

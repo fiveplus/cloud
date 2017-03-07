@@ -100,13 +100,13 @@
 				<div class="space_h_30 clear"></div>
 			</div>
 		</div>
-		<div id="tx" >
+		<div id="warn" >
 			<em><m></m></em>
 			<span>时间：</span>
 			<input type='text' name="content.remindTime" style="margin:5px 0 10px 0;" id="datetimepicker" readonly="readonly" />
 			<div align="right">
-				<a href="javascript:okText()" class="button button-primary button-rounded button-small">确认</a>
-				<a href="javascript:emptyText()" class="button button-primary button-rounded button-small">取消</a>
+				<a href="javascript:okText()" class="btn btn-primary">确认</a>
+				<a href="javascript:emptyText()" class="btn btn-default">取消</a>
 			</div>
 		</div>
 		<script type="text/javascript">
@@ -189,52 +189,44 @@
 			function emptyText(){
 				$("#datetimepicker").val("");
 				$("#remind_a").remove();
-				$("#tx").hide();
+				$("#warn").hide();
 			}
 			
 			function okText(){
-				$("#tx").hide();
+				$("#warn").hide();
 				$(".post_r").prepend("<a id='remind_a' href='javascript:emptyText()'>"+"提醒时间 "+$("#datetimepicker").val()+"</a>");
 			}
 			
 			$(document).ready(function(){
 				editor_init();
-							
+				
 				//是否公开
-				$("a.post5").toggle(function(){
-					$(this).html("公开");
-					$(this).css({"background":"transparent url('images/_f_05.png') no-repeat scroll center center","color":"#39d17e"});
-					$("input[name='isPublic']").attr("value","Y");
-				},function(){
-					$(this).html("私密");
-					$(this).css({"background":"transparent url('images/f_05.png') no-repeat scroll center center","color":"#999"});
-					$("input[name='isPublic']").attr("value","N");
+				$("a.post5").click(function(){
+					var val = $("input[name='isPublic']").attr("value");
+					if(val=="Y"){
+						$(this).html("私密");
+						$(this).css({"background":"transparent url('images/f_05.png') no-repeat scroll center center","color":"#999"});
+						$("input[name='isPublic']").attr("value","N");
+					}else if(val=="N"){
+						$(this).html("公开");
+						$(this).css({"background":"transparent url('images/_f_05.png') no-repeat scroll center center","color":"#39d17e"});
+						$("input[name='isPublic']").attr("value","Y");
+					}
 				});
 				//提醒
 				$('#datetimepicker').datetimepicker();
-				$("a.post4").toggle(function(){
+				$("a.post4").click(function(){
+					
 					var offset = $(this).position();
 					var top = offset.top + $(this).outerHeight();
 					
-					$('#tx').css('top',top + 12);
-					$('#tx').css('left',offset.left + 18);
+					$('#warn').css('top',top + 12);
+					$('#warn').css('left',offset.left + 18);
 					
-					if($("#tx").is(":hidden")){
-						$("#tx").show();
+					if($("#warn").is(":hidden")){
+						$("#warn").show();
 					}else{
-						$("#tx").hide();
-					}
-				},function(){
-					var offset = $(this).position();
-					var top = offset.top + $(this).outerHeight();
-					
-					$('#tx').css('top',top + 12);
-					$('#tx').css('left',offset.left + 18);
-					
-					if($("#tx").is(":hidden")){
-						$("#tx").show();
-					}else{
-						$("#tx").hide();
+						$("#warn").hide();
 					}
 				});
 				/*
