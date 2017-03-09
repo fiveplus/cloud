@@ -106,9 +106,9 @@ public class CalendarController {
 		for(Calendar c:list){
 			CalendarBO cbo = new CalendarBO();
 			cbo.setId(c.getId());
-			cbo.setStart(StringUtil.getDateToString(c.getStartTime()));
-			cbo.setEnd(StringUtil.getDateToString(c.getEndTime()));
 			cbo.setTitle(c.getTitle());
+			cbo.setStart(StringUtil.getLongToString(c.getStartTime(),"yyyy-MM-dd'T'HH:mm:ss"));
+			cbo.setEnd(StringUtil.getLongToString(c.getEndTime(),"yyyy-MM-dd'T'HH:mm:ss"));
 			bolist.add(cbo);
 		}
 		

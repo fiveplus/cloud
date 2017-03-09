@@ -91,6 +91,7 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 			   $('#data_source').dropkick();
+			   var userid = $("#data_source").val();
 			   $("input[name='start']").datetimepicker({format:"Y-m-d H:m"});
 			   $("input[name='end']").datetimepicker({format:"Y-m-d H:m"});
 			   $("#calendar").fullCalendar({
@@ -101,7 +102,22 @@
 				   },
 				   navLinks:true, // can click day/week names to navigate views
 				   businessHours: true, // display business hours
-				   events:'calendar/list', //事件数据源
+				   eventSources:[{
+						events:function(start, end,timezone,callback){
+					   		var userid = $("#data_source").val();
+					   		$.ajax({
+								url:"calendar/list",
+								data:{userid:userid},
+								success:function(data){
+									datas = eval("("+data+")").bolist;
+									console.log(datas);
+								 	callback(datas);
+								}
+							});
+				       	},
+				       	color: 'yellow',   // an option!
+			            textColor: 'black' // an option!
+				   }],
 				   dayClick:function(date, allDay, jsEvent, view){
 						//开始时间
 						var selDate =$.fullCalendar.formatDate(date,"YYYY-MM-DD");//格式化日期
@@ -110,6 +126,13 @@
 				   		$("#add_event").modal("show");
 				   }
 			   });
+			   
+			  
+			   
+			   $("#data_source").change(function(){
+				   $('#calendar').fullCalendar('refetchEvents'); //重新获取所有事件数据 
+			   });
+			   
 			});
 			
 			function add_event(){
