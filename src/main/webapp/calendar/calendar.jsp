@@ -26,7 +26,7 @@
 				<div class="cmenu" style="min-width:850px;">
 					<div class="cmenuleft">
 						<a class="cur">日历</a>
-						<a href="calexam#calexam_div">事件审核</a>
+						<a href="calexam">事件审核</a>
 					</div>
 					<div class="cmenuright"></div>
 					<div class="clear"></div>

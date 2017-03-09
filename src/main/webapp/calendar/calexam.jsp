@@ -46,41 +46,37 @@
 		</div>
 		
 		<div id="calexam_div" class="leanmodel_div">
-			<form action="calexam/update" role="form" class="form" id="update_calexam">
-				<div style="padding:20px 5px;">
-					<font size="+2"><b>日程审核</b></font>
-					<span style="color:#999;"> >>日程详细信息 </span>
-				</div>
+			<div class="modal-header">
+				<h4 class="modal-title">日程审核 <small> >>日程详细信息 </small> </h4>
+			</div>
+			<div class="modal-body">
 				<div class="form-group">
-					<span class="label">创建人：</span>
+					<span class="control-label">创建人：</span>
 					<input type="hidden" id="calendarid" value="" />
-					<label class="label" id="username"></label>
+					<label class="control-label" id="username"></label>
 				</div>
 				<div class="form-group">
-					<span class="label">起止时间：</span>
-					<label class="label" id="startend"></label>
+					<span class="control-label">起止时间：</span>
+					<label class="control-label" id="startend"></label>
 				</div>
 				<div class="form-group">
-					<span class="label">标题：</span>
-					<label class="label" id="title"></label>
+					<span class="control-label">标题：</span>
+					<label class="control-label" id="title"></label>
 				</div>
 				<div class="form-group">
-					<span class="label">内容：</span>
-					<label class="label" id="body"></label>
+					<span class="control-label">内容：</span>
+					<label class="control-label" id="body"></label>
 				</div>
-				<div class="form-group" style="padding:10px 0 20px 0;">
-					<a href="javascript:update_calexam('Y')" class="button button-primary button-rounded button-small">通过</a>
-					<a href="javascript:update_calexam('N')" class="button button-primary button-rounded button-small">不通过</a>
-				</div>
-			</form>
+			</div>
+			
+			<div class="modal-footer">
+				<button onclick="update_calexam('Y')" class="btn btn-primary">审核通过</button>
+				<button onclick="update_calexam('N')" class="btn btn-default">不通过</button>
+			</div>
 		</div>
 		
-		
-		
-		
-		
-		
 		<script type="text/javascript">
+			$(".calexam_a").leanModal({top:0});
 			function get_calexam(id){
 				$.ajax({
 			      url: "calexam/get",
@@ -95,7 +91,6 @@
 			     	  $("#startend").html(start+" - "+end);
 			     	  $("#title").html(c.title);
 			     	  $("#body").html(c.content);
-			     	  $(".calexam_a").leanModal();
 			      }
 			    });
 			}
