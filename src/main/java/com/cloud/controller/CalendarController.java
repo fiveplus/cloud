@@ -52,21 +52,21 @@ public class CalendarController {
 	}
 	
 	@RequestMapping("/calendar/add")
-	public @ResponseBody Map<String,Object> add(CalendarBO cbo,HttpServletRequest request,Model model){
+	public @ResponseBody Map<String,Object> add(Calendar c,HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		
 		String userid = request.getParameter("userid");
 		User assignUser = userService.get(Integer.parseInt(userid));
-		Calendar c = new Calendar();
+		
 		c.setCreateUser(user);
 		c.setAssignUser(assignUser);
-		c.setContent(cbo.getBody());
-		c.setTitle(cbo.getTitle());
+		c.setContent(c.getContent());
+		c.setTitle(c.getTitle());
 		c.setStatus("W");
-		c.setStartTime(StringUtil.getDateToLong(cbo.getStart()));
-		c.setEndTime(StringUtil.getDateToLong(cbo.getEnd()));
+		c.setStartTime(StringUtil.getStringToLong(c.getStart(),"yyyy-MM-dd HH:mm"));
+		c.setEndTime(StringUtil.getStringToLong(c.getEnd(),"yyyy-MM-dd HH:mm"));
 		int id = calendarService.save(c);
 		String message = "";
 		if(id > 0){
@@ -106,11 +106,9 @@ public class CalendarController {
 		for(Calendar c:list){
 			CalendarBO cbo = new CalendarBO();
 			cbo.setId(c.getId());
-			cbo.setUserName(c.getCreateUser().getUsername());
 			cbo.setStart(StringUtil.getDateToString(c.getStartTime()));
 			cbo.setEnd(StringUtil.getDateToString(c.getEndTime()));
 			cbo.setTitle(c.getTitle());
-			cbo.setBody(c.getContent());
 			bolist.add(cbo);
 		}
 		

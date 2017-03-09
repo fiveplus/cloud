@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TBL_CALENDAR")
@@ -22,6 +23,8 @@ public class Calendar implements Serializable{
 	private Long startTime;
 	private Long endTime;
 	private String status;
+	private String start;
+	private String end;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -90,5 +93,25 @@ public class Calendar implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
+	@Transient
+	public String getStart() {
+		return start;
+	}
+	public void setStart(String start) {
+		this.start = start;
+	}
+	
+	@Transient
+	public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
+	}
+	
+	
+	
 	
 }

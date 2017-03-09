@@ -387,7 +387,7 @@
 							var val = get_user_info(user);
 							
 							$('.popadd').html(val);
-							$("a[name='show-chat-a']").leanModal();
+							$("a[name='show-chat-a']").leanModal({top:0});
 						}
 					});
 					//$('#div01').css("top",temp);
