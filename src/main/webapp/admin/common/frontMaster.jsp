@@ -52,8 +52,6 @@
 	<script type="text/javascript" src="js/scroll/jquery.mousewheel.min.js"></script>
 	<script src="js/scroll/jquery.mCustomScrollbar.min.js"></script>
 	
-	<!-- zhangshenwu插件 -->
-	<script src="js/cloud-server.js" ></script>
 	
 	<!-- 融云WEB-SDK接入 -->
 	<script src="http://res.websdk.rongcloud.cn/RongIMClient-0.9.15.min.js"></script>
@@ -69,7 +67,8 @@
 	<link href="css/jquery-confirm/jquery-confirm.css" rel="stylesheet" type="text/css" />
 	<script src="css/jquery-confirm/jquery-confirm.js"></script>
 	
-	
+	<!-- zhangshenwu插件 -->
+	<script src="js/cloud-server.js" ></script>
 	
 	
 	<fms:ContentPlaceHolder id="source" />	
