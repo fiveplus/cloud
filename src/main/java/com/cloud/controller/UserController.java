@@ -66,11 +66,15 @@ public class UserController {
 		 User user = userService.getUserByLoginNameAndPassword(email,MD5.GetMD5Password(password));
 		 String result = "";
 		 if(user != null){
-			 
 			 session.setAttribute("user", user);
 			 
 			 Map<String,Object> returnMap = new HashMap<String, Object>();
 			 returnMap.put("code", 200);
+			 returnMap.put("status", 1);
+			 result = JacksonUtil.toJSon(returnMap);
+		 }else{
+			 Map<String,Object> returnMap = new HashMap<String, Object>();
+			 returnMap.put("code", -1);
 			 returnMap.put("status", 1);
 			 result = JacksonUtil.toJSon(returnMap);
 		 }

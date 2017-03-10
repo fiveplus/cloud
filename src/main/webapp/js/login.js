@@ -97,10 +97,11 @@ $(function(){
                         location.href = "index";
                     	//location.href = "index.html?id=" + val.id + "&name=" + val.username + "&portrait=" + encodeURIComponent(val.portrait);
                     } else if (val.code == 105) {
-                        alert("用户未激活");
+                        $.alert({title:"信息提示",content:"用户未激活",type:"red"});
                     }else{
-                         input.val("");
-                         error.removeClass("hidden").end().focus();
+                    	$.alert({title:"信息提示",content:"用户名/密码错误，请重新登录!!!",type:"red"});
+                        // input.val("");
+                        // error.removeClass("hidden").end().focus();
                     }
                 }).fail(function() {
                     input.val("");

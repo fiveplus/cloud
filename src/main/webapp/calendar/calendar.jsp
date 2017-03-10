@@ -115,7 +115,7 @@
 								}
 							});
 				       	},
-				       	color: 'yellow',   // an option!
+				       	color: '#d6eeff',   // an option!
 			            textColor: 'black' // an option!
 				   }],
 				   dayClick:function(date, allDay, jsEvent, view){
