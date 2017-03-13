@@ -41,9 +41,50 @@
 					<!-- PAGE CONTENT BEGINS -->
 					 <div class="row">
 					 	<div class="col-xs-12">
+					 	
 					 		<h3 class="header smaller lighter blue">
 								<span>帖子列表</span>
 							</h3>
+							
+							<div >
+								<form action="../content/list" method="post" class="form-horizontal" id="form_post">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-select-3"> 请输入姓名 </label>
+										<div class="col-sm-9">
+											<input type="text"  placeholder="用户姓名" class="col-xs-10 col-sm-5" name="username" id="dataInput" value="${username}" />
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-select-3"> 请选择时间段</label>
+										<div class="col-sm-9">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="icon-calendar bigger-110"></i>
+												</span>
+												<input style="width:180px;" class="form-control" type="text" readonly="readonly" name="dateRangePicker" id="id-date-range-picker-1" value="${dateRangePicker}" />
+											</div>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right"  for="form-field-select-3">
+										</label>
+										
+										<div class="col-sm-9">
+											<span class="input-group-btn" >
+												<button type="button" class="btn btn-purple btn-sm" onclick="form_submit('form_post',1)">
+												数据查询
+												<i class="icon-search icon-on-right bigger-110"></i>
+												</button>
+											</span>
+										</div>
+										
+									</div>
+									
+								</form>
+							</div>
+							
 							<div class="table-header">
 								共有${pu.count}条数据
 							</div>
@@ -162,7 +203,7 @@
 									</c:if>
 									<c:if test="${pu.page!=1}">
 										<li class="prev">
-											<a href="../content/list?page=1">
+											<a href="javascript:form_submit('form_post',1)">
 												<i class="icon-double-angle-left"></i>
 											</a>
 										</li>
@@ -175,7 +216,7 @@
 										</c:if>
 										<c:if test="${p!=pu.page}">
 											<li>
-												<a href="../content/list?page=${p}">${p}</a>
+												<a href="javascript:form_submit('form_post',${p})">${p}</a>
 											</li>
 										</c:if>
 									</c:forEach>
@@ -188,7 +229,7 @@
 									</c:if>
 									<c:if test="${pu.page!=pu.pageCount}">
 										<li class="next">
-											<a href="../content/list?page=${pu.pageCount}">
+											<a href="javascript:form_submit('form_post',${pu.pageCount}">
 												<i class="icon-double-angle-right"></i>
 											</a>
 										</li>
@@ -202,6 +243,23 @@
 				</div>
 			</div>
 		</div>
+		
+		<script type="text/javascript">
+			function form_submit(id,page){
+				var form = $("#"+id);
+				var action = form.attr("action")+"?page="+page;
+				form.attr("action",action);
+				form.submit();
+			}
+			
+			$(document).ready(function(){
+				$('input[name=dateRangePicker]').daterangepicker().prev().on(ace.click_event, function(){
+					$(this).next().focus();
+				});
+				
+			});
+			
+		</script>
 		
 	</fms:Content>
 </fms:ContentPage>

@@ -1,6 +1,7 @@
 package com.cloud.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -94,6 +95,15 @@ public class ContentServiceImpl implements ContentService{
 
 	public int getReadCountSumToUserId(int userId) {
 		return contentDAO.getReadCountSumToUserId(userId);
+	}
+
+	public int getListCount(String username, Map<String, Long> betweens) {
+		return contentDAO.getListCount(username,betweens);
+	}
+
+	public List<Content> getListToUsername(int page, int pageSize, String username,
+			Map<String, Long> betweens) {
+		return contentDAO.getListToUsername(page,pageSize,username,betweens);
 	}
 
 	

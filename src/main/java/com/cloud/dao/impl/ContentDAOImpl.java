@@ -1,6 +1,7 @@
 package com.cloud.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -74,5 +75,33 @@ public class ContentDAOImpl extends BaseDAOImpl<Content> implements ContentDAO{
 		String hql = "SELECT SUM(c.readCount) FROM Content c WHERE c.user.id=:userId ";
 		int sum = this.getCount(hql, new String[]{"userId"}, new Object[]{userId});
 		return sum;
+	}
+
+	public int getListCount(String username, Map<String, Long> betweens) {
+		String hql = "SELECT COUNT(*) FROM Content c where c.status = 'Y' ";
+		if(username != null){
+			hql += " AND c.user.username like '%"+username+"%' ";
+		}
+		if(betweens != null){
+			hql += " AND c.createTime > " + betweens.get("beforeTime");
+			hql += " AND c.createTime < " + betweens.get("afterTime");
+		}
+		int count = this.getCount(hql, null, null);
+		return count;
+	}
+
+	public List<Content> getListToUsername(int page, int pageSize,
+			String username, Map<String, Long> betweens) {
+		String hql = "FROM Content c where c.status = 'Y' ";
+		if(username != null){
+			hql += " AND c.user.username like '%"+username+"%' ";
+		}
+		if(betweens != null){
+			hql += " AND c.createTime > " + betweens.get("beforeTime");
+			hql += " AND c.createTime < " + betweens.get("afterTime");
+		}
+		hql += " ORDER BY c.createTime DESC ";
+		List<Content> list = this.getList(page, pageSize, null, null);
+		return list;
 	}
 }
