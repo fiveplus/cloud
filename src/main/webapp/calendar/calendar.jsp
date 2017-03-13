@@ -51,7 +51,7 @@
 				<div class="space_h_30 clear"></div>
 			</div>
 		</div>
-		
+		<!-- 新增事件模态对话框 -->
 		<div class="modal fade" id="add_event" tabindex="-1" role="dialog" aria-labelledby="add_event" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -87,6 +87,39 @@
 				</div>
 			</div>
 		</div>
+		<!-- 查看事件模态对话框 -->
+		<div class="modal fade" id="select_event" tabindex="-1" role="dialog" aria-labelledby="add_event" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                		<h4 class="modal-title" > ★ 查看事件 <small> >>事件详情 </small></h4>
+					</div>
+					<div class="modal-body" id="select_div">
+						<div class="form-group">
+							<span class="control-label">开始时间：</span>
+							<span class="control-label" name="start"></span>
+						</div>
+						<div class="form-group">
+							<span class="control-label">结束时间：</span>
+							<span class="control-label" name="end"></span>
+						</div>
+						<div class="form-group">
+							<span class="control-label">日程标题：</span>
+							<span class="control-label" name="title"></span>
+						</div>
+						<div class="form-group">
+							<span class="control-label">日程详情：</span>
+							<span class="control-label" name="content"></span>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		
 		<script type="text/javascript">
 			$(document).ready(function() {
@@ -109,8 +142,7 @@
 								url:"calendar/list",
 								data:{userid:userid},
 								success:function(data){
-									datas = eval("("+data+")").bolist;
-									console.log(datas);
+									var datas = eval("("+data+")").bolist;
 								 	callback(datas);
 								}
 							});
@@ -124,10 +156,27 @@
 						$("#add_form input[name='start']").val(selDate+" 08:01");
 						$("#add_form input[name='end']").val(selDate+" 23:01");
 				   		$("#add_event").modal("show");
+				   },
+				   eventClick:function(calEvent,jsEvent,view){
+						var id = calEvent.id;
+						$.ajax({
+							url:"calexam/get",
+							data:{id:id},
+							success:function(data){
+								data =  eval("("+data+")");
+								var c = data.calendar;
+								var start = new Date(c.startTime).Format("yyyy-MM-dd HH:mm:ss");
+						     	var end = new Date(c.endTime).Format("yyyy-MM-dd HH:mm:ss");
+								$("#select_div span[name='start']").html(start);
+								$("#select_div span[name='end']").html(end);
+								$("#select_div span[name='title']").html(c.title);
+								$("#select_div span[name='content']").html(c.content);
+								$("#select_event").modal("show");
+							}
+						});
+						
 				   }
 			   });
-			   
-			  
 			   
 			   $("#data_source").change(function(){
 				   $('#calendar').fullCalendar('refetchEvents'); //重新获取所有事件数据 
