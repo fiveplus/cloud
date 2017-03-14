@@ -125,8 +125,6 @@
 			$(document).ready(function() {
 			   $('#data_source').dropkick();
 			   var userid = $("#data_source").val();
-			   $("input[name='start']").datetimepicker({format:"Y-m-d H:m"});
-			   $("input[name='end']").datetimepicker({format:"Y-m-d H:m"});
 			   $("#calendar").fullCalendar({
 				   header:{
 					   left:'prev,next today',
@@ -155,6 +153,10 @@
 						var selDate =$.fullCalendar.formatDate(date,"YYYY-MM-DD");//格式化日期
 						$("#add_form input[name='start']").val(selDate+" 08:01");
 						$("#add_form input[name='end']").val(selDate+" 23:01");
+						
+						$("input[name='start']").datetimepicker();
+						$("input[name='end']").datetimepicker();
+						
 				   		$("#add_event").modal("show");
 				   },
 				   eventClick:function(calEvent,jsEvent,view){
