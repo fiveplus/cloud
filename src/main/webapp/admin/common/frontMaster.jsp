@@ -237,6 +237,7 @@
 			var imgurl = '${user.portrait}';
 			var text = $("#send-message-form .chat-text").val();
 			if(text.trim()=='') return;
+			$("#send-message-form .chat-text").val("");
 			$("#chat-div .chat-center #mCSB_2_container").append(form_message_div(imgurl,text));
 			$.ajax( {
 				cache : true,
@@ -250,7 +251,7 @@
 					var vdata = eval("(" + data + ")");
 					//var result = eval("(" + vdata.result + ")");
 					var text = $("#send-message-form .chat-text").val();
-					$("#send-message-form .chat-text").val("");
+					
 					
 					//var imgurl = vdata.user.portrait;
 					
