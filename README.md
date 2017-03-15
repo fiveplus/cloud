@@ -12,4 +12,4 @@ SpringMVC+Hibernate+ehcache+maven
 * 2017-02-28<br/>
 tbl_content新增字段 address(帖子发布地址)
 * 2017-03-06 tel_praise新增表<br/>
-<img src="http://git.oschina.net/uploads/images/2017/0306/190048_e9d18380_803453.png" width="800" />
+<img src="http://git.oschina.net/uploads/images/2017/0306/190048_e9d18380_803453.png" width="600" />
