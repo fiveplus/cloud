@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cloud.controller.bo.StatBO;
 import com.cloud.dao.ContentDAO;
 import com.cloud.entity.Calendar;
 import com.cloud.entity.Content;
@@ -104,6 +105,12 @@ public class ContentServiceImpl implements ContentService{
 	public List<Content> getListToUsername(int page, int pageSize, String username,
 			Map<String, Long> betweens) {
 		return contentDAO.getListToUsername(page,pageSize,username,betweens);
+	}
+
+	@Override
+	public List<StatBO> getCountToUserIdAndCreateTime(int userId,
+			Map<String, Long> beforeTime) {
+		return contentDAO.getCountToUserIdAndCreateTime(userId,beforeTime);
 	}
 
 	

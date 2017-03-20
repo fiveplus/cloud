@@ -168,6 +168,18 @@ public class StringUtil {
 		return time;
 	}
 	
+	public static Map<String,Long> getBeforeTimeAndNowTime(int offsetDay){
+		Map<String,Long> map = new HashMap<String, Long>();
+		Date now = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(now);
+		cal.add(Calendar.DATE, offsetDay);
+		map.put("beforeTime", cal.getTimeInMillis());
+		map.put("afterTime", now.getTime());
+		return map;
+	}
+	
+	
 	public static String substring(String str,int length){
 		String t = "";
 		if(str!=null && !str.equals("")){
@@ -176,6 +188,8 @@ public class StringUtil {
 		}
 		return t;
 	}
+	
+	
 	
 	public static void main(String[] args) {
 		System.out.println(getDateToString(1473224400000l));

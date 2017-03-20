@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cloud.controller.bo.StatBO;
 import com.cloud.dao.ContentDAO;
 import com.cloud.entity.Calendar;
 import com.cloud.entity.Content;
@@ -102,6 +103,16 @@ public class ContentDAOImpl extends BaseDAOImpl<Content> implements ContentDAO{
 		}
 		hql += " ORDER BY c.createTime DESC ";
 		List<Content> list = this.getList(page, pageSize, null, null);
+		return list;
+	}
+
+	@Override
+	public List<StatBO> getCountToUserIdAndCreateTime(int userId,
+			Map<String, Long> betweens) {
+		long beforeTime = betweens.get("beforeTime");
+		long afterTime = betweens.get("afterTime");
+		String hql = "select FROM_UNIXTIME(c.createTime/1000,'%Y-%m-%d') as column,count(*) as count from Content c where c.user.id =:userId and c.createTime >=:beforeTime and c.createTime <=:afterTime group by FROM_UNIXTIME(c.createTime/1000,'%Y-%m-%d') ";
+		List list = this.getHQLList(hql, new String[]{"userId","beforeTime","afterTime"}, new Object[]{userId,beforeTime,afterTime});
 		return list;
 	}
 }

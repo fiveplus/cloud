@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import com.cloud.controller.bo.StatBO;
 import com.cloud.entity.Content;
 
 public interface ContentDAO extends BaseDAO<Content, Serializable>{
@@ -23,6 +24,8 @@ public interface ContentDAO extends BaseDAO<Content, Serializable>{
 	public int getReadCountSumToUserId(int userId);
 	
 	public int getListCount(String username,Map<String,Long> betweens);
+	
+	public List<StatBO> getCountToUserIdAndCreateTime(int userId,Map<String,Long> betweens);
 	
 	
 }

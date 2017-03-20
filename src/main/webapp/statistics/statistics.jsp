@@ -8,6 +8,7 @@
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="source">
 		<!-- 导入外部css/js -->
+		<script src='js/echarts.min.js'></script>
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
 		<!-- main content -->
@@ -34,10 +35,31 @@
 					<div class="clear">此处显示  class "clear" 的内容</div>
 				</div>
 				<div class="space_h_40"></div>
-				<div ><img src="images/dsd.png" width="100%" /></div>
+				<!-- main div -->
+				<div>
+					<!-- 用户信息 -->
+					<div class="gr_ge">
+						<span>
+							<img class="img-radius64" src="${u.portrait}" />
+						</span>
+						<div class="gr_ge2" style="padding-top:5px;">
+							<b>${user.username}</b> ${user.group.parent.name}·${user.group.name} 
+							<br />
+							<b><font size="-1" color="red"> ${user.level.info} ( ${user.level.level.name}${user.level.name} ) </font></b>
+							<div style="margin-top: 5px;">
+								帖数：<strong>${count}</strong> &nbsp;&nbsp;
+								访问：<strong>${sum}</strong> &nbsp;&nbsp;
+								评论：<strong>${ccount}</strong>
+							</div>
+						</div>
+					</div>
+					
+				</div>
 				<div class="space_h_30 clear"></div>
 			</div>
 		</div>
-		
+		<script type="text/javascript">
+			
+		</script>
 	</fms:Content>
 </fms:ContentPage>

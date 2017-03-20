@@ -3,6 +3,7 @@ package com.cloud.service;
 import java.util.List;
 import java.util.Map;
 
+import com.cloud.controller.bo.StatBO;
 import com.cloud.entity.Content;
 import com.cloud.entity.Theme;
 
@@ -31,5 +32,7 @@ public interface ContentService {
 	List<Content> getListToProjectId(int page,int pageSize,int projectId);
 	int getListCountToProjectId(int projectId);
 	int getReadCountSumToUserId(int userId);
+	
+	List<StatBO> getCountToUserIdAndCreateTime(int userId,Map<String,Long> beforeTime);
 	
 }
