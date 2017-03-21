@@ -53,12 +53,96 @@
 							</div>
 						</div>
 					</div>
-					
+					<div style="padding:5px;"></div>
+					<!-- 折线图 -->
+					<div id="fold_line" style="width:100%;height:400px;">
+					</div>
 				</div>
 				<div class="space_h_30 clear"></div>
 			</div>
 		</div>
 		<script type="text/javascript">
+			
+			$.get("stat/content.json",function(data,status){
+				var cdata = init_datas("帖数",data.contents);
+				var cdata2 = init_datas("评论",data.comments);
+				var pdata = init_datas("赞",data.praises);
+				var datalist = new Array();
+				datalist.push(cdata);
+				datalist.push(cdata2);
+				datalist.push(pdata);
+				load_image("fold_line",datalist);
+			});
+			
+			function init_datas(name,datas){
+				var xdata = new Array();
+				var ydata = new Array();
+				for(var i = 0;i < datas.length;i++){
+					xdata.push(datas[i].name);
+					ydata.push(datas[i].count);
+				}
+				var data = {
+					name:name,
+					xdata:xdata,
+					ydata:ydata
+				};
+				return data;
+			}
+			
+			function load_image(id,datalist){
+				var eid = echarts.init(document.getElementById(id));
+				var names = new Array();
+				var xdata = new Array();
+				var series = new Array();
+				for(var i = 0;i < datalist.length;i++){
+					names.push(datalist[i].name);
+					if(i == 0){
+						var x = datalist[i].xdata;
+						for(var k = 0;k < x.length;k++){
+							xdata.push(new Date(x[k]).Format("yyyy-MM-dd"));
+						}
+					}
+					series.push({
+						name:datalist[i].name,
+						type:'line',
+						stack:'总量',
+						data:datalist[i].ydata
+					});
+				}
+				console.log(xdata);
+				var option = {
+					title:{
+						text:'个人数据七日分析图'
+					},
+					tooltip:{
+						trigger:'axis'
+					},
+					legend:{
+						data:names
+					},
+					grid:{
+						left:'3%',
+						right:'4%',
+						bottom:'3%',
+						containLabel:true
+					},
+					toolbox:{
+						feature:{
+							saveAsImage:{}
+						}
+					},
+					xAxis:{
+						type:'category',
+						boudaryGap:false,
+						data:xdata
+					},
+					yAxis:{
+						type:'value'
+					},
+					series: series
+				};
+				eid.setOption(option);
+			}
 			
 		</script>
 	</fms:Content>

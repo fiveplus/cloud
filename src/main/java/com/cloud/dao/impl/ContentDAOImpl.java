@@ -111,7 +111,7 @@ public class ContentDAOImpl extends BaseDAOImpl<Content> implements ContentDAO{
 			Map<String, Long> betweens) {
 		long beforeTime = betweens.get("beforeTime");
 		long afterTime = betweens.get("afterTime");
-		String hql = "select FROM_UNIXTIME(c.createTime/1000,'%Y-%m-%d') as column,count(*) as count from Content c where c.user.id =:userId and c.createTime >=:beforeTime and c.createTime <=:afterTime group by FROM_UNIXTIME(c.createTime/1000,'%Y-%m-%d') ";
+		String hql = "select new com.cloud.controller.bo.StatBO(FROM_UNIXTIME(c.createTime/1000,'%Y-%m-%d') as name,count(*) as count) from Content c where c.user.id =:userId and c.createTime >=:beforeTime and c.createTime <=:afterTime group by FROM_UNIXTIME(c.createTime/1000,'%Y-%m-%d') ";
 		List list = this.getHQLList(hql, new String[]{"userId","beforeTime","afterTime"}, new Object[]{userId,beforeTime,afterTime});
 		return list;
 	}

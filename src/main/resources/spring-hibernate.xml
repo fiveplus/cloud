@@ -87,7 +87,7 @@
     <aop:config proxy-target-class="true">  
         <!-- 配置切入点 -->  
         <aop:pointcut id="transactionPointcut"  
-            expression="execution(* com.cloud.service..*Impl.*(..))" />  
+            expression="execution(* com.cloud.service.*.*(..))" />  
         <!-- 指定在txAdvice切入点应用txAdvice事务增强处理 -->  
         <aop:advisor pointcut-ref="transactionPointcut"  
             advice-ref="transactionAdvice" />  

@@ -1,9 +1,11 @@
 package com.cloud.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.cloud.controller.bo.StatBO;
 import com.cloud.dao.PraiseDAO;
 import com.cloud.entity.Praise;
 import com.cloud.entity.User;
@@ -30,6 +32,15 @@ public class PraiseDAOImpl extends BaseDAOImpl<Praise> implements PraiseDAO{
 	public List<User> getUserListByContentId(int contentId) {
 		String sql = "select u.* from tbl_praise p left join tbl_user u on p.user_id = u.id where p.content_id = ? ";
 		List list = this.getSQLList(sql, new Object[]{contentId}, User.class);
+		return list;
+	}
+
+	public List<StatBO> getCountToUserIdAndCreateTime(int userId,
+			Map<String, Long> betweens) {
+		long beforeTime = betweens.get("beforeTime");
+		long afterTime = betweens.get("afterTime");
+		String hql = "select new com.cloud.controller.bo.StatBO(FROM_UNIXTIME(p.createTime/1000,'%Y-%m-%d') as name,count(*) as count) from Praise p where p.userId =:userId and p.createTime >=:beforeTime and p.createTime <=:afterTime group by FROM_UNIXTIME(p.createTime/1000,'%Y-%m-%d') ";
+		List list = this.getHQLList(hql, new String[]{"userId","beforeTime","afterTime"}, new Object[]{userId,beforeTime,afterTime});
 		return list;
 	}
 	

@@ -1,23 +1,20 @@
 package com.cloud.controller.bo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="bo_stat")
 public class StatBO  {
-	@Column
-	private String column;
-	@Column
+	private Date name;
 	private Long count;
-	public String getColumn() {
-		return column;
+	public Date getName() {
+		return name;
 	}
-	public void setColumn(String column) {
-		this.column = column;
+	public void setName(Date name) {
+		this.name = name;
 	}
 	public Long getCount() {
 		return count;
@@ -28,8 +25,8 @@ public class StatBO  {
 	public StatBO(){
 		
 	}
-	public StatBO(String column,Long count){
-		this.column = column;
+	public StatBO(Date name,Long count){
+		this.name = name;
 		this.count = count;
 	}
 }
