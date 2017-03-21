@@ -64,7 +64,7 @@ public class SecurityFilter implements Filter{
 		String path = request.getContextPath();
 		
 		if(user == null){
-			response.sendRedirect(path+"/login.html");
+			response.sendRedirect(path+"/login");
 		}else{
 			//验证通过
 			//后台参数

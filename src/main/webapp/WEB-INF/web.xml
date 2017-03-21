@@ -36,7 +36,7 @@
   	</init-param>
   	<init-param>
   		<param-name>url</param-name>
-  		<param-value>login,login.jsp,login.html,.css,.js,.png,.jpg,.jpeg,.png,.gif,.woff,.eot,.eot,.svg,.ttf,.otf</param-value>
+  		<param-value>login,login.json,login.jsp,login.html,.css,.js,.png,.jpg,.jpeg,.png,.gif,.woff,.eot,.eot,.svg,.ttf,.otf</param-value>
   	</init-param>
   </filter>
   <filter-mapping>
@@ -109,7 +109,7 @@
 	</jsp-config>
   
   <welcome-file-list>
-    <welcome-file>/login.html</welcome-file>
+    <welcome-file>/login</welcome-file>
   </welcome-file-list>
   <display-name>cloud</display-name>
 </web-app>

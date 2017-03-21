@@ -78,37 +78,38 @@ $(function(){
 		}
 	});
 	$("#login").on("click tap",function() {
-            var empty = input.filter(function(s, i) {
-                return i.value == ""
-            });
-            if (empty.length == 0) {
-                $.ajax({
-                    type: "post",
-                    url: "user/login",
-                    data: {
-                        email: input[0].value,
-                        password: input[1].value
-                    },
-                    dataType: "json"
-                }).done(function(val) {
-                	val = eval("("+val+")");
-                	
-                    if (val.code == 200 && val.status == 1) {
-                        location.href = "index";
-                    	//location.href = "index.html?id=" + val.id + "&name=" + val.username + "&portrait=" + encodeURIComponent(val.portrait);
-                    } else if (val.code == 105) {
-                        $.alert({title:"信息提示",content:"用户未激活",type:"red"});
-                    }else{
-                    	$.alert({title:"信息提示",content:"用户名/密码错误，请重新登录!!!",type:"red"});
-                        // input.val("");
-                        // error.removeClass("hidden").end().focus();
-                    }
-                }).fail(function() {
-                    input.val("");
-                    error.removeClass("hidden").end().focus();
-                });
-            } else {
-                empty.first().blur();
-            }
+		var url = $("#loginform").attr("action");
+		var path = $("#loginform").attr("path");
+        var empty = input.filter(function(s, i) {
+            return i.value == ""
         });
+        if (empty.length == 0) {
+            $.ajax({
+                type: "post",
+                url: url,
+                data: {
+                    email: input[0].value,
+                    password: input[1].value
+                },
+                dataType: "json"
+            }).done(function(val) {
+            	val = eval("("+val+")");
+                if (val.code == 200 && val.status == 1) {
+                    location.href = path+"/index";
+                	//location.href = "index.html?id=" + val.id + "&name=" + val.username + "&portrait=" + encodeURIComponent(val.portrait);
+                } else if (val.code == 105) {
+                    $.alert({title:"信息提示",content:"用户未激活",type:"red"});
+                }else{
+                	$.alert({title:"信息提示",content:"用户名/密码错误，请重新登录!!!",type:"red"});
+                    // input.val("");
+                    // error.removeClass("hidden").end().focus();
+                }
+            }).fail(function() {
+                input.val("");
+                error.removeClass("hidden").end().focus();
+            });
+        } else {
+            empty.first().blur();
+        }
+    });
 });

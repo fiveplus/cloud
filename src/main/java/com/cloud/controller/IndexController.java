@@ -68,4 +68,9 @@ public class IndexController {
 		 return "login";
 	 }
 	 
+	 @RequestMapping("/login")
+	 public String login(HttpServletRequest request,Model model){
+		 return "login";
+	 }
+	 
 }

@@ -61,12 +61,12 @@ request.setCharacterEncoding("UTF-8");
  .jc-bs3-container.container {width: 300px;margin: auto;}
 </style>
 
-<script type="text/javascript" src="js/jquery.min.js" ></script>
+<script type="text/javascript" src="${contextPath}/js/jquery.min.js" ></script>
 
 <!-- jquery confirm -->
-<link href="css/jquery-confirm/jquery-confirm.css" rel="stylesheet" type="text/css" />
-<script src="css/jquery-confirm/jquery-confirm.js"></script>
-<script type="text/javascript" src="js/login.js" ></script>
+<link href="${contextPath}/css/jquery-confirm/jquery-confirm.css" rel="stylesheet" type="text/css" />
+<script src="${contextPath}/css/jquery-confirm/jquery-confirm.js"></script>
+<script type="text/javascript" src="${contextPath}/js/login.js" ></script>
 
 </head>
 
@@ -74,7 +74,7 @@ request.setCharacterEncoding("UTF-8");
 
 <div class="main">
  <div class="content clearfix">
-        <div class="pic"><img src="image/pic.png"/></div>
+        <div class="pic"><img src="${contextPath}/image/pic.png"/></div>
         <div class="login">
              <div class="switch">
                   
@@ -89,7 +89,7 @@ request.setCharacterEncoding("UTF-8");
                      <div class="tips">
                      	<p>&nbsp;<!-- 请输入正确的邮箱和密码 --></p>
                      </div>
-                     <form class="loginform" methood="get">
+                     <form action="${contextPath}/user/login.json" class="loginform" methood="post" id="loginform" path="${contextPath}">
                      <div class="uinArea">
                     
                      <input type="text" id="username" name="username" class="inputStyle_1"  style="color:#969696;padding-left:10px;"  tabindex="1"  autofocus/>
@@ -104,25 +104,25 @@ request.setCharacterEncoding("UTF-8");
                 </div>
                 <div class="web_login2">
                  <div class="tips3"><p>请扫描以下二维码登录</p></div> 
-                 <div class="loginform2"><img src="image/erwei.png" alt="" /></div>
+                 <div class="loginform2"><img src="${contextPath}/image/erwei.png" alt="" /></div>
                 </div>
              </div>
             </div>
  <div class="point">
      <ul>
-      <li class="pointer"><img src="image/point.png"/></li>
-      <li class="pointer"><img src="image/point.png"/></li>
-      <li class="pointer"><img src="image/point.png"/></li>
-      <li class="pointer"><img src="image/point.png"/></li>
+      <li class="pointer"><img src="${contextPath}/image/point.png"/></li>
+      <li class="pointer"><img src="${contextPath}/image/point.png"/></li>
+      <li class="pointer"><img src="${contextPath}/image/point.png"/></li>
+      <li class="pointer"><img src="${contextPath}/image/point.png"/></li>
      </ul>
  </div>
  </div>
 
      <ul class="bg">
-        <li class="tu"><img src="image/bg.jpg"/></li>
-        <li class="tu"><img src="image/bg2.jpg"/></li>
-        <li class="tu"><img src="image/bg3.jpg"/></li>
-        <li class="tu"><img src="image/bg4.jpg"/></li>
+        <li class="tu"><img src="${contextPath}/image/bg.jpg"/></li>
+        <li class="tu"><img src="${contextPath}/image/bg2.jpg"/></li>
+        <li class="tu"><img src="${contextPath}/image/bg3.jpg"/></li>
+        <li class="tu"><img src="${contextPath}/image/bg4.jpg"/></li>
      </ul>  
 </div>
 
