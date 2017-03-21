@@ -303,7 +303,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		
         		function logout(){
         			//JS.Engine.stop();
-        			window.location.href = "../logout";
+        			window.location.href = "${contextPath}/logout";
         		}
         		
         	</script>

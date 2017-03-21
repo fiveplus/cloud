@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <div class="rightbox">
 	<a href="mycontents" class="gr_t">
-		<img class="img-radius37" src="<c:if test="${user.portrait == ''}">images/right01.png</c:if><c:if test="${user.portrait != ''}">${user.portrait}</c:if>" alt="头像" width="37" height="37"/>
+		<img class="img-radius37" src="${contextPath}/<c:if test="${user.portrait == ''}">images/right01.png</c:if><c:if test="${user.portrait != ''}">${user.portrait}</c:if>" alt="头像" width="37" height="37"/>
 	</a>
 	<div class="rm">
 		<a href="#addcontent" class="post<c:if test="${rightMenuId=='addcontent'}"> cur</c:if>"><i class="i1"></i>发帖</a>
@@ -18,9 +18,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="rb">
   		<a href="#" class="ra1">&nbsp;</a>
-  		<!-- 日历 -->
-  		<a href="calen" class="ra2">&nbsp;</a><i></i>
+  		<a href="#" class="ra2">&nbsp;</a><i></i>
   		<a href="#" class="ra3">&nbsp;</a><i></i>
-  		<a href="logout" class="ra4">&nbsp;</a>
+  		<a href="${contextPath}/logout" class="ra4">&nbsp;</a>
   	</div>
 </div>

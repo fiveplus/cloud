@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<input type="text" class="searchinput" style="width:148px;" />
 			</div>
 			<div class="fr">
-				<input name="submit" type="image" src="images/space.gif" width="32" height="32" />
+				<input name="submit" type="image" src="${contextPath}/images/space.gif" width="32" height="32" />
           	</div>
 		</div>
 		<ul class="tab">

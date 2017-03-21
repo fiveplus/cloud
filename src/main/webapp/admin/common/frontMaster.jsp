@@ -86,10 +86,10 @@
 		</div>
 	</div>
 	<div class="index-bg">
-		<img src="images/bg01.jpg" />
+		<img src="${contextPath}/images/bg01.jpg" />
 	</div>
 	<div id="add_project_div" class="leanmodel_div">
-		<form action="project/add" role="form" class="form" id="add_project" >
+		<form action="${contextPath}/project/save.json" role="form" class="form" id="add_project" >
 			<div class="modal-header" >
 				<h4 class="modal-title">项目新建 <small> >>请输入项目详细信息 </small> </h4> 
 			</div>
@@ -171,12 +171,12 @@
 	
 	
 	<div class="popadd">
-		<i><img src="images/main_56.png" width="64" height="64" /></i>
+		<i><img src="${contextPath}/images/main_56.png" width="64" height="64" /></i>
 		<div class="popadd_r"><b><!-- 姓名 --></b><!-- 分组 --> <br />
 		邮箱：<!-- 邮箱 --><br />
 		职位：<!-- 职位 --><br /><br />
-		<img src="images/main_66.png" width="81" height="33" />
-		<img src="images/main_68.png" width="81" height="33" />
+		<img src="${contextPath}/images/main_66.png" width="81" height="33" />
+		<img src="${contextPath}/images/main_68.png" width="81" height="33" />
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -193,7 +193,7 @@
 	<script type="text/javascript">
 	
 		function show_cont(id){
-			$("#cont-div").load("${contextPath}/content/content?id="+id,function(){
+			$("#cont-div").load("${contextPath}/content/get?id="+id,function(){
 				$("#cont-a").click();
 			});
 		}
@@ -214,9 +214,9 @@
 		
 		//组装用户详细信息
 		function get_user_info(u){
-			var img_url = "images/main_56.png";
+			var img_url = "${contextPath}/images/main_56.png";
 			if(u.portrait != ''){
-				img_url = u.portrait;
+				img_url = "${contextPath}/"+u.portrait;
 			}
 			//JSON.stringify(u)
 			var html = "<i><img class='img-radius64' src='"+img_url+"' width='64' height='64' /></i>"
@@ -233,7 +233,7 @@
 			var action = $("#send-message-form").attr("action");
 			var alldata = $("#send-message-form").serialize();
 			
-			var imgurl = '${user.portrait}';
+			var imgurl = '${contextPath}/${user.portrait}';
 			var text = $("#send-message-form .chat-text").val();
 			if(text.trim()=='') return;
 			$("#send-message-form .chat-text").val("");
@@ -456,10 +456,10 @@
 					$("#chat-div .chat-center").mCustomScrollbar({theme:'dark'});
 					
 					var vdata = eval("("+data+")");
-					var img_url = "images/main_56.png";
+					var img_url = "${contextPath}/images/main_56.png";
 					var u = vdata.user;
 					if(u.portrait != ''){
-						img_url = u.portrait;
+						img_url = "${contextPath}/"+u.portrait;
 					}
 					
 					$("#chat-div .chat-center #mCSB_2_container").empty();
@@ -506,7 +506,7 @@
 					//alert(vdata.message);
 					if(vdata.code==200){
 						$.alert({title:'提示信息',content:'项目创建成功！',type:'blue'});
-						window.location.href="${contextPath}/project?id="+vdata.id;
+						window.location.href="${contextPath}/project/get?id="+vdata.id;
 					}
 					
 					//$("#add_project_div").attr("style","");
