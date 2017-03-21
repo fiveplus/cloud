@@ -563,3 +563,23 @@ ol.formatted li {
 	float: left;
 	padding:10px;
 }
+
+/* 统计 */
+.project_stat{
+	margin-top: 10px;
+}
+.project_stat .project_item{
+	padding: 5px 0 5px 0;
+	background: #baeafa;
+}
+.project_stat .project_item:HOVER{
+	background: #98e3fc;
+}
+.project_stat .project_item .item_left{
+	float:left;
+	padding-right:20px;
+}
+.project_stat .project_item .item_right{
+	float:right;
+	padding-right:20px;
+}

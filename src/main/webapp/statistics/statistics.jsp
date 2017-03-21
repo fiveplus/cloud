@@ -2,6 +2,7 @@
 <%@taglib uri="/master-tag" prefix="fms" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="/date-tag" prefix="date" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <fms:ContentPage masterPageId="frontMaster">
 	<fms:Content contentPlaceHolderId="title">
 		碎片云3.0
@@ -57,6 +58,35 @@
 					<!-- 折线图 -->
 					<div id="fold_line" style="width:100%;height:400px;">
 					</div>
+					<!-- 项目近况 -->
+					<div class="project_stat">
+						<div style="margin: 10px;">
+							<h4>项目近况 <small>TOP5</small></h4> 
+						</div>
+						<c:forEach items="${projects}" var="p" end="4">
+							<div class="project_item">
+								<div class="item_left" style="margin-left: 5px;">
+									<img src="${p.user.portrait}" class="img-radius37" />
+								</div>
+								<div class="item_left">
+									<div>${p.name}</div>
+									<div>Design & Development </div>
+								</div>
+								<div class="item_right">
+									<div style="margin-top:10px;">
+										<font>CreateTime By <date:date value="${p.createTime}" /> </font>
+									</div>
+								</div>
+								<div class="item_right">
+									<div style="margin-top:10px;">
+										<font >人数：${fn:length(p.users)}</font>
+									</div>
+								</div>
+								<div class="clear"></div>
+							</div>
+						</c:forEach>
+					</div>
+					<!-- 排行榜 -->
 				</div>
 				<div class="space_h_30 clear"></div>
 			</div>
@@ -109,7 +139,6 @@
 						data:datalist[i].ydata
 					});
 				}
-				console.log(xdata);
 				var option = {
 					title:{
 						text:'个人数据七日分析图'

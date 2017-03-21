@@ -1,6 +1,7 @@
 package com.cloud.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TBL_PROJECT")
@@ -22,6 +24,8 @@ public class Project implements Serializable{
 	private String info;
 	
 	private User user;
+	
+	private List<User> users;
 	
 	
 	@Id
@@ -85,6 +89,14 @@ public class Project implements Serializable{
 	@JoinColumn(name="USER_ID")
 	public User getUser() {
 		return user;
+	}
+	
+	@Transient
+	public List<User> getUsers() {
+		return users;
+	}
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 	
 	

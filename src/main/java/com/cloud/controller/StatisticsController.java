@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.controller.bo.StatBO;
 import com.cloud.entity.Praise;
+import com.cloud.entity.Project;
 import com.cloud.entity.User;
 import com.cloud.service.CommentService;
 import com.cloud.service.ContentService;
 import com.cloud.service.PraiseService;
+import com.cloud.service.ProjectService;
+import com.cloud.service.UserProjectService;
 import com.cloud.util.StringUtil;
 
 @Controller  
@@ -40,6 +43,12 @@ public class StatisticsController {
 	@Autowired
 	private PraiseService praiseService;
 	
+	@Autowired
+	private ProjectService projectService;
+	
+	@Autowired
+	private UserProjectService userProjectService;
+	
 	@RequestMapping("/stat")
 	public String statistics(HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
@@ -54,6 +63,13 @@ public class StatisticsController {
 		model.addAttribute("count",count);
 		model.addAttribute("ccount",ccount);
 		model.addAttribute("sum",sum);
+		
+		List<Project> projects = projectService.getProjectToUserId(user.getId());
+		for(Project p:projects){
+			List<User> users = userProjectService.getUserToProjectId(p.getId());
+			p.setUsers(users);
+		}
+		model.addAttribute("projects",projects);
 		
 		
 		return "statistics/statistics";
