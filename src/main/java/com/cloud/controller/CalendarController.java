@@ -67,6 +67,9 @@ public class CalendarController {
 		c.setStatus("W");
 		c.setStartTime(StringUtil.getStringToLong(c.getStart(),"yyyy-MM-dd HH:mm"));
 		c.setEndTime(StringUtil.getStringToLong(c.getEnd(),"yyyy-MM-dd HH:mm"));
+		
+		//TODO 
+		
 		int id = calendarService.save(c);
 		String message = "";
 		if(id > 0){
@@ -170,6 +173,26 @@ public class CalendarController {
 		returnMap.put("message", message);
 		
 		return returnMap;
+	}
+	
+	/**
+	 * 时间段是否重叠
+	 * @param list
+	 * @param c
+	 * @return 重叠返回true
+	 */
+	private boolean isRepeat(List<Calendar> list,Calendar c){
+		boolean flag = false;
+		long start = c.getStartTime();
+		long end = c.getEndTime();
+		for(Calendar cal:list){
+			if( (start < cal.getEndTime() && start > cal.getStartTime()) 
+					|| (end < cal.getEndTime() && end > cal.getStartTime() ) ){
+				flag = true;
+				break;
+			}
+		}
+		return flag;
 	}
 	
 }
