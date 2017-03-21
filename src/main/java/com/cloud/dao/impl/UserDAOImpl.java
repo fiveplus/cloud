@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import com.cloud.dao.UserDAO;
 import com.cloud.entity.Theme;
 import com.cloud.entity.User;
-import com.cloud.service.UserService;
 
 @Repository("userDAO")
 public class UserDAOImpl extends BaseDAOImpl<User> implements UserDAO{

@@ -2,19 +2,27 @@ package com.cloud.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cloud.dao.MessageDAO;
 import com.cloud.entity.Message;
+import com.cloud.service.MessageService;
 
+@Service("messageService")  
+public class MessageService extends BaseService<Message, Integer>{
+	@Autowired  
+	private MessageDAO messageDAO;
 
-public interface MessageService {
-	Message load(Integer id);
-	Message get(Integer id);
-	List<Message> findAll();
-	void persist(Message entity);  
-    Integer save(Message entity);  
-    void saveOrUpdate(Message entity);  
-    void delete(Integer id);  
-    void flush();
-    public int getReadCount(int toUserId, int fromUserId, String isRead);
-    public List<Message> getMessages(int toUserId,int fromUserId);
-	public void updateReadMessage(int toUserId,int fromUserId,String isRead);
+	public int getReadCount(int toUserId, int fromUserId, String isRead) {
+		return messageDAO.getReadCount(toUserId, fromUserId, isRead);
+	}
+
+	public List<Message> getMessages(int toUserId, int fromUserId) {
+		return messageDAO.getMessages(toUserId, fromUserId);
+	}
+
+	public void updateReadMessage(int toUserId, int fromUserId, String isRead) {
+		messageDAO.updateReadMessage(toUserId, fromUserId, isRead);
+	}
 }

@@ -2,17 +2,20 @@ package com.cloud.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cloud.dao.ProgressDAO;
 import com.cloud.entity.Progress;
+import com.cloud.service.ProgressService;
 
+@Service("progressService")  
+public class ProgressService extends BaseService<Progress, Integer>{
+	@Autowired  
+	private ProgressDAO progressDAO;
 
-public interface ProgressService {
-	Progress load(Integer id);
-	Progress get(Integer id);
-	List<Progress> findAll();
-	void persist(Progress entity);  
-    Integer save(Progress entity);  
-    void saveOrUpdate(Progress entity);  
-    void delete(Integer id);  
-    void flush();
-    public List<Progress> getProgressToProjectId(int projectId);
+	public List<Progress> getProgressToProjectId(int projectId) {
+		return progressDAO.getProgressToProjectId(projectId);
+	}
+	
 }

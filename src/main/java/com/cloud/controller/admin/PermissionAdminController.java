@@ -82,7 +82,7 @@ public class PermissionAdminController {
 	@RequestMapping("/update")
 	public String update(Permission permission,HttpServletRequest request,Model model){
 		
-		permissionService.saveOrUpdate(permission);
+		permissionService.update(permission,permission.getId());
 		String message = "恭喜您，权限修改成功!";
 		String returnURL = "permission/list?page=1";
 		model.addAttribute("message",message);

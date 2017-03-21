@@ -2,20 +2,34 @@ package com.cloud.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cloud.dao.PermissionDAO;
 import com.cloud.entity.Permission;
 
+@Service("permissionService")  
+public class PermissionService extends BaseService<Permission, String>{
+	@Autowired  
+	private PermissionDAO permissionDAO;
 
-public interface PermissionService {
-	Permission load(String id);
-	Permission get(String id);
-	List<Permission> findAll();
-	void persist(Permission entity);  
-	String save(Permission entity);  
-    void saveOrUpdate(Permission entity);  
-    void delete(String id);  
-    void flush();
-    List<Permission> getParentMenu();
-    List<Permission> getParentPermission();
-    List<Permission> getList(int page,int pageSize,String[] columns,Object[] objs);
-    int getListCount(String[] columns,Object[] objs);
+	public List<Permission> getParentMenu() {
+		return permissionDAO.getParentMenu();
+	}
+
+	public List<Permission> getList(int page, int pageSize, String[] columns,
+			Object[] objs) {
+		return permissionDAO.getList(page, pageSize, columns, objs);
+	}
+
+	public int getListCount(String[] columns, Object[] objs) {
+		return permissionDAO.getListCount(columns, objs);
+	}
+
+	public List<Permission> getParentPermission() {
+		return permissionDAO.getParentPermission();
+	}
+	
+	
+	
 }

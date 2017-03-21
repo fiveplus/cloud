@@ -69,7 +69,7 @@ public class DepartmentAdminController {
 	
 	@RequestMapping("/update")
 	public String update(Department dept,HttpServletRequest request,Model model){
-		departmentService.saveOrUpdate(dept);
+		departmentService.update(dept,dept.getId());
 		String message = "恭喜您，部门修改成功!";
 		String returnURL = "dept/list?page=1";
 		model.addAttribute("message",message);

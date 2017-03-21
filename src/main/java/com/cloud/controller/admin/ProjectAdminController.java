@@ -68,7 +68,7 @@ public class ProjectAdminController {
 	
 	@RequestMapping("/update")
 	public String update(Project project,HttpServletRequest request,Model model){
-		projectService.update(project);
+		projectService.update(project,project.getId());
 		String message = "恭喜您，项目修改成功!";
 		String returnURL = "project/list?page=1";
 		model.addAttribute("message",message);

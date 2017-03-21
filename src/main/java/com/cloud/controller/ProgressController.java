@@ -120,7 +120,7 @@ public class ProgressController {
 		pg.setStartTime(betweens.get("beforeTime"));
 		pg.setEndTime(betweens.get("afterTime"));
 		
-		progressService.saveOrUpdate(pg);
+		progressService.update(pg,pg.getId());
 		
 		String message = "项目计划修改成功!";
 		returnMap.put("message", message);

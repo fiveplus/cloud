@@ -69,7 +69,7 @@ public class ThemeAdminController {
 	
 	@RequestMapping("/update")
 	public String update(Theme theme,HttpServletRequest request,Model model){
-		themeService.saveOrUpdate(theme);
+		themeService.update(theme,theme.getId());
 		String message = "恭喜您，主题修改成功!";
 		String returnURL = "theme/list?page=1";
 		model.addAttribute("message",message);

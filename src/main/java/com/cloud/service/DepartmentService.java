@@ -2,19 +2,25 @@ package com.cloud.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cloud.dao.DepartmentDAO;
 import com.cloud.entity.Department;
-import com.cloud.entity.Permission;
 
+@Service("departmentService") 
+public class DepartmentService extends BaseService<Department, Integer>{
+	@Autowired  
+	private DepartmentDAO departmentDAO;
 
-public interface DepartmentService {
-	Department load(Integer id);
-	Department get(Integer id);
-	List<Department> findAll();
-	void persist(Department entity);  
-    Integer save(Department entity);  
-    void saveOrUpdate(Department entity);  
-    void delete(Integer id);  
-    void flush();
-    List<Department> getList(int page,int pageSize,String[] columns,Object[] objs);
-    int getListCount(String[] columns,Object[] objs);
+	public List<Department> getList(int page, int pageSize, String[] columns,
+			Object[] objs) {
+		return departmentDAO.getList(page, pageSize, columns, objs);
+	}
+
+	public int getListCount(String[] columns, Object[] objs) {
+		return departmentDAO.getListCount(columns, objs);
+	}
+	
+	
 }

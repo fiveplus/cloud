@@ -2,17 +2,21 @@ package com.cloud.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cloud.dao.CalendarDAO;
 import com.cloud.entity.Calendar;
+import com.cloud.service.CalendarService;
 
+@Service("calendarService")  
+public class CalendarService extends BaseService<Calendar, Integer>{
+	
+	@Autowired  
+	private CalendarDAO calendarDAO;
 
-public interface CalendarService {
-	Calendar load(Integer id);
-	Calendar get(Integer id);
-	List<Calendar> findAll();
-	void persist(Calendar entity);  
-    Integer save(Calendar entity);  
-    void saveOrUpdate(Calendar entity);  
-    void delete(Integer id);  
-    void flush();
-    public List<Calendar> getCalendarToAssignUserAndStatus(int userid,String status);
+	public List<Calendar> getCalendarToAssignUserAndStatus(int userid,String status) {
+		return calendarDAO.getCalendarToAssignUserAndStatus(userid,status);
+	}
+	
 }

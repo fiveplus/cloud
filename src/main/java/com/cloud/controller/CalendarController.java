@@ -146,7 +146,7 @@ public class CalendarController {
 		Calendar c = calendarService.get(id);
 		c.setStatus(status);
 		
-		calendarService.saveOrUpdate(c);
+		calendarService.update(c,c.getId());
 		
 		String message = "恭喜您，审核成功！";
 		

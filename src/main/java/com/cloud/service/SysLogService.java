@@ -2,19 +2,20 @@ package com.cloud.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cloud.dao.SysLogDAO;
 import com.cloud.entity.SysLog;
-import com.cloud.entity.User;
+import com.cloud.service.SysLogService;
 
+@Service("sysLogService") 
+public class SysLogService extends BaseService<SysLog, Integer>{
+	@Autowired  
+	private SysLogDAO sysLogDAO;
 
-public interface SysLogService {
-	SysLog load(Integer id);
-	SysLog get(Integer id);
-	List<SysLog> findAll();
-	void persist(SysLog entity);  
-    Integer save(SysLog entity);  
-    void saveOrUpdate(SysLog entity);  
-    void delete(Integer id);  
-    void flush();
-    
-    List<SysLog> getListToUserId(int userId);
+	public List<SysLog> getListToUserId(int userId) {
+		return sysLogDAO.getListToUserId(userId);
+	}
+
 }

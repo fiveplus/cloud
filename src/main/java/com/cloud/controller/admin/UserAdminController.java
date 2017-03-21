@@ -196,7 +196,7 @@ public class UserAdminController {
 	 
 	 @RequestMapping("/update")
 	 public String update(User us,HttpServletRequest request,Model model){
-		 userService.update(us);
+		 userService.update(us,us.getId());
 		 String message = "恭喜您，用户修改成功!";
 		 String returnURL = "user/list?page=1";
 		 model.addAttribute("message",message);
@@ -216,7 +216,7 @@ public class UserAdminController {
 	 @RequestMapping("/updateUser")
 	 public String updateUser(User us,HttpServletRequest request,Model model){
 		 if (us.getPassword().equals("")) us.setPassword(null);
-		 userService.update(us);
+		 userService.update(us,us.getId());
 		 String message = "恭喜您，用户信息修改成功，重新登录生效!";
 		 String returnURL = "admin/user/updateUserInit?id="+us.getId();
 		 model.addAttribute("message",message);
@@ -252,7 +252,7 @@ public class UserAdminController {
 			 }
 			 //更新user
 			 us.setPortrait("upload_images"+"/"+newImgName);
-			 userService.update(us);
+			 userService.update(us,us.getId());
 		 }
 		 return "";
 	 }

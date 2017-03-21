@@ -82,7 +82,7 @@ public class LevelAdminController {
 	
 	@RequestMapping("/update")
 	public String update(Level level,HttpServletRequest request,Model model){
-		levelService.update(level);
+		levelService.update(level,level.getId());
 		String message = "恭喜您。职位级别更新成功!";
 		String returnURL = "level/list?page=1";
 		model.addAttribute("message",message);

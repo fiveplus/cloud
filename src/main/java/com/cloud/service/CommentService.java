@@ -2,17 +2,26 @@ package com.cloud.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cloud.dao.CommentDAO;
 import com.cloud.entity.Comment;
 
-public interface CommentService {
-	Comment load(Integer id);
-	Comment get(Integer id);
-	List<Comment> findAll();
-	void persist(Comment entity);  
-    Integer save(Comment entity);  
-    void update(Comment entity);  
-    void delete(Integer id);  
-    void flush();
-    public List<Comment> getListToContentId(int page,int pageSize,int contentId);
-    public int getListCountToUserId(int userId);
+@Service("commentService")
+public class CommentService extends BaseService<Comment, Integer>{
+	@Autowired
+	private CommentDAO commentDAO;
+
+	public List<Comment> getListToContentId(int page, int pageSize,
+			int contentId) {
+		return commentDAO.getListToContentId(page,pageSize,contentId);
+	}
+
+	public int getListCountToUserId(int userId) {
+		return commentDAO.getListCountToUserId(userId);
+	}
+	
+	
+	
 }

@@ -78,7 +78,7 @@ public class GroupAdminController {
 	
 	@RequestMapping("/update")
 	public String update(Group group,HttpServletRequest request,Model model){
-		groupService.saveOrUpdate(group);
+		groupService.update(group,group.getId());
 		String message = "恭喜您，组更新成功!";
 		String returnURL = "group/list?page=1";
 		model.addAttribute("message",message);

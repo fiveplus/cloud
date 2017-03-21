@@ -181,7 +181,7 @@ public class UserController {
 			 }
 			 //更新user
 			 us.setPortrait("upload_images"+"/"+newImgName);
-			 userService.update(us);
+			 userService.update(us,us.getId());
 		 }
 		 return "";
 	 }
@@ -221,7 +221,7 @@ public class UserController {
 			 if(MD5.GetMD5Password(oldpass).equals(user.getPassword())){
 				 user.setPassword(MD5.GetMD5Password(newpass));
 				 returnCode = "0";
-				 userService.update(user);
+				 userService.update(user,user.getId());
 			 }
 		 }
 		 

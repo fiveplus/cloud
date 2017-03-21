@@ -82,7 +82,7 @@ public class ProjectController {
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		int code = 200;
 		
-		projectService.update(p);
+		projectService.update(p,p.getId());
 		
 		String message = "恭喜您，项目修改成功!";
 		returnMap.put("message", message);

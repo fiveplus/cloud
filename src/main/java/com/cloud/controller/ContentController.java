@@ -226,7 +226,7 @@ public class ContentController {
 		 
 		 //阅读数++
 		 c.setReadCount(c.getReadCount()+1);
-		 contentService.update(c);
+		 contentService.update(c,c.getId());
 		 
 		 int pcount = praiseService.getCountByContentId(c.getId());
 		 c.setPraiseCount(pcount);
