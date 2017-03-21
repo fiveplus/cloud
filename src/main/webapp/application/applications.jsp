@@ -36,15 +36,15 @@
 	            <div class="space_h_40"></div>
 	            <div class="use">
 		              <ul>
-		                <li><img src="images/use_01.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门票攻略团购</span><a> 立刻安装</a></li>
-		                <li><img src="images/use_02.png" width="64" height="64" /><span>携程旅行</span><a> 立刻安装</a></li>
-		                <li><img src="images/use_03.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门票攻略团购</span><a> 立刻安装</a></li>
-		                <li><img src="images/use_04.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门</span><a> 立刻安装</a></li>
-		                <li><img src="images/use_02.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门票攻略团购</span><a> 立刻安装</a></li>
-		                <li><img src="images/use_03.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门票攻略团购</span><a> 立刻安装</a></li>
-		                <li><img src="images/use_04.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门</span><a> 立刻安装</a></li>
-		                <li><img src="images/use_01.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门票攻略团购</span><a> 立刻安装</a></li>
-		                <li><img src="images/use_01.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门票攻略团购</span><a> 立刻安装</a></li>
+		                <li><img src="${contextPath}/images/use_01.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门票攻略团购</span><a> 立刻安装</a></li>
+		                <li><img src="${contextPath}/images/use_02.png" width="64" height="64" /><span>携程旅行</span><a> 立刻安装</a></li>
+		                <li><img src="${contextPath}/images/use_03.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门票攻略团购</span><a> 立刻安装</a></li>
+		                <li><img src="${contextPath}/images/use_04.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门</span><a> 立刻安装</a></li>
+		                <li><img src="${contextPath}/images/use_02.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门票攻略团购</span><a> 立刻安装</a></li>
+		                <li><img src="${contextPath}/images/use_03.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门票攻略团购</span><a> 立刻安装</a></li>
+		                <li><img src="${contextPath}/images/use_04.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门</span><a> 立刻安装</a></li>
+		                <li><img src="${contextPath}/images/use_01.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门票攻略团购</span><a> 立刻安装</a></li>
+		                <li><img src="${contextPath}/images/use_01.png" width="64" height="64" /><span>携程旅行 酒店机票火车票旅游门票攻略团购</span><a> 立刻安装</a></li>
 		             	<!-- <div class="clear"></div>   -->
 		             </ul>
             	</div>

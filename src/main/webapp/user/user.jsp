@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="content-user" >
 	<div class="user-top">
 		<div class="user-left">
-			<img class="img-radius64" src="${u.portrait}">
+			<img class="img-radius64" src="${contextPath}/${u.portrait}">
 		</div>
 		<div class="user-right">
 			<div style="margin-bottom: 5px;">

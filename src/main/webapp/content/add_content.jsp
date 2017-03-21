@@ -9,11 +9,11 @@
 	<fms:Content contentPlaceHolderId="source">
 		<!-- 导入外部css/js -->
 		<!-- 复文本编辑器 -->
-		<link rel="stylesheet" href="js/kindeditor-4.1.10/themes/default/default.css" />
-		<link rel="stylesheet" href="js/kindeditor-4.1.10/plugins/code/prettify.css" />
-		<script charset="utf-8" src="js/kindeditor-4.1.10/kindeditor.js"></script>
-		<script charset="utf-8" src="js/kindeditor-4.1.10/lang/zh_CN.js"></script>
-		<script charset="utf-8" src="js/kindeditor-4.1.10/plugins/code/prettify.js"></script>
+		<link rel="stylesheet" href="${contextPath}/js/kindeditor-4.1.10/themes/default/default.css" />
+		<link rel="stylesheet" href="${contextPath}/js/kindeditor-4.1.10/plugins/code/prettify.css" />
+		<script charset="utf-8" src="${contextPath}/js/kindeditor-4.1.10/kindeditor.js"></script>
+		<script charset="utf-8" src="${contextPath}/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+		<script charset="utf-8" src="${contextPath}/js/kindeditor-4.1.10/plugins/code/prettify.js"></script>
 		<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
@@ -47,7 +47,7 @@
 				</div>
 				<div class="space_h_40"></div>
 				<div class="post" style="padding-left:25px;padding-bottom:20px;min-height: 830px;">
-					<form action="content/add" method="post" id="add_content">
+					<form action="${contextPath}/content/save.json" method="post" id="add_content">
 						<input type="hidden" name="isPublic" value="N" />
 						<input type="hidden" name="address" value="" />
 						<div class="fenge"></div>
@@ -119,9 +119,9 @@
 					KindEditor.ready(function(K) {
 						editor = K.create('textarea[name="content"]', {
 								width:"100%",
-								cssPath : 'js/kindeditor-4.1.10/plugins/code/prettify.css',
-								uploadJson : 'ke/upload',
-								fileManagerJson : 'ke/manager',
+								cssPath : '${contextPath}/js/kindeditor-4.1.10/plugins/code/prettify.css',
+								uploadJson : '${contextPath}/ke/upload',
+								fileManagerJson : '${contextPath}/ke/manager',
 								allowFileManager : true,
 								resizeType : 0,
 								items:["source", "|", "undo", "redo", "|", "preview", "print", "template", "code", "cut", "copy", "paste", "plainpaste", "wordpaste",
@@ -177,7 +177,7 @@
 						
 						if(vdata.code == 200){
 							$.alert({title:'提示信息',content:'发布成功！',type: 'blue'});
-							window.location.href="index?rightMenuId=index";
+							window.location.href="${contextPath}/index?rightMenuId=index";
 						}else{
 							$.alert({title:'提示信息',content:'发布失败！',type: 'red'});
 						}
@@ -205,11 +205,11 @@
 					var val = $("input[name='isPublic']").attr("value");
 					if(val=="Y"){
 						$(this).html("私密");
-						$(this).css({"background":"transparent url('images/f_05.png') no-repeat scroll center center","color":"#999"});
+						$(this).css({"background":"transparent url('${contextPath}/images/f_05.png') no-repeat scroll center center","color":"#999"});
 						$("input[name='isPublic']").attr("value","N");
 					}else if(val=="N"){
 						$(this).html("公开");
-						$(this).css({"background":"transparent url('images/_f_05.png') no-repeat scroll center center","color":"#39d17e"});
+						$(this).css({"background":"transparent url('${contextPath}/images/_f_05.png') no-repeat scroll center center","color":"#39d17e"});
 						$("input[name='isPublic']").attr("value","Y");
 					}
 				});

@@ -9,7 +9,7 @@
 			<!-- 这里显示详细内容 -->
 			<div class="user">
 				<span class="user-img">
-					<img class="img-radius64" src="${content.user.portrait}" />
+					<img class="img-radius64" src="${contextPath}/${content.user.portrait}" />
 				</span>
 				<div class="user-content">
 					<font size="+2"><b>${content.user.username}</b></font> 
@@ -41,13 +41,13 @@
 				<!-- 点赞区域 -->
 				<div id="praise_div" class="content-bot" style="background: #f2f2f5;min-height:100px;display: none;">
 					<c:forEach items="${users}" var="u">
-						<img class="img-radius37" style="margin:10px 5px 10px 5px;" src="${u.portrait}" alt="${u.username}" />
+						<img class="img-radius37" style="margin:10px 5px 10px 5px;" src="${contextPath}/${u.portrait}" alt="${u.username}" />
 					</c:forEach>
 				</div>
 				<!-- 评论区 -->
 				<div id="comment_div" class="content-bot" style="background: #f2f2f5;">
 					<div style="padding:15px 20px;border-bottom: 1px solid #ccc;">
-						<form action="comment/save" method="post" id="comment_form">
+						<form action="${contextPath}/comment/save.json" method="post" id="comment_form">
 							<input type="hidden" name="cont.id" value="${content.id}" />
 							<input type="text" value="" name="content" class="comment-input" style="width:99%"  />
 							<div align="right" style="padding-top: 15px;" >
@@ -185,7 +185,7 @@
 							obj.parent().parent().parent().remove();
 							$.ajax({
 								type:"POST",
-								url:"comment/delete",
+								url:"${contextPath}/comment/delete.json",
 								data:{id:id},
 								success:function(data){
 									
@@ -202,7 +202,7 @@
 		function init_comments(contentId){
 			$.ajax({
 				type:"POST",
-				url:"comment/list",
+				url:"${contextPath}/comment/list.json",
 				data:{page:1,contentId:contentId},
 				error: function(request) {
 					//alert("服务器连接失败!");
@@ -226,7 +226,7 @@
 			var date = new Date(c.createTime);
 			var time = date.Format("yyyy-MM-dd HH:mm:ss");
 			html += "<div class='commit_item'>"
-					+"<span class='commit_user'><img class='img-radius37' src='"+c.user.portrait+"' /></span>"
+					+"<span class='commit_user'><img class='img-radius37' src='${contextPath}/"+c.user.portrait+"' /></span>"
 					+"<div class='commit_content'>"
 						+"<div><a href='#'>"+c.user.username+"</a>："+c.content+"</div>"
 						+"<div style='margin-top:2px;'><font color='gray'>"+time+"</font>  "
@@ -250,7 +250,7 @@
 					var date = new Date(c.createTime);
 					var time = date.Format("yyyy-MM-dd HH:mm:ss");
 					var str = "<div class='commit_item'>"
-					+"<span class='commit_user'><img class='img-radius37' src='"+c.user.portrait+"' /></span>"
+					+"<span class='commit_user'><img class='img-radius37' src='${contextPath}/"+c.user.portrait+"' /></span>"
 					+"<div class='commit_content'>"
 						+"<div><a href='#'>"+c.user.username+"</a>："+c.content+"</div>"
 						+"<div style='margin-top:2px;'><font color='gray'>"+time+"</font>  "

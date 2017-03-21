@@ -82,7 +82,7 @@ public class UserController {
 		 return result;
 	 }
 	 
-	 @RequestMapping("/persons.json")
+	 @RequestMapping("/persons")
 	 public String person(HttpServletRequest request,Model model){
 		 HttpSession session = request.getSession();
 		 User user = (User) session.getAttribute("user");

@@ -9,8 +9,8 @@
 	<fms:Content contentPlaceHolderId="source">
 		<!-- 导入外部css/js -->
 		<!-- 瀑布流插件 -->
-		<script src="js/wookmark/jquery.wookmark.js"></script>
-		<script src="js/wookmark/jquery.imagesloaded.js"></script>
+		<script src="${contextPath}/js/wookmark/jquery.wookmark.js"></script>
+		<script src="${contextPath}/js/wookmark/jquery.imagesloaded.js"></script>
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
 		<!-- main content -->
@@ -34,19 +34,19 @@
 				<!-- 项目/部门列表 -->
 				<div class="item" id="hb1">
 					<c:forEach items="${projects}" var="p">
-						<a href="proj?id=${p.id}">${p.name}</a>
+						<a href="${contextPath}/project/get?id=${p.id}">${p.name}</a>
 					</c:forEach>
 					<div class="clear"></div>
 				</div>
 				<div class="item deptmenu" id="hb2">
 					<c:forEach items="${depts}" var="d">
-           				<a href="contents?deptId=${d.id}">${d.name}</a>
+           				<a href="${contextPath}/content/list?deptId=${d.id}">${d.name}</a>
            			</c:forEach>
            			<div class="clear"></div>
 				</div>
 				<div class="item altmenu" id="hb3">
 					<c:forEach items="${themes}" var="t">
-						<a href="contents?themeId=${t.id}&deptId=${dept.id}">${t.name}</a>
+						<a href="${contextPath}/content/list?themeId=${t.id}&deptId=${dept.id}">${t.name}</a>
 					</c:forEach>
               		<div class="clear"></div>
            		</div>
@@ -115,7 +115,7 @@
 						var x = event.pageX + 10;
 						var y = event.pageY + 10;
 						var id = $(this).attr("data-id");
-						$("#user-div").load("user/user?id="+id,function(){
+						$("#user-div").load("${contextPath}/user/user?id="+id,function(){
 							$("#user-div").css({"left":x+"px","top":y+"px"});
 							$("#user-div").show();
 						});
@@ -138,12 +138,12 @@
 							var vdata = eval("("+data+")");
 							if(vdata.code == 200){
 								//点赞
-								a.css("background","url(images/libg04.png) no-repeat 0 4px");
+								a.css("background","url(${contextPath}/images/libg04.png) no-repeat 0 4px");
 								num = parseInt(num) + 1;
 								a.html("("+num+")");
 							}else{
 								//消赞
-								a.css("background","url(images/libg04.png) no-repeat 0 -13px");
+								a.css("background","url(${contextPath}/images/libg04.png) no-repeat 0 -13px");
 								num = parseInt(num) - 1;
 								a.html("("+num+")");
 							}
@@ -160,7 +160,7 @@
 				$handler=$("li",$list),
 				page = 1,
 				isLoading = false,
-				apiURL = "content/list?deptId="+deptId+"&themeId="+themeId,
+				apiURL = "${contextPath}/content/list.json?deptId="+deptId+"&themeId="+themeId,
 				lastRequestTimestamp = 0,
 				fadeInDelay = 2000,
 				$window = $(window),
@@ -224,8 +224,8 @@
 				
 				//组装发布文章
 				function get_content(c){
-					var off = "style='background:url(images/libg04.png) no-repeat 0 -13px'";
-					var on = "style='background:url(images/libg04.png) no-repeat 0 4px'";
+					var off = "style='background:url(${contextPath}/images/libg04.png) no-repeat 0 -13px'";
+					var on = "style='background:url(${contextPath}/images/libg04.png) no-repeat 0 4px'";
 					var style = c.isPraise == 0 ? on : off;
 					var date = new Date(c.createTime);
 					var time = date.Format("yyyy-MM-dd HH:mm:ss");
@@ -238,8 +238,8 @@
 					}
 					var st = "<li>"+
 						"<div class='libox'>"+
-					"<a href='contents?themeId="+c.theme.id+"&deptId="+deptId+"' class='share'>"+c.theme.name+"</a>"+
-					"<a href='javascript:void(0)' data-id='"+c.user.id+"' class='hphoto'><img src='"+c.user.portrait+"'"+
+					"<a href='${contextPath}/content/list?themeId="+c.theme.id+"&deptId="+deptId+"' class='share'>"+c.theme.name+"</a>"+
+					"<a href='javascript:void(0)' data-id='"+c.user.id+"' class='hphoto'><img src='${contextPath}/"+c.user.portrait+"'"+
 							"class='img-radius30' />"+
 					"</a>"+
 					"<b><a href='#'>"+c.user.username+"</a>"+
