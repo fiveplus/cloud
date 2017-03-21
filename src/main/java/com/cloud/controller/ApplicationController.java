@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller  
-@RequestMapping("/") 
+@RequestMapping("/app") 
 public class ApplicationController {
 	private static final Logger LOGGER = Logger.getLogger(ApplicationController.class);
 	
-	@RequestMapping("/applist")
+	@RequestMapping("/list")
 	public String list(HttpServletRequest request,Model model){
 		return "application/applications";
 	}

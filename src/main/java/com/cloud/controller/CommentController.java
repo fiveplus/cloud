@@ -21,14 +21,14 @@ import com.cloud.service.CommentService;
 import com.cloud.util.StringUtil;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/comment")
 public class CommentController {
 	public static final Logger LOGGER = Logger.getLogger(CommentController.class);
 	
 	@Autowired
 	private CommentService commentService;
 	
-	@RequestMapping("/comment/save")
+	@RequestMapping("/save.json")
 	public @ResponseBody Map<String,Object> save(Comment comment,HttpServletRequest request,Model model){
 		String message = "恭喜您，评论成功！";
 		HttpSession session = request.getSession();
@@ -46,7 +46,7 @@ public class CommentController {
 		return returnMap;
 	}
 	
-	@RequestMapping("/comment/delete")
+	@RequestMapping("/delete.json")
 	public @ResponseBody Map<String,Object> delete(int id,HttpServletRequest request,Model model){
 		String message = "恭喜您，删除成功！";
 		Map<String,Object> returnMap = new HashMap<String, Object>();
@@ -57,7 +57,7 @@ public class CommentController {
 		return returnMap;
 	}
 	
-	@RequestMapping("/comment/list")
+	@RequestMapping("/list.json")
 	public @ResponseBody Map<String,Object> list(int page,int contentId,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		

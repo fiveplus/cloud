@@ -30,7 +30,7 @@ import com.cloud.util.StringUtil;
  *
  */
 @Controller  
-@RequestMapping("/") 
+@RequestMapping("/cal") 
 public class CalendarController {
 	private static final Logger LOGGER = Logger.getLogger(CalendarController.class);
 	
@@ -43,16 +43,16 @@ public class CalendarController {
 	@Autowired
 	private SysLogService sysLogService;
 	
-	@RequestMapping("/calen")
-	public String calendar(HttpServletRequest request,Model model){
+	@RequestMapping("/get")
+	public String get(HttpServletRequest request,Model model){
 		List<User> users = userService.findAll();
 		model.addAttribute("users",users);
 		
 		return "calendar/calendar";
 	}
 	
-	@RequestMapping("/calendar/add")
-	public @ResponseBody Map<String,Object> add(Calendar c,HttpServletRequest request,Model model){
+	@RequestMapping("/save.json")
+	public @ResponseBody Map<String,Object> save(Calendar c,HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		Map<String,Object> returnMap = new HashMap<String, Object>();
@@ -93,7 +93,7 @@ public class CalendarController {
 		return returnMap;
 	}
 	
-	@RequestMapping("/calendar/list")
+	@RequestMapping("/list.json")
 	public @ResponseBody Map<String,Object> list(int userid,HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
@@ -120,7 +120,8 @@ public class CalendarController {
 		return returnMap;
 	}
 	
-	//TODO 事件审核
+	//TODO 事件审核作废
+	/*
 	@RequestMapping("/calexam")
 	public String calexam(HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
@@ -130,10 +131,10 @@ public class CalendarController {
 		model.addAttribute("calendars",calendars);
 		
 		return "calendar/calexam";
-	}
+	}*/
 	
-	@RequestMapping("/calexam/get")
-	public @ResponseBody Map<String,Object> getCalexam(int id,HttpServletRequest request,Model model){
+	@RequestMapping("/get.json")
+	public @ResponseBody Map<String,Object> get(int id,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		
 		Calendar c = calendarService.get(id);
@@ -143,7 +144,7 @@ public class CalendarController {
 		return returnMap;
 	}
 	
-	@RequestMapping("/calexam/update")
+	@RequestMapping("/update.json")
 	public @ResponseBody Map<String,Object> update(int id,String status,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		Calendar c = calendarService.get(id);

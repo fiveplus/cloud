@@ -20,7 +20,7 @@ import com.cloud.service.ContentService;
 import com.cloud.service.SysLogService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/my")
 public class MyController {
 	private static final Logger LOGGER = Logger.getLogger(MyController.class);
 	
@@ -41,8 +41,8 @@ public class MyController {
 		return "my/msg";
 	}
 	
-	@RequestMapping("/msg/get")
-	public @ResponseBody Map<String,Object> getmsg(int id,HttpServletRequest request,Model model){
+	@RequestMapping("/getlog.json")
+	public @ResponseBody Map<String,Object> getlog(int id,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		
 		SysLog log = sysLogService.get(id);
@@ -52,27 +52,18 @@ public class MyController {
 		return returnMap;
 	}
 	
-	@RequestMapping("/config")
+	@RequestMapping("/me")
 	public String my(HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		model.addAttribute("u", user);
-		return "my/my";
+		return "my/me";
 	}
 	
-	@RequestMapping("/mycontents")
+	@RequestMapping("/contents")
 	public String mycontents(HttpServletRequest request,Model model){
 		
 		return "my/contents";
-	}
-	
-	@RequestMapping("/content/del")
-	public @ResponseBody Map<String,Object> deleleContent(int id,HttpServletRequest request,Model model){
-		Map<String,Object> returnMap = new HashMap<String, Object>();
-		
-		contentService.delete(id);
-		
-		return returnMap;
 	}
 	
 	

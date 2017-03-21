@@ -19,57 +19,56 @@
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 	<script src="css/bootstrap/js/bootstrap.min.js"></script>
 	 -->
-	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script src="css/bootstrap/js/bootstrap.min.js"></script>
+	<link href="${contextPath}/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="${contextPath}/js/jquery.min.js"></script>
+	<script src="${contextPath}/css/bootstrap/js/bootstrap.min.js"></script>
 	
-	<link href="css/main.css" rel="stylesheet" type="text/css" />
-	<link href="css/default.css" rel="stylesheet" type="text/css" />
+	<link href="${contextPath}/css/main.css" rel="stylesheet" type="text/css" />
+	<link href="${contextPath}/css/default.css" rel="stylesheet" type="text/css" />
 	
 	
 	<!-- switchs插件 -->
-	<link href="css/bootstrap/bootstrap-switch.css" rel="stylesheet" type="text/css" />
-	<link href="css/buttons.css" rel="stylesheet" type="text/css" />
+	<link href="${contextPath}/css/bootstrap/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+	<link href="${contextPath}/css/buttons.css" rel="stylesheet" type="text/css" />
 	
 	<!-- scroll插件 -->
-	<script type="text/javascript" src="js/jquery.jscroll.js"></script>
-	<script type="text/javascript" src="js/jquery.scrollto.js"></script>
+	<script type="text/javascript" src="${contextPath}/js/jquery.jscroll.js"></script>
+	<script type="text/javascript" src="${contextPath}/js/jquery.scrollto.js"></script>
 	<!-- QQ表情库 -->
-	<script type="text/javascript" src="js/jquery.qqFace.js"></script>
+	<script type="text/javascript" src="${contextPath}/js/jquery.qqFace.js"></script>
 	
 	<!-- 时间选择插件 -->
-	<link href="css/jquery.datetimepicker.css" rel="stylesheet" type="text/css" />
-	<script src="js/jquery.datetimepicker.js"></script>
+	<link href="${contextPath}/css/jquery.datetimepicker.css" rel="stylesheet" type="text/css" />
+	<script src="${contextPath}/js/jquery.datetimepicker.js"></script>
 	
-	<link rel="stylesheet" type="text/css" media="all" href="css/date/daterangepicker-bs3.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="${contextPath}/css/date/daterangepicker-bs3.css" />
 	<!-- <script type="text/javascript" src="css/date/bootstrap.min.js"></script> -->
-	<script type="text/javascript" src="css/date/moment.js"></script>
-	<script type="text/javascript" src="css/date/daterangepicker.js"></script>
+	<script type="text/javascript" src="${contextPath}/css/date/moment.js"></script>
+	<script type="text/javascript" src="${contextPath}/css/date/daterangepicker.js"></script>
 	
 	
 	<!-- 滚动条插件 -->
-	<link rel="stylesheet" href="js/scroll/jquery.mCustomScrollbar.css" type="text/css" />
-	<script type="text/javascript" src="js/scroll/jquery.mousewheel.min.js"></script>
-	<script src="js/scroll/jquery.mCustomScrollbar.min.js"></script>
+	<link rel="stylesheet" href="${contextPath}/js/scroll/jquery.mCustomScrollbar.css" type="text/css" />
+	<script type="text/javascript" src="${contextPath}/js/scroll/jquery.mousewheel.min.js"></script>
+	<script src="${contextPath}/js/scroll/jquery.mCustomScrollbar.min.js"></script>
 	
 	
 	<!-- 融云WEB-SDK接入 -->
 	<script src="http://res.websdk.rongcloud.cn/RongIMClient-0.9.15.min.js"></script>
-	<script src="js/rongyun/rongyun.js"></script>
+	<script src="${contextPath}/js/rongyun/rongyun.js"></script>
 	
 	<!-- 弹出框插件 -->
 	<!-- <script src="css/bootstrap/js/bootstrap.min.js"></script>  -->
-	<script src="css/bootstrap/js/highlight.js"></script>
-	<script src="css/bootstrap/js/bootstrap-switch.js"></script>
-	<script src="js/jquery.leanModal.min.js"></script>
+	<script src="${contextPath}/css/bootstrap/js/highlight.js"></script>
+	<script src="${contextPath}/css/bootstrap/js/bootstrap-switch.js"></script>
+	<script src="${contextPath}/js/jquery.leanModal.min.js"></script>
 	
 	<!-- jquery confirm -->
-	<link href="css/jquery-confirm/jquery-confirm.css" rel="stylesheet" type="text/css" />
-	<script src="css/jquery-confirm/jquery-confirm.js"></script>
+	<link href="${contextPath}/css/jquery-confirm/jquery-confirm.css" rel="stylesheet" type="text/css" />
+	<script src="${contextPath}/css/jquery-confirm/jquery-confirm.js"></script>
 	
 	<!-- zhangshenwu插件 -->
-	<script src="js/cloud-server.js" ></script>
-	
+	<script src="${contextPath}/js/cloud-server.js" ></script>
 	
 	<fms:ContentPlaceHolder id="source" />	
 	
@@ -194,7 +193,7 @@
 	<script type="text/javascript">
 	
 		function show_cont(id){
-			$("#cont-div").load("content/cont?id="+id,function(){
+			$("#cont-div").load("${contextPath}/content/content?id="+id,function(){
 				$("#cont-a").click();
 			});
 		}
@@ -269,11 +268,11 @@
 			
 			//左侧数据加载
 			var dataid = '${dataid}';
-			var url = "user/persons";
+			var url = "${contextPath}/user/persons";
 			if(dataid == '0'){
-				url = "user/persons";
+				url = "${contextPath}/user/persons";
 			}else if(dataid == '1'){
-				url = "user/projects";
+				url = "${contextPath}/user/projects";
 			}
 			$(".leftmenu:first").load(url,function(){
 				resizediv();
@@ -299,12 +298,12 @@
 				var id = $(this).attr("data-id");
 				//数据加载
 				if(id == "0"){
-					$(".leftmenu:first .mCSB_container").load("user/persons?dataid="+id,function(){
+					$(".leftmenu:first .mCSB_container").load("${contextPath}/user/persons?dataid="+id,function(){
 						load_menus();
 						message_init();
 					});
 				}else if(id == "1"){
-					$(".leftmenu:first .mCSB_container").load("user/projects?dataid="+id,function(){
+					$(".leftmenu:first .mCSB_container").load("${contextPath}/user/projects?dataid="+id,function(){
 						load_menus();
 					});
 				}else if(id == "2"){
@@ -377,7 +376,7 @@
 				if(typeof(id) != "undefined"){
 					$.ajax({
 						type:"POST",
-						url:"user/info?id="+id,
+						url:"${contextPath}/user/info?id="+id,
 						async:false,
 						error:function(request){
 							//alert("数据请求错误!");
@@ -446,7 +445,7 @@
 			$.ajax({
 				cache:true,
 				type:"POST",
-				url:"rong/get_messages?id="+uid,
+				url:"${contextPath}/rong/get_messages?id="+uid,
 				error: function(request) {
 					//alert("服务器连接失败!");
 				},
@@ -507,7 +506,7 @@
 					//alert(vdata.message);
 					if(vdata.code==200){
 						$.alert({title:'提示信息',content:'项目创建成功！',type:'blue'});
-						window.location.href="proj?id="+vdata.id;
+						window.location.href="${contextPath}/project?id="+vdata.id;
 					}
 					
 					//$("#add_project_div").attr("style","");

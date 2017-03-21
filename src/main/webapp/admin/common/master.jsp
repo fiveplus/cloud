@@ -110,9 +110,9 @@
 							<i class="icon-group"></i>
 						</button>
 
-						<button class="btn btn-danger" onclick="go_url('../user/updateUserInit?id=${user.id}')">
+						<a class="btn btn-danger" href="${contextPath}/user/updateUserInit?id=${user.id}">
 							<i class="icon-cogs"></i>
-						</button>
+						</a>
 					</div>
 					
 					<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">

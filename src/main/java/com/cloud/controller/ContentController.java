@@ -32,7 +32,7 @@ import com.cloud.util.Resource;
 import com.cloud.util.StringUtil;
 
 @Controller  
-@RequestMapping("/") 
+@RequestMapping("/content") 
 public class ContentController {
 	
 	 private static final int CONTENT_LENGTH = 100;
@@ -54,7 +54,7 @@ public class ContentController {
 	 @Autowired
 	 private PraiseService praiseService;
 	 
-	 @RequestMapping("/content/list")
+	 @RequestMapping("/list.json")
 	 public @ResponseBody String list(int page,int deptId,HttpServletRequest request,Model model){
 		 int port = request.getLocalPort();
 		 HttpSession session = request.getSession();
@@ -95,7 +95,7 @@ public class ContentController {
 		 return result;
 	 }
 	 
-	 @RequestMapping("/content/mylist")
+	 @RequestMapping("/mylist.json")
 	 public @ResponseBody String list(int page,HttpServletRequest request,Model model){
 		 int port = request.getLocalPort();
 		 HttpSession session = request.getSession();
@@ -125,7 +125,7 @@ public class ContentController {
 		 return result;
 	 }
 	 
-	 @RequestMapping("/content/plist")
+	 @RequestMapping("/plist.json")
 	 public @ResponseBody String plist(int page,int projectId,HttpServletRequest request,Model model){
 		 int port = request.getLocalPort();
 		 int pageSize = 10;
@@ -163,8 +163,8 @@ public class ContentController {
 		 return "content/add_content";
 	 }
 	 
-	 @RequestMapping("/content/add")
-	 public @ResponseBody Map<String,Object> add(Content c,HttpServletRequest request,Model model){
+	 @RequestMapping("/save.json")
+	 public @ResponseBody Map<String,Object> save(Content c,HttpServletRequest request,Model model){
 		 HttpSession session = request.getSession();
 		 User user = (User)session.getAttribute("user");
 		 Map<String,Object> returnMap = new HashMap<String, Object>();
@@ -202,7 +202,7 @@ public class ContentController {
 		 return returnMap;
 	 }
 	 
-	 @RequestMapping("/contents")
+	 @RequestMapping("/list")
 	 public String contents(int deptId,HttpServletRequest request,Model model){
 		 String _themeId = request.getParameter("themeId");
 		 Department dept = departmentService.get(deptId);
@@ -219,8 +219,8 @@ public class ContentController {
 		 return "content/contents";
 	 }
 	 
-	 @RequestMapping("/content/cont")
-	 public String content(int id,HttpServletRequest request,Model model){
+	 @RequestMapping("/get")
+	 public String get(int id,HttpServletRequest request,Model model){
 		 
 		 Content c = contentService.get(id);
 		 
@@ -234,6 +234,15 @@ public class ContentController {
 		 List<User> users = praiseService.getUserListByContentId(id);
 		 model.addAttribute("users",users);
 		 return "content/content";
+	 }
+	 
+	 @RequestMapping("/delete.json")
+	 public @ResponseBody Map<String,Object> deleleContent(int id,HttpServletRequest request,Model model){
+		 Map<String,Object> returnMap = new HashMap<String, Object>();
+			
+		 contentService.delete(id);
+			
+		 return returnMap;
 	 }
 	 
 }

@@ -30,7 +30,7 @@ import com.cloud.service.UserProjectService;
 import com.cloud.util.StringUtil;
 
 @Controller  
-@RequestMapping("/") 
+@RequestMapping("/stat") 
 public class StatisticsController {
 	private static final Logger LOGGER = Logger.getLogger(StatisticsController.class);
 	
@@ -49,7 +49,7 @@ public class StatisticsController {
 	@Autowired
 	private UserProjectService userProjectService;
 	
-	@RequestMapping("/stat")
+	@RequestMapping("/stats")
 	public String statistics(HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");

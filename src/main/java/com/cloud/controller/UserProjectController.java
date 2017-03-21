@@ -20,7 +20,7 @@ import com.cloud.service.ProjectService;
 import com.cloud.service.UserProjectService;
 
 @Controller  
-@RequestMapping("/") 
+@RequestMapping("/projectuser") 
 public class UserProjectController {
 	private static final Logger LOGGER = Logger.getLogger(UserProjectController.class);
 
@@ -31,8 +31,8 @@ public class UserProjectController {
 	private UserProjectService userProjectService;
 	
 	
-	@RequestMapping("/projectuser")
-	public String projectuser(int id,HttpServletRequest request,Model model){
+	@RequestMapping("/get")
+	public String get(int id,HttpServletRequest request,Model model){
 		Project project = projectService.get(id);
 		List<User> users = userProjectService.getUserToProjectId(id);
 
@@ -42,8 +42,8 @@ public class UserProjectController {
 		return "project/projectuser";
 	}
 	
-	@RequestMapping("/projectuser/add")
-	public @ResponseBody Map<String,Object> add(UserProject up,HttpServletRequest request,Model model){
+	@RequestMapping("/save.json")
+	public @ResponseBody Map<String,Object> save(UserProject up,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		String message = "";
 		Project p = projectService.get(up.getProject().getId());
@@ -64,7 +64,7 @@ public class UserProjectController {
 		return returnMap;
 	}
 	
-	@RequestMapping("/projectuser/delete")
+	@RequestMapping("/delete.json")
 	public @ResponseBody Map<String,Object> delete(int userid,int projectid,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		

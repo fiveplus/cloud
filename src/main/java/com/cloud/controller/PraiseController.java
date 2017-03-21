@@ -20,14 +20,14 @@ import com.cloud.service.PraiseService;
 import com.cloud.util.StringUtil;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/praise")
 public class PraiseController {
 	private static final Logger LOGGER = Logger.getLogger(PraiseController.class);
 	
 	@Autowired
 	private PraiseService praiseService;
 	
-	@RequestMapping("/praise/save")
+	@RequestMapping("/save.json")
 	public @ResponseBody Map<String,Object> save(int contentId,HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
@@ -50,8 +50,6 @@ public class PraiseController {
 		
 		returnMap.put("code", code);
 		returnMap.put("msg", msg);
-		
-		
 		
 		return returnMap;
 	}

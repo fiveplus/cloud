@@ -28,7 +28,7 @@ import com.cloud.service.UserProjectService;
 import com.cloud.util.StringUtil;
 
 @Controller  
-@RequestMapping("/") 
+@RequestMapping("/progress") 
 public class ProgressController {
 	private static final Logger LOGGER = Logger.getLogger(ProgressController.class);
 
@@ -42,8 +42,8 @@ public class ProgressController {
 	private ProgressService progressService;
 	
 	
-	@RequestMapping("/progress")
-	public String progress(int id,HttpServletRequest request,Model model){
+	@RequestMapping("/get")
+	public String get(int id,HttpServletRequest request,Model model){
 		
 		Project project = projectService.get(id);
 		List<User> users = userProjectService.getUserToProjectId(project.getId());
@@ -56,7 +56,7 @@ public class ProgressController {
 		return "project/progress";
 	}
 	
-	@RequestMapping("/progress/gantt")
+	@RequestMapping("/gantt")
 	public void gantt(int id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		
 		PrintWriter out = response.getWriter(); 
@@ -75,8 +75,8 @@ public class ProgressController {
 		out.print(json);
 	}
 	
-	@RequestMapping("/progress/add")
-	public @ResponseBody Map<String,Object> add(Progress pg,HttpServletRequest request,Model model){
+	@RequestMapping("/save.json")
+	public @ResponseBody Map<String,Object> save(Progress pg,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		
 		String dateRangePicker = (String)request.getParameter("dateRangePicker");

@@ -25,7 +25,6 @@ public class CommentDAOImpl extends BaseDAOImpl<Comment> implements CommentDAO{
 		return count;
 	}
 
-	@Override
 	public List<StatBO> getCountToUserIdAndCreateTime(int userId,
 			Map<String, Long> betweens) {
 		long beforeTime = betweens.get("beforeTime");

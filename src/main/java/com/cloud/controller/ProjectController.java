@@ -22,7 +22,7 @@ import com.cloud.service.UserProjectService;
 import com.cloud.util.StringUtil;
 
 @Controller  
-@RequestMapping("/") 
+@RequestMapping("/project") 
 public class ProjectController {
 	private static final Logger LOGGER = Logger.getLogger(ProjectController.class);
 	
@@ -33,8 +33,8 @@ public class ProjectController {
 	private UserProjectService userProjectService;
 	
 	
-	@RequestMapping("/proj")
-	public String project(int id,HttpServletRequest request,Model model){
+	@RequestMapping("/get")
+	public String get(int id,HttpServletRequest request,Model model){
 		Project p = projectService.get(id);
 		List<User> users = userProjectService.getUserToProjectId(id);
 		model.addAttribute("project",p);
@@ -44,8 +44,8 @@ public class ProjectController {
 		return "project/project";
 	}
 	
-	@RequestMapping("/project/add")
-	public @ResponseBody Map<String,Object> add(Project p,HttpServletRequest request,Model model){
+	@RequestMapping("/save.json")
+	public @ResponseBody Map<String,Object> save(Project p,HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		User user = (User)session.getAttribute("user");
@@ -70,15 +70,15 @@ public class ProjectController {
 		return returnMap;
 	}
 	
-	@RequestMapping("/projectset")
+	@RequestMapping("/upt")
 	public String projectset(int id,HttpServletRequest request,Model model){
 		Project project = projectService.get(id);
 		model.addAttribute("project",project);
 		return "project/projectset";
 	}
 	
-	@RequestMapping("/project/update")
-	public Map<String,Object> update(Project p,HttpServletRequest request,Model model){
+	@RequestMapping("/update.json")
+	public @ResponseBody Map<String,Object> update(Project p,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		int code = 200;
 		

@@ -60,7 +60,7 @@ public class UserController {
 	 @Autowired
 	 private CommentService commentService;
 	 
-	 @RequestMapping("/login")
+	 @RequestMapping("/login.json")
 	 public @ResponseBody String login(String email,String password,HttpServletRequest request) throws Exception{
 		 HttpSession session = request.getSession();
 		 User user = userService.getUserByLoginNameAndPassword(email,MD5.GetMD5Password(password));
@@ -82,7 +82,7 @@ public class UserController {
 		 return result;
 	 }
 	 
-	 @RequestMapping("/persons")
+	 @RequestMapping("/persons.json")
 	 public String person(HttpServletRequest request,Model model){
 		 HttpSession session = request.getSession();
 		 User user = (User) session.getAttribute("user");
@@ -114,8 +114,8 @@ public class UserController {
 		 return "user/persons";
 	 }
 	 
-	 @RequestMapping("/info")
-	 public @ResponseBody User info(int id,HttpServletRequest request,Model model){
+	 @RequestMapping("/get.json")
+	 public @ResponseBody User get(int id,HttpServletRequest request,Model model){
 		 User u = userService.get(id);
 		 return u;
 	 }
@@ -134,7 +134,7 @@ public class UserController {
 		 return "user/projects";
 	 }
 	 
-	 @RequestMapping("/trees")
+	 @RequestMapping("/trees.json")
 	 public @ResponseBody List<TreeBO> trees(HttpServletRequest request,HttpServletResponse response){
 		 List<User> users = userService.findAll();
 		 List<Group> parents = groupService.getParentList();
@@ -154,7 +154,7 @@ public class UserController {
 		 return trees;
 	 }
 	 
-	 @RequestMapping("/upload")
+	 @RequestMapping("/upload.json")
 	 public @ResponseBody String upload(@RequestParam(value = "file",required = false) MultipartFile file,int x,int y,int width,int height, HttpServletRequest request, ModelMap model){
 		 HttpSession session = request.getSession();
 		 User us = (User)session.getAttribute("user");
@@ -187,7 +187,7 @@ public class UserController {
 	 }
 	
 	 
-	 @RequestMapping("/checkpass")
+	 @RequestMapping("/checkpass.json")
 	 public @ResponseBody Map<String,Object> checkpass(String password,HttpServletRequest request,Model model) throws Exception{
 		 HttpSession session = request.getSession();
 		 User user = (User)session.getAttribute("user");
@@ -207,7 +207,7 @@ public class UserController {
 		 return returnMap;
 	 }
 	 
-	 @RequestMapping("/updatepass")
+	 @RequestMapping("/updatepass.json")
 	 public @ResponseBody Map<String,Object> updatepass(String oldpass,String newpass,HttpServletRequest request,Model model) throws Exception{
 		 HttpSession session = request.getSession();
 		 User user = (User)session.getAttribute("user");
