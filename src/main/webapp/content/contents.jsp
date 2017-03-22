@@ -18,7 +18,7 @@
 			<div id="cb_2" style="position: relative;">
 				<div class="cmenu">
 					<div class="cmenuleft">
-						<a href="index" >我的部门</a> 
+						<a href="${contextPath}/index" >我的部门</a> 
 						<a href="#" id="h1">我的项目</a>
 						<a href="#" id="h2">其他部门</a> 
 					</div>
