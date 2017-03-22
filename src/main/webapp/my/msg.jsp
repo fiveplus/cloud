@@ -52,31 +52,25 @@
 		</div>
 		
 		<div id="calmsg_div" class="leanmodel_div">
-			<form role="form" class="form" id="select_calmsg">
-				<div style="padding:20px 5px;">
-					<font size="+2"><b>消息查看</b></font>
-					<span style="color:#999;"> >>详细信息 </span>
+				<div class="modal-header">
+					<h4 class="modal-title">消息查看<small> >>详细信息 </small></h4>
 				</div>
-				<div class="form-group">
-					<span class="label">时间：</span>
-					<label class="label" name="start"></label>
-				</div>
-				<div class="form-group">
-					<span class="label">标题：</span>
-					<label class="label" name="title"></label>
-				</div>
-				
-				<div class="form-group">
-					<span class="label">内容：</span>
-					<label class="label" name="content"></label>
-				</div>
-				<div class="form-group" style="padding:10px 0 20px 0;">
-				
-				</div>
-			</form>
+				<form role="form" class="modal-body" id="select_calmsg">
+					<div class="form-group">
+						<label class="control-label" name="start"></label>
+					</div>
+					<div class="form-group">
+						<label class="control-label" name="title"></label>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label" name="content"></label>
+					</div>
+				</form>
 		</div>
 		
 		<script type="text/javascript">
+			$(".calexam_a").leanModal();
 			function get_msg(id){
 				var form = $("#select_calmsg");
 				$.ajax({
@@ -87,11 +81,9 @@
 			    	  var vdata = data;
 			     	  var l = vdata.log;
 			     	  var start = new Date(l.createTime).Format("yyyy-MM-dd HH:mm:ss");
-			     	  form.find("label[name='start']").html(start);
-			     	  form.find("label[name='title']").html(l.title);
-			     	  form.find("label[name='content']").html(l.content);
-			     	  
-			     	  $(".calexam_a").leanModal();
+			     	  form.find("label[name='start']").html("时间："+start);
+			     	  form.find("label[name='title']").html("标题："+l.title);
+			     	  form.find("label[name='content']").html("内容："+l.content);
 			      }
 			    });
 			}

@@ -30,7 +30,7 @@ import com.cloud.util.StringUtil;
  *
  */
 @Controller  
-@RequestMapping("/cal") 
+@RequestMapping("/calendar") 
 public class CalendarController {
 	private static final Logger LOGGER = Logger.getLogger(CalendarController.class);
 	

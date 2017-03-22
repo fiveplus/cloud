@@ -564,6 +564,10 @@ ol.formatted li {
 	padding:10px;
 }
 
+#remind_a{
+	width:80px;
+}
+
 /* 统计 */
 .project_stat{
 	margin-top: 10px;

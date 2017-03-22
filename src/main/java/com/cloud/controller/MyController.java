@@ -18,6 +18,7 @@ import com.cloud.entity.SysLog;
 import com.cloud.entity.User;
 import com.cloud.service.ContentService;
 import com.cloud.service.SysLogService;
+import com.cloud.service.UserService;
 
 @Controller
 @RequestMapping("/my")
@@ -29,6 +30,9 @@ public class MyController {
 	
 	@Autowired
 	private ContentService contentService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping("/msg")
 	public String calmsg(HttpServletRequest request,Model model){
@@ -66,5 +70,11 @@ public class MyController {
 		return "my/contents";
 	}
 	
+	@RequestMapping("/calendar")
+	public String calendar(HttpServletRequest request,Model model){
+		List<User> users = userService.findAll();
+		model.addAttribute("users",users);
+		return "my/calendar";
+	}
 	
 }

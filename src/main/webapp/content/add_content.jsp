@@ -89,7 +89,7 @@
 							<textarea id="send-text" name="content" class="send-text" >${content.content}<%=htmlspecialchars(htmlData)%></textarea>
 						</div>
 						<div>
-							<div style="float:left;margin:15px 0 0 0;padding:4px 0 0 15px;background: url(images/libg02.png) no-repeat 0 7px;font-size: 12px;color:#666;"><b id="address"></b></div>
+							<div style="float:left;margin:15px 0 0 0;padding:4px 0 0 15px;background: url(${contextPath}/images/libg02.png) no-repeat 0 7px;font-size: 12px;color:#666;"><b id="address"></b></div>
 							<div style="float:right;">
 								<a href="javascript:add_content()" class="w_btn_a_btn" >发布</a>
 							</div>
