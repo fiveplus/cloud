@@ -26,7 +26,7 @@
 					</div>
 					<div class="cmenuright">
 						<a class="cur">资料</a>
-						<a href="#">统计</a>
+						<a href="${contextPath}/my/stats">统计</a>
 						<a href="#">访客</a>
 					</div>
 					<div class="clear"></div>
