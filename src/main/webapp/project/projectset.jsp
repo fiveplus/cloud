@@ -15,9 +15,9 @@
 			<div style="position:relative">
 				<div class="cmenu" style="min-width: 850px;">
 					<div class="cmenuleft">
-						<a href="proj?id=${project.id}">项目记录</a>
-						<a href="progress?id=${project.id}" >项目进度</a>
-						<a href="projectuser?id=${project.id}" >项目成员</a> 
+						<a href="${contextPath}/project/get?id=${project.id}">项目记录</a>
+						<a href="${contextPath}/progress/get?id=${project.id}" >项目进度</a>
+						<a href="${contextPath}/projectuser/get?id=${project.id}" >项目成员</a> 
 						<a class="cur">项目设置</a>
 					</div>
 					<div class="cmenuright">
@@ -33,7 +33,7 @@
 				<div class="space_h_40"></div>
 				<div>
 					<!-- main div -->
-					<form action="project/update" role="form" class="form" id="update_project"  >
+					<form action="${contextPath}/project/update.json" role="form" class="form" id="update_project"  >
 						<div class="fenge"></div>
 						<div class="fenge"></div>
 						<div class="form-group">

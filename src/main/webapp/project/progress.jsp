@@ -10,10 +10,10 @@
 	<fms:Content contentPlaceHolderId="source">
 		<!-- 导入外部css/js -->
 		<!-- tree插件 -->
-		<link rel="stylesheet" href="css/metroStyle/metroStyle.css" type="text/css" />
-		<script type="text/javascript" src="js/ztree/jquery.ztree.core-3.5.js"></script>
-		<script type="text/javascript" src="js/ztree/jquery.ztree.excheck-3.5.js"></script>
-		<script type="text/javascript" src="js/ztree/jquery.ztree.exedit-3.5.js"></script>
+		<link rel="stylesheet" href="${contextPath}/css/metroStyle/metroStyle.css" type="text/css" />
+		<script type="text/javascript" src="${contextPath}/js/ztree/jquery.ztree.core-3.5.js"></script>
+		<script type="text/javascript" src="${contextPath}/js/ztree/jquery.ztree.excheck-3.5.js"></script>
+		<script type="text/javascript" src="${contextPath}/js/ztree/jquery.ztree.exedit-3.5.js"></script>
 		
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
@@ -22,10 +22,10 @@
 			<div style="position:relative">
 				<div class="cmenu" style="min-width: 850px;">
 					<div class="cmenuleft">
-						<a  href="proj?id=${project.id}" >项目记录</a>
+						<a  href="${contextPath}/project/get?id=${project.id}" >项目记录</a>
 						<a class="cur">项目进度</a>
-						<a href="projectuser?id=${project.id}" >项目成员</a> 
-						<a href="projectset?id=${project.id}" >项目设置</a>
+						<a href="${contextPath}/projectuser/get?id=${project.id}" >项目成员</a> 
+						<a href="${contextPath}/project/upt?id=${project.id}" >项目设置</a>
 					</div>
 					<div class="cmenuright">
 						<a href="#" class="cmra1">&nbsp;</a>
@@ -42,7 +42,7 @@
 					<!-- main div -->
 					<div class="gr_ge">
 						<span>
-							<img class="img-radius64" src="${project.user.portrait }" />
+							<img class="img-radius64" src="${contextPath}/${project.user.portrait }" />
 						</span>
 						<div class="gr_ge2">
 							<b><a href="#">${project.name}</a></b>
@@ -109,7 +109,7 @@
 		
 	
 		<div id="add_project_progress_div" class="leanmodel_div">
-			<form action="progress/add" role="form" class="form" id="add_project_progress_form" style="margin: auto;width: 580px;">
+			<form action="${contextPath}/progress/save.json" role="form" class="form" id="add_project_progress_form" style="margin: auto;width: 580px;">
 				<div class="modal-header">
 					<h4 class="modal-title">项目计划新增 <small> >>请输入项目计划信息 </small> </h4> 
 				</div>
@@ -146,7 +146,7 @@
 		</div>
 	
 		<div id="add_project_user_div" class="leanmodel_div">
-			<form action="project/useradd" role="form" class="form" id="add_project_user_form">
+			<form action="${contextPath}/projectuser/save.json" role="form" class="form" id="add_project_user_form">
 				<div class="modal-header">
 					<h4>项目成员选择 <small> >>请选择项目成员 </small> </h4>
 				</div>
@@ -176,7 +176,7 @@
 		</div>
 		
 		<div id="update_project_progress_div" class="leanmodel_div">
-			<form action="progress/update" role="form" class="form" id="update_project_progress_form">
+			<form action="${contextPath}/progress/update.json" role="form" class="form" id="update_project_progress_form">
 				<div class="modal-header">
 					<h4 class="modal-title">项目计划修改 <small> >>请输入项目计划信息 </small> </h4>
 				</div>
@@ -207,13 +207,13 @@
 		</div>
 		
 		<!-- gantt插件 -->
-		<link rel ="stylesheet" href ="js/gantt/css/style.css" /> 
-		<script src ="js/gantt/jquery.fn.gantt.js" charset="GB2312"></script>
+		<link rel ="stylesheet" href ="${contextPath}/js/gantt/css/style.css" /> 
+		<script src ="${contextPath}/js/gantt/jquery.fn.gantt.js" charset="GB2312"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 				var id = '${project.id}';
 				$(".gantt").gantt({
-					source: "progress/gantt?id="+id,
+					source: "${contextPath}/progress/gantt.json?id="+id,
 					navigate: "scroll",
 					maxScale: "hours",
 					itemsPerPage: 10,
@@ -256,7 +256,7 @@
 			
 			$.ajax({
 				type:"POST",
-				url:"user/trees",
+				url:"${contextPath}/user/trees.json",
 				async:false,
 				error:function(request){
 					//alert("数据请求错误!");
@@ -374,7 +374,7 @@
 				if(!treeNode.isParent){
 					$("input[name='userid']").val(treeNode.id);
 					$("#username").html(treeNode.name);
-					$("#userpic").attr("src",treeNode.portrait==""?"images/liimg.jpg":treeNode.portrait);
+					$("#userpic").attr("src",treeNode.portrait==""?"${contextPath}/images/liimg.jpg":"${contextPath}/"+treeNode.portrait);
 				}
 			}
 			
@@ -402,12 +402,12 @@
 							$.ajax({
 								cache:true,
 								type:"POST",
-								url:"progress/delete?id="+id,
+								url:"${contextPath}/progress/delete.json?id="+id,
 								error: function(request) {
 								},
 								success: function(data) {
 									var vdata = eval("("+data+")");
-									window.location = "progress?id="+vdata.projectId;
+									window.location = "${contextPath}/progress/get?id="+vdata.projectId;
 								}
 							});
 						},
@@ -421,7 +421,7 @@
 				$.ajax({
 					cache:true,
 					type:"POST",
-					url:"progress/updateInit?id="+id,
+					url:"${contextPath}/progress/updateInit?id="+id,
 					error: function(request) {
 						//alert("服务器连接失败!");
 					},
@@ -465,7 +465,7 @@
 						$("#update_project_progress_div .form input[type=text]").val("");
 						$("#update_project_progress_div .form textarea").val("");
 						
-						window.location = 'progress?id='+vdata.projectId;
+						window.location = '${contextPath}/progress/get?id='+vdata.projectId;
 					}
 				});
 			}

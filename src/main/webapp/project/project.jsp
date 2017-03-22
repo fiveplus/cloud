@@ -10,8 +10,8 @@
 	<fms:Content contentPlaceHolderId="source">
 		<!-- 导入外部css/js -->
 		<!-- 瀑布流插件 -->
-		<script src="js/wookmark/jquery.wookmark.js"></script>
-		<script src="js/wookmark/jquery.imagesloaded.js"></script>
+		<script src="${contextPath}/js/wookmark/jquery.wookmark.js"></script>
+		<script src="${contextPath}/js/wookmark/jquery.imagesloaded.js"></script>
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
 		<!-- main content -->
@@ -20,9 +20,9 @@
 				<div class="cmenu" style="min-width: 850px;">
 					<div class="cmenuleft">
 						<a class="cur">项目记录</a>
-						<a href="progress?id=${project.id}" >项目进度</a>
-						<a href="projectuser?id=${project.id}" >项目成员</a> 
-						<a href="projectset?id=${project.id}" >项目设置</a>
+						<a href="${contextPath}/progress/get?id=${project.id}" >项目进度</a>
+						<a href="${contextPath}/projectuser/get?id=${project.id}" >项目成员</a> 
+						<a href="${contextPath}/project/upt?id=${project.id}" >项目设置</a>
 					</div>
 					<div class="cmenuright">
 						<a href="#" class="cmra1">&nbsp;</a>
@@ -39,7 +39,7 @@
 					<!-- main div -->
 					<div class="gr_ge">
 						<span>
-							<img class="img-radius64" src="${project.user.portrait}" />
+							<img class="img-radius64" src="${contextPath}/${project.user.portrait}" />
 						</span>
 						<div class="gr_ge2">
 							<b><a href="#">${project.name}</a></b>
@@ -75,7 +75,7 @@
 						var x = event.pageX + 10;
 						var y = event.pageY + 10;
 						var id = $(this).attr("data-id");
-						$("#user-div").load("user/user?id="+id,function(){
+						$("#user-div").load("${contextPath}/user/user?id="+id,function(){
 							$("#user-div").css({"left":x+"px","top":y+"px"});
 							$("#user-div").show();
 						});
@@ -91,19 +91,19 @@
 					var a = $(this);
 					$.ajax({
 						type:"POST",
-						url:"praise/save",
+						url:"${contextPath}/praise/save.json",
 						data:{contentId:contentId},
 						success: function(data) {
 							
 							var vdata = eval("("+data+")");
 							if(vdata.code == 200){
 								//点赞
-								a.css("background","url(images/libg04.png) no-repeat 0 4px");
+								a.css("background","url(${contextPath}/images/libg04.png) no-repeat 0 4px");
 								num = parseInt(num) + 1;
 								a.html("("+num+")");
 							}else{
 								//消赞
-								a.css("background","url(images/libg04.png) no-repeat 0 -13px");
+								a.css("background","url(${contextPath}/images/libg04.png) no-repeat 0 -13px");
 								num = parseInt(num) - 1;
 								a.html("("+num+")");
 							}
@@ -117,7 +117,7 @@
 				$handler=$("li",$list),
 				page = 1,
 				isLoading = false,
-				apiURL = "content/plist?projectId="+projectId,
+				apiURL = "${contextPath}/content/plist.json?projectId="+projectId,
 				lastRequestTimestamp = 0,
 				fadeInDelay = 2000,
 				$window = $(window),
@@ -181,8 +181,8 @@
 				
 				//组装发布文章
 				function get_content(c){
-					var off = "style='background:url(images/libg04.png) no-repeat 0 -13px'";
-					var on = "style='background:url(images/libg04.png) no-repeat 0 4px'";
+					var off = "style='background:url(${contextPath}/images/libg04.png) no-repeat 0 -13px'";
+					var on = "style='background:url(${contextPath}/images/libg04.png) no-repeat 0 4px'";
 					var style = c.isPraise == 0 ? on : off;
 					var date = new Date(c.createTime);
 					var time = date.Format("yyyy-MM-dd HH:mm:ss");
@@ -196,7 +196,7 @@
 					var st = "<li>"+
 						"<div class='libox'>"+
 					"<a href='javascript:void(0)' class='share'>"+c.theme.name+"</a>"+
-					"<a href='javascript:void(0)' data-id='"+c.user.id+"' class='hphoto'><img src='"+c.user.portrait+"'"+
+					"<a href='javascript:void(0)' data-id='"+c.user.id+"' class='hphoto'><img src='${contextPath}/"+c.user.portrait+"'"+
 							"class='img-radius30' />"+
 					"</a>"+
 					"<b><a href='#'>"+c.user.username+"</a>"+

@@ -10,8 +10,8 @@
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="source">
 		<!-- 导入外部css/js -->
-		<script type="text/javascript" src="admin/js/ajaxfileupload.js" ></script> 
-		<script type="text/javascript" src="admin/js/jquery.Jcrop.js" ></script> 
+		<script type="text/javascript" src="${contextPath}/admin/js/ajaxfileupload.js" ></script> 
+		<script type="text/javascript" src="${contextPath}/admin/js/jquery.Jcrop.js" ></script> 
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
 		<!-- main content -->
@@ -19,10 +19,10 @@
 			<div style="position:relative">
 				<div class="cmenu" >
 					<div class="cmenuleft">
-						<a href="mycontents">我的记录</a>
+						<a href="${contextPath}/my/contents">我的记录</a>
 						<a href="#">我的留言</a>
-						<a href="msg">我的日历</a>
-						<a href="#">我的消息</a>
+						<a href="${contextPath}/my/calendar">我的日历</a>
+						<a href="${contextPath}/my/msg">我的消息</a>
 					</div>
 					<div class="cmenuright">
 						<a class="cur">资料</a>
@@ -36,7 +36,7 @@
 					<!-- main div -->
 					<div class="gr_ge">
 						<span>
-							<a id="upload_a" href="#upload_image_div" rel="leanModal"  ><img class="img-radius64" src="${u.portrait}" /></a>
+							<a id="upload_a" href="#upload_image_div" rel="leanModal"  ><img class="img-radius64" src="${contextPath}/${u.portrait}" /></a>
 						</span>
 						<div class="gr_ge2" style="padding-top:13px;">
 							<font size="+1"><b>${u.username}</b></font> ${u.group.parent.name}·${u.group.name}
@@ -228,7 +228,7 @@
 				var height = $("#height").val();
 				var u = "x="+x+"&y="+y+"&width="+width+"&height="+height;
 				$.ajaxFileUpload({
-					url:'user/upload?'+u,
+					url:'${contextPath}/user/upload.json?'+u,
 					type:'post',
 					secureuri:false,
 					fileElementId:'file',
@@ -240,7 +240,7 @@
 			
 			function check_pass(val){
 				$.ajax({
-					url:"user/checkpass",
+					url:"${contextPath}/user/checkpass.json",
 					data:{password:val},
 					success:function(data){
 						var vdata = eval("("+data+")");
@@ -283,7 +283,7 @@
 				}
 				
 				$.ajax({
-					url:"user/updatepass",
+					url:"${contextPath}/user/updatepass.json",
 					data:{oldpass:oldpass,newpass:newpass},
 					success:function(data){
 						var vdata = eval("("+data+")");

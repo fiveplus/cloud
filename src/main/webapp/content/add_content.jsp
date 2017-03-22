@@ -194,6 +194,7 @@
 			
 			function okText(){
 				$("#warn").hide();
+				$("#remind_a").remove();
 				$(".post_r").prepend("<a id='remind_a' href='javascript:emptyText()'>"+"提醒时间 "+$("#datetimepicker").val()+"</a>");
 			}
 			

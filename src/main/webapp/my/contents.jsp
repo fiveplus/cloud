@@ -9,8 +9,8 @@
 	<fms:Content contentPlaceHolderId="source">
 		<!-- 导入外部css/js -->
 		<!-- 瀑布流插件 -->
-		<script src="js/wookmark/jquery.wookmark.js"></script>
-		<script src="js/wookmark/jquery.imagesloaded.js"></script>
+		<script src="${contextPath}/js/wookmark/jquery.wookmark.js"></script>
+		<script src="${contextPath}/js/wookmark/jquery.imagesloaded.js"></script>
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
 		<!-- main content -->
@@ -20,11 +20,11 @@
 					<div class="cmenuleft">
 						<a class="cur">我的记录</a>
 						<a href="#">我的留言</a>
-						<a href="msg">我的日历</a>
-						<a href="#">我的消息</a>
+						<a href="${contextPath}/my/calendar">我的日历</a>
+						<a href="${contextPath}/my/msg">我的消息</a>
 					</div>
 					<div class="cmenuright">
-						<a href="config">资料</a>
+						<a href="${contextPath}/my/me">资料</a>
 						<a href="#">统计</a>
 						<a href="#">访客</a>
               		</div>
@@ -59,7 +59,7 @@
 						var x = event.pageX + 10;
 						var y = event.pageY + 10;
 						var id = $(this).attr("data-id");
-						$("#user-div").load("user/user?id="+id,function(){
+						$("#user-div").load("${contextPath}/user/user?id="+id,function(){
 							$("#user-div").css({"left":x+"px","top":y+"px"});
 							$("#user-div").show();
 						});
@@ -72,7 +72,7 @@
 				$handler=$("li",$list),
 				page = 1,
 				isLoading = false,
-				apiURL = "content/mylist",
+				apiURL = "${contextPath}/content/mylist.json",
 				lastRequestTimestamp = 0,
 				fadeInDelay = 2000,
 				$window = $(window),
@@ -148,7 +148,7 @@
 					var st = "<li data-id='"+c.id+"'>"+
 						"<div class='libox'>"+
 					"<a href='javascript:void(0)' class='share'>"+c.theme.name+"</a>"+
-					"<a href='javascript:void(0)' data-id='"+c.user.id+"' class='hphoto'><img src='"+c.user.portrait+"'"+
+					"<a href='javascript:void(0)' data-id='"+c.user.id+"' class='hphoto'><img src='${contextPath}/"+c.user.portrait+"'"+
 							"class='img-radius30' />"+
 					"</a>"+
 					"<b><a href='#'>"+c.user.username+"</a>"+
@@ -199,7 +199,7 @@
 						buttons:{
 							confirm:function(){
 								$.ajax({
-									url:'content/del',
+									url:'${contextPath}/content/delete.json',
 									data:{id:dataid},
 									success:function(data){
 										$.alert({title:'提示信息',content:'删除成功！',type:'red'});

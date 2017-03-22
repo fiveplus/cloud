@@ -123,7 +123,7 @@
 				<img src="" class="img-radius64" />
 			</div>
 			<div class="chat-top-right">
-				<div class="chat-top-right-top">
+				<div class="chat-top-right-toprm">
 					<!-- 姓名 -->
 				</div>
 				<div class="chat-top-right-bottom">
@@ -338,8 +338,8 @@
 				$(".rm a").not($(this)).find(".bg").stop().animate({'top':'-88px'},250);
 				$(".rm a").not($(this)).removeClass("cur");
 				$(this).addClass("cur");
-				var p = $(this).attr("href").replace("#","");
-				window.location.href = p+"?rightMenuId="+p;
+				//var p = $(this).attr("href").replace("#","");
+				//window.location.href = "${contextPath}/"+p+"?rightMenuId="+p;
 			});
 			
 			

@@ -10,10 +10,10 @@
 	<fms:Content contentPlaceHolderId="source">
 		<!-- 导入外部css/js -->
 		<!-- tree插件 -->
-		<link rel="stylesheet" href="css/metroStyle/metroStyle.css" type="text/css" />
-		<script type="text/javascript" src="js/ztree/jquery.ztree.core-3.5.js"></script>
-		<script type="text/javascript" src="js/ztree/jquery.ztree.excheck-3.5.js"></script>
-		<script type="text/javascript" src="js/ztree/jquery.ztree.exedit-3.5.js"></script>
+		<link rel="stylesheet" href="${contextPath}/css/metroStyle/metroStyle.css" type="text/css" />
+		<script type="text/javascript" src="${contextPath}/js/ztree/jquery.ztree.core-3.5.js"></script>
+		<script type="text/javascript" src="${contextPath}/js/ztree/jquery.ztree.excheck-3.5.js"></script>
+		<script type="text/javascript" src="${contextPath}/js/ztree/jquery.ztree.exedit-3.5.js"></script>
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
 		<!-- main content -->
@@ -21,10 +21,10 @@
 			<div style="position:relative">
 				<div class="cmenu" style="min-width: 850px;">
 					<div class="cmenuleft">
-						<a href="proj?id=${project.id}" >项目记录</a>
-						<a href="progress?id=${project.id}" >项目进度</a>
+						<a href="${contextPath}/project/get?id=${project.id}" >项目记录</a>
+						<a href="${contextPath}/progress/get?id=${project.id}" >项目进度</a>
 						<a class="cur">项目成员</a> 
-						<a href="projectset?id=${project.id}" >项目设置</a>
+						<a href="${contextPath}/project/upt?id=${project.id}" >项目设置</a>
 					</div>
 					<div class="cmenuright">
 						<a href="#" class="cmra1">&nbsp;</a>
@@ -41,7 +41,7 @@
 					<!-- main div -->
 					<div class="gr_ge">
 						<span>
-							<img class="img-radius64" src="${project.user.portrait }" />
+							<img class="img-radius64" src="${contextPath}/${project.user.portrait }" />
 						</span>
 						<div class="gr_ge2">
 							<b><a href="#">${project.name}</a></b>
@@ -83,7 +83,7 @@
 											</label>
 										</td>
 										<td>
-											<img style="vertical-align:middle;" class="img-radius30" src="${project.user.portrait }"  /> <font>${project.user.username}</font> <font color="red"><b>[项目主人]</b></font> 
+											<img style="vertical-align:middle;" class="img-radius30" src="${contextPath}/${project.user.portrait }"  /> <font>${project.user.username}</font> <font color="red"><b>[项目主人]</b></font> 
 										</td>
 										<td style="vertical-align:middle;"><date:date value="${project.createTime}" /></td>
 										<td  style="vertical-align:middle;" class="hidden-400">
@@ -101,7 +101,7 @@
 												</label>
 											</td>
 											<td>
-												<img style="vertical-align:middle;" class="img-radius30" src="${u.portrait }"  /> 
+												<img style="vertical-align:middle;" class="img-radius30" src="${contextPath}/${u.portrait }"  /> 
 												<font>${u.username}</font> 
 											</td>
 											<td style="vertical-align:middle;"><date:date value="${u.createTime}" /></td>
@@ -123,7 +123,7 @@
 		</div>
 		
 		<div id="add_project_user_div" class="leanmodel_div">
-			<form action="projectuser/add" role="form" class="form" id="add_project_user_form">
+			<form action="${contextPath}/projectuser/save.json" role="form" class="form" id="add_project_user_form">
 				<div class="modal-header">
 					<h4 class="modal-title">项目成员新增 <small> >>请选择项目成员 </small> </h4>
 				</div>
@@ -175,7 +175,7 @@
 			$.ajax({
 				cache:true,
 				type:"POST",
-				url:"user/trees",
+				url:"${contextPath}/user/trees.json",
 				error: function(request) {
 					//alert("服务器连接失败!");
 				},
@@ -291,7 +291,7 @@
 					if(!treeNode.isParent){
 						$("input[name='user.id']").val(treeNode.id);
 						$("#username").html(treeNode.name);
-						$("#userpic").attr("src",treeNode.portrait==""?"images/liimg.jpg":treeNode.portrait);
+						$("#userpic").attr("src",treeNode.portrait==""?"${contextPath}/images/liimg.jpg":"${contextPath}/"+treeNode.portrait);
 					}
 				}
 				
@@ -314,7 +314,7 @@
 							$("#add_project_div").attr("style","");
 							$("#lean_overlay").remove();
 							
-							window.location.href = 'projectuser?id='+vdata.projectId;
+							window.location.href = '${contextPath}/projectuser/get?id='+vdata.projectId;
 						}
 					});
 				}
@@ -329,7 +329,7 @@
 								$.ajax({
 									cache:true,
 									type:"POST",
-									url:"projectuser/delete",
+									url:"${contextPath}/projectuser/delete.json",
 									data:{userid:userid,projectid:projectid},
 									error:function(request){
 										//alert("服务器连接失败!");
@@ -338,7 +338,7 @@
 										var vdata = eval("("+data+")");
 										//alert(vdata.message);
 										
-										window.location.href = 'projectuser?id='+vdata.projectId;
+										window.location.href = '${contextPath}/projectuser/get?id='+vdata.projectId;
 									}
 								});
 							},
