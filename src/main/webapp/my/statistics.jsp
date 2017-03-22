@@ -34,7 +34,7 @@
 					<!-- 用户信息 -->
 					<div class="gr_ge">
 						<span>
-							<img class="img-radius64" src="${u.portrait}" />
+							<img class="img-radius64" src="${contextPath}/${user.portrait}" />
 						</span>
 						<div class="gr_ge2" style="padding-top:5px;">
 							<b>${user.username}</b> ${user.group.parent.name}·${user.group.name} 
