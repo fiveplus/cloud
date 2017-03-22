@@ -60,34 +60,42 @@ public class CalendarController {
 		String userid = request.getParameter("userid");
 		User assignUser = userService.get(Integer.parseInt(userid));
 		
+		//TODO 获取今天开始后的事件树
+		List<Calendar> list = calendarService.getCalendarToAssignUserAndStatusAndStartTime(Integer.parseInt(userid), "Y");
+		
 		c.setCreateUser(user);
 		c.setAssignUser(assignUser);
 		c.setContent(c.getContent());
 		c.setTitle(c.getTitle());
-		c.setStatus("W");
+		c.setStatus("Y");
 		c.setStartTime(StringUtil.getStringToLong(c.getStart(),"yyyy-MM-dd HH:mm"));
 		c.setEndTime(StringUtil.getStringToLong(c.getEnd(),"yyyy-MM-dd HH:mm"));
 		
-		//TODO 
-		
-		int id = calendarService.save(c);
 		String message = "";
-		if(id > 0){
-			//TODO 建立日志
-			//你的日程"title"发布成功，请等待用户username的审核哦～
-			String title = "日程消息";
-			String content = "你的日程 \""+StringUtil.substring(c.getTitle(), 10)+"\"发布成功,请耐心等待用户"+assignUser.getUsername()+"的审核哦~";
-			SysLog log = new SysLog();
-			log.setTitle(title);
-			log.setContent(content);
-			log.setUser(user);
-			log.setCreateTime(StringUtil.getDateToLong(new Date()));
-			sysLogService.save(log);
-			
-			message = "恭喜您，日程创建成功，请等待审核!";
+		//TODO 判断是否重复
+		if(isRepeat(list, c)){
+			message = "很抱歉，该时间段已被其他事件占用，请重新调整后提交日程！";
 		}else{
-			message = "很抱歉，日称创建失败!";
+			int id = calendarService.save(c);
+			if(id > 0){
+				//TODO 建立日志
+				//你的日程"title"发布成功，请等待用户username的审核哦～
+				String title = "日程消息";
+				String content = "日程 \""+StringUtil.substring(c.getTitle(), 10)+"\"安排成功,用户"+assignUser.getUsername()+"可删除您安排的事件，请时刻关注最新动态！";
+				SysLog log = new SysLog();
+				log.setTitle(title);
+				log.setContent(content);
+				log.setUser(user);
+				log.setCreateTime(StringUtil.getDateToLong(new Date()));
+				sysLogService.save(log);
+				
+				message = "恭喜您，日程创建成功。";
+			}else{
+				message = "很抱歉，日称创建失败!";
+			}
 		}
+		
+		
 		returnMap.put("message", message);
 		
 		return returnMap;
@@ -183,14 +191,28 @@ public class CalendarController {
 	 * @return 重叠返回true
 	 */
 	private boolean isRepeat(List<Calendar> list,Calendar c){
-		boolean flag = false;
+		if(list == null || list.size() == 0) return false;
+		boolean flag = true;
 		long start = c.getStartTime();
 		long end = c.getEndTime();
-		for(Calendar cal:list){
-			if( (start < cal.getEndTime() && start > cal.getStartTime()) 
-					|| (end < cal.getEndTime() && end > cal.getStartTime() ) ){
-				flag = true;
-				break;
+		int length = list.size();
+		for(int i = 0;i < length;i++){
+			Calendar cal = list.get(i);
+			if(i == 0){
+				if(end <= cal.getStartTime()){
+					flag = false;
+					break;
+				}
+			}else if(i < length - 1 && i > 0){
+				if( (start >= cal.getEndTime() && start <= list.get(i + 1).getStartTime() )
+						&& (end >= cal.getEndTime() && end <= list.get(i + 1).getStartTime() ) ){
+					flag = false;
+					break;
+				}
+			}else if(i == length -1){
+				if(start >= cal.getEndTime()){
+					flag = false;
+				}
 			}
 		}
 		return flag;

@@ -18,7 +18,7 @@ request.setCharacterEncoding("UTF-8");
  * {margin:0; padding:0;}
  ul {list-style:none;}
  a {text-decoration:none;}
- html, body {width:100%;height:100%;}
+ html, body {width:100%;height:100%;font-family: "黑体"}
 
 .clearfix:after,.clearfix:before{display:table;line-height:0;content:""}
 .clearfix:after{clear:both}
@@ -30,10 +30,10 @@ request.setCharacterEncoding("UTF-8");
  .switch {width:350px;height:51px;position:relative;z-index:6;}
  .switch_bg {width:175px;height:4px;background:#3dc768;margin:48px 0 0 0;position:absolute;z-index:7}
  .switch ul {text-decoration:none;text-align:center;z-index:9;}
- .switch ul li {width:175px;height:51px;color:#FFF;display:inline-block;line-height:58px;font-size:18px;font-weight:700;font-family:Microsoft YaHei;float:left;text-decoration:none;cursor:pointer;}
+ .switch ul li {width:175px;height:51px;color:#FFF;display:inline-block;line-height:58px;font-size:18px;float:left;text-decoration:none;cursor:pointer;}
  .switch ul li:hover {color:#3dc768;}
  .web_login>div {width:350px;height:334px;position:relative;margin:o auto;}
- .tips  {color:#FFF;line-height:60px;font-size:16px;font-family:Microsoft YaHei;display:block;}
+ .tips  {color:#FFF;line-height:60px;font-size:16px;display:block;}
  .loginform {width:300px;height:334px;text-align:center;margin:0 auto;}
  .uinArea {float:left;width:300px;height:70px;text-align:center;}
 
@@ -43,14 +43,14 @@ request.setCharacterEncoding("UTF-8");
 
  .inputStyle {position:relative;width:300px;height:40px;line-height:40px;background:url(image/login1.png) no-repeat;border:none;outline:none;position:relative;color:#FFF;font-size:16px;}
  .inputStyle:hover {background:url(image/login88.png) no-repeat;}
- .tips2 {color:#FFF;font-size:16px;text-decoration:none;float:right;position:relative;font-family:Microsoft YaHei;text-align:center;}
+ .tips2 {color:#FFF;font-size:16px;text-decoration:none;float:right;position:relative;text-align:center;}
  .tips2:hover {color:#3dc768;}
- .login_button {width:300px;height:40px;border:none;background:#27984a;border-radius:3px;float:left;cursor:pointer;color:#FFF;font-size:20px;margin-top:10px;font-family:Microsoft YaHei;}
+ .login_button {width:300px;height:40px;border:none;background:#27984a;border-radius:3px;float:left;cursor:pointer;color:#FFF;font-size:20px;margin-top:10px;}
  .login_button:hover {background:#3dc768;}
  .loginform2 {width:350px;height:334px;}
  .loginform2 img {width:180px;height:180px;}
  .web_login2 {display:none;}
- .tips3 {color:#FFF;line-height:70px;font-size:18px;font-family:Microsoft YaHei;display:block;}
+ .tips3 {color:#FFF;line-height:70px;font-size:18px;display:block;}
  .point {width:200px;height:29px;position:relative;left:50%;margin-left:-100px;top:720px;}
  .point ul li {width:50px;height:29px;text-decoration:none;float:left;text-align:center;margin:0 auto;display:block;padding-top:10px;cursor:pointer;}
  .point ul li.pointer-selected {background:url(image/point2.png) no-repeat center;}
@@ -99,7 +99,7 @@ request.setCharacterEncoding("UTF-8");
                      <input type="password" id="password" name="password" class="inputStyle"  style="color:#969696;padding-left:10px;"  tabindex="2"  />
                     </div>
                     <a class="tips2" href="#"><p>忘记密码？</p></a>
-                    <input type="button" id="login" value="登录" class="login_button" tabindex="3"/>
+                    <input type="button" id="login" value="登&nbsp;&nbsp;录" class="login_button" tabindex="3"/>
                     </form>
                 </div>
                 <div class="web_login2">

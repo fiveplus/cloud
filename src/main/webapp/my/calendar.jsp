@@ -119,6 +119,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="del_event">删除事件</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					</div>
 				</div>
@@ -187,6 +188,13 @@
 			   });
 			   
 			   $("#data_source").change(function(){
+				   var val = $(this).val();
+				   var userid = '${user.id}';
+				   if(val != userid){
+					   $("#del_event").hide();
+				   }else{
+					   $("#del_event").show();
+				   }
 				   $('#calendar').fullCalendar('refetchEvents'); //重新获取所有事件数据 
 			   });
 			   
@@ -198,6 +206,37 @@
 				var action = form.attr("action");
 				var alldata = form.serialize();
 				alldata += "&userid="+userid;
+				var start = form.find("input[name='start']").val();
+				var end = form.find("input[name='end']").val();
+				var title = form.find("input[name='title']").val().trim();
+				var content = form.find("textarea[name='content']").val().trim();
+				var regEx = new RegExp("\\-","gi");
+				start = start.replace(regEx,"/");
+				end = end.replace(regEx,"/");
+				start = new Date(start+":00").getTime();
+				end = new Date(start+":00").getTime();
+				var now = new Date().getTime();
+				if(start <= end){
+					$.alert({title:'提示信息',content:"开始时间必须大于结束时间！",type:'red'});
+					return;
+				}
+				if(start < now){
+					$.alert({title:'提示信息',content:"开始时间必须大于当前时间！",type:'red'});
+					return;
+				}
+				if(end < now){
+					$.alert({title:'提示信息',content:"结束时间必须大于当前时间！",type:'red'});
+					return;
+				}
+				if(title == ''){
+					$.alert({title:'提示信息',content:"请输入日程标题！",type:'red'});
+					return;
+				}
+				if(content == ''){
+					$.alert({title:'提示信息',content:"请输入日程内容！",type:'red'});
+					return;
+				}
+				
 				$.ajax({
 					url:action,
 					data:alldata,

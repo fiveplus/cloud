@@ -19,4 +19,8 @@ public class CalendarService extends BaseService<Calendar, Integer>{
 		return calendarDAO.getCalendarToAssignUserAndStatus(userid,status);
 	}
 	
+	public List<Calendar> getCalendarToAssignUserAndStatusAndStartTime(int userid,String status){
+		return calendarDAO.getCalendarToAssignUserAndStatusAndStartTime(userid, status);
+	}
+	
 }
