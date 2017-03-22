@@ -125,7 +125,7 @@
 				}
 				var option = {
 					title:{
-						text:'碎片云七日分析图'
+						text:'碎片云三十日分析图'
 					},
 					tooltip:{
 						trigger:'axis'

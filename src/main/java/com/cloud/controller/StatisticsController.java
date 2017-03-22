@@ -72,7 +72,7 @@ public class StatisticsController {
 		List<StatBO> comments = init_daylist();
 		List<StatBO> praises = init_daylist();
 		
-		Map<String,Long> offsetTime = StringUtil.getBeforeTimeAndNowTime(-6);
+		Map<String,Long> offsetTime = StringUtil.getBeforeTimeAndNowTime(-29);
 		List<StatBO> clist = contentService.getCountToUserIdAndCreateTime(0,offsetTime);
 		List<StatBO> clist2 = commentService.getCountToUserIdAndCreateTime(0,offsetTime);
 		List<StatBO> plist = praiseService.getCountToUserIdAndCreateTime(0,offsetTime);
@@ -96,7 +96,7 @@ public class StatisticsController {
 		bolist.add(new StatBO(now,0l));
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(now);
-		for(int i = 0;i < 6;i++){
+		for(int i = 0;i < 29;i++){
 			cal.add(Calendar.DATE, -1);
 			Date d = cal.getTime();
 			//String date = StringUtil.formatDate(d,"yyyy-MM-dd");
