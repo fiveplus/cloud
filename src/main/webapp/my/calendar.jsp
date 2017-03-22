@@ -26,7 +26,6 @@
 				<div class="cmenu" >
 					<div class="cmenuleft">
 						<a href="${contextPath}/my/contents">我的记录</a>
-						<a href="#">我的留言</a>
 						<a class="cur">我的日历</a>
 						<a href="${contextPath}/my/msg">我的消息</a>
 					</div>

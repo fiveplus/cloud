@@ -19,7 +19,6 @@
 				<div class="cmenu" >
 					<div class="cmenuleft">
 						<a class="cur">我的记录</a>
-						<a href="#">我的留言</a>
 						<a href="${contextPath}/my/calendar">我的日历</a>
 						<a href="${contextPath}/my/msg">我的消息</a>
 					</div>
