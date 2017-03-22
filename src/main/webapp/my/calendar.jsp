@@ -102,6 +102,7 @@
 					</div>
 					<div class="modal-body" id="select_div">
 						<div class="form-group">
+							<input type="hidden" name="id" value="" />
 							<span class="control-label">开始时间：</span>
 							<span class="control-label" name="start"></span>
 						</div>
@@ -119,7 +120,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="del_event">删除事件</button>
+						<button type="button" class="btn btn-primary" id="del_event" onclick="del_calendar()">删除事件</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					</div>
 				</div>
@@ -176,6 +177,7 @@
 								var c = data.calendar;
 								var start = new Date(c.startTime).Format("yyyy-MM-dd HH:mm:ss");
 						     	var end = new Date(c.endTime).Format("yyyy-MM-dd HH:mm:ss");
+						     	$("#select_div input[name='id']").val(c.id);
 								$("#select_div span[name='start']").html(start);
 								$("#select_div span[name='end']").html(end);
 								$("#select_div span[name='title']").html(c.title);
@@ -247,6 +249,31 @@
           			   	$.alert({title:'提示信息',content:vdata.message,type:'blue'});
           			  	$("#add_event").modal("hide");
           			   	document.getElementById("add_form").reset();
+          			  	$('#calendar').fullCalendar('refetchEvents');
+					}
+				});
+			}
+			
+			function del_calendar(){
+				var id = $("#select_div input[name='id']").val();
+				$.confirm({
+					title:'提示信息',
+					content:'确认删除吗？删除后无法恢复！！！',
+					buttons:{
+						confirm:function(){
+							$.ajax({
+								url:'${contextPath}/calendar/delete.json',
+								data:{id:id},
+								success:function(data){
+									$.alert({title:'提示信息',content:data.message,type:'red'});
+									$("#select_event").modal("hide");
+									$('#calendar').fullCalendar('refetchEvents');
+								}
+							});
+						},
+						cancel:function(){
+							//取消
+						}
 					}
 				});
 			}

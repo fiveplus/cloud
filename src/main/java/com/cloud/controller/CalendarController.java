@@ -76,7 +76,8 @@ public class CalendarController {
 		if(isRepeat(list, c)){
 			message = "很抱歉，该时间段已被其他事件占用，请重新调整后提交日程！";
 		}else{
-			int id = calendarService.save(c);
+			calendarService.save(c);
+			/*
 			if(id > 0){
 				//TODO 建立日志
 				//你的日程"title"发布成功，请等待用户username的审核哦～
@@ -93,6 +94,7 @@ public class CalendarController {
 			}else{
 				message = "很抱歉，日称创建失败!";
 			}
+			*/
 		}
 		
 		
@@ -151,7 +153,7 @@ public class CalendarController {
 		
 		return returnMap;
 	}
-	
+	/*
 	@RequestMapping("/update.json")
 	public @ResponseBody Map<String,Object> update(int id,String status,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
@@ -183,7 +185,7 @@ public class CalendarController {
 		
 		return returnMap;
 	}
-	
+	*/
 	/**
 	 * 时间段是否重叠
 	 * @param list
@@ -216,6 +218,39 @@ public class CalendarController {
 			}
 		}
 		return flag;
+	}
+	
+	@RequestMapping("/delete.json")
+	public @ResponseBody Map<String,Object> delete(int id,HttpServletRequest request,Model model){
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		String message = "恭喜您，事件删除成功!";
+		Calendar c = calendarService.get(id);
+		if(c != null){
+			if(c.getAssignUser().getId().equals(user.getId())){
+				calendarService.delete(id);
+				
+				//TODO 建立日志
+				//你的日程"title"发布成功，请等待用户username的审核哦～
+				String title = "日程消息";
+				String content = "您安排的日程 \""+StringUtil.substring(c.getTitle(), 10)+"\"已被用户["+c.getAssignUser().getUsername()+"]移除，请时刻关注最新动态！";
+				SysLog log = new SysLog();
+				log.setTitle(title);
+				log.setContent(content);
+				log.setUser(c.getCreateUser());
+				log.setCreateTime(StringUtil.getDateToLong(new Date()));
+				sysLogService.save(log);
+				
+			}else{
+				message = "很抱歉，非本人不能删除事件！";
+			}
+		}else{
+			message = "很抱歉，该事件已被删除！";
+		}
+		
+		returnMap.put("message", message);
+		return returnMap;
 	}
 	
 }
