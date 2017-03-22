@@ -131,7 +131,7 @@
 					var a = $(this);
 					$.ajax({
 						type:"POST",
-						url:"praise/save",
+						url:"${contextPath}/praise/save.json",
 						data:{contentId:contentId},
 						success: function(data) {
 							
