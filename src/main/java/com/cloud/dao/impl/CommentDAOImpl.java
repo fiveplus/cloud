@@ -27,10 +27,14 @@ public class CommentDAOImpl extends BaseDAOImpl<Comment> implements CommentDAO{
 
 	public List<StatBO> getCountToUserIdAndCreateTime(int userId,
 			Map<String, Long> betweens) {
+		String user_hql = " and c.user.id = " + userId;
+		if(userId == 0) user_hql = "";
 		long beforeTime = betweens.get("beforeTime");
 		long afterTime = betweens.get("afterTime");
-		String hql = "select new com.cloud.controller.bo.StatBO(FROM_UNIXTIME(c.createTime/1000,'%Y-%m-%d') as name,count(*) as count) from Comment c where c.user.id =:userId and c.createTime >=:beforeTime and c.createTime <=:afterTime group by FROM_UNIXTIME(c.createTime/1000,'%Y-%m-%d') ";
-		List list = this.getHQLList(hql, new String[]{"userId","beforeTime","afterTime"}, new Object[]{userId,beforeTime,afterTime});
+		String hql = "select new com.cloud.controller.bo.StatBO(FROM_UNIXTIME(c.createTime/1000,'%Y-%m-%d') as name,count(*) as count) from Comment c where 1 = 1 "
+		+ user_hql
+		+ " and c.createTime >=:beforeTime and c.createTime <=:afterTime group by FROM_UNIXTIME(c.createTime/1000,'%Y-%m-%d') ";
+		List list = this.getHQLList(hql, new String[]{"beforeTime","afterTime"}, new Object[]{beforeTime,afterTime});
 		return list;
 	}
 

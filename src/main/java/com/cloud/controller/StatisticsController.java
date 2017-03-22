@@ -51,45 +51,31 @@ public class StatisticsController {
 	
 	@RequestMapping("/stats")
 	public String statistics(HttpServletRequest request,Model model){
-		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("user");
-		//帖子数
-		int count = contentService.getListCountToUserId(user.getId());
-		//评论数
-		int ccount = commentService.getListCountToUserId(user.getId());
-		//阅读数
-		int sum = contentService.getReadCountSumToUserId(user.getId());
-		 
-		model.addAttribute("count",count);
-		model.addAttribute("ccount",ccount);
-		model.addAttribute("sum",sum);
 		
-		List<Project> projects = projectService.getProjectToUserId(user.getId());
+		List<Project> projects = projectService.findAll();
 		for(Project p:projects){
 			List<User> users = userProjectService.getUserToProjectId(p.getId());
 			p.setUsers(users);
 		}
 		model.addAttribute("projects",projects);
 		
-		
 		return "statistics/statistics";
 	}
 	
-	@RequestMapping("/stat/content.json")
+	@RequestMapping("/content_stat.json")
 	public @ResponseBody Map<String,Object> content(HttpServletRequest request,Model model){
 		HttpSession session = request.getSession();
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		int code = 0;
 		String msg = "";
-		User user = (User)session.getAttribute("user");
 		List<StatBO> contents = init_daylist();
 		List<StatBO> comments = init_daylist();
 		List<StatBO> praises = init_daylist();
 		
 		Map<String,Long> offsetTime = StringUtil.getBeforeTimeAndNowTime(-6);
-		List<StatBO> clist = contentService.getCountToUserIdAndCreateTime(user.getId(),offsetTime);
-		List<StatBO> clist2 = commentService.getCountToUserIdAndCreateTime(user.getId(),offsetTime);
-		List<StatBO> plist = praiseService.getCountToUserIdAndCreateTime(user.getId(),offsetTime);
+		List<StatBO> clist = contentService.getCountToUserIdAndCreateTime(0,offsetTime);
+		List<StatBO> clist2 = commentService.getCountToUserIdAndCreateTime(0,offsetTime);
+		List<StatBO> plist = praiseService.getCountToUserIdAndCreateTime(0,offsetTime);
 		contents = update_daylist(contents, clist);
 		comments = update_daylist(comments, clist2);
 		praises = update_daylist(praises, plist);

@@ -9,7 +9,7 @@
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="source">
 		<!-- 导入外部css/js -->
-		<script src='js/echarts.min.js'></script>
+		<script src='${contextPath}/js/echarts.min.js'></script>
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
 		<!-- main content -->
@@ -38,23 +38,7 @@
 				<div class="space_h_40"></div>
 				<!-- main div -->
 				<div>
-					<!-- 用户信息 -->
-					<div class="gr_ge">
-						<span>
-							<img class="img-radius64" src="${u.portrait}" />
-						</span>
-						<div class="gr_ge2" style="padding-top:5px;">
-							<b>${user.username}</b> ${user.group.parent.name}·${user.group.name} 
-							<br />
-							<b><font size="-1" color="red"> ${user.level.info} ( ${user.level.level.name}${user.level.name} ) </font></b>
-							<div style="margin-top: 5px;">
-								帖数：<strong>${count}</strong> &nbsp;&nbsp;
-								访问：<strong>${sum}</strong> &nbsp;&nbsp;
-								评论：<strong>${ccount}</strong>
-							</div>
-						</div>
-					</div>
-					<div style="padding:5px;"></div>
+					<div style="padding:5px;">&nbsp;</div>
 					<!-- 折线图 -->
 					<div id="fold_line" style="width:100%;height:400px;">
 					</div>
@@ -93,7 +77,7 @@
 		</div>
 		<script type="text/javascript">
 			
-			$.get("stat/content.json",function(data,status){
+			$.get("${contextPath}/stat/content_stat.json",function(data,status){
 				var cdata = init_datas("帖数",data.contents);
 				var cdata2 = init_datas("评论",data.comments);
 				var pdata = init_datas("赞",data.praises);
@@ -141,7 +125,7 @@
 				}
 				var option = {
 					title:{
-						text:'个人数据七日分析图'
+						text:'碎片云七日分析图'
 					},
 					tooltip:{
 						trigger:'axis'
