@@ -83,7 +83,8 @@
 			      url: "${contextPath}/my/getlog.json",
 			      data:{id:id},
 			      success: function(data){
-			    	  var vdata = eval("("+data+")");
+			    	  //var vdata = eval("("+data+")");
+			    	  var vdata = data;
 			     	  var l = vdata.log;
 			     	  var start = new Date(l.createTime).Format("yyyy-MM-dd HH:mm:ss");
 			     	  form.find("label[name='start']").html(start);

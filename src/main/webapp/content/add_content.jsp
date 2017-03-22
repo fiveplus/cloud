@@ -173,8 +173,8 @@
 					},
 					success: function(data) {
 						
-						var vdata = eval("("+data+")");
-						
+						//var vdata = eval("("+data+")");
+						var vdata = data;
 						if(vdata.code == 200){
 							$.alert({title:'提示信息',content:'发布成功！',type: 'blue'});
 							window.location.href="${contextPath}/index?rightMenuId=index";

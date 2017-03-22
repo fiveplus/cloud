@@ -17,17 +17,17 @@ var Color= new Array(9);
 	Color[16] = "00";
 var Time = new Map();
 //获取TOKEN
+var path = $("meta[name='path']").attr("content")+"/";
 function rong_init() {
 	$.ajax( {
-		cache : true,
 		type : "POST",
-		url : "rong/get_token",
+		url : path+"rong/get_token.json",
 		error : function(request) {
 			//alert("服务器连接异常!");
 		},
 		success : function(data) {
-			var vdata = eval("(" + data + ")");
-			var result = eval("(" + vdata.result + ")");
+			//var vdata = eval("("+data+")");
+			var result = eval("("+data.result+")");
 			var token = result.token;
 			// 连接融云服务器。
 			RongIMClient.init("lmxuhwagxp68d");
@@ -210,7 +210,7 @@ function get_history(){
 
 function to_message_div(imgurl,msg){
 	if(imgurl == ''){
-		imgurl = "images/main_56.png";
+		imgurl = path+"images/main_56.png";
 	}
 	var html = "";
 	html+='<div class="chat-to">'+
@@ -228,7 +228,7 @@ function to_message_div(imgurl,msg){
 }
 function form_message_div(imgurl,msg){
 	if(imgurl == ''){
-		imgurl = "images/main_56.png";
+		imgurl = path+"images/main_56.png";
 	}
 	var html = "";
 	html+='<div class="chat-form">'+

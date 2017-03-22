@@ -135,7 +135,8 @@
 						data:{contentId:contentId},
 						success: function(data) {
 							
-							var vdata = eval("("+data+")");
+							//var vdata = eval("("+data+")");
+							var vdata = data;
 							if(vdata.code == 200){
 								//点赞
 								a.css("background","url(${contextPath}/images/libg04.png) no-repeat 0 4px");

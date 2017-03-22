@@ -156,7 +156,7 @@
 					</div>
 					<div class="form-group"  style="float: left;width: 45%;margin-top:10px;padding:0; padding-top: 15px;background: #e9eaf5;border-radius: 5px;box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);">
 						<div align="center" style="padding-bottom:10px;">
-							<img class="img-radius64" id="userpic" src="images/liimg.jpg" style="margin-bottom: 5px;" /><br />
+							<img class="img-radius64" id="userpic" src="${contextPath}/images/liimg.jpg" style="margin-bottom: 5px;" /><br />
 							<label id="username">未选择</label>
 							<input type="hidden" name="userid" value="" />
 						</div>
@@ -262,7 +262,8 @@
 					//alert("数据请求错误!");
 				},
 				success:function(data){
-					var trees = eval("("+data+")");
+					//var trees = eval("("+data+")");
+					var trees = data;
 					var zNodes = [];
 					for(var i = 0;i< trees.length;i++){
 						zNodes.push({id:trees[i].id,pId:trees[i].pid,name:trees[i].name,isParent:trees[i].parent,portrait:trees[i].portrait});
@@ -406,7 +407,8 @@
 								error: function(request) {
 								},
 								success: function(data) {
-									var vdata = eval("("+data+")");
+									//var vdata = eval("("+data+")");
+									var vdata = data;
 									window.location = "${contextPath}/progress/get?id="+vdata.projectId;
 								}
 							});
@@ -421,12 +423,14 @@
 				$.ajax({
 					cache:true,
 					type:"POST",
-					url:"${contextPath}/progress/updateInit?id="+id,
+					url:"${contextPath}/progress/updateInit.json?id="+id,
 					error: function(request) {
 						//alert("服务器连接失败!");
 					},
 					success: function(data) {
-						var vdata = eval("("+data+")");
+						//var vdata = eval("("+data+")");
+						var vdata = data;
+						console.log(vdata);
 						var pg = vdata.progress;
 						$("#update_project_progress_div input[name='id']").val(pg.id);
 						$("#update_project_progress_div #user_name").html("执行成员：&nbsp;<b>"+pg.user.username+"</b>");
@@ -456,7 +460,8 @@
 						//alert("服务器连接失败!");
 					},
 					success:function(data){
-						var vdata = eval("("+data+")");
+						//var vdata = eval("("+data+")");
+						var vdata = data;
 						//alert(vdata.message);
 						
 						$("#update_project_progress_div").attr("style","");
@@ -483,7 +488,8 @@
 						//alert("服务器连接失败!");
 					},
 					success:function(data){
-						var vdata = eval("("+data+")");
+						//var vdata = eval("("+data+")");
+						var vdata = data;
 						//alert(vdata.message);
 						
 						$("#add_project_progress_div").attr("style","");
@@ -492,7 +498,7 @@
 						$("#add_project_progress_div .form input[type=text]").val("");
 						$("#add_project_progress_div .form textarea").val("");
 						
-						window.location = 'progress?id='+vdata.projectId;
+						window.location = '${contextPath}/progress/get?id='+vdata.projectId;
 					}
 				});
 			}

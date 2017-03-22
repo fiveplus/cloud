@@ -56,7 +56,7 @@ public class ProgressController {
 		return "project/progress";
 	}
 	
-	@RequestMapping("/gantt")
+	@RequestMapping("/gantt.json")
 	public void gantt(int id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		
 		PrintWriter out = response.getWriter(); 
@@ -99,7 +99,7 @@ public class ProgressController {
 		return returnMap;
 	}
 	
-	@RequestMapping("/progress/updateInit")
+	@RequestMapping("/updateInit.json")
 	public @ResponseBody Map<String,Object> updateInit(int id,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		
@@ -110,7 +110,7 @@ public class ProgressController {
 		return returnMap;
 	}
 	
-	@RequestMapping("/progress/update")
+	@RequestMapping("/update.json")
 	public @ResponseBody Map<String,Object> update(Progress pg,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		
@@ -129,7 +129,7 @@ public class ProgressController {
 		return returnMap;
 	}
 	
-	@RequestMapping("/progress/delete")
+	@RequestMapping("/delete.json")
 	public @ResponseBody Map<String,Object> delete(int id,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		Progress pg = progressService.get(id);

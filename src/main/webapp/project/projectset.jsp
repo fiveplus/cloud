@@ -76,7 +76,8 @@
 						//alert("数据请求错误!");
 					},
 					success:function(data){
-						var vdata = eval("("+data+")");
+						//var vdata = eval("("+data+")");
+						var vdata = data;
 						$.alert({title:'提示信息',content:vdata.message});
 					}
 				});

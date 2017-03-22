@@ -180,7 +180,8 @@
 					//alert("服务器连接失败!");
 				},
 				success: function(data) {
-					var trees = eval("("+data+")");
+					//var trees = eval("("+data+")");
+					var trees = data;
 					var zNodes = [];
 					for(var i = 0;i< trees.length;i++){
 						zNodes.push({id:trees[i].id,pId:trees[i].pid,name:trees[i].name,isParent:trees[i].parent,portrait:trees[i].portrait});

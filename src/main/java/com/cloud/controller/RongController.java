@@ -37,7 +37,7 @@ public class RongController {
 	 @Autowired
 	 private UserService userService;
 	 
-	 @RequestMapping("/get_token")
+	 @RequestMapping("/get_token.json")
 	 public @ResponseBody SdkHttpResult get_token(HttpServletRequest request,Model model) throws Exception{
 		 HttpSession session = request.getSession();
 		 User user = (User)session.getAttribute("user");
@@ -45,7 +45,7 @@ public class RongController {
 		 return result;
 	 }
 	 
-	 @RequestMapping("/send_message")
+	 @RequestMapping("/send_message.json")
 	 public @ResponseBody Map<String,Object> send_message(int id,String message,HttpServletRequest request,Model model) throws Exception{
 		 HttpSession session = request.getSession();
 		 User user = (User)session.getAttribute("user");
@@ -70,7 +70,7 @@ public class RongController {
 		 return returnMap;
 	 }
 	 
-	 @RequestMapping("/get_messages")
+	 @RequestMapping("/get_messages.json")
 	 public @ResponseBody Map<String,Object> get_messages(int id,HttpServletRequest request,Model model){
 		 HttpSession session = request.getSession();
 		 User user = (User)session.getAttribute("user");

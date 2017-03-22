@@ -243,7 +243,8 @@
 					url:"${contextPath}/user/checkpass.json",
 					data:{password:val},
 					success:function(data){
-						var vdata = eval("("+data+")");
+						//var vdata = eval("("+data+")");
+						var vdata = data;
 						if(vdata.returnCode=='0'){
 							$("#old-error-span").html("<font color='green'><b>√ </b></font>");
 						}else{
@@ -286,7 +287,8 @@
 					url:"${contextPath}/user/updatepass.json",
 					data:{oldpass:oldpass,newpass:newpass},
 					success:function(data){
-						var vdata = eval("("+data+")");
+						//var vdata = eval("("+data+")");
+						var vdata = data;
 						if(vdata.returnCode=='0'){
 							$.alert({title:'提示信息',content:"密码修改成功，重新登录生效！",type:'blue'});
 						}else{

@@ -160,7 +160,8 @@
 							$(".comment-input").val("");
 							$(".comment-button").attr("disabled","disabled");
 							$(".comment-button").addClass("disabled");
-							var vdata = eval("("+data+")");
+							//var vdata = eval("("+data+")");
+							var vdata = data;
 							//后续处理
 							var comment = vdata.comment;
 							var html = show_comment(comment);
@@ -208,8 +209,8 @@
 					//alert("服务器连接失败!");
 				},
 				success: function(data) {
-					var vdata = eval("("+data+")");
-					
+					//var vdata = eval("("+data+")");
+					var vdata = data;
 					//后续处理
 					var comments = vdata.comments;
 					var html = show_comments(comments);

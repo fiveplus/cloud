@@ -11,7 +11,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
+	<meta name="path" content="${contextPath}" />
 	
 	<!-- bootstrap -->
 	<!-- 
@@ -117,13 +117,13 @@
 	</div>
 	
 	<div id="chat-div" style="padding:0;">
-		<form action="rong/send_message" method="post" id="send-message-form">
+		<form action="${contextPath}/rong/send_message.json" method="post" id="send-message-form">
 		<div class="chat-top">
 			<div class="chat-top-left">
 				<img src="" class="img-radius64" />
 			</div>
 			<div class="chat-top-right">
-				<div class="chat-top-right-toprm">
+				<div class="chat-top-right-top">
 					<!-- 姓名 -->
 				</div>
 				<div class="chat-top-right-bottom">
@@ -247,7 +247,8 @@
 					//alert("服务器连接异常!");
 				},
 				success : function(data) {
-					var vdata = eval("(" + data + ")");
+					//var vdata = eval("(" + data + ")");
+					var vdata = data;
 					//var result = eval("(" + vdata.result + ")");
 					var text = $("#send-message-form .chat-text").val();
 					
@@ -376,13 +377,14 @@
 				if(typeof(id) != "undefined"){
 					$.ajax({
 						type:"POST",
-						url:"${contextPath}/user/info?id="+id,
+						url:"${contextPath}/user/get.json?id="+id,
 						async:false,
 						error:function(request){
 							//alert("数据请求错误!");
 						},
 						success:function(data){
-							var user = eval("("+data+")");
+							var user = data;
+							//var user = eval("("+data+")");
 							
 							var val = get_user_info(user);
 							
@@ -445,7 +447,7 @@
 			$.ajax({
 				cache:true,
 				type:"POST",
-				url:"${contextPath}/rong/get_messages?id="+uid,
+				url:"${contextPath}/rong/get_messages.json?id="+uid,
 				error: function(request) {
 					//alert("服务器连接失败!");
 				},
@@ -455,7 +457,8 @@
 					
 					$("#chat-div .chat-center").mCustomScrollbar({theme:'dark'});
 					
-					var vdata = eval("("+data+")");
+					//var vdata = eval("("+data+")");
+					var vdata = data;
 					var img_url = "${contextPath}/images/main_56.png";
 					var u = vdata.user;
 					if(u.portrait != ''){
@@ -474,7 +477,6 @@
 							$("#chat-div .chat-center #mCSB_2_container").append(html);
 						}
 					}
-					
 					
 					
 					$("#chat-div input[name='id']").val(u.id);
@@ -502,7 +504,8 @@
 					//alert("服务器连接失败!");
 				},
 				success:function(data){
-					var vdata = eval("("+data+")");
+					//var vdata = eval("("+data+")");
+					var vdata = data;
 					//alert(vdata.message);
 					if(vdata.code==200){
 						$.alert({title:'提示信息',content:'项目创建成功！',type:'blue'});
