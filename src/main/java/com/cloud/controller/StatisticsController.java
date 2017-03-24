@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cloud.controller.bo.KeyBO;
 import com.cloud.controller.bo.StatBO;
 import com.cloud.entity.Praise;
 import com.cloud.entity.Project;
@@ -85,6 +86,22 @@ public class StatisticsController {
 		returnMap.put("contents", contents);
 		returnMap.put("comments", comments);
 		returnMap.put("praises", praises);
+		
+		return returnMap;
+	}
+	
+	@RequestMapping("/dept_stat.json")
+	public @ResponseBody Map<String,Object> dept_stat(HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		int code = 0;
+		String msg = "";
+		Map<String,Long> offsetTime = StringUtil.getBeforeTimeAndNowTime(-29);
+		List<KeyBO> depts = contentService.getCountToDeptNameAndCreateTime(offsetTime);
+		
+		returnMap.put("code", code);
+		returnMap.put("msg", msg);
+		returnMap.put("depts", depts);
+		
 		
 		return returnMap;
 	}

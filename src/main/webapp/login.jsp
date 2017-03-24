@@ -37,11 +37,11 @@ request.setCharacterEncoding("UTF-8");
  .loginform {width:300px;height:334px;text-align:center;margin:0 auto;}
  .uinArea {float:left;width:300px;height:70px;text-align:center;}
 
- .inputStyle_1 {position:relative;width:300px;height:40px;line-height:40px;background:url(image/login1.png) no-repeat;border:none;outline:none;position:relative;color:#FFF;font-size:16px;}
+ .inputStyle_1 {position:relative;width:300px;height:40px;background:url(image/login1.png) no-repeat;border:none;outline:none;position:relative;color:#FFF;font-size:16px;}
  .inputStyle_1:hover {background:url(image/login88.png) no-repeat;}
  .pwdArea {float:left;width:300px;height:70px;text-align:center;}
 
- .inputStyle {position:relative;width:300px;height:40px;line-height:40px;background:url(image/login1.png) no-repeat;border:none;outline:none;position:relative;color:#FFF;font-size:16px;}
+ .inputStyle {position:relative;width:300px;height:40px;background:url(image/login1.png) no-repeat;border:none;outline:none;position:relative;color:#FFF;font-size:16px;}
  .inputStyle:hover {background:url(image/login88.png) no-repeat;}
  .tips2 {color:#FFF;font-size:16px;text-decoration:none;float:right;position:relative;text-align:center;}
  .tips2:hover {color:#3dc768;}
@@ -54,10 +54,9 @@ request.setCharacterEncoding("UTF-8");
  .point {width:200px;height:29px;position:relative;left:50%;margin-left:-100px;top:720px;}
  .point ul li {width:50px;height:29px;text-decoration:none;float:left;text-align:center;margin:0 auto;display:block;padding-top:10px;cursor:pointer;}
  .point ul li.pointer-selected {background:url(image/point2.png) no-repeat center;}
- .main {width:100%;height:100%;margin:0 auto;}
- .bg {width:100%;min-width:1190px;height:800px;overflow:hidden;position:absolute;top:0;right:0;}
+ .bg {width:100%;min-height:800px;min-width:1190px;height:100%;overflow:hidden;position:absolute;top:0;right:0;}
  .bg li{position:absolute;top:0;right:0;float:left;z-index:0;width:100%;height:100%;overflow:hidden;text-align:center;}
- .bg li img {width:100%;height:100%;}
+ .bg li img {width:100%;height:100%;min-height:800px;}
  .jc-bs3-container.container {width: 300px;margin: auto;}
 </style>
 

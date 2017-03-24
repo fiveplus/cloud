@@ -70,7 +70,10 @@
 							</div>
 						</c:forEach>
 					</div>
+					<div style="padding:10px;">&nbsp;</div>
 					<!-- 排行榜 -->
+					<div id="bar_charts" style="width:100%;height:400px;">
+					</div>
 				</div>
 				<div class="space_h_30 clear"></div>
 			</div>
@@ -87,6 +90,13 @@
 				datalist.push(pdata);
 				load_image("fold_line",datalist);
 			});
+			
+			$.get("${contextPath}/stat/dept_stat.json",function(data,status){
+				var depts = data.depts;
+				bar_charts("bar_charts",depts);
+			});
+			
+			
 			
 			function init_datas(name,datas){
 				var xdata = new Array();
@@ -153,6 +163,49 @@
 						type:'value'
 					},
 					series: series
+				};
+				eid.setOption(option);
+			}
+			
+			function bar_charts(id,datalist){
+				var names = new Array();
+				var datas = new Array();
+				for(var i = 0;i<datalist.length;i++){
+					names.push(datalist[i].name);
+					datas.push(datalist[i].count);
+				}
+				var eid = echarts.init(document.getElementById(id));
+				var option = {
+					title:{
+						text:"碎片云三十日排行榜"
+					},
+					tooltip:{
+						trigger:"axis",
+						axisPointer:{
+							type:"shadow"
+						}
+					},
+					grid:{
+						left:"3%",
+						right:"4%",
+						bottom:"3%",
+						containLabel:true
+					},
+					xAxis:{
+						type:"value",
+						boundaryGap:[0,0.01]
+					},
+					yAxis:{
+						type:'category',
+						data:names
+					},
+					series:[
+						{
+							name:"帖数",
+							type:"bar",
+							data:datas
+						} 
+					]
 				};
 				eid.setOption(option);
 			}

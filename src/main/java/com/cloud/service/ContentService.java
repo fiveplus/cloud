@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cloud.controller.bo.KeyBO;
 import com.cloud.controller.bo.StatBO;
 import com.cloud.dao.ContentDAO;
 import com.cloud.entity.Content;
@@ -73,8 +74,12 @@ public class ContentService extends BaseService<Content, Integer>{
 	}
 
 	public List<StatBO> getCountToUserIdAndCreateTime(int userId,
-			Map<String, Long> beforeTime) {
-		return contentDAO.getCountToUserIdAndCreateTime(userId,beforeTime);
+			Map<String, Long> betweens) {
+		return contentDAO.getCountToUserIdAndCreateTime(userId,betweens);
+	}
+	
+	public List<KeyBO> getCountToDeptNameAndCreateTime(Map<String,Long> betweens){
+		return contentDAO.getCountToDeptNameAndCreateTime(betweens);
 	}
 	
 }
