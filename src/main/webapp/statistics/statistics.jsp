@@ -172,6 +172,7 @@
 				var themes = new Array();
 				var datas = new Array();
 				var datalist = data.themes;
+				var temp_d = new Array();
 				for(var i = 0;i<datalist.length;i++){
 					themes.push(datalist[i].name);
 					datas.push({
@@ -180,18 +181,27 @@
 						data:[]
 					});
 				}
+				datalist = data.ds;
+				for(var i = 0;i<datalist.length;i++){
+					depts.push(datalist[i].name);
+				}
 				
 				datalist = data.depts;
-				for(var i = 0;i<datalist.length;i++){
-					if($.inArray(datalist[i].deptName,depts) == -1){
-						depts.push(datalist[i].deptName);
-					}
-				}
 				for(var i = 0;i<datas.length;i++){
-					var d = new Array();
+					var d = new Array(data.ds.length);
+					
 					for(var j = 0;j<datalist.length;j++){
 						if(datalist[j].themeName == datas[i].name){
-							d.push(datalist[j].count);
+							var count = datalist[j].count;
+							//获取push的index
+							var index = 0;
+							for(var k = 0;k<depts.length;k++){
+								if(depts[k] == datalist[j].deptName){
+									index = k;
+									break;
+								}
+							}
+							d[index] = count;
 						}
 					}
 					datas[i].data = d;
