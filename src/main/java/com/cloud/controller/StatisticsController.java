@@ -19,14 +19,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.controller.bo.KeyBO;
+import com.cloud.controller.bo.RankBO;
 import com.cloud.controller.bo.StatBO;
 import com.cloud.entity.Praise;
 import com.cloud.entity.Project;
+import com.cloud.entity.Theme;
 import com.cloud.entity.User;
 import com.cloud.service.CommentService;
 import com.cloud.service.ContentService;
 import com.cloud.service.PraiseService;
 import com.cloud.service.ProjectService;
+import com.cloud.service.ThemeService;
 import com.cloud.service.UserProjectService;
 import com.cloud.util.StringUtil;
 
@@ -49,6 +52,9 @@ public class StatisticsController {
 	
 	@Autowired
 	private UserProjectService userProjectService;
+	
+	@Autowired
+	private ThemeService themeService;
 	
 	@RequestMapping("/stats")
 	public String statistics(HttpServletRequest request,Model model){
@@ -96,12 +102,13 @@ public class StatisticsController {
 		int code = 0;
 		String msg = "";
 		Map<String,Long> offsetTime = StringUtil.getBeforeTimeAndNowTime(-29);
-		List<KeyBO> depts = contentService.getCountToDeptNameAndCreateTime(offsetTime);
+		List<Theme> themes = themeService.findAll();
+		List<RankBO> depts = contentService.getCountToDeptNameAndCreateTime(offsetTime);
 		
 		returnMap.put("code", code);
 		returnMap.put("msg", msg);
 		returnMap.put("depts", depts);
-		
+		returnMap.put("themes", themes);
 		
 		return returnMap;
 	}

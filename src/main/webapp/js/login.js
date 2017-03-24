@@ -137,8 +137,6 @@ $(function(){
 				return;
 			}
 			$("#login").click();
-			
-			
 		}
 	});
 	

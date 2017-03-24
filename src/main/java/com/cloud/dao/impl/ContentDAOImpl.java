@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cloud.controller.bo.KeyBO;
+import com.cloud.controller.bo.RankBO;
 import com.cloud.controller.bo.StatBO;
 import com.cloud.dao.ContentDAO;
 import com.cloud.entity.Calendar;
@@ -121,12 +122,11 @@ public class ContentDAOImpl extends BaseDAOImpl<Content> implements ContentDAO{
 		return list;
 	}
 
-	@Override
-	public List<KeyBO> getCountToDeptNameAndCreateTime(
+	public List<RankBO> getCountToDeptNameAndCreateTime(
 			Map<String, Long> betweens) {
 		long beforeTime = betweens.get("beforeTime");
 		long afterTime = betweens.get("afterTime");
-		String hql = "select new com.cloud.controller.bo.KeyBO(c.user.dept.name as name,count(*) as count) from Content c where 1 = 1 and c.createTime >=:beforeTime and c.createTime <=:afterTime group by c.user.dept.id order by count(*) ";
+		String hql = "select new com.cloud.controller.bo.RankBO(c.user.dept.name as deptName,c.theme.name as themeName,count(*) as count) from Content c where 1 = 1 and c.createTime >=:beforeTime and c.createTime <=:afterTime group by c.user.dept.id,c.theme.id order by count(*) ";
 		List list = this.getHQLList(hql, new String[]{"beforeTime","afterTime"}, new Object[]{beforeTime,afterTime});
 		return list;
 	}

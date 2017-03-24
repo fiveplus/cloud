@@ -92,11 +92,8 @@
 			});
 			
 			$.get("${contextPath}/stat/dept_stat.json",function(data,status){
-				var depts = data.depts;
-				bar_charts("bar_charts",depts);
+				bar_charts("bar_charts",data);
 			});
-			
-			
 			
 			function init_datas(name,datas){
 				var xdata = new Array();
@@ -167,13 +164,38 @@
 				eid.setOption(option);
 			}
 			
-			function bar_charts(id,datalist){
-				var names = new Array();
+			function bar_charts(id,data){
+				var depts = new Array();
+				var themes = new Array();
 				var datas = new Array();
+				var datalist = data.themes;
 				for(var i = 0;i<datalist.length;i++){
-					names.push(datalist[i].name);
-					datas.push(datalist[i].count);
+					themes.push(datalist[i].name);
+					datas.push({
+						name:datalist[i].name,
+						type:"bar",
+						data:[]
+					});
 				}
+				
+				datalist = data.depts;
+				for(var i = 0;i<datalist.length;i++){
+					if($.inArray(datalist[i].deptName,depts) == -1){
+						depts.push(datalist[i].deptName);
+					}
+				}
+				for(var i = 0;i<datas.length;i++){
+					var d = new Array();
+					for(var j = 0;j<datalist.length;j++){
+						if(datalist[j].themeName == datas[i].name){
+							d.push(datalist[j].count);
+						}
+					}
+					datas[i].data = d;
+				}
+				console.log(datas);
+				
+				
 				var eid = echarts.init(document.getElementById(id));
 				var option = {
 					title:{
@@ -184,6 +206,9 @@
 						axisPointer:{
 							type:"shadow"
 						}
+					},
+					legend:{
+						data:themes
 					},
 					grid:{
 						left:"3%",
@@ -197,15 +222,9 @@
 					},
 					yAxis:{
 						type:'category',
-						data:names
+						data:depts
 					},
-					series:[
-						{
-							name:"帖数",
-							type:"bar",
-							data:datas
-						} 
-					]
+					series:datas
 				};
 				eid.setOption(option);
 			}

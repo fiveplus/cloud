@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cloud.controller.bo.KeyBO;
+import com.cloud.controller.bo.RankBO;
 import com.cloud.controller.bo.StatBO;
 import com.cloud.dao.ContentDAO;
 import com.cloud.entity.Content;
@@ -78,7 +79,7 @@ public class ContentService extends BaseService<Content, Integer>{
 		return contentDAO.getCountToUserIdAndCreateTime(userId,betweens);
 	}
 	
-	public List<KeyBO> getCountToDeptNameAndCreateTime(Map<String,Long> betweens){
+	public List<RankBO> getCountToDeptNameAndCreateTime(Map<String,Long> betweens){
 		return contentDAO.getCountToDeptNameAndCreateTime(betweens);
 	}
 	
