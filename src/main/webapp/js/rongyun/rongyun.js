@@ -211,6 +211,8 @@ function get_history(){
 function to_message_div(imgurl,msg){
 	if(imgurl == ''){
 		imgurl = path+"images/main_56.png";
+	}else{
+		imgurl = path+imgurl;
 	}
 	var html = "";
 	html+='<div class="chat-to">'+
@@ -229,6 +231,8 @@ function to_message_div(imgurl,msg){
 function form_message_div(imgurl,msg){
 	if(imgurl == ''){
 		imgurl = path+"images/main_56.png";
+	}else{
+		imgurl = path+imgurl;
 	}
 	var html = "";
 	html+='<div class="chat-form">'+
