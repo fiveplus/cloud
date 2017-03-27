@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -51,6 +52,7 @@ public class ProjectController {
 		User user = (User)session.getAttribute("user");
 		p.setCreateTime(StringUtil.getDateToLong(new Date()));
 		p.setUser(user);
+		p.setStatus("Y");
 		
 		int id = projectService.save(p);
 		String message = "";
@@ -87,6 +89,21 @@ public class ProjectController {
 		String message = "恭喜您，项目修改成功!";
 		returnMap.put("message", message);
 		returnMap.put("code", code);
+		
+		return returnMap;
+	}
+	
+	@RequestMapping("/delete.json")
+	public @ResponseBody Map<String,Object> delete(int id,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		
+		int code = 200;
+		String message = "恭喜您，项目删除成功！";
+		
+		projectService.delete(id);
+		
+		returnMap.put("code", code);
+		returnMap.put("message", message);
 		
 		return returnMap;
 	}

@@ -33,29 +33,40 @@
 				<div class="space_h_40"></div>
 				<div>
 					<!-- main div -->
+					<div class="fenge"></div>
+					<div style="padding:0 0 5px 10px;">
+						<h4> 项目设置 <small> >>修改项目配置 </small> </h4>
+					</div>
 					<form action="${contextPath}/project/update.json" role="form" class="form" id="update_project"  >
-						<div class="fenge"></div>
-						<div class="fenge"></div>
-						<div class="form-group">
-							<span class="control-label">项目名称：</span>
-							<input type="hidden" name="id" value="${project.id }" />
-							<input type="text" name="name" value="${project.name}" class="input-text" placeholder="项目名称"  />
-						</div>
-						<div class="form-group">
-							<span class="control-label" >允许加入：</span>
-							<input type="checkbox" class="switch" checked />
-							
-						</div>
-						
-						<div class="form-group">
-							<span class="control-label" >是否验证：</span>
-							<input type="checkbox" class="switch" checked />
-						</div>
-						
-						<div class="form-group" style="padding:10px 0 0 0;">
-							<a href="javascript:update_project('update_project')" class="btn btn-primary">保存设置</a>
-						</div>
+						<table class="table table-hover" cellpadding="10" border="1" bordercolor="#ddd">
+							<tr>
+								<td>
+									项目名称：
+									<input type="hidden" name="id" value="${project.id }" />
+									<input type="text" name="name" value="${project.name}" class="input-text" placeholder="项目名称"  />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									允许加入：
+									<input type="checkbox" class="switch" checked />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									是否验证：
+									<input type="checkbox" class="switch" checked />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button class="btn btn-danger" onclick="del_project(${project.id})">删除</button>
+									<button onclick="update_project('update_project')" class="btn btn-primary">保存设置</button>
+								</td>
+							</tr>
+						</table>
 					</form>
+						
 				</div>
 				<div class="space_h_30 clear"></div>
 			</div>
@@ -67,11 +78,9 @@
 				var action = $("#"+formid).attr("action");
 				var alldata = $("#"+formid).serialize();
 				$.ajax({
-					cache:true,
 					type:"POST",
 					url:action,
 					data:alldata,
-					async:false,
 					error:function(request){
 						//alert("数据请求错误!");
 					},
@@ -82,6 +91,33 @@
 					}
 				});
 			}
+			
+			function del_project(id){
+				
+				$.confirm({
+					title:'提示信息',
+					content:'确认删除吗？删除后无法恢复！！！',
+					buttons:{
+						confirm:function(){
+							$.ajax({
+								type:"POST",
+								url:"${contextPath}/project/delete.json",
+								data:{id:id},
+								success:function(data){
+									var vdata = data;
+									//跳转到首页
+									window.location.href="${contextPath}/index";
+								}
+							});
+						},
+						cancel:function(){
+							//取消
+						}
+					}
+				});
+				
+			}
+			
 		</script>
 	</fms:Content>
 </fms:ContentPage>

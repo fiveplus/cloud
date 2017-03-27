@@ -22,6 +22,8 @@ public class Project implements Serializable{
 	private Long createTime;
 	private int index;
 	private String info;
+	private String status;
+	
 	
 	private User user;
 	
@@ -89,6 +91,14 @@ public class Project implements Serializable{
 	@JoinColumn(name="USER_ID")
 	public User getUser() {
 		return user;
+	}
+	
+	@Column(name = "STATUS")
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	@Transient

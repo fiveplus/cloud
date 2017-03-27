@@ -27,6 +27,18 @@ public class ProjectService extends BaseService<Project, Integer>{
 		return projectDAO.getProjectToUserId(userId);
 	}
 	
+	public void delete(Integer id){
+		Project p = get(id);
+		if(p != null){
+			p.setStatus("N");
+			update(p, id);
+		}
+	}
+	
+	public List<Project> findAll(){
+		return projectDAO.finaAll();
+	}
+	
 	
 	
 }
