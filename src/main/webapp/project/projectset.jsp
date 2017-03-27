@@ -34,39 +34,29 @@
 				<div>
 					<!-- main div -->
 					<div class="fenge"></div>
-					<div style="padding:0 0 5px 10px;">
-						<h4> 项目设置 <small> >>修改项目配置 </small> </h4>
+					<div style="padding:0 0 5px 10px;border-bottom:#ccc 1px solid;">
+						<h4> 项目设置 <small> >>项目配置修改 </small> </h4>
 					</div>
+					<div class="fenge"></div>
 					<form action="${contextPath}/project/update.json" role="form" class="form" id="update_project"  >
-						<table class="table table-hover" cellpadding="10" border="1" bordercolor="#ddd">
-							<tr>
-								<td>
-									项目名称：
-									<input type="hidden" name="id" value="${project.id }" />
-									<input type="text" name="name" value="${project.name}" class="input-text" placeholder="项目名称"  />
-								</td>
-							</tr>
-							<tr>
-								<td>
-									允许加入：
-									<input type="checkbox" class="switch" checked />
-								</td>
-							</tr>
-							<tr>
-								<td>
-									是否验证：
-									<input type="checkbox" class="switch" checked />
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<button class="btn btn-danger" onclick="del_project(${project.id})">删除</button>
-									<button onclick="update_project('update_project')" class="btn btn-primary">保存设置</button>
-								</td>
-							</tr>
-						</table>
+						<div class="form-group">
+							<span class="control-label">项目名称：</span>
+							<input type="hidden" name="id" value="${project.id }" />
+							<input type="text" name="name" value="${project.name}" class="input-text" placeholder="项目名称"  />
+						</div>
+						<div class="form-group">
+							<span class="control-label">允许加入：</span>
+							<input type="checkbox" class="switch" checked />
+						</div>
+						<div class="form-group">
+							<span class="control-label">是否验证：</span>
+							<input type="checkbox" class="switch" checked />
+						</div>
 					</form>
-						
+					<div class="form-group">
+						<button class="btn btn-danger" onclick="del_project(${project.id})">删除</button>
+						<button onclick="update_project('update_project')" class="btn btn-primary">保存设置</button>
+					</div>
 				</div>
 				<div class="space_h_30 clear"></div>
 			</div>
@@ -81,9 +71,6 @@
 					type:"POST",
 					url:action,
 					data:alldata,
-					error:function(request){
-						//alert("数据请求错误!");
-					},
 					success:function(data){
 						//var vdata = eval("("+data+")");
 						var vdata = data;

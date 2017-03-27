@@ -22,7 +22,7 @@ public class BaseService<T,PK extends Serializable>{
 	}
 
 	public List<T> findAll() {
-		return baseDAO.finaAll();
+		return baseDAO.findAll();
 	}
 
 	public void persist(T entity) {

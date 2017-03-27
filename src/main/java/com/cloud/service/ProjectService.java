@@ -36,7 +36,7 @@ public class ProjectService extends BaseService<Project, Integer>{
 	}
 	
 	public List<Project> findAll(){
-		return projectDAO.finaAll();
+		return projectDAO.findAll();
 	}
 	
 	

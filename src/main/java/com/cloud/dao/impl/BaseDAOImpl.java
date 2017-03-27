@@ -40,7 +40,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T, Serializable>{
 		return (T) this.getCurrentSession().get(clazz, id);
 	}
 
-	public List<T> finaAll() {
+	public List<T> findAll() {
 		String className = clazz.getSimpleName();
 		return this.getCurrentSession().createQuery("FROM "+className).list();
 	}

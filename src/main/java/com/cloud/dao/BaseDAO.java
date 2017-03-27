@@ -7,7 +7,7 @@ import java.util.List;
 public interface BaseDAO<T,PK extends Serializable> {
 	T load(PK id);
 	T get(PK id);
-	List<T> finaAll();
+	List<T> findAll();
 	void persist(T entity);
 	PK save(T entity);
 	void update(T entity);
