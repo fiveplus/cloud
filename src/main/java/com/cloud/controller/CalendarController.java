@@ -71,7 +71,7 @@ public class CalendarController {
 		c.setStartTime(StringUtil.getStringToLong(c.getStart(),"yyyy-MM-dd HH:mm"));
 		c.setEndTime(StringUtil.getStringToLong(c.getEnd(),"yyyy-MM-dd HH:mm"));
 		
-		String message = "";
+		String message = "恭喜您，事件插入成功。";
 		//TODO 判断是否重复
 		if(isRepeat(list, c)){
 			message = "很抱歉，该时间段已被其他事件占用，请重新调整后提交日程！";
