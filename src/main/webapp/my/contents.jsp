@@ -11,8 +11,20 @@
 		<!-- 瀑布流插件 -->
 		<script src="${contextPath}/js/wookmark/jquery.wookmark.js"></script>
 		<script src="${contextPath}/js/wookmark/jquery.imagesloaded.js"></script>
+		
+		<!-- 复文本编辑器 -->
+		<link rel="stylesheet" href="${contextPath}/js/kindeditor-4.1.10/themes/default/default.css" />
+		<link rel="stylesheet" href="${contextPath}/js/kindeditor-4.1.10/plugins/code/prettify.css" />
+		<script charset="utf-8" src="${contextPath}/js/kindeditor-4.1.10/kindeditor.js"></script>
+		<script charset="utf-8" src="${contextPath}/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+		<script charset="utf-8" src="${contextPath}/js/kindeditor-4.1.10/plugins/code/prettify.js"></script>
+		
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
+		<%
+		request.setCharacterEncoding("UTF-8");
+		String htmlData = request.getParameter("content") != null ? request.getParameter("content") : "";
+		%>
 		<!-- main content -->
 		<div id="main" style="overflow:hidden;">
 			<div id="cb_2" style="position: relative;">
@@ -43,11 +55,100 @@
 				<div class="space_h_30 clear"></div>
 			</div>
 		</div>
+		
+		<div id="update-content"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="update-content" aria-hidden="true" >
+			<div class="modal-dialog" style="width:900px;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                		<h4 class="modal-title" > ★ 内容修改 <small> >>修改详细内容 </small></h4>
+					</div>
+					<div class="modal-body">
+						<form action="${contextPath}/content/update.json" id="upt_cont_form">
+							<input type="hidden" name="id" value="" />
+							<textarea id="send-text" name="content" class="send-text"><%=htmlspecialchars(htmlData)%></textarea>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                		<button type="button" class="btn btn-primary" onclick="update_content('upt_cont_form')">保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<script type="text/javascript">
+		
+			function update_content(id){
+				var form = $("#"+id);
+				var url = form.attr("action");
+				var data = form.serialize();
+				$.ajax({
+					url:url,
+					type:"POST",
+					data:data,
+					success:function(data){
+						var vdata = data;
+						$.alert({title:"提示信息",content:"内容更新成功!"});
+						window.location.reload();
+					}
+				});
+			}
+		
+			function upt_content(id){
+				var form = $("#upt_cont_form");
+				$.ajax({
+					url:"${contextPath}/content/get.json",
+					type:"POST",
+					data:{id:id},
+					success:function(data){
+						var vdata = data;
+						var c = vdata.content;
+						form.find("input[name='id']").val(c.id);
+						form.find("textarea[name='content']").html(c.content);
+						editor.html(c.content);
+						$("#update-content").modal("show");
+					}
+				});
+			}
+			
+			
+			function editor_init(){
+				if($("#send-text")){
+					KindEditor.ready(function(K) {
+						editor = K.create('textarea[name="content"]', {
+								width:"100%",
+								height:"400px",
+								cssPath : '${contextPath}/js/kindeditor-4.1.10/plugins/code/prettify.css',
+								uploadJson : '${contextPath}/ke/upload',
+								fileManagerJson : '${contextPath}/ke/manager',
+								allowFileManager : true,
+								resizeType : 0,
+								items:["source", "|", "undo", "redo", "|", "preview", "print", "template", "code", "cut", "copy", "paste", "plainpaste", "wordpaste",
+									"|", "justifyleft", "justifycenter", "justifyright", "justifyfull", "insertorderedlist", "insertunorderedlist", "indent", "outdent",
+									"subscript", "superscript", "clearhtml", "quickformat", "selectall", "|", "/", "formatblock", "fontname", "fontsize", 
+									"|", "forecolor", "hilitecolor", "bold", "italic", "underline", "strikethrough", "lineheight", "removeformat", "|", "image", 
+									"multiimage", "flash", "media", "insertfile", "table", "hr", "emoticons", "baidumap", "pagebreak", "anchor", "link", "unlink", 
+									"|" ], //"fullscreen" 全屏  , "about" 关于
+								afterCreate : function() {
+									var self = this;
+								},
+								afterBlur : function(){
+									this.sync();
+								}
+							});
+						prettyPrint();
+						});
+					
+				}
+			}
+			
+		
 			var $handler;
+			var editor;
 			$(document).ready(function(){
-				
-				
+				/* 编辑器初始化 */
+				editor_init();
 				/* 移出详情 */
 				$("#user-div").mouseleave(function(){
 					$("#user-div").hide();
@@ -162,7 +263,8 @@
 					"</span>"+
 				"</div>"+
 				"<div class='lib'>"+
-					"<a href='#del' data-id='"+c.id+"' class='del' style='float:right;margin:0 8px 0 0;'>删除</a>"+
+					"<a href='javascript:void(0)' onclick='upt_content("+c.id+")' style='float:right;margin:0 8px 0 0;'>修改</a>"+
+					"<a href='#del' data-id='"+c.id+"' class='del' style='float:right;margin:0 8px 0 2px;'>删除</a>"+
 					"<a href='javascript:void(0)' class='la2' style='margin-top:1px;'>("+c.readCount+")</a>"+
 					"<b>"+c.address+"</b>"+
 				"</div>"+
@@ -217,9 +319,15 @@
 				});
 				
 			});
-			
-		
-			
 		</script>
+		<%!
+		private String htmlspecialchars(String str) {
+			str = str.replaceAll("&", "&amp;");
+			str = str.replaceAll("<", "&lt;");
+			str = str.replaceAll(">", "&gt;");
+			str = str.replaceAll("\"", "&quot;");
+			return str;
+		}
+		%>
 	</fms:Content>
 </fms:ContentPage>

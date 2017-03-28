@@ -236,6 +236,30 @@ public class ContentController {
 		 return "content/content";
 	 }
 	 
+	 @RequestMapping("/get.json")
+	 public @ResponseBody Map<String,Object> _get(int id,HttpServletRequest request,Model model){
+		 Map<String,Object> returnMap = new HashMap<String, Object>();
+	
+		 Content c = contentService.get(id);
+		 
+		 returnMap.put("content", c);
+		 
+		 return returnMap;
+	 }
+	 
+	 @RequestMapping("/update.json")
+	 public @ResponseBody Map<String,Object> update(Content c,HttpServletRequest request,Model model){
+		 Map<String,Object> returnMap = new HashMap<String, Object>();
+		 int code = 200;
+		 String message = "恭喜您，帖子修改成功！";
+		 contentService.update(c, c.getId());
+		 
+		 returnMap.put("code", code);
+		 returnMap.put("mesage", message);
+		 
+		 return returnMap;
+	 }
+	 
 	 @RequestMapping("/delete.json")
 	 public @ResponseBody Map<String,Object> deleleContent(int id,HttpServletRequest request,Model model){
 		 Map<String,Object> returnMap = new HashMap<String, Object>();

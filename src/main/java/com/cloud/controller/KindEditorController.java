@@ -17,6 +17,7 @@ import java.util.Random;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -27,8 +28,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cloud.entity.User;
 import com.cloud.util.JacksonUtil;
-
+/**
+ * Kingeditor插件
+ * @author hack
+ *
+ */
 @Controller  
 @RequestMapping("/ke") 
 public class KindEditorController {
@@ -36,12 +42,19 @@ public class KindEditorController {
 	
 	@RequestMapping(value = "/upload")  
 	public @ResponseBody Map<String,Object> upload(@RequestParam(value = "imgFile",required = false) MultipartFile imgFile, HttpServletRequest request, ModelMap model){
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
 		//文件保存路径
 		String savePath = request.getSession().getServletContext().getRealPath("/") + "attached/";
 		String pressPath = request.getSession().getServletContext().getRealPath("/") + "images/";
 		
+		//TODO 用户路径
+		savePath += user.getId()+"/";
+		
 		//文件保存目录URL
 		String saveUrl = request.getContextPath() + "/attached/";
+		
+		saveUrl += user.getId()+"/";
 		
 		//定义允许上传的文件扩展名
 		HashMap<String, String> extMap = new HashMap<String, String>();
@@ -158,9 +171,16 @@ public class KindEditorController {
 	
 	@RequestMapping(value = "/manager")  
 	public void manager(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
 		//根目录路径，可以指定绝对路径，比如 /var/www/attached/
 		String rootPath =request.getSession().getServletContext().getRealPath("/") + "attached/";
 		String rootUrl  = request.getContextPath() + "/attached/";
+		
+		//TODO 单用户读取
+		rootPath += user.getId() + "/";
+		rootUrl += user.getId() + "/";
+		
 		ServletOutputStream out = response.getOutputStream();  
 		//图片扩展名
 		String[] fileTypes = new String[]{"gif", "jpg", "jpeg", "png", "bmp"};
