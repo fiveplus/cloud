@@ -1,6 +1,7 @@
 <!-- 前端模版 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="/master-tag" prefix="fms" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -86,7 +87,12 @@
 		</div>
 	</div>
 	<div class="index-bg">
-		<img src="${contextPath}/images/bg01.jpg" />
+		<c:if test="${skin != null}">
+			<img src="${contextPath}/images/skin/${skin.imgIndex}.jpg" />
+		</c:if>
+		<c:if test="${skin == null}">
+			<img src="${contextPath}/images/skin/1.jpg" />
+		</c:if>
 	</div>
 	<div id="add_project_div" class="leanmodel_div">
 		<form action="${contextPath}/project/save.json" role="form" class="form" id="add_project" >
@@ -190,7 +196,63 @@
 	<div id="user-div" style="padding:0;background: #f2f2f5;display: none;position: absolute;">
 	</div>
 	
+	<!-- 皮肤 -->
+	<div id="skin-div" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="skin-div" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                		<h4 class="modal-title" > ★ 更换皮肤 <small> >> I'm skin. </small></h4>
+				</div>
+				<div class="modal-body">
+					<input type="hidden" id="skin-index" value="${skin.imgIndex}" />
+					<div class="skin-item" >
+						<img src="${contextPath}/images/skin/1.jpg" width="200" class="img-rounded" />
+					</div>
+					<div class="skin-item" >
+						<img src="${contextPath}/images/skin/2.jpg" width="200" class="img-rounded"  />
+					</div>
+					<div class="skin-item" >
+						<img src="${contextPath}/images/skin/3.jpg" width="200" class="img-rounded"  />
+					</div>
+					<div class="skin-item" >
+						<img src="${contextPath}/images/skin/4.jpg" width="200" class="img-rounded"  />
+					</div>
+					<div class="skin-item" style="margin-bottom: 0px;">
+						<img src="${contextPath}/images/skin/5.jpg" width="200" class="img-rounded"  />
+					</div>
+					<div class="skin-item" style="margin-bottom: 0px;">
+						<img src="${contextPath}/images/skin/6.jpg" width="200" class="img-rounded"  />
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="save_skin()">保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<script type="text/javascript">
+	
+		function save_skin(){
+			var index = $("#skin-index").val();
+			$.ajax({
+				url:"${contextPath}/skin/save.json",
+				type:"POST",
+				data:{imgIndex:index},
+				success:function(data){
+					var vdata = data;
+					$.alert({title:'提示信息',content:'皮肤更改成功！',type:'blue'});
+					$("#skin-div").modal("hide");
+				}
+			});
+		}
+	
+		function show_modal(id){
+			$("#"+id).modal("show");
+		}
 	
 		function show_cont(id){
 			$("#cont-div").load("${contextPath}/content/get?id="+id,function(){
@@ -266,6 +328,25 @@
 		$(document).ready(function(){
 			//数据初始化
 			$("#cont-a").leanModal({top:10});
+			//皮肤
+			var imgIndex = "${skin.imgIndex}";
+			if(imgIndex == ""){
+				imgIndex = 1;
+			}
+			$("#skin-div .skin-item").each(function(){
+				var index = $(this).index();
+				if(index == imgIndex){
+					$(this).css("border-color","#4fd2ff");
+				}
+			});
+			$("#skin-div .skin-item").click(function(){
+				var index = $(this).index();
+				$("#skin-div .skin-item").css("border-color","#fff");
+				$(this).css("border-color","#4fd2ff");
+				var src = $(this).find("img").attr("src");
+				$(".index-bg img").attr("src",src);
+				$("#skin-index").val(index);
+			});
 			
 			//左侧数据加载
 			var dataid = '${dataid}';

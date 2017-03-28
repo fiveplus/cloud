@@ -585,3 +585,15 @@ ol.formatted li {
 	float:right;
 	padding-right:20px;
 }
+
+/* 皮肤 */
+.skin-item{
+	float:left;
+	width:200px;
+	margin:5px 10px;
+	border: 5px solid #fff;
+}
+.skin-item:HOVER{
+	cursor:pointer;
+	border: 5px solid #4fd2ff;
+}

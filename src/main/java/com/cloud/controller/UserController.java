@@ -26,12 +26,14 @@ import com.cloud.controller.bo.TreeBO;
 import com.cloud.dao.CommentDAO;
 import com.cloud.entity.Group;
 import com.cloud.entity.Project;
+import com.cloud.entity.Skin;
 import com.cloud.entity.User;
 import com.cloud.service.CommentService;
 import com.cloud.service.ContentService;
 import com.cloud.service.GroupService;
 import com.cloud.service.MessageService;
 import com.cloud.service.ProjectService;
+import com.cloud.service.SkinService;
 import com.cloud.service.UserService;
 import com.cloud.util.ImageUtil;
 import com.cloud.util.JacksonUtil;
@@ -60,6 +62,9 @@ public class UserController {
 	 @Autowired
 	 private CommentService commentService;
 	 
+	 @Autowired
+	 private SkinService skinService;
+	 
 	 @RequestMapping("/login.json")
 	 public @ResponseBody String login(String email,String password,HttpServletRequest request) throws Exception{
 		 HttpSession session = request.getSession();
@@ -67,6 +72,8 @@ public class UserController {
 		 String result = "";
 		 if(user != null){
 			 session.setAttribute("user", user);
+			 Skin skin = skinService.getSkinByUserId(user.getId());
+			 session.setAttribute("skin", skin);
 			 
 			 Map<String,Object> returnMap = new HashMap<String, Object>();
 			 returnMap.put("code", 200);
