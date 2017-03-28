@@ -15,3 +15,5 @@ tbl_content新增字段 address(帖子发布地址)
 <img src="http://git.oschina.net/uploads/images/2017/0306/190048_e9d18380_803453.png" width="600" />
 * 2017-3-27 tbl_project新增字段<br/>
 tbl_project新增字段 status(标记项目是否删除)
+* 2017-3-28 tbl_skin新增表<br/>
+<img src="http://git.oschina.net/uploads/images/2017/0328/090426_afd8df83_803453.png" width="600" />
