@@ -14,7 +14,7 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home home-icon"></i>
-					<a href="../system/index.htm">Home</a>
+					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<%--<li>
 					<a href="#">Other Pages</a>

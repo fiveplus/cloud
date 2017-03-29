@@ -17,10 +17,10 @@
 				<li class="active">
 					<i class="icon-home home-icon"></i>
 					Home
-					<a href="../index">Home</a>
+					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<li>
-					<a href="../user/updateUserInit?id=${us.id}">用户资料修改</a>
+					<a href="${contextPath}/admin/user/updateUserInit?id=${us.id}">用户资料修改</a>
 				</li>
 				<li class="active">用户头像</li> 
 			</ul><!-- .breadcrumb -->
@@ -192,7 +192,7 @@
 							var height = $("#height").val();
 							var u = "&x="+x+"&y="+y+"&width="+width+"&height="+height;
 							$.ajaxFileUpload({
-								url:'../user/upload?id=${us.id}'+u,
+								url:'${contextPath}/admin/user/upload?id=${us.id}'+u,
 								type:'post',
 								secureuri:false,
 								fileElementId:'file',
@@ -200,7 +200,7 @@
 									window.location.reload();
 								}
 							});
-						}							
+						}				
 					</script>
 					
 				</div>

@@ -32,5 +32,10 @@ public class IndexAdminController {
 		 request.getSession().invalidate();
 		 return "admin/login";
 	 }
+	 
+	 @RequestMapping("/login")
+	 public String login(HttpServletRequest request,Model model){
+		 return "admin/login";
+	 }
 
 }

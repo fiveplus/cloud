@@ -15,10 +15,10 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home home-icon"></i>
-					<a href="../index">Home</a>
+					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<li>
-					<a href="../user/list?page=1">用户管理</a>
+					<a href="${contextPath}/admin/user/list?page=1">用户管理</a>
 				</li>
 				<li class="active">用户修改</li>
 			</ul><!-- .breadcrumb -->
@@ -46,7 +46,7 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-12">
-							<form action="../user/update" role="form" class="form-horizontal" method="post" id="form_post" >
+							<form action="${contextPath}/admin/user/update" role="form" class="form-horizontal" method="post" id="form_post" >
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请选择部门 </label>
 									<div class="col-sm-9">
@@ -200,7 +200,7 @@
 			}
 			function select_level(val){
 				$.ajax({
-					url:"../level/childs",
+					url:"${contextPath}/admin/level/childs",
 					data:{id:val},
 					success:function(data){
 						var vdata = eval("("+data+")");

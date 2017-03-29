@@ -14,7 +14,7 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home home-icon"></i>
-					<a href="../system/index.htm">Home</a>
+					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<%--<li>
 					<a href="#">Other Pages</a>
@@ -37,7 +37,7 @@
 				<div class="col-xs-12">
 					<!-- PAGE CONTENT BEGINS -->
 					<h1><span class="text-success">${message}</span></h1>
-					<button class="btn btn-lg btn-success" onclick="go_url('../${returnURL}')"><i class="icon-ok"></i>Success</button>
+					<button class="btn btn-lg btn-success" onclick="go_url('${contextPath}/${returnURL}')"><i class="icon-ok"></i>Success</button>
 					
 					<!-- PAGE CONTENT ENDS -->
 				</div><!-- /.col -->

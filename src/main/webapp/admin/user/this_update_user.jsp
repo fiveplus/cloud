@@ -15,7 +15,7 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home home-icon"></i>
-					<a href="../index">Home</a>
+					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<%--<li>
 					<a href="#">Other Pages</a>
@@ -46,16 +46,16 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-12">
-							<form action="../user/updateUser" role="form" class="form-horizontal" method="post" id="form_post" >
+							<form action="${contextPath}/admin/user/updateUser" role="form" class="form-horizontal" method="post" id="form_post" >
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户头像 </label>
 									<div class="col-sm-9">
 										<input type="hidden" name="id" value="${us.id}" />
 										<c:if test="${us.portrait == ''}">
-											<img class="nav-user-photo" src="${contextPath}/admin/assets/avatars/user.jpg" alt="${us.username}" style="cursor: hand;" onclick="go_url('../user/head?id=${us.id}')" />
+											<img class="nav-user-photo" src="${contextPath}/admin/assets/avatars/user.jpg" alt="${us.username}" style="cursor: hand;" onclick="go_url('${contextPath}/admin/user/head?id=${us.id}')" />
 										</c:if>
 										<c:if test="${us.portrait != ''}">
-											<img class="nav-user-photo" src="${contextPath}/${us.portrait}" alt="${us.username}" style="cursor: hand;" onclick="go_url('../user/head?id=${us.id}')" />
+											<img class="nav-user-photo" src="${contextPath}/${us.portrait}" alt="${us.username}" style="cursor: hand;" onclick="go_url('${contextPath}/admin/user/head?id=${us.id}')" />
 										</c:if>
 									</div>
 								</div>

@@ -14,8 +14,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<!-- basic styles -->
 
-		<link href="admin/assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="admin/assets/css/font-awesome.min.css" />
+		<link href="${contextPath}/admin/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="${contextPath}/admin/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
@@ -25,12 +25,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="admin/assets/css/ace-fonts.css" />
+		<link rel="stylesheet" href="${contextPath}/admin/assets/css/ace-fonts.css" />
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="admin/assets/css/ace.min.css" />
-		<link rel="stylesheet" href="admin/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="${contextPath}/admin/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="${contextPath}/admin/assets/css/ace-rtl.min.css" />
 
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -94,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 											<div class="space-6"></div>
 
-											<form action="admin/user/login" method="post" id="login_post">
+											<form action="${contextPath}/admin/user/login" method="post" id="login_post">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -298,7 +298,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='admin/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='${contextPath}/admin/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- <![endif]-->
@@ -310,7 +310,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if("ontouchend" in document) document.write("<script src='${contextPath}/admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- inline scripts related to this page -->
