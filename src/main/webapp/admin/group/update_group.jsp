@@ -15,10 +15,10 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home home-icon"></i>
-					<a href="../index">Home</a>
+					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<li>
-					<a href="../group/list?page=1">组管理</a>
+					<a href="${contextPath}/admin/group/list?page=1">组管理</a>
 				</li>
 				<li class="active">组修改</li>
 			</ul><!-- .breadcrumb -->
@@ -47,7 +47,7 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-12">
-							<form action="../group/update" role="form" class="form-horizontal" method="post" id="form_post" >
+							<form action="${contextPath}/admin/group/update" role="form" class="form-horizontal" method="post" id="form_post" >
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请选择父组 </label>
 									<div class="col-sm-9">

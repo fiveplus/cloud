@@ -16,10 +16,10 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home home-icon"></i>
-					<a href="../index">Home</a>
+					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<li>
-					<a href="../permission/list?page=1">权限管理</a>
+					<a href="${contextPath}/admin/permission/list?page=1">权限管理</a>
 				</li>
 				<li class="active">权限新增</li>
 			</ul><!-- .breadcrumb -->
@@ -48,7 +48,7 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-12">
-							<form action="../permission/add" role="form" class="form-horizontal" method="post" id="form_post" >
+							<form action="${contextPath}/admin/permission/add" role="form" class="form-horizontal" method="post" id="form_post" >
 										
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请选择父权限ID </label>

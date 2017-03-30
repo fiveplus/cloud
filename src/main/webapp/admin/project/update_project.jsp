@@ -16,10 +16,10 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home home-icon"></i>
-					<a href="../index">Home</a>
+					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<li>
-					<a href="../project/list?page=1">项目管理</a>
+					<a href="${contextPath}/admin/project/list?page=1">项目管理</a>
 				</li>
 				<li class="active">项目修改</li>
 			</ul><!-- .breadcrumb -->
@@ -48,7 +48,7 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-12">
-							<form action="../project/update" role="form" class="form-horizontal" method="post" id="form_post" >
+							<form action="${contextPath}/admin/project/update" role="form" class="form-horizontal" method="post" id="form_post" >
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1">请输入项目名称 </label>
 									<div class="col-sm-9">

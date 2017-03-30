@@ -16,10 +16,10 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home home-icon"></i>
-					<a href="../index">Home</a>
+					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<li>
-					<a href="../permission/list?page=1">权限列表</a>
+					<a href="${contextPath}/admin/permission/list?page=1">权限列表</a>
 				</li>
 				<li class="active">权限修改</li>
 			</ul><!-- .breadcrumb -->
@@ -49,7 +49,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
-							<form action="../permission/update" role="form" class="form-horizontal" method="post" id="form_post" >
+							<form action="${contextPath}/admin/permission/update" role="form" class="form-horizontal" method="post" id="form_post" >
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请选择父菜单ID </label>
 									<div class="col-sm-9">

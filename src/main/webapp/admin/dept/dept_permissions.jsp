@@ -16,10 +16,10 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home home-icon"></i>
-					<a href="../index">Home</a>
+					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<li>
-					<a href="../dept/list?page=1">部门管理</a>
+					<a href="${contextPath}/admin/dept/list?page=1">部门管理</a>
 				</li> 
 				<li class="active">部门授权</li>
 			</ul><!-- .breadcrumb -->
@@ -110,7 +110,7 @@
 										</c:if>
 										<c:if test="${pu.page!=1}">
 											<li class="prev">
-												<a href="../deptPermission/list?page=1&id=${department.id}">
+												<a href="${contextPath}/admin/deptPermission/list?page=1&id=${department.id}">
 													<i class="icon-double-angle-left"></i>
 												</a>
 											</li>
@@ -123,7 +123,7 @@
 											</c:if>
 											<c:if test="${p!=pu.page}">
 												<li>
-													<a href="../deptPermission/list?page=${p}&id=${department.id}">${p}</a>
+													<a href="${contextPath}/admin/deptPermission/list?page=${p}&id=${department.id}">${p}</a>
 												</li>
 											</c:if>
 										</c:forEach>
@@ -136,7 +136,7 @@
 										</c:if>
 										<c:if test="${pu.page!=pu.pageCount}">
 											<li class="next">
-												<a href="../deptPermission/list?page=${pu.pageCount}&id=${department.id}">
+												<a href="${contextPath}/admin/deptPermission/list?page=${pu.pageCount}&id=${department.id}">
 													<i class="icon-double-angle-right"></i>
 												</a>
 											</li>
@@ -170,9 +170,9 @@
 			function deptCheck(obj,id,deptId){
 				var url = "";
 				if(obj.checked){
-					url = "../deptPermission/add?permissionId="+id+"&deptId="+deptId+"";
+					url = "${contextPath}/admin/deptPermission/add?permissionId="+id+"&deptId="+deptId+"";
 				}else{
-					url = "../deptPermission/delete?permissionId="+id+"&deptId="+deptId+"";
+					url = "${contextPath}/admin/deptPermission/delete?permissionId="+id+"&deptId="+deptId+"";
 				}
 				ajaxJSON(url);
 			}

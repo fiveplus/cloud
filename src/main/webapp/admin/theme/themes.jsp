@@ -16,7 +16,7 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home home-icon"></i>
-					<a href="../index">Home</a>
+					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<!-- 
 				<li>
@@ -41,7 +41,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<h3 class="header smaller lighter blue">
-								<span>主题列表</span><button class="btn" style="float:right;margin-top: -12px;" onclick="go_url('../theme/addinit')" ><i class="icon-pencil align-top bigger-125"></i>主题新增</button>
+								<span>主题列表</span><button class="btn" style="float:right;margin-top: -12px;" onclick="go_url('${contextPath}/admin/theme/addinit')" ><i class="icon-pencil align-top bigger-125"></i>主题新增</button>
 							</h3>
 							<div class="table-header">
 								共有${pu.count}条数据
@@ -96,7 +96,7 @@
 															<i class="icon-zoom-in bigger-130"></i>
 														</a>
 
-														<a class="green" href="../theme/updateInit?id=${t.id}">
+														<a class="green" href="${contextPath}/admin/theme/updateInit?id=${t.id}">
 															<i class="icon-pencil bigger-130"></i>
 														</a>
 
@@ -121,7 +121,7 @@
 																</li>
 																		
 																<li>
-																	<a href="../theme/updateInit?id=${t.id}" class="tooltip-success" data-rel="tooltip" title="Edit">
+																	<a href="${contextPath}/admin/theme/updateInit?id=${t.id}" class="tooltip-success" data-rel="tooltip" title="Edit">
 																		<span class="green">
 																			<i class="icon-edit bigger-120"></i>
 																		</span>
@@ -157,7 +157,7 @@
 									</c:if>
 									<c:if test="${pu.page!=1}">
 										<li class="prev">
-											<a href="../theme/list?page=1">
+											<a href="${contextPath}/admin/theme/list?page=1">
 												<i class="icon-double-angle-left"></i>
 											</a>
 										</li>
@@ -170,7 +170,7 @@
 										</c:if>
 										<c:if test="${p!=pu.page}">
 											<li>
-												<a href="../theme/list?page=${p}">${p}</a>
+												<a href="${contextPath}/admin/theme/list?page=${p}">${p}</a>
 											</li>
 										</c:if>
 									</c:forEach>
@@ -183,7 +183,7 @@
 									</c:if>
 									<c:if test="${pu.page!=pu.pageCount}">
 										<li class="next">
-											<a href="../theme/list?page=${pu.pageCount}">
+											<a href="${contextPath}/admin/theme/list?page=${pu.pageCount}">
 												<i class="icon-double-angle-right"></i>
 											</a>
 										</li>

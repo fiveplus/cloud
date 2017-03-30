@@ -15,7 +15,7 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home home-icon"></i>
-					<a href="../index">Home</a>
+					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<!-- 
 				<li>
@@ -42,7 +42,7 @@
 						<div class="col-xs-12">
 							<h3 class="header smaller lighter blue">
 								<span>部门列表</span>
-								<button class="btn" style="float:right;margin-top: -12px;" onclick="go_url('../dept/addinit')" ><i class="icon-pencil align-top bigger-125"></i>部门新增 (Add Department)</button>
+								<button class="btn" style="float:right;margin-top: -12px;" onclick="go_url('${contextPath}/admin/dept/addinit')" ><i class="icon-pencil align-top bigger-125"></i>部门新增 (Add Department)</button>
 							</h3>
 							<div class="table-header">
 								共有${pu.count}条数据
@@ -80,7 +80,7 @@
 											</td>
 
 											<td>
-												<a href="../deptPermission/list?id=${d.id}&page=1">${d.name}</a>
+												<a href="${contextPath}/admin/deptPermission/list?id=${d.id}&page=1">${d.name}</a>
 											</td>
 											<td>${d.info}</td>
 											<td><date:date value="${d.createTime}" /></td>
@@ -95,7 +95,7 @@
 														<i class="icon-zoom-in bigger-130"></i>
 													</a>
 
-													<a class="green" href="../dept/updateInit?id=${d.id}">
+													<a class="green" href="${contextPath}/admin/dept/updateInit?id=${d.id}">
 														<i class="icon-pencil bigger-130"></i>
 													</a>
 
@@ -120,7 +120,7 @@
 															</li>
 
 															<li>
-																<a href="../dept/updateInit?id=${d.id}" class="tooltip-success" data-rel="tooltip" title="Edit">
+																<a href="${contextPath}/admin/dept/updateInit?id=${d.id}" class="tooltip-success" data-rel="tooltip" title="Edit">
 																	<span class="green">
 																		<i class="icon-edit bigger-120"></i>
 																	</span>
@@ -157,7 +157,7 @@
 									</c:if>
 									<c:if test="${pu.page!=1}">
 										<li class="prev">
-											<a href="../dept/list?page=1">
+											<a href="${contextPath}/admin/dept/list?page=1">
 												<i class="icon-double-angle-left"></i>
 											</a>
 										</li>
@@ -170,7 +170,7 @@
 										</c:if>
 										<c:if test="${p!=pu.page}">
 											<li>
-												<a href="../dept/list?page=${p}">${p}</a>
+												<a href="${contextPath}/admin/dept/list?page=${p}">${p}</a>
 											</li>
 										</c:if>
 									</c:forEach>
@@ -183,7 +183,7 @@
 									</c:if>
 									<c:if test="${pu.page!=pu.pageCount}">
 										<li class="next">
-											<a href="../dept/list?page=${pu.pageCount}">
+											<a href="${contextPath}/admin/dept/list?page=${pu.pageCount}">
 												<i class="icon-double-angle-right"></i>
 											</a>
 										</li>

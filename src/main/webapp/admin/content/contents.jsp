@@ -16,7 +16,7 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home home-icon"></i>
-					<a href="../index">Home</a>
+					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<!-- 
 				<li>
@@ -47,7 +47,7 @@
 							</h3>
 							
 							<div >
-								<form action="../content/list" method="post" class="form-horizontal" id="form_post">
+								<form action="${contextPath}/admin/content/list" method="post" class="form-horizontal" id="form_post">
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right"  for="form-field-select-3"> 请输入姓名 </label>
 										<div class="col-sm-9">
