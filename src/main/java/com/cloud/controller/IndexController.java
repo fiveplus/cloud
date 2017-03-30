@@ -40,6 +40,11 @@ public class IndexController {
 	 @Autowired
 	 private ThemeService themeService;
 	 
+	 @RequestMapping("/")
+	 public String root(HttpServletRequest request,Model model){
+		 return index(request,model);
+	 }
+	 
 	 
 	 @RequestMapping("/index")
 	 public String index(HttpServletRequest request,Model model){

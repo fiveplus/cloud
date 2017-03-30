@@ -16,6 +16,11 @@ import com.cloud.entity.User;
 public class IndexAdminController {
 	 private static final Logger LOGGER = Logger.getLogger(IndexAdminController.class);
 	 
+	 @RequestMapping("/")
+	 public String root(HttpServletRequest request,Model model){
+		 return index(request, model);
+	 }
+	 
 	 @RequestMapping("/index")
 	 public String index(HttpServletRequest request,Model model){
 		 HttpSession session = request.getSession();
