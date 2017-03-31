@@ -69,6 +69,12 @@ public class KindEditorController {
 			return result;
 		}
 		
+		//创建用户目录
+		File userDir = new File(savePath);
+		if(!userDir.isDirectory()){
+			userDir.mkdirs();
+		}
+		
 		//检查目录
 		File uploadDir = new File(savePath);
 		if(!uploadDir.isDirectory()){
