@@ -597,3 +597,8 @@ ol.formatted li {
 	cursor:pointer;
 	border: 5px solid #4fd2ff;
 }
+
+/* 我的消息 */
+.calexam_a:HOVER,.calexam_del:HOVER{
+	color:#279aff;
+}

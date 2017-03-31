@@ -34,14 +34,15 @@
 					<c:forEach items="${logs}" var="l">
 						<div class="gr_ge">
 							<span>
-								<img class="img-radius64" src="${contextPath}/${l.user.portrait}" />
+								<img class="img-radius64" src="${contextPath}/images/notify.png" />
 							</span>
 							<div class="gr_ge2" style="padding-top:13px;">
-								<font size="+1">${l.title}</font>
+								<font>${l.title}</font>
 								<br/>
 								<b style="font-size:12px;"><a href="#calmsg_div" class="calexam_a" onclick="get_msg(${l.id})" rel="leanModal">${l.content}</a></b>
 								<br />
-								<strong><date:date value="${l.createTime}" /></strong>
+								<strong><date:date value="${l.createTime}" /></strong> 
+								<a class="calexam_del" href="javascript:del_msg(${l.id})">删除</a>
 							</div>
 						</div>
 					</c:forEach>
@@ -85,6 +86,28 @@
 			     	  form.find("label[name='content']").html("内容："+l.content);
 			      }
 			    });
+			}
+			
+			function del_msg(id){
+				$.confirm({
+					title:'提示信息',
+					content:'确认删除吗？删除后无法恢复！！！',
+					buttons:{
+						confirm:function(){
+							$.ajax({
+								url:'${contextPath}/my/msg/delete.json',
+								data:{id:id},
+								success:function(data){
+									$.alert({title:'提示信息',content:"消息删除成功！",type:'red'});
+									window.location.reload();
+								}
+							});
+						},
+						cancel:function(){
+							//取消
+						}
+					}
+				});
 			}
 			
 		</script>

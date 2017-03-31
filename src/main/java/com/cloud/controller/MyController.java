@@ -68,6 +68,23 @@ public class MyController {
 		return "my/msg";
 	}
 	
+	@RequestMapping("/msg/delete.json")
+	public @ResponseBody Map<String,Object> del_msg(int id,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		int code = 200;
+		String message = "恭喜您，消息删除成功！";
+		SysLog log = sysLogService.get(id);
+		if(log != null){
+			sysLogService.delete(id);
+		}
+		
+		returnMap.put("code", code);
+		returnMap.put("message", message);
+		
+		return returnMap;
+	}
+	
+	
 	@RequestMapping("/getlog.json")
 	public @ResponseBody Map<String,Object> getlog(int id,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();

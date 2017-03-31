@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div class="rb">
   		<a href="#" class="ra1">&nbsp;</a>
-  		<a href="#" class="ra2">&nbsp;</a><i></i>
+  		<a href="${contextPath}/my/msg" class="ra2">&nbsp;</a><i></i>
   		<a href="javascript:show_modal('skin-div')" class="ra3">&nbsp;</a><i></i>
   		<a href="${contextPath}/logout" class="ra4">&nbsp;</a>
   	</div>
