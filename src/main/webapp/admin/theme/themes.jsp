@@ -41,7 +41,10 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<h3 class="header smaller lighter blue">
-								<span>主题列表</span><button class="btn" style="float:right;margin-top: -12px;" onclick="go_url('${contextPath}/admin/theme/addinit')" ><i class="icon-pencil align-top bigger-125"></i>主题新增</button>
+								<span>主题列表</span>
+								<a class="btn" style="float:right;margin-top: -12px;" href="${contextPath}/admin/theme/add" >
+									<i class="icon-pencil align-top bigger-125"></i>主题新增
+								</a>
 							</h3>
 							<div class="table-header">
 								共有${pu.count}条数据
@@ -96,7 +99,7 @@
 															<i class="icon-zoom-in bigger-130"></i>
 														</a>
 
-														<a class="green" href="${contextPath}/admin/theme/updateInit?id=${t.id}">
+														<a class="green" href="${contextPath}/admin/theme/upt?id=${t.id}">
 															<i class="icon-pencil bigger-130"></i>
 														</a>
 
@@ -121,7 +124,7 @@
 																</li>
 																		
 																<li>
-																	<a href="${contextPath}/admin/theme/updateInit?id=${t.id}" class="tooltip-success" data-rel="tooltip" title="Edit">
+																	<a href="${contextPath}/admin/theme/upt?id=${t.id}" class="tooltip-success" data-rel="tooltip" title="Edit">
 																		<span class="green">
 																			<i class="icon-edit bigger-120"></i>
 																		</span>

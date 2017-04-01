@@ -1,7 +1,9 @@
 package com.cloud.controller.admin;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +13,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.entity.Theme;
 import com.cloud.service.ThemeService;
@@ -38,43 +41,49 @@ public class ThemeAdminController {
 		return "admin/theme/themes";
 	}
 	
-	@RequestMapping("/addinit")
-	public String addinit(HttpServletRequest request,Model model){
+	@RequestMapping("/add")
+	public String add(HttpServletRequest request,Model model){
 		return "admin/theme/add_theme";
 	}
 	
-	@RequestMapping("/add")
-	public String add(Theme theme,HttpServletRequest request,Model model){
+	@RequestMapping("/save.json")
+	public @ResponseBody Map<String,Object> save(Theme theme,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		int code = 200;
+		String msg = "恭喜您，主题创建成功!";
+		
 		theme.setCreateTime(StringUtil.getDateToLong(new Date()));
 		int id = themeService.save(theme);
 		if(id > 0){
-			String message = "恭喜您，主题创建成功!";
-			String returnURL = "theme/list?page=1";
-			model.addAttribute("message",message);
-			model.addAttribute("returnURL",returnURL);
-			return "admin/success";
+			
 		}else{
-			String message = "很抱歉，主题创建失败!";
-			model.addAttribute("message",message);
-			return "admin/error";
+			code = -1;
+			msg = "很抱歉，主题创建失败!";
 		}
+		
+		returnMap.put("code", code);
+		returnMap.put("msg", msg);
+		return returnMap;
 	}
 	
-	@RequestMapping("/updateInit")
-	public String updateInit(int id,HttpServletRequest request,Model model){
+	@RequestMapping("/upt")
+	public String upt(int id,HttpServletRequest request,Model model){
 		Theme theme = themeService.get(id);
 		model.addAttribute("theme",theme);
 		return "admin/theme/update_theme";
 	}
 	
-	@RequestMapping("/update")
-	public String update(Theme theme,HttpServletRequest request,Model model){
+	@RequestMapping("/update.json")
+	public @ResponseBody Map<String,Object> update(Theme theme,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		int code = 200;
+		String msg = "恭喜您，主题修改成功!";
+		
 		themeService.update(theme,theme.getId());
-		String message = "恭喜您，主题修改成功!";
-		String returnURL = "theme/list?page=1";
-		model.addAttribute("message",message);
-		model.addAttribute("returnURL",returnURL);
-		return "admin/success";
+		
+		returnMap.put("code", code);
+		returnMap.put("msg", msg);
+		return returnMap;
 	}
 	
 }
