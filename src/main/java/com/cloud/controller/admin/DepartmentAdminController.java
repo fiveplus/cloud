@@ -127,7 +127,7 @@ public class DepartmentAdminController {
 	public String perlist(int id,HttpServletRequest request,Model model){
 		Department department = departmentService.get(id);
 		model.addAttribute("department",department);
-		return "dept/dept_permissions";
+		return "admin/dept/dept_permissions";
 	}
 	
 	@RequestMapping("/perlist.json")

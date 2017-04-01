@@ -80,7 +80,7 @@
 											</td>
 
 											<td>
-												<a href="perlist">${d.name}</a>
+												<a href="${contextPath}/admin/dept/perlist?id=${d.id}">${d.name}</a>
 											</td>
 											<td>${d.info}</td>
 											<td><date:date value="${d.createTime}" /></td>
@@ -91,7 +91,7 @@
 
 											<td>
 												<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-													<a class="blue" href="${contextPath}/admin/dept/perlist?id=${d.id}">
+													<a class="blue" href="${contextPath}/admin/dept/select?id=${d.id}">
 														<i class="icon-zoom-in bigger-130"></i>
 													</a>
 
@@ -99,7 +99,7 @@
 														<i class="icon-pencil bigger-130"></i>
 													</a>
 
-													<a class="red" href="javascript:del_dept(${id})">
+													<a class="red" href="javascript:del_dept(${d.id})">
 														<i class="icon-trash bigger-130"></i>
 													</a>
 												</div>

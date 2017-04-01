@@ -41,8 +41,13 @@ public class PermissionDAOImpl  extends BaseDAOImpl<Permission> implements Permi
 	}
 
 	public List<Permission> getPermissionByParentId(String parentId) {
-		String hql = "FROM Permission p WHERE p.parentId =:parentId AND p.status = 'Y' ";
-		List list = this.getHQLList(hql, new String[]{"parentId"}, new Object[]{parentId});
+		String hql = "FROM Permission p WHERE p.status = 'Y' ";
+		if(parentId == null){
+			hql += "AND p.parentId IS NULL ";
+		}else{
+			hql += "AND p.parentId = '"+parentId+"'";
+		}
+		List list = this.getHQLList(hql, null, null);
 		return list;
 	}
 

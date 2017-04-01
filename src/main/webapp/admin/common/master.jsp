@@ -77,6 +77,9 @@
 		if("ontouchend" in document) document.write("<script src='${contextPath}/admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 	</script>
 	
+	<!-- tree -->
+	<script src="${contextPath}/admin/assets/js/fuelux/fuelux.tree.min.js"></script>
+	
 	<script src="${contextPath}/admin/js/acemsg.js"></script>
 	
 </head>
