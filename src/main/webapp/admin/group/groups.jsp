@@ -42,7 +42,10 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<h3 class="header smaller lighter blue">
-								<span>组列表</span><button class="btn" style="float:right;margin-top: -12px;" onclick="go_url('${contextPath}/admin/group/addinit')" ><i class="icon-pencil align-top bigger-125"></i>组新增 (Group Add)</button>
+								<span>组列表</span>
+								<a class="btn" style="float:right;margin-top: -12px;" href="${contextPath}/admin/group/add" >
+									<i class="icon-pencil align-top bigger-125"></i>组新增
+								</a>
 							</h3>
 							<div class="table-header">
 								共有${pu.count}条数据
