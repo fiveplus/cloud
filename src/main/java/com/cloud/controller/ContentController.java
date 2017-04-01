@@ -252,6 +252,7 @@ public class ContentController {
 		 Map<String,Object> returnMap = new HashMap<String, Object>();
 		 int code = 200;
 		 String message = "恭喜您，帖子修改成功！";
+		 c.setCreateTime(StringUtil.getDateToLong(new Date()));
 		 contentService.update(c, c.getId());
 		 
 		 returnMap.put("code", code);
