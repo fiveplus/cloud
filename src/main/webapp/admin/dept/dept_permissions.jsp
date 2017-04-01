@@ -187,7 +187,7 @@
 					dataType:"json",
 					success:function(data){
 						$('#modal-tree-items').modal('hide');
-						if(data.code==0){
+						if(data.code==200){
 							ace_msg.success(data.msg);
 						}else{
 							ace_msg.danger(data.msg);

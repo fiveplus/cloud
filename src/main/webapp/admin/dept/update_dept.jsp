@@ -49,7 +49,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
-							<form action="${contextPath}/admin/dept/update" role="form" class="form-horizontal" method="post" id="form_post" >
+							<form action="${contextPath}/admin/dept/update.json" role="form" class="form-horizontal" method="post" id="form_post" >
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1">请输入部门名称 </label>
 									<div class="col-sm-9">
@@ -131,12 +131,30 @@
 		
 		<script type="text/javascript">
 		function form_submit(id){
-			var form = $("#"+id);
-			
-			var html = $("#editor1").html();
-			$("#"+id+" [name='info']").val(html);
-			
-			form.submit();
+			bootbox.confirm("确认修改?",function(result){
+				if(result){
+					var form = $("#"+id);
+					var html = $("#editor1").html();
+					$("#"+id+" [name='info']").val(html);
+					
+					$.ajax({
+						url:form.attr('action'),
+						type:"POST",
+						data:form.serialize(),
+						dataType:'json',
+						success:function(data){
+							if(data.code == 200){
+								ace_msg.success(data.msg);
+							}else{
+								ace_msg.danger(data.msg);
+							}
+						},
+						error:function(data){
+							//console.log(data);
+						}
+					});
+				}
+			});
 		}
 		$(document).ready(function(){
 			

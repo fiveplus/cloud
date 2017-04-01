@@ -47,7 +47,7 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-12">
-							<form action="${contextPath}/admin/group/update" role="form" class="form-horizontal" method="post" id="form_post" >
+							<form action="${contextPath}/admin/group/update.json" role="form" class="form-horizontal" method="post" id="form_post" >
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请选择父组 </label>
 									<div class="col-sm-9">
@@ -98,9 +98,28 @@
 		</div><!-- /.page-content -->
 		<script type="text/javascript">
 			function form_submit(id){
-				var form = $("#"+id);
-				
-				form.submit();
+				bootbox.confirm("确认修改?",function(result){
+					if(result){
+						var form = $("#"+id);
+						
+						$.ajax({
+							url:form.attr('action'),
+							type:"POST",
+							data:form.serialize(),
+							dataType:'json',
+							success:function(data){
+								if(data.code == 200){
+									ace_msg.success(data.msg);
+								}else{
+									ace_msg.danger(data.msg);
+								}
+							},
+							error:function(data){
+								//console.log(data);
+							}
+						});
+					}
+				});
 			}
 		</script>
 	</fms:Content>

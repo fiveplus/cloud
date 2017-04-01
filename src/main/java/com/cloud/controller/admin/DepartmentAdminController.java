@@ -71,7 +71,7 @@ public class DepartmentAdminController {
 	@RequestMapping("/save.json")
 	public @ResponseBody Map<String,Object> save(Department dept,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
-		String message = "恭喜您，部门创建成功!";
+		String msg = "恭喜您，部门创建成功!";
 		int code = 200;
 		
 		dept.setCreateTime(StringUtil.getDateToLong(new Date()));
@@ -80,32 +80,32 @@ public class DepartmentAdminController {
 			
 		}else{
 			code = -1;
-			message = "很抱歉，部门创建失败!";
+			msg = "很抱歉，部门创建失败!";
 		}
 		
 		returnMap.put("code", code);
-		returnMap.put("message", message);
+		returnMap.put("msg", msg);
 		
 		return returnMap;
 	}
 	
 	@RequestMapping("/upt")
-	public String updateInit(int id,HttpServletRequest request,Model model){
+	public String upt(int id,HttpServletRequest request,Model model){
 		Department dept = departmentService.get(id);
 		model.addAttribute("dept",dept);
 		return "admin/dept/update_dept";
 	}
 	
-	@RequestMapping("/update")
+	@RequestMapping("/update.json")
 	public @ResponseBody Map<String,Object> update(Department dept,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
-		String message = "恭喜您，部门修改成功!";
+		String msg = "恭喜您，部门修改成功!";
 		int code = 200;
 		
 		departmentService.update(dept,dept.getId());
 		
 		returnMap.put("code", code);
-		returnMap.put("message", message);
+		returnMap.put("msg", msg);
 		
 		return returnMap;
 	}
@@ -114,11 +114,11 @@ public class DepartmentAdminController {
 	public @ResponseBody Map<String,Object> delete(int id,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		int code = 200;
-		String message = "恭喜您，部门删除成功！";
+		String msg = "恭喜您，部门删除成功！";
 		
 		departmentService.delete(id);
 		model.addAttribute("code",code);
-		model.addAttribute("message",message);
+		model.addAttribute("msg",msg);
 		
 		return returnMap;
 	}
@@ -184,7 +184,7 @@ public class DepartmentAdminController {
 				System.out.println("dp:"+count);
 			}
 		}
-		returnMap.put("code", 0);
+		returnMap.put("code", 200);
 		returnMap.put("msg", "成功！很好地完成了提交。");
 		
 		return returnMap;

@@ -1,7 +1,9 @@
 package com.cloud.controller.admin;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.entity.Group;
 import com.cloud.service.GroupService;
@@ -37,15 +40,19 @@ public class GroupAdminController {
 		return "admin/group/groups";
 	}
 	
-	@RequestMapping("/addinit")
-	public String addinit(HttpServletRequest request,Model model){
+	@RequestMapping("/add")
+	public String add(HttpServletRequest request,Model model){
 		List<Group> parents = groupService.getParentList();
 		model.addAttribute("parents",parents);
 		return "admin/group/add_group";
 	}
 	
-	@RequestMapping("/add")
-	public String add(Group group,HttpServletRequest request,Model model){
+	@RequestMapping("/save.json")
+	public @ResponseBody Map<String,Object> save(Group group,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		int code = 200;
+		String msg = "恭喜您，组创建成功!";
+		
 		group.setInfo("");
 		group.setCreateTime(StringUtil.getDateToLong(new Date()));
 		if(group.getParent().getId() == null){
@@ -53,20 +60,18 @@ public class GroupAdminController {
 		}
 		int id = groupService.save(group);
 		if(id > 0){
-			String message = "恭喜您，组创建成功!";
-			String returnURL = "group/list?page=1";
-			model.addAttribute("message",message);
-			model.addAttribute("returnURL",returnURL);
-			return "admin/success";
+			
 		}else{
-			String message = "很抱歉，组创建失败!";
-			model.addAttribute("message",message);
-			return "admin/error";
+			code = -1;
+			msg = "很抱歉，组创建失败!";
 		}
+		returnMap.put("code", code);
+		returnMap.put("msg", msg);
+		return returnMap;
 	}
 	
-	@RequestMapping("/updateInit")
-	public String updateInit(int id,HttpServletRequest request,Model model){
+	@RequestMapping("/upt")
+	public String upt(int id,HttpServletRequest request,Model model){
 		Group group = groupService.get(id);
 		List<Group> parents = groupService.getParentList();
 		
@@ -76,14 +81,18 @@ public class GroupAdminController {
 		return "admin/group/update_group";
 	}
 	
-	@RequestMapping("/update")
-	public String update(Group group,HttpServletRequest request,Model model){
+	@RequestMapping("/update.json")
+	public @ResponseBody Map<String,Object> update(Group group,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		int code = 200;
+		String msg = "恭喜您，组更新成功!";
+		
 		groupService.update(group,group.getId());
-		String message = "恭喜您，组更新成功!";
-		String returnURL = "group/list?page=1";
-		model.addAttribute("message",message);
-		model.addAttribute("returnURL",returnURL);
-		return "admin/success";
+		
+		returnMap.put("code",code);
+		returnMap.put("msg",msg);
+		
+		return returnMap;
 	}
 	
 	

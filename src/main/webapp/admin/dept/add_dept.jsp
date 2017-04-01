@@ -102,8 +102,8 @@
 										</span>
 									</h4>
 
-									<div class="wysiwyg-editor" id="editor1" >${group.remark}</div>
-									<input type="hidden" name="remark" value="${group.remark}" />
+									<div class="wysiwyg-editor" id="editor1" >${dept.info}</div>
+									<input type="hidden" name="info" value="${dept.info}" />
 								</div>
 								<div class="space-4"></div>
 								
@@ -134,7 +134,7 @@
 					if(result){
 						var form = $("#"+id);
 						var html = $("#editor1").html();
-						$("#"+id+" [name='remark']").val(html);
+						$("#"+id+" [name='info']").val(html);
 						
 						$.ajax({
 							url:form.attr('action'),

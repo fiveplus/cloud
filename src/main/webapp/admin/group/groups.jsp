@@ -99,7 +99,7 @@
 															<i class="icon-zoom-in bigger-130"></i>
 														</a>
 
-														<a class="green" href="${contextPath}/admin/group/updateInit?id=${g.id}">
+														<a class="green" href="${contextPath}/admin/group/upt?id=${g.id}">
 															<i class="icon-pencil bigger-130"></i>
 														</a>
 
@@ -124,7 +124,7 @@
 																</li>
 
 																<li>
-																	<a href="${contextPath}/admin/group/updateInit?id=${g.id}" class="tooltip-success" data-rel="tooltip" title="Edit">
+																	<a href="${contextPath}/admin/group/upt?id=${g.id}" class="tooltip-success" data-rel="tooltip" title="Edit">
 																		<span class="green">
 																			<i class="icon-edit bigger-120"></i>
 																		</span>
