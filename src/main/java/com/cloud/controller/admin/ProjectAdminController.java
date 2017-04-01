@@ -1,7 +1,9 @@
 package com.cloud.controller.admin;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.entity.Project;
 import com.cloud.service.ProjectService;
@@ -37,43 +40,48 @@ public class ProjectAdminController {
 		return "admin/project/projects";
 	}
 	
-	@RequestMapping("/addinit")
-	public String adddinit(HttpServletRequest request,Model model){
+	@RequestMapping("/add")
+	public String add(HttpServletRequest request,Model model){
 		return "admin/project/add_project";
 	}
 	
-	@RequestMapping("/add")
-	public String add(Project p,HttpServletRequest request,Model model){
+	@RequestMapping("/save.json")
+	public @ResponseBody Map<String,Object> save(Project p,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		int code = 200;
+		String msg = "恭喜您，项目创建成功!";
+		
 		p.setCreateTime(StringUtil.getDateToLong(new Date()));
 		int id = projectService.save(p);
 		if(id > 0){
-			String message = "恭喜您，项目创建成功!";
-			String returnURL = "project/list?page=1";
-			model.addAttribute("message",message);
-			model.addAttribute("returnURL",returnURL);
-			return "admin/success";
+			
 		}else{
-			String message = "很抱歉，项目创建失败!";
-			model.addAttribute("message",message);
-			return "admin/error";
+			msg = "很抱歉，项目创建失败!";
+			code = -1;
 		}
+		returnMap.put("code", code);
+		returnMap.put("msg", msg);
+		return returnMap;
 	}
 	
-	@RequestMapping("/updateInit")
-	public String updateInit(int id,HttpServletRequest request,Model model){
+	@RequestMapping("/upt")
+	public String upt(int id,HttpServletRequest request,Model model){
 		Project p = projectService.get(id);
 		model.addAttribute("project",p);
 		return "admin/project/update_project";
 	}
 	
-	@RequestMapping("/update")
-	public String update(Project project,HttpServletRequest request,Model model){
+	@RequestMapping("/update.json")
+	public @ResponseBody Map<String,Object> update(Project project,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		int code = 200;
+		String msg = "恭喜您，项目修改成功!";
+		
 		projectService.update(project,project.getId());
-		String message = "恭喜您，项目修改成功!";
-		String returnURL = "project/list?page=1";
-		model.addAttribute("message",message);
-		model.addAttribute("returnURL",returnURL);
-		return "admin/success";
+		
+		returnMap.put("code", code);
+		returnMap.put("msg", msg);
+		return returnMap;
 	}
 	
 	

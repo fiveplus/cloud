@@ -39,7 +39,10 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<h3 class="header smaller lighter blue">
-								<span>项目列表</span><button class="btn" style="float:right;margin-top: -12px;" onclick="go_url('${contextPath}/admin/project/addinit')" ><i class="icon-pencil align-top bigger-125"></i>项目新增</button>
+								<span>项目列表</span>
+								<a class="btn" style="float:right;margin-top: -12px;" href="${contextPath}/admin/project/add" >
+									<i class="icon-pencil align-top bigger-125"></i>项目新增
+								</a>
 							</h3>
 							<div class="table-header">
 								共有${pu.count}条数据
@@ -93,7 +96,7 @@
 															<i class="icon-zoom-in bigger-130"></i>
 														</a>
 
-														<a class="green" href="${contextPath}/admin/project/updateInit?id=${p.id}">
+														<a class="green" href="${contextPath}/admin/project/upt?id=${p.id}">
 															<i class="icon-pencil bigger-130"></i>
 														</a>
 
@@ -118,7 +121,7 @@
 																</li>
 
 																<li>
-																	<a href="${contextPath}/admin/project/updateInit?id=${p.id}" class="tooltip-success" data-rel="tooltip" title="Edit">
+																	<a href="${contextPath}/admin/project/upt?id=${p.id}" class="tooltip-success" data-rel="tooltip" title="Edit">
 																		<span class="green">
 																			<i class="icon-edit bigger-120"></i>
 																		</span>

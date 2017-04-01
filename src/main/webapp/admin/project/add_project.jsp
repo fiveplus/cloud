@@ -47,7 +47,7 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-12">
-							<form action="${contextPath}/admin/project/add" role="form" class="form-horizontal" method="post" id="form_post" >
+							<form action="${contextPath}/admin/project/save.json" role="form" class="form-horizontal" method="post" id="form_post" >
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请输入项目名称 </label>
 									<div class="col-sm-9">
@@ -121,12 +121,31 @@
 		</div><!-- /.page-content -->
 		<script type="text/javascript">
 		function form_submit(id){
-			var form = $("#"+id);
 			
-			var html = $("#editor1").html();
-			$("#"+id+" [name='info']").val(html);
-			
-			form.submit();
+			bootbox.confirm("确认新增?",function(result){
+				if(result){
+					var form = $("#"+id);
+					var html = $("#editor1").html();
+					$("#"+id+" [name='info']").val(html);
+					$.ajax({
+						url:form.attr('action'),
+						type:"POST",
+						data:form.serialize(),
+						dataType:'json',
+						success:function(data){
+							if(data.code == 200){
+								ace_msg.success(data.msg);
+								go_back();
+							}else{
+								ace_msg.danger(data.msg);
+							}
+						},
+						error:function(data){
+							//console.log(data);
+						}
+					});
+				}
+			});
 		}
 		
 		$(document).ready(function(){
