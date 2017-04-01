@@ -1,7 +1,9 @@
 package com.cloud.controller.admin;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.entity.Permission;
 import com.cloud.service.PermissionService;
@@ -40,8 +43,8 @@ public class PermissionAdminController {
 		return "admin/permission/permissions";
 	}
 	
-	@RequestMapping("/addinit")
-	public String addinit(HttpServletRequest request,Model model){
+	@RequestMapping("/add")
+	public String add(HttpServletRequest request,Model model){
 		List<Permission> parents = permissionService.getParentPermission();
 		
 		model.addAttribute("parents",parents);
@@ -49,27 +52,29 @@ public class PermissionAdminController {
 		return "admin/permission/add_permission";
 	}
 	
-	@RequestMapping("/add")
-	public String add(Permission permission,HttpServletRequest request,Model model){
+	@RequestMapping("/save.json")
+	public @ResponseBody Map<String,Object> add(Permission permission,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		String msg = "恭喜您，权限创建成功!";
+		int code = 200;
+		
 		permission.setCreateTime(StringUtil.getDateToLong(new Date()));
 		permission.setStatus("Y");
 		permission.setImageURL("");
 		String id = permissionService.save(permission);
 		if(id != null){
-			String message = "恭喜您，权限创建成功!";
-			String returnURL = "permission/list?page=1";
-			model.addAttribute("message",message);
-			model.addAttribute("returnURL",returnURL);
-			return "admin/success";
+			
 		}else{
-			String message = "很抱歉，权限创建失败!";
-			model.addAttribute("message",message);
-			return "admin/error";
+			msg = "很抱歉，权限创建失败!";
+			code = -1;
 		}
+		returnMap.put("code", code);
+		returnMap.put("msg", msg);
+		return returnMap;
 	}
 	
-	@RequestMapping("/updateInit")
-	public String updateInit(String id,HttpServletRequest request,Model model){
+	@RequestMapping("/upt")
+	public String upt(String id,HttpServletRequest request,Model model){
 		Permission permission = permissionService.get(id);
 		List<Permission> parents = permissionService.getParentPermission();
 		
@@ -79,15 +84,17 @@ public class PermissionAdminController {
 		return "admin/permission/update_permission";
 	}
 	
-	@RequestMapping("/update")
-	public String update(Permission permission,HttpServletRequest request,Model model){
+	@RequestMapping("/update.json")
+	public @ResponseBody Map<String,Object> update(Permission permission,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		String msg = "恭喜您，权限修改成功!";
+		int code = 200;
 		
 		permissionService.update(permission,permission.getId());
-		String message = "恭喜您，权限修改成功!";
-		String returnURL = "permission/list?page=1";
-		model.addAttribute("message",message);
-		model.addAttribute("returnURL",returnURL);
-		return "admin/success";
+		
+		returnMap.put("code", code);
+		returnMap.put("msg", msg);
+		return returnMap;
 	}
 	
 	
