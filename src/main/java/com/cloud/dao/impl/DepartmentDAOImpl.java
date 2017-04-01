@@ -21,7 +21,7 @@ public class DepartmentDAOImpl extends BaseDAOImpl<Department> implements Depart
 	}
 
 	public int getListCount(String[] columns, Object[] objs) {
-		String hql = "SELECT COUNT(*) FROM Department WHERE d.status = 'Y' ";
+		String hql = "SELECT COUNT(*) FROM Department d WHERE d.status = 'Y' ";
 		int count = this.getCount(hql, columns, objs);
 		return count;
 	}

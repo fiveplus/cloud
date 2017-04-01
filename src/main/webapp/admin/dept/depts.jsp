@@ -42,7 +42,7 @@
 						<div class="col-xs-12">
 							<h3 class="header smaller lighter blue">
 								<span>部门列表</span>
-								<button class="btn" style="float:right;margin-top: -12px;" onclick="go_url('${contextPath}/admin/dept/addinit')" ><i class="icon-pencil align-top bigger-125"></i>部门新增 (Add Department)</button>
+								<a class="btn" style="float:right;margin-top: -12px;" href="${contextPath}/admin/dept/add" ><i class="icon-pencil align-top bigger-125"></i>部门新增</a>
 							</h3>
 							<div class="table-header">
 								共有${pu.count}条数据
@@ -80,7 +80,7 @@
 											</td>
 
 											<td>
-												<a href="${contextPath}/admin/deptPermission/list?id=${d.id}&page=1">${d.name}</a>
+												<a href="perlist">${d.name}</a>
 											</td>
 											<td>${d.info}</td>
 											<td><date:date value="${d.createTime}" /></td>
@@ -91,11 +91,11 @@
 
 											<td>
 												<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-													<a class="blue" href="javascript:void(0)">
+													<a class="blue" href="${contextPath}/admin/dept/perlist?id=${d.id}">
 														<i class="icon-zoom-in bigger-130"></i>
 													</a>
 
-													<a class="green" href="${contextPath}/admin/dept/updateInit?id=${d.id}">
+													<a class="green" href="${contextPath}/admin/dept/upt?id=${d.id}">
 														<i class="icon-pencil bigger-130"></i>
 													</a>
 
@@ -112,7 +112,7 @@
 
 														<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
 															<li>
-																<a href="javascript:void(0)" class="tooltip-info" data-rel="tooltip" title="View">
+																<a href="${contextPath}/admin/dept/select?id=${d.id}" class="tooltip-info" data-rel="tooltip" title="View">
 																	<span class="blue">
 																		<i class="icon-zoom-in bigger-120"></i>
 																	</span>
@@ -120,7 +120,7 @@
 															</li>
 
 															<li>
-																<a href="${contextPath}/admin/dept/updateInit?id=${d.id}" class="tooltip-success" data-rel="tooltip" title="Edit">
+																<a href="${contextPath}/admin/dept/upt?id=${d.id}" class="tooltip-success" data-rel="tooltip" title="Edit">
 																	<span class="green">
 																		<i class="icon-edit bigger-120"></i>
 																	</span>

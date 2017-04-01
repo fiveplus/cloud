@@ -56,9 +56,17 @@ public class DepartmentAdminController {
 	}
 	
 	@RequestMapping("/add")
-	public String addinit(HttpServletRequest request,Model model){
+	public String add(HttpServletRequest request,Model model){
 		return "admin/dept/add_dept";
 	}
+	
+	@RequestMapping("/select")
+	public String select(int id,HttpServletRequest requst,Model model){
+		Department department = departmentService.get(id);
+		model.addAttribute("department",department);
+		return "admin/dept/dept";
+	}
+	
 	
 	@RequestMapping("/save.json")
 	public @ResponseBody Map<String,Object> save(Department dept,HttpServletRequest request,Model model){
