@@ -97,5 +97,18 @@ public class PermissionAdminController {
 		return returnMap;
 	}
 	
+	@RequestMapping("/delete.json")
+	public @ResponseBody Map<String,Object> delete(String id,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		int code = 200;
+		String msg = "恭喜您，权限删除成功!";
+		
+		permissionService.delete(id);
+		returnMap.put("code", code);
+		returnMap.put("msg", msg);
+		
+		return returnMap;
+	}
+	
 	
 }

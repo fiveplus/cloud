@@ -38,6 +38,12 @@ public class PermissionService extends BaseService<Permission, String>{
 		return permissionDAO.getCountByParentId(parentId);
 	}
 	
+	public void delete(String id){
+		Permission p = get(id);
+		p.setStatus("N");
+		update(p, id);
+	}
+	
 	
 	
 }

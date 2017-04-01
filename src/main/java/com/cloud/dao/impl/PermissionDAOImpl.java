@@ -16,7 +16,7 @@ import com.cloud.entity.Permission;
 public class PermissionDAOImpl  extends BaseDAOImpl<Permission> implements PermissionDAO{
 
 	public List<Permission> getParentMenu() {
-		String hql = "FROM Permission p WHERE p.parentId = 'admin' AND p.isMenu = 'Y' ORDER BY p.menuIndex ASC";
+		String hql = "FROM Permission p WHERE p.status = 'Y' AND p.parentId = 'admin' AND p.isMenu = 'Y' ORDER BY p.menuIndex ASC";
 		List list = this.getHQLList(hql, null, null);
 		return list;
 	}
