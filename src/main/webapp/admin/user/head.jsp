@@ -20,7 +20,7 @@
 					<a href="${contextPath}/admin/index">Home</a>
 				</li>
 				<li>
-					<a href="${contextPath}/admin/user/updateUserInit?id=${us.id}">用户资料修改</a>
+					<a href="${contextPath}/admin/user/uptUser?id=${us.id}">用户资料修改</a>
 				</li>
 				<li class="active">用户头像</li> 
 			</ul><!-- .breadcrumb -->
@@ -192,7 +192,7 @@
 							var height = $("#height").val();
 							var u = "&x="+x+"&y="+y+"&width="+width+"&height="+height;
 							$.ajaxFileUpload({
-								url:'${contextPath}/admin/user/upload?id=${us.id}'+u,
+								url:'${contextPath}/admin/user/upload.json?id=${us.id}'+u,
 								type:'post',
 								secureuri:false,
 								fileElementId:'file',

@@ -46,7 +46,7 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-12">
-							<form action="${contextPath}/admin/user/updateUser" role="form" class="form-horizontal" method="post" id="form_post" >
+							<form action="${contextPath}/admin/user/updateUser.json" role="form" class="form-horizontal" method="post" id="form_post" >
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户头像 </label>
 									<div class="col-sm-9">
@@ -85,6 +85,15 @@
 									</div>
 								</div>
 								<div class="space-4"></div>
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请输入联系电话 </label>
+									<div class="col-sm-9">
+										<input type="text" id="form-field-1" placeholder="联系电话" class="col-xs-10 col-sm-5" name="mobile" value="${us.mobile}" />
+										<font style="color:red; height:25px;line-height:25px;overflow:hidden;"><b>&nbsp;*</b></font>
+									</div>
+								</div>
+								<div class="space-4"></div>
 											
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请输入登录密码</label>
@@ -116,9 +125,28 @@
 		</div><!-- /.page-content -->
 		<script type="text/javascript">
 			function form_submit(id){
-				var form = $("#"+id);
-				
-				form.submit();
+				bootbox.confirm("确认修改?",function(result){
+					if(result){
+						var form = $("#"+id);
+						$.ajax({
+							url:form.attr('action'),
+							type:"POST",
+							data:form.serialize(),
+							dataType:'json',
+							success:function(data){
+								if(data.code == 200){
+									ace_msg.success(data.msg);
+									go_back();
+								}else{
+									ace_msg.danger(data.msg);
+								}
+							},
+							error:function(data){
+								//console.log(data);
+							}
+						});
+					}
+				});
 			}
 		</script>
 	</fms:Content>

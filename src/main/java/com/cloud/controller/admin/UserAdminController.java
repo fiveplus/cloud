@@ -3,7 +3,9 @@ package com.cloud.controller.admin;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -121,8 +123,8 @@ public class UserAdminController {
 		 return "admin/user/users";
 	 }
 	 
-	 @RequestMapping("/addinit")
-	 public String addinit(HttpServletRequest request,Model model){
+	 @RequestMapping("/add")
+	 public String add(HttpServletRequest request,Model model){
 		 List<Department> depts = departmentService.findAll();
 		 
 		 List<Group> parents = groupService.getParentList();
@@ -141,8 +143,12 @@ public class UserAdminController {
 		 return "admin/user/add_user";
 	 }
 	 
-	 @RequestMapping("/add")
-	 public String add(User us,HttpServletRequest request,Model model) throws Exception{
+	 @RequestMapping("/save.json")
+	 public @ResponseBody Map<String,Object> save(User us,HttpServletRequest request,Model model) throws Exception{
+		 Map<String,Object> returnMap = new HashMap<String, Object>();
+		 int code = 200;
+		 String msg = "恭喜您，用户创建成功!";
+		 
 		 if(us.getGroup().getId() == null){
 			 int pid = Integer.parseInt(request.getParameter("parentid"));
 			 us.getGroup().setId(pid);
@@ -152,20 +158,18 @@ public class UserAdminController {
 		 us.setPassword(MD5.GetMD5Password("123456"));
 		 int id = userService.save(us);
 		 if(id > 0){
-			 String message = "恭喜您，用户创建成功!";
-			 String returnURL = "user/list?page=1";
-			 model.addAttribute("message",message);
-			 model.addAttribute("returnURL",returnURL);
-			 return "admin/success";
 		 }else{
-			 String message = "很抱歉，用户创建失败!";
-			 model.addAttribute("message",message);
-			 return "admin/error";
+			 msg = "很抱歉，用户创建失败!";
+			 code = -1;
 		 }
+		 
+		 returnMap.put("code", code);
+		 returnMap.put("msg", msg);
+		 return returnMap;
 	 }
 	 
-	 @RequestMapping("/updateInit")
-	 public String updateInit(int id,HttpServletRequest request,Model model){
+	 @RequestMapping("/upt")
+	 public String upt(int id,HttpServletRequest request,Model model){
 		 List<Department> depts = departmentService.findAll();
 		 User us = userService.get(id);
 		 
@@ -194,18 +198,21 @@ public class UserAdminController {
 		 return "admin/user/update_user";
 	 }
 	 
-	 @RequestMapping("/update")
-	 public String update(User us,HttpServletRequest request,Model model){
+	 @RequestMapping("/update.json")
+	 public @ResponseBody Map<String,Object> update(User us,HttpServletRequest request,Model model){
+		 Map<String,Object> returnMap = new HashMap<String, Object>();
+		 int code = 200;
+		 String msg = "恭喜您，用户修改成功!";
+		 
 		 userService.update(us,us.getId());
-		 String message = "恭喜您，用户修改成功!";
-		 String returnURL = "user/list?page=1";
-		 model.addAttribute("message",message);
-		 model.addAttribute("returnURL",returnURL);
-		 return "admin/success";
+		 
+		 returnMap.put("code", code);
+		 returnMap.put("msg", msg);
+		 return returnMap;
 	 }
 	 
-	 @RequestMapping("/updateUserInit")
-	 public String updateUserInit(int id,HttpServletRequest request,Model model){
+	 @RequestMapping("/uptUser")
+	 public String uptUser(int id,HttpServletRequest request,Model model){
 		 List<Department> depts = departmentService.findAll();
 		 User us = userService.get(id);
 		 model.addAttribute("depts",depts);
@@ -213,15 +220,18 @@ public class UserAdminController {
 		 return "admin/user/this_update_user";
 	 }
 	 
-	 @RequestMapping("/updateUser")
-	 public String updateUser(User us,HttpServletRequest request,Model model){
+	 @RequestMapping("/updateUser.json")
+	 public @ResponseBody Map<String,Object> updateUser(User us,HttpServletRequest request,Model model){
+		 Map<String,Object> returnMap = new HashMap<String, Object>();
+		 int code = 200;
+		 String msg = "恭喜您，用户信息修改成功，重新登录生效!";
+		 
 		 if (us.getPassword().equals("")) us.setPassword(null);
 		 userService.update(us,us.getId());
-		 String message = "恭喜您，用户信息修改成功，重新登录生效!";
-		 String returnURL = "admin/user/updateUserInit?id="+us.getId();
-		 model.addAttribute("message",message);
-		 model.addAttribute("returnURL",returnURL);
-		 return "admin/success";
+		 
+		 returnMap.put("code", code);
+		 returnMap.put("msg", msg);
+		 return returnMap;
 	 }
 	 
 	 @RequestMapping("/head")
@@ -231,7 +241,7 @@ public class UserAdminController {
 		 return "admin/user/head";
 	 }
 	 
-	 @RequestMapping("/upload")
+	 @RequestMapping("/upload.json")
 	 public @ResponseBody String upload(@RequestParam(value = "file",required = false) MultipartFile file,int id,int x,int y,int width,int height, HttpServletRequest request, ModelMap model){
 		 User us = userService.get(id);
 		 String path = request.getSession().getServletContext().getRealPath("/upload_images");
