@@ -11,7 +11,7 @@ public interface BaseDAO<T,PK extends Serializable> {
 	void persist(T entity);
 	PK save(T entity);
 	void update(T entity);
-	void updateHQL(String hql,String[] columns,Object[] objs);
+	int updateHQL(String hql,String[] columns,Object[] objs);
 	void delete(PK id);
 	void flush();
 	List<?> getHQLList(String hql,String[] columns,Object[] objs);

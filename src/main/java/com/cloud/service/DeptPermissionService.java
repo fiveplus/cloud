@@ -31,4 +31,8 @@ public class DeptPermissionService extends BaseService<DeptPermission, Integer>{
 		return deptPermissionDAO.get(permissionId, deptId);
 	}
 	
+	public int deletePermissionByDeptId(int deptId){
+		return deptPermissionDAO.deletePermissionByDeptId(deptId);
+	}
+	
 }

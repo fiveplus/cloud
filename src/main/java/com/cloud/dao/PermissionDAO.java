@@ -10,4 +10,6 @@ public interface PermissionDAO extends BaseDAO<Permission, Serializable>{
 	public List<Permission> getList(int page, int pageSize, String[] columns,Object[] objs);
 	public int getListCount(String[] columns, Object[] objs);
 	public List<Permission> getParentPermission();
+	public List<Permission> getPermissionByParentId(String parentId);
+	public int getCountByParentId(String parentId);
 }

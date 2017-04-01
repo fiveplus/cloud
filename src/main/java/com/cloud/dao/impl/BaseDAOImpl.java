@@ -117,7 +117,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T, Serializable>{
 		return list;
 	}
 
-	public void updateHQL(String hql, String[] columns, Object[] objs) {
+	public int updateHQL(String hql, String[] columns, Object[] objs) {
 		Session session = this.getCurrentSession();
 		Query query = session.createQuery(hql);
 		if(columns != null){
@@ -125,7 +125,8 @@ public class BaseDAOImpl<T> implements BaseDAO<T, Serializable>{
 				query.setParameter(columns[i], objs[i]);
 			}
 		}
-		query.executeUpdate();
+		int num = query.executeUpdate();
+		return num;
 	}
 
 }

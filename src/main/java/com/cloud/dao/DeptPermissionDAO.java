@@ -12,4 +12,5 @@ public interface DeptPermissionDAO extends BaseDAO<DeptPermission, Serializable>
 	int getChildCount(String[] columns,Object[] objs);
 	List<Permission> getList(int page,int pageSize,String[] columns,Object[] objs);
 	DeptPermission get(String permissionId,int deptId);
+	int deletePermissionByDeptId(int deptId);
 }

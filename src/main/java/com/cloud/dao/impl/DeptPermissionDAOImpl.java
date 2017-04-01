@@ -44,4 +44,10 @@ public class DeptPermissionDAOImpl extends BaseDAOImpl<DeptPermission> implement
 		}
 		return dp;
 	}
+
+	public int deletePermissionByDeptId(int deptId) {
+		String hql = "DELETE FROM DeptPermission dp WHERE dp.deptId=:deptId ";
+		int num = this.updateHQL(hql, new String[]{"deptId"}, new Object[]{deptId});
+		return num;
+	}
 }

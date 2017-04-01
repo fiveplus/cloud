@@ -30,6 +30,14 @@ public class PermissionService extends BaseService<Permission, String>{
 		return permissionDAO.getParentPermission();
 	}
 	
+	public List<Permission> getPermissionByParentId(String parentId){
+		return permissionDAO.getPermissionByParentId(parentId);
+	}
+	
+	public int getCountByParentId(String parentId){
+		return permissionDAO.getCountByParentId(parentId);
+	}
+	
 	
 	
 }
