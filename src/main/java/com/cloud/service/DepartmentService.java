@@ -22,5 +22,11 @@ public class DepartmentService extends BaseService<Department, Integer>{
 		return departmentDAO.getListCount(columns, objs);
 	}
 	
+	public void delete(Integer id){
+		Department d = get(id);
+		d.setStatus("N");
+		update(d, id);
+	}
+	
 	
 }

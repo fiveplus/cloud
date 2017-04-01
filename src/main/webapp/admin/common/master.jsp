@@ -77,6 +77,8 @@
 		if("ontouchend" in document) document.write("<script src='${contextPath}/admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 	</script>
 	
+	<script src="${contextPath}/admin/js/acemsg.js"></script>
+	
 </head>
 <body>
 	<div class="navbar navbar-default" id="navbar">
@@ -246,7 +248,7 @@
 			window.location.href=url;
 		}
 		function go_back(){
-			window.history.go(-1);
+			self.location=document.referrer;
 		}
 	
 		$(document).ready(function(){

@@ -39,6 +39,8 @@ public class User implements Serializable{
 	
 	private Level level;
 	
+	private String status;
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -156,7 +158,13 @@ public class User implements Serializable{
 		this.level = level;
 	}
 	
-	
+	@Column(name = "STATUS")
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	
 	
 }	

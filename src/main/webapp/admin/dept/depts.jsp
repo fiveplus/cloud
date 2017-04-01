@@ -99,7 +99,7 @@
 														<i class="icon-pencil bigger-130"></i>
 													</a>
 
-													<a class="red" href="javascript:void(0)">
+													<a class="red" href="javascript:del_dept(${id})">
 														<i class="icon-trash bigger-130"></i>
 													</a>
 												</div>
@@ -128,7 +128,7 @@
 															</li>
 
 															<li>
-																<a href="javascript:void(0)" class="tooltip-error" data-rel="tooltip" title="Delete">
+																<a href="javascript:del_dept(${id})" class="tooltip-error" data-rel="tooltip" title="Delete">
 																	<span class="red">
 																		<i class="icon-trash bigger-120"></i>
 																	</span>
@@ -197,6 +197,12 @@
 				</div><!-- PAGE CONTENT ENDS -->
 			</div><!-- /.col -->
 		</div><!-- /.page-content -->
+		
+		<script type="text/javascript">
+			function del_dept(id){
+				
+			}
+		</script>
 		
 	</fms:Content>
 </fms:ContentPage>

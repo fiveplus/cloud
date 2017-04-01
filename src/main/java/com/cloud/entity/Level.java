@@ -19,6 +19,7 @@ public class Level implements Serializable{
 	private String info;
 	private Long createTime;
 	private Level level;
+	private String status;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,6 +64,12 @@ public class Level implements Serializable{
 		this.createTime = createTime;
 	}
 	
-	
+	@Column(name = "STATUS")
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	
 }

@@ -17,3 +17,9 @@ tbl_content新增字段 address(帖子发布地址)
 tbl_project新增字段 status(标记项目是否删除)
 * 2017-3-28 tbl_skin新增表<br/>
 <img src="http://git.oschina.net/uploads/images/2017/0328/090426_afd8df83_803453.png" width="600" />
+* 2017-4-1 表新增字段
+1.tbl_dept add column status,type is varchar(50),not null <br/>
+2.tbl_group add column status,type is varchar(50),not null <br/>
+3.tbl_level add column status,type is varchar(50),not null <br/>
+4.tbl_theme add column status,type is varchar(50),not null <br/>
+5.tbl_user add column status,type is varchar(50),not null <br/>

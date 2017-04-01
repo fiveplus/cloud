@@ -23,6 +23,7 @@ public class Group implements Serializable{
 	private String info;
 	
 	private Group parent;
+	private String status;
 	
 	private List<Group> childs;
 	
@@ -68,6 +69,14 @@ public class Group implements Serializable{
 
 	public void setParent(Group parent) {
 		this.parent = parent;
+	}
+	
+	@Column(name = "STATUS")
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	@Transient

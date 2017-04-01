@@ -21,6 +21,7 @@ public class Department implements Serializable{
 	
 	private String phone;
 	private String fax;
+	private String status;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,6 +71,14 @@ public class Department implements Serializable{
 	}
 	public void setFax(String fax) {
 		this.fax = fax;
+	}
+	
+	@Column(name = "STATUS")
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

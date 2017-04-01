@@ -19,6 +19,7 @@ public class Theme implements Serializable{
 	private int index;
 	
 	private String info;
+	private String status;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,7 +55,6 @@ public class Theme implements Serializable{
 		this.index = index;
 	}
 	
-	
 	public void setInfo(String info) {
 		this.info = info;
 	}
@@ -62,6 +62,14 @@ public class Theme implements Serializable{
 	@Column(name = "INFO")
 	public String getInfo() {
 		return info;
+	}
+	
+	@Column(name = "STATUS")
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

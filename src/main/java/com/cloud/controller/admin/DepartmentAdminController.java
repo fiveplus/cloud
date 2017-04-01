@@ -1,7 +1,9 @@
 package com.cloud.controller.admin;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.entity.Department;
 import com.cloud.service.DepartmentService;
@@ -43,21 +46,25 @@ public class DepartmentAdminController {
 		return "admin/dept/add_dept";
 	}
 	
-	@RequestMapping("/add")
-	public String add(Department dept,HttpServletRequest request,Model model){
+	@RequestMapping("/save.json")
+	public @ResponseBody Map<String,Object> save(Department dept,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		String message = "恭喜您，部门创建成功!";
+		int code = 200;
+		
 		dept.setCreateTime(StringUtil.getDateToLong(new Date()));
 		int id = departmentService.save(dept);
 		if(id > 0){
-			String message = "恭喜您，部门创建成功!";
-			String returnURL = "dept/list?page=1";
-			model.addAttribute("message",message);
-			model.addAttribute("returnURL",returnURL);
-			return "admin/success";
+			
 		}else{
-			String message = "很抱歉，部门创建失败!";
-			model.addAttribute("message",message);
-			return "admin/error";
+			code = -1;
+			message = "很抱歉，部门创建失败!";
 		}
+		
+		returnMap.put("code", code);
+		returnMap.put("message", message);
+		
+		return returnMap;
 	}
 	
 	@RequestMapping("/updateInit")
@@ -68,13 +75,30 @@ public class DepartmentAdminController {
 	}
 	
 	@RequestMapping("/update")
-	public String update(Department dept,HttpServletRequest request,Model model){
-		departmentService.update(dept,dept.getId());
+	public @ResponseBody Map<String,Object> update(Department dept,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
 		String message = "恭喜您，部门修改成功!";
-		String returnURL = "dept/list?page=1";
+		int code = 200;
+		
+		departmentService.update(dept,dept.getId());
+		
+		returnMap.put("code", code);
+		returnMap.put("message", message);
+		
+		return returnMap;
+	}
+	
+	@RequestMapping("/delete.json")
+	public @ResponseBody Map<String,Object> delete(int id,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		int code = 200;
+		String message = "恭喜您，部门删除成功！";
+		
+		departmentService.delete(id);
+		model.addAttribute("code",code);
 		model.addAttribute("message",message);
-		model.addAttribute("returnURL",returnURL);
-		return "admin/success";
+		
+		return returnMap;
 	}
 	
 	
