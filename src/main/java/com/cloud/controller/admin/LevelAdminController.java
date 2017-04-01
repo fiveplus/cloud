@@ -103,4 +103,17 @@ public class LevelAdminController {
 		return returnMap;
 	}
 	
+	@RequestMapping("/delete.json")
+	public @ResponseBody Map<String,Object> delete(int id,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		String msg = "恭喜您，职位级别删除成功！";
+		int code = 200;
+		
+		levelService.delete(id);
+		returnMap.put("code", code);
+		returnMap.put("msg", msg);
+		
+		return returnMap;
+	}
+	
 }

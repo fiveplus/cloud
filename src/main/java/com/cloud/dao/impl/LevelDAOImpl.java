@@ -11,25 +11,25 @@ import com.cloud.entity.Level;
 public class LevelDAOImpl extends BaseDAOImpl<Level> implements LevelDAO{
 
 	public int getListCount(String[] columns, Object[] objs) {
-		String hql = "SELECT COUNT(*) FROM Level l WHERE 1 = 1 ";
+		String hql = "SELECT COUNT(*) FROM Level l WHERE l.status='Y' ";
 		return this.getCount(hql, columns, objs);
 	}
 
 	public List<Level> getList(int page, int pageSize, String[] columns,
 			Object[] objs) {
-		String hql = "FROM Level l WHERE 1 = 1 ";
+		String hql = "FROM Level l WHERE l.status='Y' ";
 		List list = this.getHQLList(hql, columns, objs);
 		return list;
 	}
 
 	public List<Level> getParentList() {
-		String sql = "select * from tbl_level l where l.parent_id is NULL ";
+		String sql = "select * from tbl_level l where l.status='Y' AND l.parent_id is NULL ";
 		List list = this.getSQLList(sql, null, Level.class);
 		return list;
 	}
 
 	public List<Level> getChildList(int parentId) {
-		String sql = "select * from tbl_level l where l.parent_id = ? ";
+		String sql = "select * from tbl_level l where l.status='Y' AND l.parent_id = ? ";
 		List list = this.getSQLList(sql, new Object[]{parentId}, Level.class);
 		return list;
 	}

@@ -23,6 +23,11 @@ public class ThemeService extends BaseService<Theme, Integer>{
 		return themeDAO.getListCount(columns, objs);
 	}
 	
+	public void delete(Integer id){
+		Theme t = get(id);
+		t.setStatus("N");
+		update(t, id);
+	}
 	
 	
 }

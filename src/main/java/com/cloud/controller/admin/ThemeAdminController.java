@@ -86,4 +86,17 @@ public class ThemeAdminController {
 		return returnMap;
 	}
 	
+	@RequestMapping("/delete.json")
+	public @ResponseBody Map<String,Object> delete(int id,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		String msg = "恭喜您，主题删除成功！";
+		int code = 200;
+		
+		themeService.delete(id);
+		
+		returnMap.put("code", code);
+		returnMap.put("msg", msg);
+		return returnMap;
+	}
+	
 }

@@ -103,7 +103,7 @@
 															<i class="icon-pencil bigger-130"></i>
 														</a>
 
-														<a class="red" href="javascript:void(0)">
+														<a class="red" href="javascript:del_theme(${t.id})">
 															<i class="icon-trash bigger-130"></i>
 														</a>
 													</div>
@@ -132,7 +132,7 @@
 																</li>
 
 																<li>
-																	<a href="javascript:void(0)" class="tooltip-error" data-rel="tooltip" title="Delete">
+																	<a href="javascript:del_theme(${t.id})" class="tooltip-error" data-rel="tooltip" title="Delete">
 																		<span class="red">
 																			<i class="icon-trash bigger-120"></i>
 																		</span>
@@ -200,6 +200,29 @@
 				</div><!-- /.col -->
 			</div><!-- /.row -->
 		</div><!-- /.page-content -->
-		
+		<script type="text/javascript">
+			function del_theme(id){
+				bootbox.confirm("确认删除?",function(result){
+					if(result){
+						$.ajax({
+							url:'${contextPath}/admin/theme/delete.json',
+							data:{id:id},
+							dataType:"json",
+							success:function(data){
+								if(data.code==200){
+									ace_msg.success(data.msg);
+									window.location.reload();
+								}else{
+									ace_msg.danger(data.msg);
+								}
+							},
+							error:function(data){
+								//console.log(data)
+							}
+						});
+					}
+				});
+			}
+		</script>
 	</fms:Content>
 </fms:ContentPage>

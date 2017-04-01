@@ -14,13 +14,13 @@ import com.cloud.entity.Theme;
 public class ThemeDAOImpl extends BaseDAOImpl<Theme> implements ThemeDAO{
 	public List<Theme> getList(int page, int pageSize, String[] columns,
 			Object[] objs) {
-		String hql = "FROM Theme WHERE 1 = 1 ";
+		String hql = "FROM Theme t WHERE t.status='Y' ";
 		List list = this.getList(page,pageSize,hql, columns, objs);
 		return list;
 	}
 
 	public int getListCount(String[] columns, Object[] objs) {
-		String hql = "SELECT COUNT(*) FROM Theme WHERE 1 = 1 ";
+		String hql = "SELECT COUNT(*) FROM Theme t WHERE t.status='Y' ";
 		int count = this.getCount(hql, columns, objs);
 		return count;
 	}

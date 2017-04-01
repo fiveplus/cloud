@@ -34,4 +34,10 @@ public class GroupService extends BaseService<Group, Integer>{
 		return groupDAO.getChildList();
 	}
 	
+	public void delete(Integer id){
+		Group g = get(id);
+		g.setStatus("N");
+		update(g, id);
+	}
+	
 }

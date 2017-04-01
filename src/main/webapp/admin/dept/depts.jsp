@@ -128,7 +128,7 @@
 															</li>
 
 															<li>
-																<a href="javascript:del_dept(${id})" class="tooltip-error" data-rel="tooltip" title="Delete">
+																<a href="javascript:del_dept(${d.id})" class="tooltip-error" data-rel="tooltip" title="Delete">
 																	<span class="red">
 																		<i class="icon-trash bigger-120"></i>
 																	</span>
@@ -200,7 +200,26 @@
 		
 		<script type="text/javascript">
 			function del_dept(id){
-				
+				bootbox.confirm("确认删除?",function(result){
+					if(result){
+						$.ajax({
+							url:'${contextPath}/admin/dept/delete.json',
+							data:{id:id},
+							dataType:"json",
+							success:function(data){
+								if(data.code==200){
+									ace_msg.success(data.msg);
+									window.location.reload();
+								}else{
+									ace_msg.danger(data.msg);
+								}
+							},
+							error:function(data){
+								//console.log(data)
+							}
+						});
+					}
+				});
 			}
 		</script>
 		
