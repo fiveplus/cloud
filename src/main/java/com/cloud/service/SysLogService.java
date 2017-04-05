@@ -17,5 +17,9 @@ public class SysLogService extends BaseService<SysLog, Integer>{
 	public List<SysLog> getListToUserId(int userId) {
 		return sysLogDAO.getListToUserId(userId);
 	}
+	
+	public int getCountToUserIdAndIsRead(int userId){
+		return sysLogDAO.getCountToUserIdAndIsRead(userId);
+	}
 
 }
