@@ -136,7 +136,12 @@ $(function(){
 				$(".jconfirm").remove();
 				return;
 			}
+			var username = $("#loginform input[name='username']").val().trim();
+			if(username == ''){
+				return;
+			}
 			$("#login").click();
+			
 		}
 	});
 	
