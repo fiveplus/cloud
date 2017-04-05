@@ -39,7 +39,12 @@
 							<div class="gr_ge2" style="padding-top:13px;">
 								<font>${l.title}</font>
 								<br/>
-								<b style="font-size:12px;"><a href="#calmsg_div" class="calexam_a" onclick="get_msg(${l.id})" rel="leanModal">${l.content}</a></b>
+								<b style="font-size:12px;">
+									
+									<a href="#calmsg_div" class="calexam_a<c:if test="${l.isRead != 'Y'}"> b"</c:if> onclick="get_msg(${l.id})" rel="leanModal">
+									${l.content}
+									</a>
+								</b>
 								<br />
 								<strong><date:date value="${l.createTime}" /></strong> 
 								<a class="calexam_del" href="javascript:del_msg(${l.id})">删除</a>
