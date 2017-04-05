@@ -70,7 +70,8 @@
 				
 				//log
 				var indexCount = ${indexCount};
-				if(indexCount == 0){
+				var msgCount = ${msgCount};
+				if(indexCount == 0 && msgCount > 0){
 					$.confirm({
 						title:'提示信息',
 						content:'您有新的消息。现在查看？',

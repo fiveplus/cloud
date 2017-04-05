@@ -240,6 +240,7 @@ public class CalendarController {
 				log.setContent(content);
 				log.setUser(c.getCreateUser());
 				log.setCreateTime(StringUtil.getDateToLong(new Date()));
+				log.setIsRead("N");
 				sysLogService.save(log);
 				
 			}else{

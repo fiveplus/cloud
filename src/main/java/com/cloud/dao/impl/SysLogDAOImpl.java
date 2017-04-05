@@ -18,7 +18,7 @@ public class SysLogDAOImpl extends BaseDAOImpl<SysLog> implements SysLogDAO{
 
 	@Override
 	public int getCountToUserIdAndIsRead(int userId) {
-		String hql = "SELECT COUNT(*) FROM SysLog l WHERE l.user.id=:userId AND l.isRead='Y' ";
+		String hql = "SELECT COUNT(*) FROM SysLog l WHERE l.user.id=:userId AND l.isRead='N' ";
 		int count = this.getCount(hql, new String[]{"userId"}, new Object[]{userId});
 		return count;
 	}

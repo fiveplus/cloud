@@ -64,6 +64,7 @@ public class CommentController {
 		log.setContent(content);
 		log.setUser(c.getUser());
 		log.setCreateTime(StringUtil.getDateToLong(now));
+		log.setIsRead("N");
 		sysLogService.save(log);
 		
 		returnMap.put("comment", comment);
