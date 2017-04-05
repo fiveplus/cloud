@@ -91,6 +91,9 @@ public class MyController {
 		
 		SysLog log = sysLogService.get(id);
 		
+		log.setIsRead("Y");
+		sysLogService.update(log, log.getId());
+		
 		returnMap.put("log", log);
 		
 		return returnMap;

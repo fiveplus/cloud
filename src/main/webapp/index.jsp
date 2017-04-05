@@ -67,6 +67,25 @@
 		<script type="text/javascript">
 		
 			$(document).ready(function(){
+				
+				//log
+				var indexCount = ${indexCount};
+				if(indexCount == 0){
+					$.confirm({
+						title:'提示信息',
+						content:'您有新的消息。现在查看？',
+						buttons:{
+							confirm:function(){
+								window.location.href="${contextPath}/my/msg";
+							},
+							cancel:function(){
+								//取消
+							}
+						}
+					});
+				}
+				
+				
 				var hbout;
 				$('.datetimepicker').datetimepicker();
 				//中间头部js

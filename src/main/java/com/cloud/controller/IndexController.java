@@ -19,6 +19,7 @@ import com.cloud.entity.User;
 import com.cloud.service.ContentService;
 import com.cloud.service.DepartmentService;
 import com.cloud.service.ProjectService;
+import com.cloud.service.SysLogService;
 import com.cloud.service.ThemeService;
 import com.cloud.util.StringUtil;
 /**
@@ -39,6 +40,8 @@ public class IndexController {
 	 private ContentService contentService;
 	 @Autowired
 	 private ThemeService themeService;
+	 @Autowired
+	 private SysLogService sysLogService;
 	 
 	 @RequestMapping("/")
 	 public String root(HttpServletRequest request,Model model){
@@ -51,6 +54,16 @@ public class IndexController {
 		 HttpSession session = request.getSession();
 		 User user = (User) session.getAttribute("user");
 		 String themeId = request.getParameter("themeId");
+		 Integer _indexCount = (Integer) session.getAttribute("indexCount");
+		 int indexCount = 0;
+		 if(_indexCount == null){
+			 indexCount = 0;
+			 session.setAttribute("indexCount", indexCount);
+		 }else{
+			 indexCount += 1;
+			 session.setAttribute("indexCount", indexCount);
+		 }
+		 
 		 if(user == null){
 			 return "login";
 		 }else{
@@ -62,6 +75,9 @@ public class IndexController {
 			 model.addAttribute("depts",depts);
 			 model.addAttribute("themes",themes);
 			 model.addAttribute("themeId",themeId);
+			 
+			 int msgCount = sysLogService.getCountToUserIdAndIsRead(user.getId());
+			 model.addAttribute("msgCount",msgCount);
 			 
 			 return "index";
 		 }
