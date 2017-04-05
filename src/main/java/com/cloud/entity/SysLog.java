@@ -19,6 +19,7 @@ public class SysLog implements Serializable{
 	private String title;
 	private String content;
 	private Long createTime;
+	private String isRead;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,6 +62,14 @@ public class SysLog implements Serializable{
 	}
 	public void setCreateTime(Long createTime) {
 		this.createTime = createTime;
+	}
+	
+	@Column(name = "IS_READ")
+	public String getIsRead() {
+		return isRead;
+	}
+	public void setIsRead(String isRead) {
+		this.isRead = isRead;
 	}
 	
 }
