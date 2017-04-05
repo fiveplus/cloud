@@ -47,13 +47,14 @@
 				<!-- 评论区 -->
 				<div id="comment_div" class="content-bot" style="background: #f2f2f5;">
 					<div style="padding:15px 20px;border-bottom: 1px solid #ccc;">
-						<form action="${contextPath}/comment/save.json" method="post" id="comment_form">
+						<form action="${contextPath}/comment/save.json" method="post" id="comment_form" onkeydown="if(event.keyCode==13) return false;">
 							<input type="hidden" name="cont.id" value="${content.id}" />
 							<input type="text" value="" name="content" class="comment-input" style="width:99%"  />
 							<div align="right" style="padding-top: 15px;" >
 								<input type="button" disabled="disabled" class="comment-button disabled" value="评论" />
 							</div>
 						</form>
+						
 					</div>
 					<div class="commit_list_div">
 						<!-- 
