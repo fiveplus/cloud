@@ -90,7 +90,6 @@ public class MyController {
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		
 		SysLog log = sysLogService.get(id);
-		
 		log.setIsRead("Y");
 		sysLogService.update(log, log.getId());
 		
