@@ -23,3 +23,5 @@ tbl_project新增字段 status(标记项目是否删除)
 3.tbl_level add column status,type is varchar(50),not null <br/>
 4.tbl_theme add column status,type is varchar(50),not null <br/>
 5.tbl_user add column status,type is varchar(50),not null <br/>
+* 2017-4-5 表新增字段<br/>
+1.sys_log add column is_read,type is varchar(50),not null <br/>
