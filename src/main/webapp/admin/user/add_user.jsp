@@ -46,7 +46,7 @@
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<form action="${contextPath}/user/save.json" role="form" class="form-horizontal" method="post" id="form_post" >
+						<form action="${contextPath}/admin/user/save.json" role="form" class="form-horizontal" method="post" id="form_post" >
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请选择部门 </label>
 								<div class="col-sm-9">
