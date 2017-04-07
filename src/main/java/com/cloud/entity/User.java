@@ -71,6 +71,7 @@ public class User implements Serializable{
 	
 	@Column(name = "PORTRAIT")
 	public String getPortrait() {
+		if(portrait == null || "".equals(portrait)) portrait = "images/default.jpg";
 		return portrait;
 	}
 	
