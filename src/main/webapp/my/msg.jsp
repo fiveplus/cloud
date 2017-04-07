@@ -40,7 +40,6 @@
 								<font>${l.title}</font>
 								<br/>
 								<b style="font-size:12px;">
-									
 									<a href="#calmsg_div" class="calexam_a<c:if test="${l.isRead != 'Y'}"> b"</c:if> onclick="get_msg(${l.id})" rel="leanModal">
 									${l.content}
 									</a>

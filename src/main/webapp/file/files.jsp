@@ -2,6 +2,7 @@
 <%@taglib uri="/master-tag" prefix="fms" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="/date-tag" prefix="date" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <fms:ContentPage masterPageId="frontMaster">
 	<fms:Content contentPlaceHolderId="title">
 		碎片云3.0
@@ -68,6 +69,47 @@
 					</c:if>
            			<div>
            				<!-- 这里是文件列表 -->
+           				<c:forEach items="${list}" var="l">
+           					<div class="gr_ge">
+           						<span>
+           							<img class="img-radius64" src="${contextPath}/${l.user.portrait}" />
+           						</span>
+           						<div class="gr_ge2" style="padding-top:10px;">
+           							<font>
+           								<b>${l.user.username}</b> ${l.user.group.parent.name} · ${l.user.group.name} 
+           							</font>
+           							<br/>
+           							<div >
+           								<strong><font color="red">文件名：${l.fileName} </font></strong>
+           								&nbsp;&nbsp;<date:date value="${l.createTime}" /> &nbsp;&nbsp;
+										<a href="${l.url}" class="btn btn-primary" >文件下载</a>
+           							</div>
+           						</div>
+           					</div>
+           				</c:forEach>
+           				<c:if test="${list != null && fn:length(list) > 0}">
+           					<div align="center">
+		           				<c:if test="${user.dept.id != dept.id}">
+		           					<c:if test="${pu.page > 1}">
+		           						<a href="${contextPath}/file/list?page=${pu.page-1}&deptId=${dept.id}" class="calexam_a">上一页</a>
+		           					</c:if>
+		           					${pu.page}
+		           					<c:if test="${pu.page < pageCount}">
+		           						<a href="${contextPath}/file/list?page=${pu.page+1}&deptId=${dept.id}" class="calexam_a">上一页</a>
+		           					</c:if>
+		           				</c:if>
+		           				<c:if test="${user.dept.id == dept.id}">
+		           					<c:if test="${pu.page > 1}">
+		           						<a href="${contextPath}/file/list?page=${pu.page-1}&deptId=0" class="calexam_a">上一页</a>
+		           					</c:if>
+		           					${pu.page}
+		           					<c:if test="${pu.page < pageCount}">
+		           						<a href="${contextPath}/file/list?page=${pu.page+1}&deptId=0" class="calexam_a">上一页</a>
+		           					</c:if>
+		           				</c:if>
+	           				</div>
+           				</c:if>
+           				
            			</div>
 				</div>
 				<div id="cb_2_hr" style="height:10px;clear:both;"></div>
@@ -111,8 +153,6 @@
 					$("#hb3").stop(true).animate({ top: "-200px",opacity:"0" }, 300);
 					hbout=setTimeout(function(){$("#hb3").hide()},300);
 				});
-				
-				
 			});
 		</script>
 	</fms:Content>
