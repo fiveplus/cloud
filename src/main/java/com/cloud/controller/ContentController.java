@@ -270,11 +270,30 @@ public class ContentController {
 	 
 	 @RequestMapping("/update.json")
 	 public @ResponseBody Map<String,Object> update(Content c,HttpServletRequest request,Model model){
+		 HttpSession session = request.getSession();
+		 User user = (User)session.getAttribute("user");
 		 Map<String,Object> returnMap = new HashMap<String, Object>();
 		 int code = 200;
 		 String message = "恭喜您，帖子修改成功！";
 		 c.setCreateTime(StringUtil.getDateToLong(new Date()));
 		 contentService.update(c, c.getId());
+		 
+		//TODO 解析并保存
+		 List<Map<String,String>> fileList = HtmlParser.getMapToHtml(c.getContent());
+		 for(Map<String,String> file:fileList){
+			 String href = file.get("href");
+			 String text = file.get("text");
+			 UserFile f = userFileService.getUserFileToUrl(href);
+			 if(f == null){
+				 f = new UserFile();
+				 f.setCont(c);
+				 f.setCreateTime(StringUtil.getDateToLong(new Date()));
+				 f.setFileName(text);
+				 f.setUrl(href);
+				 f.setUser(user);
+				 userFileService.save(f);
+			 }
+		 }
 		 
 		 returnMap.put("code", code);
 		 returnMap.put("mesage", message);

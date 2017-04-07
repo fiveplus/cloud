@@ -22,4 +22,14 @@ public class UserFileDAOImpl extends BaseDAOImpl<UserFile> implements UserFileDA
 		return list;
 	}
 
+	public UserFile getUserFileToUrl(String url) {
+		UserFile f = null;
+		String hql = "FROM UserFile f WHERE f.url=:url ";
+		List list = this.getHQLList(hql, new String[]{"url"}, new Object[]{url});
+		if(list != null && list.size() > 0){
+			f = (UserFile) list.get(0);
+		}
+		return f;
+	}
+
 }

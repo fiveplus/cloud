@@ -22,4 +22,8 @@ public class UserFileService extends BaseService<UserFile, Integer>{
 		return userFileDAO.getListToDeptId(page,pageSize,deptId);
 	}
 	
+	public UserFile getUserFileToUrl(String url){
+		return userFileDAO.getUserFileToUrl(url);
+	}
+	
 }
