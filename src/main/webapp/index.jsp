@@ -25,8 +25,10 @@
               		<div class="cmenuright">
               			<a href="#" id="h4" class="cmra1">&nbsp;</a>
               			<a href="#" id="h3" class="cmra2">&nbsp;</a> 
-              			<a href="#">沟通</a>
-              			<a href="#">记录</a>
+              			<!-- 
+              			<a href="#">沟通</a> 
+              			 -->
+              			<a href="javascript:void(0)" class="cur">记录</a>
               			<a href="#">文档</a>
               		</div>
               		<div class="clear"></div>

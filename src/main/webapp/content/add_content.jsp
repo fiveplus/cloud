@@ -29,8 +29,10 @@
 						<a href="#" class="h">我的发帖</a>
 					</div>
 		            <div class="cmenuright">
+		            	<!-- 
 		            	<a href="#" class="cmra1">&nbsp;</a>
 		            	<a href="#" class="cmra2">&nbsp;</a>
+		            	 -->
 		            </div>
 		            <div class="clear"></div>
 				</div>
