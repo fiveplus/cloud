@@ -21,11 +21,14 @@ import com.cloud.entity.Praise;
 import com.cloud.entity.Project;
 import com.cloud.entity.Theme;
 import com.cloud.entity.User;
+import com.cloud.entity.UserFile;
 import com.cloud.service.ContentService;
 import com.cloud.service.DepartmentService;
 import com.cloud.service.PraiseService;
 import com.cloud.service.ProjectService;
 import com.cloud.service.ThemeService;
+import com.cloud.service.UserFileService;
+import com.cloud.util.HtmlParser;
 import com.cloud.util.JacksonUtil;
 import com.cloud.util.PageUtil;
 import com.cloud.util.Resource;
@@ -53,6 +56,9 @@ public class ContentController {
 	 
 	 @Autowired
 	 private PraiseService praiseService;
+	 
+	 @Autowired
+	 private UserFileService userFileService;
 	 
 	 @RequestMapping("/list.json")
 	 public @ResponseBody String list(int page,int deptId,HttpServletRequest request,Model model){
@@ -192,8 +198,19 @@ public class ContentController {
 			 message = "帖子发布成功！";
 			 code = 200;
 			 
-			 //TODO 新增文件记录
-			 
+			 //TODO 解析并保存
+			 List<Map<String,String>> fileList = HtmlParser.getMapToHtml(c.getContent());
+			 for(Map<String,String> file:fileList){
+				 String href = file.get("href");
+				 String text = file.get("text");
+				 UserFile f = new UserFile();
+				 f.setCont(c);
+				 f.setCreateTime(StringUtil.getDateToLong(new Date()));
+				 f.setFileName(text);
+				 f.setUrl(href);
+				 f.setUser(user);
+				 userFileService.save(f);
+			 }
 			 
 		 }else{
 			 message = "服务器繁忙，帖子发布失败!";
