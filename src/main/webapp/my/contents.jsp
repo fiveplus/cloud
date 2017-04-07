@@ -106,8 +106,8 @@
 						var c = vdata.content;
 						form.find("input[name='id']").val(c.id);
 						form.find("textarea[name='content']").html(c.content);
-						editor.html(c.content);
 						$("#update-content").modal("show");
+						editor.html(c.content);
 					}
 				});
 			}
@@ -115,30 +115,27 @@
 			
 			function editor_init(){
 				if($("#send-text")){
-					KindEditor.ready(function(K) {
-						editor = K.create('textarea[name="content"]', {
-								width:"100%",
-								height:"400px",
-								cssPath : '${contextPath}/js/kindeditor-4.1.10/plugins/code/prettify.css',
-								uploadJson : '${contextPath}/ke/upload',
-								fileManagerJson : '${contextPath}/ke/manager',
-								allowFileManager : true,
-								resizeType : 0,
-								items:["source", "|", "undo", "redo", "|", "preview", "print", "template", "code", "cut", "copy", "paste", "plainpaste", "wordpaste",
-									"|", "justifyleft", "justifycenter", "justifyright", "justifyfull", "insertorderedlist", "insertunorderedlist", "indent", "outdent",
-									"subscript", "superscript", "clearhtml", "quickformat", "selectall", "|", "/", "formatblock", "fontname", "fontsize", 
-									"|", "forecolor", "hilitecolor", "bold", "italic", "underline", "strikethrough", "lineheight", "removeformat", "|", "image", 
-									"multiimage", "flash", "media", "insertfile", "table", "hr", "emoticons", "baidumap", "pagebreak", "anchor", "link", "unlink", 
-									"|" ], //"fullscreen" 全屏  , "about" 关于
-								afterCreate : function() {
-									var self = this;
-								},
-								afterBlur : function(){
-									this.sync();
-								}
-							});
-						prettyPrint();
-						});
+					editor = KindEditor.create('textarea[name="content"]', {
+						width:"100%",
+						height:"400px",
+						cssPath : '${contextPath}/js/kindeditor-4.1.10/plugins/code/prettify.css',
+						uploadJson : '${contextPath}/ke/upload',
+						fileManagerJson : '${contextPath}/ke/manager',
+						allowFileManager : true,
+						resizeType : 0,
+						items:["source", "|", "undo", "redo", "|", "preview", "print", "template", "code", "cut", "copy", "paste", "plainpaste", "wordpaste",
+							"|", "justifyleft", "justifycenter", "justifyright", "justifyfull", "insertorderedlist", "insertunorderedlist", "indent", "outdent",
+							"subscript", "superscript", "clearhtml", "quickformat", "selectall", "|", "/", "formatblock", "fontname", "fontsize", 
+							"|", "forecolor", "hilitecolor", "bold", "italic", "underline", "strikethrough", "lineheight", "removeformat", "|", "image", 
+							"multiimage", "flash", "media", "insertfile", "table", "hr", "emoticons", "baidumap", "pagebreak", "anchor", "link", "unlink", 
+							"|" ], //"fullscreen" 全屏  , "about" 关于
+						afterCreate : function() {
+							var self = this;
+						},
+						afterBlur : function(){
+							this.sync();
+						}
+					});
 					
 				}
 			}
@@ -147,6 +144,10 @@
 			var $handler;
 			var editor;
 			$(document).ready(function(){
+				//modal kindeditor bug 修复
+				$("#update-content").off("shown.bs.modal").on("shown.bs.modal",function(){
+					$(document).off("focusin.modal");
+				});
 				/* 编辑器初始化 */
 				editor_init();
 				/* 移出详情 */
