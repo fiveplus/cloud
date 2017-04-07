@@ -15,7 +15,12 @@
 			<div id="cb_2" style="position: relative;">
 				<div class="cmenu">
 					<div class="cmenuleft">
-						<a href="${contextPath}/index" >我的部门</a> 
+						<c:if test="${user.dept.id != dept.id}">
+							<a href="${contextPath}/index" >我的部门</a> 
+						</c:if>
+						<c:if test="${user.dept.id == dept.id}">
+							<a href="${contextPath}/index" class="cur">我的部门</a> 
+						</c:if>
 						<a href="#" id="h1">我的项目</a>
 						<a href="#" id="h2">其他部门</a> 
 					</div>
@@ -25,8 +30,13 @@
               			<!--  
               			<a href="#">沟通</a>  
               			-->
-              			<a href="#">记录</a>
-              			<a href="#">文档</a>
+              			<c:if test="${user.dept.id != dept.id}">
+              				<a href="${contextPath}/content/list?deptId=${dept.id}">记录</a>
+              			</c:if>
+              			<c:if test="${user.dept.id == dept.id}">
+              				<a href="${contextPath}/index">记录</a>
+              			</c:if>
+              			<a href="javascript:void(0)" class="cur" >文档</a>
               		</div>
               		<div class="clear"></div>
 				</div>
@@ -51,9 +61,11 @@
            		</div>
 				<div class="space_h_40"></div>
 				<div style="min-height:750px;">
-					<div style="margin: 15px 0 0 5px;">
-           				<span><a href="index">首页</a> >> ${dept.name}</span>
-           			</div>
+					<c:if test="${user.dept.id != dept.id}">
+						<div style="margin: 15px 0 0 5px;">
+	           				<span><a href="index">首页</a> >> ${dept.name}</span>
+	           			</div>
+					</c:if>
            			<div>
            				<!-- 这里是文件列表 -->
            			</div>

@@ -29,7 +29,7 @@
               			<a href="#">沟通</a> 
               			 -->
               			<a href="javascript:void(0)" class="cur">记录</a>
-              			<a href="#">文档</a>
+              			<a href="${contextPath}/file/list?page=1&deptId=0">文档</a>
               		</div>
               		<div class="clear"></div>
 				</div>

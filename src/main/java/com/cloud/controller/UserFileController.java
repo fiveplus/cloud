@@ -56,7 +56,7 @@ public class UserFileController {
 		model.addAttribute("list",list);
 		
 		Department dept = departmentService.get(deptId);
-		 
+		
 		List<Project> projects = projectService.findAll();
 		List<Department> depts = departmentService.findAll();
 		List<Theme> themes = themeService.findAll();

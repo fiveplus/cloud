@@ -28,8 +28,8 @@
               			<!--  
               			<a href="#">沟通</a>  
               			-->
-              			<a href="#">记录</a>
-              			<a href="#">文档</a>
+              			<a href="#" class="cur">记录</a>
+              			<a href="${contextPath}/file/list?page=1&deptId=${dept.id}">文档</a>
               		</div>
               		<div class="clear"></div>
 				</div>
