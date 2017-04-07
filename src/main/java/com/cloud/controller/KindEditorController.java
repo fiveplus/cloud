@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +29,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cloud.dao.UserFileDAO;
 import com.cloud.entity.User;
+import com.cloud.entity.UserFile;
+import com.cloud.service.UserFileService;
 import com.cloud.util.JacksonUtil;
+import com.cloud.util.StringUtil;
 /**
  * Kingeditor插件
  * @author hack
@@ -38,7 +43,8 @@ import com.cloud.util.JacksonUtil;
 @Controller  
 @RequestMapping("/ke") 
 public class KindEditorController {
-	private static final Logger LOGGER = Logger.getLogger(KindEditorController.class);  
+	private static final Logger LOGGER = Logger.getLogger(KindEditorController.class); 
+	
 	
 	@RequestMapping(value = "/upload")  
 	public @ResponseBody Map<String,Object> upload(@RequestParam(value = "imgFile",required = false) MultipartFile imgFile, HttpServletRequest request, ModelMap model){

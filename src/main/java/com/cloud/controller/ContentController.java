@@ -191,6 +191,10 @@ public class ContentController {
 		 if(id > 0){
 			 message = "帖子发布成功！";
 			 code = 200;
+			 
+			 //TODO 新增文件记录
+			 
+			 
 		 }else{
 			 message = "服务器繁忙，帖子发布失败!";
 			 code = 205;
