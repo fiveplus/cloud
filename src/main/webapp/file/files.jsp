@@ -83,6 +83,9 @@
            								<strong><font color="red">文件名：${l.fileName} </font></strong>
            								&nbsp;&nbsp;<date:date value="${l.createTime}" /> &nbsp;&nbsp;
 										<a href="${l.url}" class="btn btn-primary" >文件下载</a>
+										<c:if test="${user.id == l.user.id}">
+											<button onclick="del_file(${l.id})" class="btn btn-danger">删除</button>
+										</c:if>
            							</div>
            						</div>
            					</div>
@@ -117,6 +120,29 @@
 			</div>
 		</div>
 		<script type="text/javascript">
+		
+			function del_file(id){
+				$.confirm({
+					title:'提示信息',
+					content:'确认删除吗？删除后无法恢复！！！',
+					buttons:{
+						confirm:function(){
+							$.ajax({
+								url:'${contextPath}/file/delete.json',
+								data:{id:id},
+								success:function(data){
+									$.alert({title:'提示信息',content:data.message,type:'red'});
+									window.location.reload();
+								}
+							});
+						},
+						cancel:function(){
+							//取消
+						}
+					}
+				});
+			}
+		
 			$(document).ready(function(){
 				var hbout;
 				$('#h1, #hb1').hover(function(){
