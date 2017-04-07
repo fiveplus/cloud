@@ -80,8 +80,8 @@
            							</font>
            							<br/>
            							<div >
-           								<strong><font color="red">文件名：${l.fileName} </font></strong>
-           								&nbsp;&nbsp;<date:date value="${l.createTime}" /> &nbsp;&nbsp;
+           								<strong><font color="red">${l.fileName} </font></strong>
+           								&nbsp;<date:date value="${l.createTime}" /> &nbsp;
 										<a href="${l.url}" class="btn btn-primary" >文件下载</a>
 										<c:if test="${user.id == l.user.id}">
 											<button onclick="del_file(${l.id})" class="btn btn-danger">删除</button>
