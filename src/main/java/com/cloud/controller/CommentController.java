@@ -51,14 +51,15 @@ public class CommentController {
 		comment.setUser(user);
 		comment.setCreateTime(StringUtil.getDateToLong(now));
 		
-		commentService.save(comment);
+		int comment_id = commentService.save(comment);
 		
 		Content c = contentService.get(comment.getCont().getId());
+		
 		//TODO 给发布者提醒
 		String title = "评论消息";
 		String str = StringUtil.HTML2Text(c.getContent()).trim();
 		str = str.equals("") ? "无标题" : str;
-		String content = "<font data-id='"+user.getId()+"'>"+user.getUsername()+"</font>评论帖子\""+StringUtil.substring(str, 10)+"\"："+comment.getContent();
+		String content = "<font data-id='"+comment_id+"'>"+user.getUsername()+"</font>评论帖子\""+StringUtil.substring(str, 10)+"\"："+comment.getContent();
 		SysLog log = new SysLog();
 		log.setTitle(title);
 		log.setContent(content);

@@ -33,3 +33,5 @@ url ,text <br/>
 create_time ,varchar(100) <br/>
 user_id ,int ,FK <br/>
 content_id ,int ,FK <br/>
+* 2017-4-10 tbl_comment新增列<br/>
+tbl_comment add column comment_id ,type is int,not null <br/>
