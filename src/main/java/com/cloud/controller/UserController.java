@@ -162,7 +162,11 @@ public class UserController {
 	 }
 	 
 	 @RequestMapping("/upload.json")
-	 public @ResponseBody String upload(@RequestParam(value = "file",required = false) MultipartFile file,int x,int y,int width,int height, HttpServletRequest request, ModelMap model){
+	 public @ResponseBody Map<String,Object> upload(@RequestParam(value = "file",required = false) MultipartFile file,int x,int y,int width,int height, HttpServletRequest request, ModelMap model){
+		 Map<String,Object> returnMap = new HashMap<String, Object>();
+		 int code = 200;
+		 String message = "恭喜您，头像上传成功！";
+		 String [] fileExts = {"jpg","jpeg","png"};
 		 HttpSession session = request.getSession();
 		 User us = (User)session.getAttribute("user");
 		 String path = request.getSession().getServletContext().getRealPath("/upload_images");
@@ -173,24 +177,40 @@ public class UserController {
 		 if(file != null){
 			 String fileName = file.getOriginalFilename();
 			 String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
-			 String newImgName = us.getLoginName()+"."+fileExt;
-			 File targetFile = new File(path, newImgName);  
-			 
-			 System.out.println("width="+width);
-			 
-			 //保存
-			 try {
-				 file.transferTo(targetFile);
-				//裁剪图片
-				 ImageUtil.cutImage(path+"/"+newImgName, x, y, width, height);
-			 } catch (Exception e) {
-				 e.printStackTrace();
+			 boolean flag = false;
+			 for(String ext:fileExts){
+				 if(fileExt.equals(ext)){
+					 flag = true;
+					 break;
+				 }
 			 }
-			 //更新user
-			 us.setPortrait("upload_images"+"/"+newImgName);
-			 userService.update(us,us.getId());
+			 if(!flag){
+				 message = "请上传JPG,JPEG,PNG格式的图片！";
+				 code = -1;
+			 }else{
+				 String newImgName = us.getLoginName()+"."+fileExt;
+				 File targetFile = new File(path, newImgName);  
+				 
+				 System.out.println("width="+width);
+				 
+				 //保存
+				 try {
+					 file.transferTo(targetFile);
+					//裁剪图片
+					 ImageUtil.cutImage(path+"/"+newImgName, x, y, width, height);
+				 } catch (Exception e) {
+					 e.printStackTrace();
+				 }
+				 //更新user
+				 us.setPortrait("upload_images"+"/"+newImgName);
+				 userService.update(us,us.getId());
+			 }
+			 
+			 
 		 }
-		 return "";
+		 returnMap.put("code", code);
+		 returnMap.put("message", message);
+		 return returnMap;
 	 }
 	
 	 
