@@ -201,7 +201,7 @@ a.post5 { background:url(../images/f_05.png) no-repeat center; }
 .gr_menu a i.i7 { background-image:url(../images/gr_2.png) }
 .gr_menu a i.i8 { background-image:url(../images/gr_4.png) }
 .gr_menu a:hover i, .gr_menu a.cur i { background-position:-26px center; }
-.gr_ge { background:#ebeef4; height:84px; margin:10px 0; color:#6e6e6e }
+.gr_ge { background:#ebeef4; /*height:84px;*/ margin:10px 0; color:#6e6e6e }
 .gr_ge span { display:block; background:url(../images/use_05.png) no-repeat center; width:64px; height:64px; margin:10px 20px; float:left }
 .gr_ge2 { padding-top:20px }
 .gr_ge i { font-size:14px; color:#bbb; font-style:normal; font-family:微软雅黑 }

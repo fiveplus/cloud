@@ -1,4 +1,4 @@
-/* Abel框架CSS */
+/* HACK框架CSS */
 *{
 	box-sizing: content-box;
 	padding: 0;
@@ -604,4 +604,13 @@ ol.formatted li {
 }
 .b{
 	font-weight: bold;
+}
+/* 消息列表，快速回复 */
+.commit_msg{
+	border-top:1px solid #ccc;
+}
+.commit_msg .commit-item{
+	float:left;
+	width:49%;
+	padding:10px 0;
 }

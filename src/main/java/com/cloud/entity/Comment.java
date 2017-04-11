@@ -21,6 +21,7 @@ public class Comment implements Serializable{
 	private Long createTime;
 	private String remark;
 	private Content cont;
+	private Comment comment;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -81,6 +82,15 @@ public class Comment implements Serializable{
 	}
 	public void setCont(Content cont) {
 		this.cont = cont;
+	}
+	
+	@OneToOne
+	@JoinColumn(name="COMMENT_ID")
+	public Comment getComment() {
+		return comment;
+	}
+	public void setComment(Comment comment) {
+		this.comment = comment;
 	}
 	
 }

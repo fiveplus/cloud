@@ -32,7 +32,7 @@
 				<div>
 					<!-- main div -->
 					<c:forEach items="${logs}" var="l">
-						<div class="gr_ge">
+						<div class="gr_ge" style="border:1px solid #ccc;">
 							<span>
 								<img class="img-radius64" src="${contextPath}/images/notify.png" />
 							</span>
@@ -48,7 +48,23 @@
 								<strong><date:date value="${l.createTime}" /></strong> 
 								<a class="calexam_del" href="javascript:del_msg(${l.id})">删除</a>
 							</div>
+							<div class="clear"></div>
+							<c:if test="${l.title == '评论消息'}">
+								<div class="commit_msg">
+									<div class="commit-item" align="center">
+										<a href="#" class="calexam_a">查看对话</a>
+									</div>
+									<div style="float:left;padding:10px 0;">
+										|
+									</div>
+									<div class="commit-item" align="center">
+										<a href="#" class="calexam_a">回复</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</c:if>
 						</div>
+						
 					</c:forEach>
 				</div>
 				<div class="space_h_30 clear"></div>
