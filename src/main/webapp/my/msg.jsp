@@ -66,13 +66,24 @@
 							<c:if test="${l.title == '评论消息'}">
 								<div class="commit_msg">
 									<div align="center" style="padding:10px 0;">
-										<a href="javascript:void(0)" class="commit_a">回复</a>
+										<a href="javascript:void(0)" onclick="show_commit(this)" class="commit_a">回复</a>
 									</div>
 									<div class="clear"></div>
 								</div>
 							</c:if>
+							<div style="display:none;border-top: 1px solid #ccc;padding-top: 10px;background: #eee">
+								<div style="float: left;padding-left:6px;">
+									<img class="img-radius37" src="${contextPath}/${user.portrait}" />
+								</div>
+								<div style="float: left;padding: 5px 10px;width:90%;">
+									<input type="text" class="comment-input" style="width:100%;" />
+								</div>
+								<div class="clear"></div>
+								<div align="right" style="padding: 13px;">
+									<input type="button" disabled="disabled" class="comment-button disabled" value="评论" />
+								</div>
+							</div>
 						</div>
-						
 					</c:forEach>
 				</div>
 				<div class="space_h_30 clear"></div>
@@ -116,6 +127,15 @@
 			    });
 			}
 			
+			function show_commit(obj){
+				var next = $(obj).parent().parent().next();
+				if(next.is(":hidden")){
+					next.show();
+				}else{
+					next.hide();
+				}
+			}
+			
 			function del_msg(id){
 				$.confirm({
 					title:'提示信息',
@@ -137,6 +157,19 @@
 					}
 				});
 			}
+			
+			$(document).ready(function(){
+				$(".comment-input").on('input',function(e){
+					$(".comment-button").removeClass("disabled");
+					if(this.value != ''){
+						$(".comment-button").removeAttr("disabled");
+						$(".comment-button").removeClass("disabled");
+					}else{
+						$(".comment-button").attr("disabled","disabled");
+						$(".comment-button").addClass("disabled");
+					}
+				});
+			});
 			
 		</script>
 	</fms:Content>
