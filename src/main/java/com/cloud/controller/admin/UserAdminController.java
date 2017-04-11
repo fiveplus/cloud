@@ -156,6 +156,7 @@ public class UserAdminController {
 		 us.setCreateTime(StringUtil.getDateToLong(new Date()));
 		 us.setPortrait("");
 		 us.setPassword(MD5.GetMD5Password("123456"));
+		 us.setStatus("Y");
 		 int id = userService.save(us);
 		 if(id > 0){
 		 }else{
