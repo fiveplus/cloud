@@ -32,7 +32,7 @@
 				<div>
 					<!-- main div -->
 					<c:forEach items="${logs}" var="l">
-						<div class="gr_ge" style="border:1px solid #ccc;">
+						<div class="gr_ge" style="border:1px solid #ccc;height: auto;">
 							<span>
 								<img class="img-radius64" src="${contextPath}/images/notify.png" />
 							</span>
@@ -70,23 +70,23 @@
 									</div>
 									<div class="clear"></div>
 								</div>
-							</c:if>
-							<div style="display:none;border-top: 1px solid #ccc;padding-top: 10px;background: #eee">
-								<div style="float: left;padding-left:6px;">
-									<img class="img-radius37" src="${contextPath}/${user.portrait}" />
+								<div style="display:none;border-top: 1px solid #ccc;padding-top: 10px;background: #eee">
+									<div style="float: left;padding-left:6px;">
+										<img class="img-radius37" src="${contextPath}/${user.portrait}" />
+									</div>
+									<form action="${contextPath}/comment/reply.json" method="post" onkeydown="if(event.keyCode==13) return false;">
+										<div style="float: left;padding: 5px 10px;width:90%;">
+											<input type="hidden" name="comment.id" value="" />
+											<input type="hidden" name="toUser.id" value="" />
+											<input type="text" name="content" class="comment-input" style="width:100%;" />
+										</div>
+										<div class="clear"></div>
+										<div align="right" style="padding: 13px;">
+											<input type="button" onclick="comment(this)" disabled="disabled" class="comment-button disabled" value="评论" />
+										</div>
+									</form>
 								</div>
-								<form action="${contextPath}/comment/reply.json" method="post" onkeydown="if(event.keyCode==13) return false;">
-									<div style="float: left;padding: 5px 10px;width:90%;">
-										<input type="hidden" name="comment.id" value="" />
-										<input type="hidden" name="toUser.id" value="" />
-										<input type="text" name="content" class="comment-input" style="width:100%;" />
-									</div>
-									<div class="clear"></div>
-									<div align="right" style="padding: 13px;">
-										<input type="button" onclick="comment(this)" disabled="disabled" class="comment-button disabled" value="评论" />
-									</div>
-								</form>
-							</div>
+							</c:if>
 						</div>
 					</c:forEach>
 				</div>

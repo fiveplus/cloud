@@ -86,8 +86,8 @@ public class CommentController {
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		int code = 200;
 		String message = "恭喜您，回复成功！";
-		Content c = contentService.get(comment.getCont().getId());
 		Comment cmt = commentService.get(comment.getComment().getId());
+		Content c = contentService.get(cmt.getCont().getId());
 		User toUser = userService.get(comment.getToUser().getId());
 		comment.setUser(user);
 		comment.setCont(c);
