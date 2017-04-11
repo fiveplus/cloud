@@ -23,6 +23,7 @@ import com.cloud.entity.User;
 import com.cloud.service.CommentService;
 import com.cloud.service.ContentService;
 import com.cloud.service.SysLogService;
+import com.cloud.service.UserService;
 import com.cloud.util.StringUtil;
 
 @Controller
@@ -38,6 +39,9 @@ public class CommentController {
 	
 	@Autowired
 	private SysLogService sysLogService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping("/save.json")
 	public @ResponseBody Map<String,Object> save(Comment comment,HttpServletRequest request,Model model){
@@ -59,7 +63,7 @@ public class CommentController {
 		String title = "评论消息";
 		String str = StringUtil.HTML2Text(c.getContent()).trim();
 		str = str.equals("") ? "无标题" : str;
-		String content = "<font data-id='"+comment_id+"'>"+user.getUsername()+"</font>评论帖子\""+StringUtil.substring(str, 10)+"\"："+comment.getContent();
+		String content = "<font user-id='"+user.getId()+"' data-id='"+comment_id+"'>"+user.getUsername()+"</font>评论帖子\""+StringUtil.substring(str, 10)+"\"："+comment.getContent();
 		SysLog log = new SysLog();
 		log.setTitle(title);
 		log.setContent(content);
@@ -71,6 +75,37 @@ public class CommentController {
 		returnMap.put("comment", comment);
 		returnMap.put("message", message);
 		
+		return returnMap;
+	}
+	
+	@RequestMapping("/reply.json")
+	public @ResponseBody Map<String,Object> reply(Comment comment,HttpServletRequest request,Model model){
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+		Date now = new Date();
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		int code = 200;
+		String message = "恭喜您，回复成功！";
+		Content c = contentService.get(comment.getCont().getId());
+		Comment cmt = commentService.get(comment.getComment().getId());
+		User toUser = userService.get(comment.getToUser().getId());
+		comment.setUser(user);
+		comment.setCont(c);
+		comment.setCreateTime(StringUtil.getDateToLong(now));
+		comment.setComment(cmt);
+		comment.setToUser(toUser);
+		commentService.save(comment);
+		
+		//TODO 发送消息到对应用户。
+		SysLog log = new SysLog();
+		log.setCreateTime(StringUtil.getDateToLong(now));
+		log.setUser(toUser);
+		log.setIsRead("N");
+		log.setTitle("回复消息");
+		sysLogService.save(log);
+		
+		returnMap.put("code", code);
+		returnMap.put("message", message);
 		return returnMap;
 	}
 	

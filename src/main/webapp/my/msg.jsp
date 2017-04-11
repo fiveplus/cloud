@@ -75,13 +75,17 @@
 								<div style="float: left;padding-left:6px;">
 									<img class="img-radius37" src="${contextPath}/${user.portrait}" />
 								</div>
-								<div style="float: left;padding: 5px 10px;width:90%;">
-									<input type="text" class="comment-input" style="width:100%;" />
-								</div>
-								<div class="clear"></div>
-								<div align="right" style="padding: 13px;">
-									<input type="button" disabled="disabled" class="comment-button disabled" value="评论" />
-								</div>
+								<form action="${contextPath}/comment/reply.json" method="post" onkeydown="if(event.keyCode==13) return false;">
+									<div style="float: left;padding: 5px 10px;width:90%;">
+										<input type="hidden" name="comment.id" value="" />
+										<input type="hidden" name="toUser.id" value="" />
+										<input type="text" name="content" class="comment-input" style="width:100%;" />
+									</div>
+									<div class="clear"></div>
+									<div align="right" style="padding: 13px;">
+										<input type="button" onclick="comment(this)" disabled="disabled" class="comment-button disabled" value="评论" />
+									</div>
+								</form>
 							</div>
 						</div>
 					</c:forEach>
@@ -136,6 +140,27 @@
 				}
 			}
 			
+			function comment(obj){
+				var form = $(obj).parent().parent();
+				var comment_id = form.parent().parent().find(".gr_ge2 b a font").attr("data-id");
+				var user_id = form.parent().parent().find(".gr_ge2 b a font").attr("user-id");
+				form.find("input[name='comment.id']").val(comment_id);
+				form.find("input[name='toUser.id']").val(user_id);
+				var action = form.attr("action");
+				var alldata = form.serialize();
+				$.ajax({
+					type:"POST",
+					url:action,
+					data:alldata,
+					success:function(data){
+						var vdata = data;
+						$.alert({title:"提示信息",content:vdata.message,type:"blue"});
+						form.find("input[name='content']").val("");
+						form.parent().hide();
+					}
+				});
+			}
+			
 			function del_msg(id){
 				$.confirm({
 					title:'提示信息',
@@ -160,13 +185,14 @@
 			
 			$(document).ready(function(){
 				$(".comment-input").on('input',function(e){
-					$(".comment-button").removeClass("disabled");
+					var form = $(this).parent().parent();
+					var btn = form.find(".comment-button");
 					if(this.value != ''){
-						$(".comment-button").removeAttr("disabled");
-						$(".comment-button").removeClass("disabled");
+						btn.removeAttr("disabled");
+						btn.removeClass("disabled");
 					}else{
-						$(".comment-button").attr("disabled","disabled");
-						$(".comment-button").addClass("disabled");
+						btn.attr("disabled","disabled");
+						btn.addClass("disabled");
 					}
 				});
 			});
