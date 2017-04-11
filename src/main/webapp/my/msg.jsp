@@ -40,7 +40,7 @@
 								<font>${l.title}</font>
 								<br/>
 								<b style="font-size:12px;">
-									<a href="#calmsg_div" class="calexam_a<c:if test="${l.isRead != 'Y'}"> b"</c:if> onclick="get_msg(${l.id})" rel="leanModal">
+									<a href="#calmsg_div" class="calexam_a<c:if test="${l.isRead != 'Y'}"> b</c:if>" onclick="get_msg(${l.id})" rel="leanModal">
 									${l.content}
 									</a>
 								</b>
@@ -49,16 +49,24 @@
 								<a class="calexam_del" href="javascript:del_msg(${l.id})">删除</a>
 							</div>
 							<div class="clear"></div>
-							<c:if test="${l.title == '评论消息'}">
+							<c:if test="${l.title == '回复消息'}">
 								<div class="commit_msg">
 									<div class="commit-item" align="center">
-										<a href="#" class="calexam_a">查看对话</a>
+										<a href="javascript:void(0)" class="commit_a">查看对话</a>
 									</div>
 									<div style="float:left;padding:10px 0;">
 										|
 									</div>
 									<div class="commit-item" align="center">
-										<a href="#" class="calexam_a">回复</a>
+										<a href="javascript:void(0)" class="commit_a">回复</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</c:if>
+							<c:if test="${l.title == '评论消息'}">
+								<div class="commit_msg">
+									<div align="center" style="padding:10px 0;">
+										<a href="javascript:void(0)" class="commit_a">回复</a>
 									</div>
 									<div class="clear"></div>
 								</div>
