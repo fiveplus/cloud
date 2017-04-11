@@ -1,6 +1,7 @@
 package com.cloud.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TBL_COMMENT")
@@ -22,6 +24,8 @@ public class Comment implements Serializable{
 	private String remark;
 	private Content cont;
 	private Comment comment;
+	private int logId;
+	private List<Comment> comments;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -92,5 +96,23 @@ public class Comment implements Serializable{
 	public void setComment(Comment comment) {
 		this.comment = comment;
 	}
+	
+	@Transient
+	public int getLogId() {
+		return logId;
+	}
+	public void setLogId(int logId) {
+		this.logId = logId;
+	}
+	
+	@Transient
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	
+	
 	
 }

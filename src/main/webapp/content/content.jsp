@@ -57,7 +57,7 @@
 						
 					</div>
 					<div class="commit_list_div">
-						<!-- 
+						<!--  
 						<div style="padding: 5px;" align="center">
 							此帖当前暂无评论。
 						</div>
@@ -165,6 +165,7 @@
 							var vdata = data;
 							//后续处理
 							var comment = vdata.comment;
+							if($(".no-comment")) $(".no-comment").remove();
 							var html = show_comment(comment);
 							$(".commit_list_div").prepend(html);
 							
@@ -222,36 +223,16 @@
 		}
 		
 		function show_comment(comment){
-			if($(".no-comment")) $(".no-comment").remove();
 			var html = "";
+			var user_id = '${user.id}';
 			var c = comment;
 			var date = new Date(c.createTime);
 			var time = date.Format("yyyy-MM-dd HH:mm:ss");
+			var del_a = "<a data-id='"+c.id+"' href='javascript:void(0)' class='del'><b>删除评论</b></a>";
+			if(c.user.id != user_id){
+				del_a = "";
+			}
 			html += "<div class='commit_item'>"
-					+"<span class='commit_user'><img class='img-radius37' src='${contextPath}/"+c.user.portrait+"' /></span>"
-					+"<div class='commit_content'>"
-						+"<div><a href='#'>"+c.user.username+"</a>："+c.content+"</div>"
-						+"<div style='margin-top:2px;'><font color='gray'>"+time+"</font>  "
-						+"<a data-id='"+c.id+"' href='javascript:void(0)' class='del'><b>删除评论</b></a></div>"
-					+"</div>"
-					+"<div class='clear'></div>"
-					+"</div>";
-			return html;
-		}
-		
-		function show_comments(comments){
-			var html = "";
-			var user_id = '${user.id}';
-			if(comments.length > 0){
-				for(var i = 0;i < comments.length;i++){
-					var c = comments[i];
-					var del_a = "<a data-id='"+c.id+"' href='javascript:void(0)' class='del'><b>删除评论</b></a>";
-					if(c.user.id != user_id){
-						del_a = "";
-					}
-					var date = new Date(c.createTime);
-					var time = date.Format("yyyy-MM-dd HH:mm:ss");
-					var str = "<div class='commit_item'>"
 					+"<span class='commit_user'><img class='img-radius37' src='${contextPath}/"+c.user.portrait+"' /></span>"
 					+"<div class='commit_content'>"
 						+"<div><a href='#'>"+c.user.username+"</a>："+c.content+"</div>"
@@ -261,7 +242,47 @@
 					+"</div>"
 					+"<div class='clear'></div>"
 					+"</div>";
+			return html;
+		}
+		
+		function reply_comment(comment){
+			var html = "";
+			var user_id = '${user.id}';
+			var c = comment;
+			var date = new Date(c.createTime);
+			var time = date.Format("yyyy-MM-dd HH:mm:ss");
+			var del_a = "<a data-id='"+c.id+"' href='javascript:void(0)' class='del'><b>删除评论</b></a>";
+			if(c.user.id != user_id){
+				del_a = "";
+			}
+			html += "<div class='commit_item'>"
+					+"<span class='commit_user'><img class='img-radius37' src='${contextPath}/"+c.user.portrait+"' /></span>"
+					+"<div class='commit_content' style='width:760px;'>"
+						+"<div><a href='#'>"+c.toUser.username+"</a>：回复<a href='#'>@"+c.user.username+"</a>："+c.content+"</div>"
+						+"<div style='margin-top:2px;'><font color='gray'>"+time+"</font>  "
+						+ del_a
+						+"</div>"
+					+"</div>"
+					+"<div class='clear'></div>"
+					+"</div>";
+			return html;
+		}
+		
+		function show_comments(comments){
+			var html = "";
+			if(comments.length > 0){
+				for(var i = 0;i < comments.length;i++){
+					var c = comments[i];
+					var cs = comments[i].comments;
+					var strs = "";
+					for(var j = 0;j<cs.length;j++){
+						strs += reply_comment(cs[j]);
+					}
+					var str = show_comment(c);
 					html+=str;
+					if(cs.length > 0){
+						html+="<div class='comment-reply'>"+strs+"<div>";
+					}
 				}
 			}else{
 				html+="<div class='no-comment' align='center'>此帖当前暂无评论。</div>";

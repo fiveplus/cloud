@@ -76,6 +76,7 @@
 									</div>
 									<form action="${contextPath}/comment/reply.json" method="post" onkeydown="if(event.keyCode==13) return false;">
 										<div style="float: left;padding: 5px 10px;width:90%;">
+											<input type="hidden" name="logId" value="${l.id}" />
 											<input type="hidden" name="comment.id" value="" />
 											<input type="hidden" name="toUser.id" value="" />
 											<input type="text" name="content" class="comment-input" style="width:100%;" />

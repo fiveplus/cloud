@@ -86,6 +86,13 @@ public class CommentController {
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		int code = 200;
 		String message = "恭喜您，回复成功！";
+		
+		//TODO 修改已读状态
+		SysLog l = sysLogService.get(comment.getLogId());
+		l.setIsRead("Y");
+		sysLogService.update(l, l.getId());
+		
+		//TODO 新增评论内容
 		Comment cmt = commentService.get(comment.getComment().getId());
 		Content c = contentService.get(cmt.getCont().getId());
 		User toUser = userService.get(comment.getToUser().getId());
@@ -96,8 +103,10 @@ public class CommentController {
 		comment.setToUser(toUser);
 		commentService.save(comment);
 		
+		String content = "<font user-id='"+user.getId()+"' data-id='"+cmt.getId()+"'>"+user.getUsername()+"</font>回复评论："+comment.getContent();
 		//TODO 发送消息到对应用户。
 		SysLog log = new SysLog();
+		log.setContent(content);
 		log.setCreateTime(StringUtil.getDateToLong(now));
 		log.setUser(toUser);
 		log.setIsRead("N");
@@ -124,7 +133,11 @@ public class CommentController {
 	public @ResponseBody Map<String,Object> list(int page,int contentId,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		
-		List<Comment> comments = commentService.getListToContentId(page,100,contentId);
+		List<Comment> comments = commentService.getListToContentIdAndCommentId(page,100,contentId,0);
+		for(Comment c:comments){
+			List<Comment> cs = commentService.getListToContentIdAndCommentId(page,100,contentId,c.getId());
+			c.setComments(cs);
+		}
 		
 		returnMap.put("comments", comments);
 		

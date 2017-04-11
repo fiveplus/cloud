@@ -530,6 +530,10 @@ ol.formatted li {
 .commit_list_div .no-comment{
 	padding:10px;
 }
+.commit_list_div .comment-reply{
+	background:#dddedf;
+	padding-left:40px;
+}
 
 /* 移入移除显示用户 */
 #user-div{
