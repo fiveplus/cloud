@@ -16,8 +16,8 @@ public class CommentService extends BaseService<Comment, Integer>{
 	private CommentDAO commentDAO;
 
 	public List<Comment> getListToContentIdAndCommentId(int page, int pageSize,
-			int contentId,int commentId) {
-		return commentDAO.getListToContentIdAndCommentId(page,pageSize,contentId,commentId);
+			int contentId,int commentId,String order) {
+		return commentDAO.getListToContentIdAndCommentId(page,pageSize,contentId,commentId,order);
 	}
 
 	public int getListCountToUserId(int userId) {

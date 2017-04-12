@@ -58,7 +58,7 @@
 										|
 									</div>
 									<div class="commit-item" align="center">
-										<a href="javascript:void(0)" class="commit_a">回复</a>
+										<a href="javascript:void(0)" onclick="show_commit(this)" class="commit_a">回复</a>
 									</div>
 									<div class="clear"></div>
 								</div>
@@ -70,6 +70,8 @@
 									</div>
 									<div class="clear"></div>
 								</div>
+							</c:if>
+							<c:if test="${l.title == '评论消息' || l.title == '回复消息' }">
 								<div style="display:none;border-top: 1px solid #ccc;padding-top: 10px;background: #eee">
 									<div style="float: left;padding-left:6px;">
 										<img class="img-radius37" src="${contextPath}/${user.portrait}" />
@@ -118,7 +120,15 @@
 				<h4 class="modal-title">查看对话<small> >>详细信息 </small></h4>
 			</div>
 			<div class="modal-body">
-				
+				<div class="form-group">
+					<div style="float:left;width:90px;">
+						<font color="gray">2017-12-12 12:12:12</font>
+					</div>
+					<div style="float:left;">
+						<img src="" class="img-radius37" />&nbsp;&nbsp;<b>张三</b> ：内容
+					</div>
+					<div class="clear"></div>
+				</div>
 			</div>
 		</div>
 		
@@ -203,8 +213,30 @@
 					data:{id:comment_id},
 					success:function(data){
 						var vdata = data;
+						var html = show_history(vdata.comments);		
+						$("#comment_div .modal-body").html(html);
 					}
 				});
+			}
+			
+			function show_history(comments){
+				var html = "";
+				for(var i = 0;i < comments.length;i++){
+					var c = comments[i];
+					var time = new Date(c.createTime).Format("yyyy-MM-dd HH:mm:ss");
+					html += "<div class='form-group'>"
+								+"<div style='float:left;width:90px;'>"
+									+"<font color='gray'>"+time+"</font>"
+								+"</div>"
+								+"<div style='float:left;'>"
+									+"<img src='${contextPath}/"+c.user.portrait+"' class='img-radius37' />&nbsp;&nbsp;<b>"
+									+c.user.username+"</b> ："
+									+c.content
+								+"</div>"
+								+"<div class='clear'></div>"
+							+"</div>";
+				}
+				return html;
 			}
 			
 			$(document).ready(function(){

@@ -258,7 +258,7 @@
 			html += "<div class='commit_item'>"
 					+"<span class='commit_user'><img class='img-radius37' src='${contextPath}/"+c.user.portrait+"' /></span>"
 					+"<div class='commit_content' style='width:760px;'>"
-						+"<div><a href='#'>"+c.toUser.username+"</a>：回复<a href='#'>@"+c.user.username+"</a>："+c.content+"</div>"
+						+"<div><a href='#'>"+c.user.username+"</a>：回复<a href='#'>@"+c.toUser.username+"</a>："+c.content+"</div>"
 						+"<div style='margin-top:2px;'><font color='gray'>"+time+"</font>  "
 						+ del_a
 						+"</div>"

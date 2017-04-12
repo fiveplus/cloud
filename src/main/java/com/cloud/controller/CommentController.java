@@ -133,9 +133,9 @@ public class CommentController {
 	public @ResponseBody Map<String,Object> list(int page,int contentId,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		
-		List<Comment> comments = commentService.getListToContentIdAndCommentId(page,100,contentId,0);
+		List<Comment> comments = commentService.getListToContentIdAndCommentId(page,100,contentId,0,"DESC");
 		for(Comment c:comments){
-			List<Comment> cs = commentService.getListToContentIdAndCommentId(page,100,contentId,c.getId());
+			List<Comment> cs = commentService.getListToContentIdAndCommentId(page,100,contentId,c.getId(),"ASC");
 			c.setComments(cs);
 		}
 		
@@ -149,7 +149,8 @@ public class CommentController {
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		
 		List<Comment> comments = commentService.getListToCommentId(id);
-		
+		Comment c = commentService.get(id);
+		comments.add(0, c);
 		returnMap.put("comments", comments);
 		return returnMap;
 	}
