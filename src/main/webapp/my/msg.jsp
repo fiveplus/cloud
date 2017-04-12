@@ -52,7 +52,7 @@
 							<c:if test="${l.title == '回复消息'}">
 								<div class="commit_msg">
 									<div class="commit-item" align="center">
-										<a href="javascript:void(0)" class="commit_a">查看对话</a>
+										<a href="#comment_div" onclick="show_comment_div(this)" class="commit_read_a">查看对话</a>
 									</div>
 									<div style="float:left;padding:10px 0;">
 										|
@@ -113,8 +113,18 @@
 				</form>
 		</div>
 		
+		<div id="comment_div" class="leanmodel_div">
+			<div class="modal-header">
+				<h4 class="modal-title">查看对话<small> >>详细信息 </small></h4>
+			</div>
+			<div class="modal-body">
+				
+			</div>
+		</div>
+		
 		<script type="text/javascript">
 			$(".calexam_a").leanModal();
+			$(".commit_read_a").leanModal();
 			function get_msg(id){
 				var form = $("#select_calmsg");
 				$.ajax({
@@ -184,6 +194,19 @@
 				});
 			}
 			
+			function show_comment_div(obj){
+				var item = $(obj).parent().parent().parent();
+				var comment_id = item.find(".gr_ge2 b a font").attr("data-id");
+				$.ajax({
+					type:"POST",
+					url:"${contextPath}/comment/getlist.json",
+					data:{id:comment_id},
+					success:function(data){
+						var vdata = data;
+					}
+				});
+			}
+			
 			$(document).ready(function(){
 				$(".comment-input").on('input',function(e){
 					var form = $(this).parent().parent();
@@ -196,6 +219,8 @@
 						btn.addClass("disabled");
 					}
 				});
+				
+				
 			});
 			
 		</script>

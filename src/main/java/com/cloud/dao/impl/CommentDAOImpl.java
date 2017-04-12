@@ -44,4 +44,10 @@ public class CommentDAOImpl extends BaseDAOImpl<Comment> implements CommentDAO{
 		return list;
 	}
 
+	public List<Comment> getListToCommentId(int commentId) {
+		String hql = "FROM Comment c WHERE c.comment.id=:commentId ORDER BY c.createTime ASC ";
+		List list = this.getHQLList(hql, new String[]{"commentId"}, new Object[]{commentId});
+		return list;
+	}
+
 }

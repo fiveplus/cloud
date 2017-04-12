@@ -144,5 +144,15 @@ public class CommentController {
 		return returnMap;
 	}
 	
+	@RequestMapping("/getlist.json")
+	public @ResponseBody Map<String,Object> getlist(int id,HttpServletRequest request,Model model){
+		Map<String,Object> returnMap = new HashMap<String, Object>();
+		
+		List<Comment> comments = commentService.getListToCommentId(id);
+		
+		returnMap.put("comments", comments);
+		return returnMap;
+	}
+	
 	
 }

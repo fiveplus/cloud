@@ -603,7 +603,7 @@ ol.formatted li {
 }
 
 /* 我的消息 */
-.calexam_a:HOVER,.calexam_del:HOVER,.commit_a:HOVER{
+.calexam_a:HOVER,.calexam_del:HOVER,.commit_a:HOVER,.commit_read_a:HOVER{
 	color:#279aff;
 }
 .b{

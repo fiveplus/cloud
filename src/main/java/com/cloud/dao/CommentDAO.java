@@ -13,4 +13,5 @@ public interface CommentDAO extends BaseDAO<Comment, Serializable>{
 	public int getListCountToUserId(int userId);
 	
 	public List<StatBO> getCountToUserIdAndCreateTime(int userId,Map<String,Long> betweens);
+	public List<Comment> getListToCommentId(int commentId);
 }

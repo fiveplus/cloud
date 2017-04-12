@@ -28,5 +28,9 @@ public class CommentService extends BaseService<Comment, Integer>{
 		return commentDAO.getCountToUserIdAndCreateTime(userId, betweens);
 	}
 	
+	public List<Comment> getListToCommentId(int commentId){
+		return commentDAO.getListToCommentId(commentId);
+	}
+	
 	
 }
