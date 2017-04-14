@@ -51,11 +51,8 @@
 							<div class="clear"></div>
 							<c:if test="${l.title == '回复消息'}">
 								<div class="commit_msg">
-									<div class="commit-item" align="center">
+									<div class="commit-item" style="border-right: 1px solid #ccc;" align="center">
 										<a href="#comment_div" onclick="show_comment_div(this)" class="commit_read_a">查看对话</a>
-									</div>
-									<div style="float:left;padding:10px 0;">
-										|
 									</div>
 									<div class="commit-item" align="center">
 										<a href="javascript:void(0)" onclick="show_commit(this)" class="commit_a">回复</a>

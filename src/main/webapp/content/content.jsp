@@ -281,7 +281,7 @@
 					var str = show_comment(c);
 					html+=str;
 					if(cs.length > 0){
-						html+="<div class='comment-reply'>"+strs+"<div>";
+						html+="<div class='comment-reply'>"+strs+"</div>";
 					}
 				}
 			}else{

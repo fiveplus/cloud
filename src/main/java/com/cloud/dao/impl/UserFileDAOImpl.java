@@ -17,7 +17,7 @@ public class UserFileDAOImpl extends BaseDAOImpl<UserFile> implements UserFileDA
 	}
 
 	public List<UserFile> getListToDeptId(int page, int pageSize, int deptId) {
-		String hql = "FROM UserFile f WHERE f.user.dept.id=:deptId ";
+		String hql = "FROM UserFile f WHERE f.user.dept.id=:deptId ORDER BY f.createTime DESC ";
 		List list = this.getList(page, pageSize, hql, new String[]{"deptId"}, new Object[]{deptId});
 		return list;
 	}
