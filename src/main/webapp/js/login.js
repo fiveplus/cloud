@@ -6,7 +6,8 @@ $(function(){
 		var h = $(window).height();
 		var w = $(window).width();
 		var bg = $(".main .bg");
-		
+		bg.width(w);
+		bg.height(h);
 	});
 	
 	$(".content .login .switch ul li").click(function(){
@@ -107,22 +108,18 @@ $(function(){
                     email: username,
                     password: password
                 },
-                dataType: "json"
-            }).done(function(val) {
-            	val = eval("("+val+")");
-                if (val.code == 200 && val.status == 1) {
-                    location.href = path+"/index";
-                	//location.href = "index.html?id=" + val.id + "&name=" + val.username + "&portrait=" + encodeURIComponent(val.portrait);
-                } else if (val.code == 105) {
-                    $.alert({title:"信息提示",content:"用户未激活",type:"red"});
-                }else{
-                	$.alert({title:"信息提示",content:"用户名/密码错误，请重新登录!!!",type:"red"});
-                    // input.val("");
-                    // error.removeClass("hidden").end().focus();
+                dataType: "json",
+                success:function(data){
+                	var val = eval("("+data+")");
+                    if (val.code == 200 && val.status == 1) {
+                        location.href = path+"/index";
+                    	//location.href = "index.html?id=" + val.id + "&name=" + val.username + "&portrait=" + encodeURIComponent(val.portrait);
+                    } else if (val.code == 105) {
+                        $.alert({title:"信息提示",content:"用户未激活",type:"red"});
+                    }else{
+                    	$.alert({title:"信息提示",content:"用户名/密码错误，请重新登录!!!",type:"red"});
+                    }
                 }
-            }).fail(function() {
-                input.val("");
-                error.removeClass("hidden").end().focus();
             });
        //  } else {
         //    empty.first().blur();
