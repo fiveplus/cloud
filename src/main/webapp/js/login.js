@@ -125,7 +125,7 @@ $(function(){
                 error.removeClass("hidden").end().focus();
             });
        //  } else {
-            empty.first().blur();
+        //    empty.first().blur();
        // }
     });
 	
