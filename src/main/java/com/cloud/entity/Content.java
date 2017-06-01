@@ -24,7 +24,7 @@ public class Content implements Serializable{
 	private Long remindTime;
 	private User user;
 	private Long createTime;
-	private int readCount;
+	private Integer readCount;
 	
 	private String status;
 	
@@ -106,10 +106,10 @@ public class Content implements Serializable{
 	}
 	
 	@Column(name = "READ_COUNT")
-	public int getReadCount() {
+	public Integer getReadCount() {
 		return readCount;
 	}
-	public void setReadCount(int readCount) {
+	public void setReadCount(Integer readCount) {
 		this.readCount = readCount;
 	}
 	@Transient

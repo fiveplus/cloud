@@ -203,6 +203,23 @@
 			$(document).ready(function(){
 				editor_init();
 				
+				
+				//项目组／主题
+				$("#project a").click(function(){
+					$("#project a").removeClass("active");
+					$(this).addClass("active");
+					//var val = $(this).next().children().html();
+					var val = $(this).attr("data-id");
+					$("#project input").attr("value",val);
+				});
+				$("#topical a").click(function(){
+					$("#topical a").removeClass("active");
+					$(this).addClass("active");
+					//var val = $(this).next().children().html();
+					var val = $(this).attr("data-id");
+					$("#topical input").attr("value",val);
+				});
+				
 				//是否公开
 				$("a.post5").click(function(){
 					var val = $("input[name='isPublic']").attr("value");

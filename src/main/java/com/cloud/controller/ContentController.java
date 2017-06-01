@@ -257,6 +257,22 @@ public class ContentController {
 		 return "content/content";
 	 }
 	 
+	 @RequestMapping("/upt")
+	 public String upt(int id,HttpServletRequest request,Model model){
+		 
+		Content c = contentService.get(id);
+		 
+		List<Theme> themes = themeService.findAll();
+		List<Project> projects = projectService.findAll();
+		
+		model.addAttribute("content",c);
+		model.addAttribute("themes",themes);
+		model.addAttribute("projects",projects);
+		 
+		 return "content/upt";
+	 }
+	 
+	 
 	 @RequestMapping("/get.json")
 	 public @ResponseBody Map<String,Object> _get(int id,HttpServletRequest request,Model model){
 		 Map<String,Object> returnMap = new HashMap<String, Object>();
@@ -276,6 +292,14 @@ public class ContentController {
 		 int code = 200;
 		 String message = "恭喜您，帖子修改成功！";
 		 c.setCreateTime(StringUtil.getDateToLong(new Date()));
+		 
+		 if(c.getProject().getId() != null){
+			 c.setProject(projectService.get(c.getProject().getId()));
+		 }
+		 if(c.getTheme().getId() != null){
+			 c.setTheme(themeService.get(c.getTheme().getId()));
+		 }
+		 
 		 contentService.update(c, c.getId());
 		 
 		//TODO 解析并保存

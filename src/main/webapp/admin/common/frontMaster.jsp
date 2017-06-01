@@ -517,23 +517,6 @@
 				//$('.leftmenu div div a').not($(this)).removeClass('cur');
 			});
 			
-			//分享
-			$("#project a").click(function(){
-				$("#project a").removeClass("active");
-				$(this).addClass("active");
-				//var val = $(this).next().children().html();
-				var val = $(this).attr("data-id");
-				$("#project input").attr("value",val);
-			});
-			$("#topical a").click(function(){
-				$("#topical a").removeClass("active");
-				$(this).addClass("active");
-				//var val = $(this).next().children().html();
-				var val = $(this).attr("data-id");
-				$("#topical input").attr("value",val);
-			});
-			
-			
 		}
 		
 		function show_chat(uid){

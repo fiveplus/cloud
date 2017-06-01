@@ -21,12 +21,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cloud.controller.bo.StatBO;
 import com.cloud.entity.Project;
 import com.cloud.entity.SysLog;
+import com.cloud.entity.Theme;
 import com.cloud.entity.User;
 import com.cloud.service.CommentService;
 import com.cloud.service.ContentService;
 import com.cloud.service.PraiseService;
 import com.cloud.service.ProjectService;
 import com.cloud.service.SysLogService;
+import com.cloud.service.ThemeService;
 import com.cloud.service.UserProjectService;
 import com.cloud.service.UserService;
 import com.cloud.util.StringUtil;
@@ -56,6 +58,9 @@ public class MyController {
 	
 	@Autowired
 	private ProjectService projectService;
+	
+	@Autowired
+	private ThemeService themeService;
 	
 	@RequestMapping("/msg")
 	public String calmsg(HttpServletRequest request,Model model){
@@ -108,7 +113,6 @@ public class MyController {
 	
 	@RequestMapping("/contents")
 	public String mycontents(HttpServletRequest request,Model model){
-		
 		return "my/contents";
 	}
 	
