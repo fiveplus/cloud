@@ -16,7 +16,7 @@
 					<c:forEach items="${projects}" var="p"  >
 	    				<a data-id="${p.id}" <c:if test="${content.project.id == p.id}">class="active"</c:if> ><li>${p.name}</li></a>
 	    			</c:forEach>
-	    			<input type="hidden" name="project.id" askuy-form="value" value="${content.project.id}" />
+	    			<input type="hidden" name="project.id" askuy-form="value" value="${content.project.id == NULL ? '' : content.project.id}" />
 				</ul>
 				<div class="clear"></div>
 			</div>

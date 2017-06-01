@@ -3,6 +3,7 @@ package com.cloud.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "TBL_CONTENT")
@@ -47,6 +50,7 @@ public class Content implements Serializable{
 	}
 	
 	@OneToOne
+	@Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
 	@JoinColumn(name="PROJECT_ID")
 	public Project getProject() {
 		return project;

@@ -293,13 +293,6 @@ public class ContentController {
 		 String message = "恭喜您，帖子修改成功！";
 		 c.setCreateTime(StringUtil.getDateToLong(new Date()));
 		 
-		 if(c.getProject().getId() != null){
-			 c.setProject(projectService.get(c.getProject().getId()));
-		 }
-		 if(c.getTheme().getId() != null){
-			 c.setTheme(themeService.get(c.getTheme().getId()));
-		 }
-		 
 		 contentService.update(c, c.getId());
 		 
 		//TODO 解析并保存
