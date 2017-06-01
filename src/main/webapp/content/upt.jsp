@@ -94,7 +94,6 @@
 		var form = $("#"+id);
 		var url = form.attr("action");
 		var data = form.serialize();
-		alert(data);
 		$.ajax({
 			url:url,
 			type:"POST",
