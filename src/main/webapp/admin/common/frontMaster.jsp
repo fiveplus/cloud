@@ -253,10 +253,23 @@
 		function show_modal(id){
 			$("#"+id).modal("show");
 		}
-	
+		
+		function image_load(){
+			var content = $("#content .content");
+			var width = content.width();
+			var img_div = content.find("img");
+			img_div.each(function(){
+				var img_width = $(this).width();
+				if(img_width >= width){
+					$(this).attr("width","100%");
+				}
+			});
+		}
+		
 		function show_cont(id){
 			$("#cont-div").load("${contextPath}/content/get?id="+id,function(){
 				$("#cont-a").click();
+				image_load();
 			});
 		}
 	

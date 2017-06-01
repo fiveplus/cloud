@@ -19,8 +19,8 @@
 				</div>
 				<div class="clear"></div>
 			</div>
-			<div style="height:400px;overflow-y:auto;background: #f2f2f5;">
-				<div style="padding:20px;min-height:200px;background: #fff;">
+			<div style="height:480px;overflow-y:auto;background: #f2f2f5;">
+				<div class="content" style="padding:20px;min-height:250px;background: #fff;">
 				${content.content}
 				</div>
 				<div class="content_div" style="border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;padding-top: 5px;padding-bottom:10px;height:17px;">
@@ -81,7 +81,6 @@
     </div>
 	
 	<script type="text/javascript">
-	
 		$(document).ready(function(){
 			//中间头部js
 			var hbout;

@@ -506,7 +506,7 @@ ol.formatted li {
 
 #cont-div {
 	z-index:20002;
-    width: 900px;
+    width: 1000px;
     display:none;
     background: #FFF;
     box-shadow: 0px 0px 4px rgba(0,0,0,0.7); 
