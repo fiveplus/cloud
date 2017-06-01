@@ -292,7 +292,9 @@ public class ContentController {
 		 int code = 200;
 		 String message = "恭喜您，帖子修改成功！";
 		 c.setCreateTime(StringUtil.getDateToLong(new Date()));
-		 
+		 if(c.getProject().getId() == null){
+			 c.setProject(null);
+		 }
 		 contentService.update(c, c.getId());
 		 
 		//TODO 解析并保存

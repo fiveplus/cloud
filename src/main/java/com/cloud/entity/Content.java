@@ -50,7 +50,6 @@ public class Content implements Serializable{
 	}
 	
 	@OneToOne
-	@Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
 	@JoinColumn(name="PROJECT_ID")
 	public Project getProject() {
 		return project;
