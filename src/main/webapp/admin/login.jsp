@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <META http-equiv=Content-Type content="text/html; charset=utf-8">
     <base href="<%=basePath%>">
-    <title>CRM Login</title>
+    <title>Cloud Login</title>
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<!-- basic styles -->

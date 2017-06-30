@@ -20,6 +20,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.cloud.entity.Permission;
 import com.cloud.entity.User;
 import com.cloud.service.PermissionService;
+import com.cloud.util.PropertiesUtil;
 
 public class SecurityFilter implements Filter{
 
@@ -61,8 +62,8 @@ public class SecurityFilter implements Filter{
 			}
 		}
 		
-		String path = request.getContextPath();
-		
+		//String path = request.getContextPath();
+		String path = PropertiesUtil.getValue("domain");
 		if(user == null){
 			response.sendRedirect(path+"/login");
 		}else{
