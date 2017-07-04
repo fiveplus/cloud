@@ -63,9 +63,14 @@ public class SecurityFilter implements Filter{
 		}
 		
 		//String path = request.getContextPath();
-		String path = PropertiesUtil.getValue("domain");
+		//String path = PropertiesUtil.getValue("domain");
 		if(user == null){
-			response.sendRedirect(path+"/login");
+			if(request_uri.equals("/")){
+				chain.doFilter(request, response);
+				return;
+			}else{
+				request.getRequestDispatcher("/login").forward(request, response);
+			}
 		}else{
 			//验证通过
 			//后台参数
