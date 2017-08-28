@@ -229,7 +229,7 @@
 									</c:if>
 									<c:if test="${pu.page!=pu.pageCount}">
 										<li class="next">
-											<a href="javascript:form_submit('form_post',${pu.pageCount}">
+											<a href="javascript:form_submit('form_post',${pu.pageCount})">
 												<i class="icon-double-angle-right"></i>
 											</a>
 										</li>

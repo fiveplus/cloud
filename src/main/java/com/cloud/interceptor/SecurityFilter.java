@@ -70,6 +70,7 @@ public class SecurityFilter implements Filter{
 				return;
 			}else{
 				request.getRequestDispatcher("/login").forward(request, response);
+				return;
 			}
 		}else{
 			//验证通过

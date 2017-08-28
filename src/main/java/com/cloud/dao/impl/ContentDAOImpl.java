@@ -104,7 +104,7 @@ public class ContentDAOImpl extends BaseDAOImpl<Content> implements ContentDAO{
 			hql += " AND c.createTime < " + betweens.get("afterTime");
 		}
 		hql += " ORDER BY c.createTime DESC ";
-		List<Content> list = this.getList(page, pageSize, null, null);
+		List list = this.getList(page, pageSize, hql, null, null);
 		return list;
 	}
 

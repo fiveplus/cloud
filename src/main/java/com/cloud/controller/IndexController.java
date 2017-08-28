@@ -45,7 +45,13 @@ public class IndexController {
 	 
 	 @RequestMapping("/")
 	 public String root(HttpServletRequest request,Model model){
-		 return index(request,model);
+		 HttpSession session = request.getSession();
+		 User user = (User) session.getAttribute("user");
+		 if(user == null){
+			 return "login";
+		 }else{
+			 return index(request,model);
+		 }
 	 }
 	 
 	 
