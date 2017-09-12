@@ -53,7 +53,7 @@
 							<c:forEach items="${projects}" var="p" end="4">
 								<div class="project_item">
 									<div class="item_left" style="margin-left: 5px;">
-										<img src="${p.user.portrait}" class="img-radius37" />
+										<img src="/${p.user.portrait}" class="img-radius37" />
 									</div>
 									<div class="item_left">
 										<div>${p.name}</div>
