@@ -18,5 +18,9 @@
     <context:property-placeholder location="classpath:config.properties"/>  
     <!-- 扫描service自动注入为bean [,]为分隔符 -->  
     <context:component-scan base-package="com.cloud.service,com.cloud.dao.impl" />  
-  
+    
+    <!-- quartz任务调度器 -->
+  	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" />
+  	
+  	
 </beans> 
