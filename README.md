@@ -5,18 +5,18 @@
 1.下载Eclipse<br/>
 2.下载maven插件<br/>
 3.下载EGIT插件<br/>
-* 测试地址<br/>
-<a href="http://220.249.89.138:8092/cloud">http://220.249.89.138:8092/cloud</a><br/>
+* 公网访问地址<br/>
+<a href="http://sp.bioppp.com/">http://sp.bioppp.com/</a><br/>
 * 使用框架<br/>
 SpringMVC+Hibernate+ehcache+maven
 * 2017-02-28<br/>
 tbl_content新增字段 address(帖子发布地址)
 * 2017-03-06 tel_praise新增表<br/>
-<img src="http://git.oschina.net/uploads/images/2017/0306/190048_e9d18380_803453.png" width="600" />
+<img src="http://git.oschina.net/uploads/images/2017/0306/190048_e9d18380_803453.png" width="600" /><br/>
 * 2017-3-27 tbl_project新增字段<br/>
 tbl_project新增字段 status(标记项目是否删除)
 * 2017-3-28 tbl_skin新增表<br/>
-<img src="http://git.oschina.net/uploads/images/2017/0328/090426_afd8df83_803453.png" width="600" />
+<img src="http://git.oschina.net/uploads/images/2017/0328/090426_afd8df83_803453.png" width="600" /><br/>
 * 2017-4-1 表新增字段<br/>
 1.tbl_dept add column status,type is varchar(50),not null <br/>
 2.tbl_group add column status,type is varchar(50),not null <br/>
