@@ -35,3 +35,13 @@ user_id ,int ,FK <br/>
 content_id ,int ,FK <br/>
 * 2017-4-10 tbl_comment新增列<br/>
 tbl_comment add column comment_id ,type is int,not null <br/>
+* 2017-9-14 新增表<br/>
+TABLE NAME : sys_mail_quartz <br/>
+id ,int ,PK <br/>
+job_name ,varchar(500) <br/>
+cron ,varchar(500) <br/>
+user_id ,int ,FK <br/>
+create_time ,varchar(50) <br/>
+title ,varchar(500) <br/>
+content ,text <br/>
+status ,varchar(5) <br/>
