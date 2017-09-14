@@ -2,6 +2,7 @@ package com.cloud.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Properties;
 
 public class PropertiesUtil {
@@ -10,7 +11,7 @@ public class PropertiesUtil {
 	static{
 		try { 
             pro = new Properties();  
-            InputStream in = PropertiesUtil.class.getResourceAsStream(proFileName);  
+            InputStreamReader in = new InputStreamReader(PropertiesUtil.class.getResourceAsStream(proFileName),"UTF-8");  
             pro.load(in);  
             in.close();  
         } catch (IOException e) {  
