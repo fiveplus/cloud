@@ -106,7 +106,7 @@
 															<i class="icon-pencil bigger-130"></i>
 														</a>
 
-														<a class="red" href="javascript:void(0)">
+														<a class="red" href="javascript:del_level(${l.id})">
 															<i class="icon-trash bigger-130"></i>
 														</a>
 													</div>

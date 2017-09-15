@@ -44,7 +44,7 @@ public class MailQuartzAdminController{
 		model.addAttribute("pu",pu);
 		model.addAttribute("mails",list);
 		
-		return "admin/mail/list";
+		return "admin/mail/mails";
 	}
 	
 	@RequestMapping("/add")
@@ -60,16 +60,23 @@ public class MailQuartzAdminController{
 		int code = 200;
 		String msg = "恭喜您，邮件任务创建成功！";
 		
-		mail.setCreateTime(StringUtil.getDateToLong(new Date()));
-		mail.setStatus("N");
-		mail.setUser(user);
-		int id = mailQuartzService.save(mail);
-		if(id > 0){
-			
+		MailQuartz m = mailQuartzService.getMailQuartzToJobName(mail.getJobName());
+		if(m == null){
+			mail.setCreateTime(StringUtil.getDateToLong(new Date()));
+			mail.setStatus("N");
+			mail.setUser(user);
+			int id = mailQuartzService.save(mail);
+			if(id > 0){
+				
+			}else{
+				code = -1;
+				msg = "很抱歉，邮件任务创建失败！";
+			}
 		}else{
+			msg = "邮件任务名称重复，请检查后重新输入！";
 			code = -1;
-			msg = "很抱歉，邮件任务创建失败！";
 		}
+		
 		returnMap.put("code", code);
 		returnMap.put("msg", msg);
 		return returnMap;
@@ -87,8 +94,19 @@ public class MailQuartzAdminController{
 		Map<String,Object> returnMap = new HashMap<String,Object>();
 		int code = 200;
 		String msg = "恭喜您，邮件任务修改成功！";
-		
-		mailQuartzService.update(mail, mail.getId());
+		boolean flag = true;
+		MailQuartz m = mailQuartzService.get(mail.getId());
+		if(!m.getJobName().equals(mail.getJobName())){
+			MailQuartz t_mail = mailQuartzService.getMailQuartzToJobName(mail.getJobName());
+			if(t_mail != null){
+				flag = false;
+				code = -1;
+				msg = "邮件任务名称重复，请检查后重新输入！";
+			}
+		}
+		if(flag){
+			mailQuartzService.update(mail, mail.getId());
+		}
 		
 		returnMap.put("code", code);
 		returnMap.put("msg", msg);
