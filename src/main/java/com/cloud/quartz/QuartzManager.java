@@ -1,6 +1,7 @@
 package com.cloud.quartz;
 
 import org.quartz.CronTrigger;
+import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 
@@ -137,7 +138,7 @@ public class QuartzManager {
 		}
     }
     /**
-     * 开始多有定时任务
+     * 开始所有定时任务
      * @param sched 调度器
      */
     public static void startJobs(Scheduler sched){
