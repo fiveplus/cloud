@@ -18,7 +18,7 @@ public class LevelDAOImpl extends BaseDAOImpl<Level> implements LevelDAO{
 	public List<Level> getList(int page, int pageSize, String[] columns,
 			Object[] objs) {
 		String hql = "FROM Level l WHERE l.status='Y' ";
-		List list = this.getHQLList(hql, columns, objs);
+		List list = this.getList(page,pageSize,hql, columns, objs);
 		return list;
 	}
 
