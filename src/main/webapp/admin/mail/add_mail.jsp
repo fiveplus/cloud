@@ -132,7 +132,7 @@
 					if(result){
 						var form = $("#"+id);
 						var html = $("#editor1").html();
-						$("#"+id+" [name='info']").val(html);
+						$("#"+id+" [name='content']").val(html);
 						
 						$.ajax({
 							url:form.attr('action'),

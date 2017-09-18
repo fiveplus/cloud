@@ -235,7 +235,7 @@
 								success:function(data){
 									if(data.code==200){
 										ace_msg.success(data.msg);
-										window.location.reload();
+										$(obj).attr("data-status","Y");
 									}else{
 										ace_msg.danger(data.msg);
 									}
@@ -257,7 +257,7 @@
 								success:function(data){
 									if(data.code==200){
 										ace_msg.success(data.msg);
-										window.location.reload();
+										$(obj).attr("data-status","N");
 									}else{
 										ace_msg.danger(data.msg);
 									}

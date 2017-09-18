@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
 import org.quartz.SchedulerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -90,13 +91,13 @@ public class MailQuartzAdminController{
 	}
 	
 	@RequestMapping("/update.json")
-	public @ResponseBody Map<String,Object> update(MailQuartz mail,HttpServletRequest request,Model model){
+	public @ResponseBody Map<String,Object> update(MailQuartz mail,HttpServletRequest request,Model model) throws SchedulerException{
 		Map<String,Object> returnMap = new HashMap<String,Object>();
 		int code = 200;
 		String msg = "恭喜您，邮件任务修改成功！";
 		boolean flag = true;
-		MailQuartz m = mailQuartzService.get(mail.getId());
-		if(!m.getJobName().equals(mail.getJobName())){
+		MailQuartz oldmail = mailQuartzService.get(mail.getId());
+		if(!oldmail.getJobName().equals(mail.getJobName())){
 			MailQuartz t_mail = mailQuartzService.getMailQuartzToJobName(mail.getJobName());
 			if(t_mail != null){
 				flag = false;
@@ -105,6 +106,17 @@ public class MailQuartzAdminController{
 			}
 		}
 		if(flag){
+			if(!oldmail.getJobName().equals(mail.getJobName())){
+				//TODO 移除旧任务
+				String jobName = oldmail.getJobName();
+				Scheduler sche = schedFactory.getScheduler();
+				QuartzManager.removeJob(sche, jobName);
+				//TODO 开启新任务
+				String newJobName = mail.getJobName();
+				QuartzManager.addJob(sche, newJobName, MailQuartzJob.class, mail.getCron());
+			}
+			
+			
 			mailQuartzService.update(mail, mail.getId());
 		}
 		
@@ -115,10 +127,15 @@ public class MailQuartzAdminController{
 	}
 	
 	@RequestMapping("/delete.json")
-	public @ResponseBody Map<String,Object> delete(int id,HttpServletRequest request,Model model){
+	public @ResponseBody Map<String,Object> delete(int id,HttpServletRequest request,Model model) throws SchedulerException{
 		Map<String,Object> returnMap = new HashMap<String,Object>();
 		int code = 200;
 		String msg = "恭喜您，邮件任务删除成功。";
+		//TODO 移除任务
+		MailQuartz mail = mailQuartzService.get(id);
+		String jobName = mail.getJobName();
+		Scheduler sche = schedFactory.getScheduler();
+		QuartzManager.removeJob(sche, jobName);
 		
 		mailQuartzService.delete(id);
 		model.addAttribute("code",code);
