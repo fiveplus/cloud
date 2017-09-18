@@ -29,7 +29,6 @@ import com.cloud.util.StringUtil;
 @RequestMapping("/admin/mail")
 public class MailQuartzAdminController{
 	//TODO 动态任务调度
-	@Autowired
 	private SchedulerFactory schedFactory;
 	
 	@Autowired

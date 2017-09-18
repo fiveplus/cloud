@@ -27,7 +27,6 @@ public class SecurityFilter implements Filter{
 	private String[] url;
 	private String encoding;
 	
-	@Autowired
 	private PermissionService permissionService;
 	
 	public void init(FilterConfig config) throws ServletException {
@@ -61,6 +60,8 @@ public class SecurityFilter implements Filter{
 				return;
 			}
 		}
+		
+		
 		
 		//String path = request.getContextPath();
 		//String path = PropertiesUtil.getValue("domain");
