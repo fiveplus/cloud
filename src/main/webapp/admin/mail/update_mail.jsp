@@ -128,7 +128,7 @@
 		</div>
 		<script type="text/javascript">
 			function form_submit(id){
-				bootbox.confirm("确认新增?",function(result){
+				bootbox.confirm("确认修改?",function(result){
 					if(result){
 						var form = $("#"+id);
 						var html = $("#editor1").html();
