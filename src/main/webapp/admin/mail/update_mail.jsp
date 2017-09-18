@@ -39,12 +39,13 @@
 				<div class="col-xs-12">
 					<!-- PAGE CONTENT BEGINS -->
 					<div class="page-header">
-						<h1>邮件任务新增</h1>
+						<h1>邮件任务新增
 						<small>
 							<i class="icon-double-angle-right">
 							请输入邮件任务详细资料
 							</i>
 						</small>
+						</h1>
 					</div>
 					<div class="row">
 						<div class="col-xs-12">

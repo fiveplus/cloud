@@ -13,7 +13,6 @@ public class Test {
 	public static void main(String[] args) {
 		//A<User> a = new A<User>();
 		//a.a();
-		
 		User user = new User();
 		user.setId(1);
 		user.setLoginName("zhangsan");

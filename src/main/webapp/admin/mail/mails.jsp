@@ -90,7 +90,14 @@
 													${m.user.username}
 												</td>
 												<td>
-													<a href="javascript:change_status(this)" data-status="${m.status}"><span class="label label-sm label-warning">运行</span></a>
+													<a href="javascript:void(0)" onclick="change_status(this,${m.id})" data-status="${m.status}">
+														<c:if test="${m.status=='N'}">
+															<span class="label label-sm label-success">运行</span>
+														</c:if>
+														<c:if test="${m.status=='Y'}">
+															<span class="label label-sm label-warning">暂停</span>
+														</c:if>
+													</a>
 												</td>
 												<td>
 													<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
@@ -220,10 +227,10 @@
 				});
 			}
 			
-			function change_status(obj){
+			function change_status(obj,id){
 				var status = $(obj).attr("data-status");
-				var success = "<span class='label label-sm label-success'>暂停</span>";
-				var warnning = "<span class='label label-sm label-warning'>运行</span>";
+				var success = "<span class='label label-sm label-warning'>暂停</span>";
+				var warnning = "<span class='label label-sm label-success'>运行</span>";
 				if(status == "N"){
 					$(obj).html(warnning);
 					bootbox.confirm("确认开始任务?",function(result){
@@ -235,6 +242,7 @@
 								success:function(data){
 									if(data.code==200){
 										ace_msg.success(data.msg);
+										$(obj).html(success);
 										$(obj).attr("data-status","Y");
 									}else{
 										ace_msg.danger(data.msg);
@@ -257,6 +265,7 @@
 								success:function(data){
 									if(data.code==200){
 										ace_msg.success(data.msg);
+										$(obj).html(warnning);
 										$(obj).attr("data-status","N");
 									}else{
 										ace_msg.danger(data.msg);

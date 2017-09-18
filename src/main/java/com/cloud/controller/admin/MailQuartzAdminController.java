@@ -12,10 +12,14 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.SchedulerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 
 import com.cloud.entity.MailQuartz;
 import com.cloud.entity.User;
@@ -29,10 +33,13 @@ import com.cloud.util.StringUtil;
 @RequestMapping("/admin/mail")
 public class MailQuartzAdminController{
 	//TODO 动态任务调度
-	private SchedulerFactory schedFactory;
+	@Autowired
+	private SchedulerFactoryBean schedulerFactoryBean;
 	
 	@Autowired
 	private MailQuartzService mailQuartzService;
+	
+	
 	
 	@RequestMapping("/list")
 	public String list(int page,HttpServletRequest request,Model model){
@@ -108,7 +115,7 @@ public class MailQuartzAdminController{
 			if(!oldmail.getJobName().equals(mail.getJobName())){
 				//TODO 移除旧任务
 				String jobName = oldmail.getJobName();
-				Scheduler sche = schedFactory.getScheduler();
+				Scheduler sche = schedulerFactoryBean.getScheduler();
 				QuartzManager.removeJob(sche, jobName);
 				//TODO 开启新任务
 				String newJobName = mail.getJobName();
@@ -133,7 +140,7 @@ public class MailQuartzAdminController{
 		//TODO 移除任务
 		MailQuartz mail = mailQuartzService.get(id);
 		String jobName = mail.getJobName();
-		Scheduler sche = schedFactory.getScheduler();
+		Scheduler sche = schedulerFactoryBean.getScheduler();
 		QuartzManager.removeJob(sche, jobName);
 		
 		mailQuartzService.delete(id);
@@ -152,7 +159,7 @@ public class MailQuartzAdminController{
 		MailQuartz mail = mailQuartzService.get(id);
 		//TODO 暂停任务
 		try{
-			Scheduler sche = schedFactory.getScheduler();
+			Scheduler sche = schedulerFactoryBean.getScheduler();
 			String jobName = mail.getJobName();
 			QuartzManager.removeJob(sche, jobName);
 			//TODO 修改状态
@@ -176,7 +183,7 @@ public class MailQuartzAdminController{
 		MailQuartz mail = mailQuartzService.get(id);
 		//TODO 启动任务
 		try {
-			Scheduler sche = schedFactory.getScheduler();
+			Scheduler sche = schedulerFactoryBean.getScheduler();
 			String jobName = mail.getJobName();
 			String cron = mail.getCron();
 			QuartzManager.addJob(sche, jobName, MailQuartzJob.class, cron);
