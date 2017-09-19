@@ -39,7 +39,7 @@
 				<div class="col-xs-12">
 					<!-- PAGE CONTENT BEGINS -->
 					<div class="page-header">
-						<h1>邮件任务新增
+						<h1>邮件任务修改
 						<small>
 							<i class="icon-double-angle-right">
 							请输入邮件任务详细资料
@@ -53,6 +53,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 请输入任务名称 </label>
 									<div class="col-sm-9">
+										<input type="hidden" name="id" value="${mail.id}" />
 										<input type="text" id="form-field-1" placeholder="任务名称" class="col-xs-10 col-sm-5" name="jobName" value="${mail.jobName}" />
 										<font style="color:red; height:25px;line-height:25px;overflow:hidden;"><b>&nbsp;*</b></font>
 									</div>
@@ -102,7 +103,7 @@
 										</span>
 									</h4>
 									<div class="wysiwyg-editor" id="editor1">${mail.content}</div>
-									<input type="hidden" name="content" value="${mail.content}" />
+									<input type="hidden" name="content" value="" />
 								</div>
 								<div class="space-4"></div>
 								

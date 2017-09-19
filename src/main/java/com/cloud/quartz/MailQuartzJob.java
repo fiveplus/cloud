@@ -44,15 +44,17 @@ public class MailQuartzJob implements Job{
 		MailQuartz mail = mailQuartzService.getMailQuartzToJobName(jobName);
 		
 		//TODO 此处进行相关邮件操作
-		//List<User> users = userService.findAll();
+		List<User> users = userService.findAll();
 		String title = mail.getTitle();
 		String content = mail.getContent();
+		/*
 		LOGGER.info("title:"+title);
 		//TODO 开启邮件发送线程
 		User user = new User();
 		user.setLoginName("274925658@qq.com");
 		List<User> users = new ArrayList<User>();
 		users.add(user);
+		*/
 		Thread mailThread = new MailThread(users, title, content);
 		mailThread.start();
 	}

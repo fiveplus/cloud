@@ -91,10 +91,10 @@
 												</td>
 												<td>
 													<a href="javascript:void(0)" onclick="change_status(this,${m.id})" data-status="${m.status}">
-														<c:if test="${m.status=='N'}">
+														<c:if test="${m.status=='Y'}">
 															<span class="label label-sm label-success">运行</span>
 														</c:if>
-														<c:if test="${m.status=='Y'}">
+														<c:if test="${m.status=='N'}">
 															<span class="label label-sm label-warning">暂停</span>
 														</c:if>
 													</a>
@@ -232,7 +232,6 @@
 				var success = "<span class='label label-sm label-warning'>暂停</span>";
 				var warnning = "<span class='label label-sm label-success'>运行</span>";
 				if(status == "N"){
-					$(obj).html(warnning);
 					bootbox.confirm("确认开始任务?",function(result){
 						if(result){
 							$.ajax({
@@ -242,7 +241,7 @@
 								success:function(data){
 									if(data.code==200){
 										ace_msg.success(data.msg);
-										$(obj).html(success);
+										$(obj).html(warnning);
 										$(obj).attr("data-status","Y");
 									}else{
 										ace_msg.danger(data.msg);
@@ -256,7 +255,6 @@
 					});
 				}else{
 					bootbox.confirm("确认暂停任务?",function(result){
-						$(obj).html(success);
 						if(result){
 							$.ajax({
 								url:'${contextPath}/admin/mail/pause.json',
@@ -265,7 +263,7 @@
 								success:function(data){
 									if(data.code==200){
 										ace_msg.success(data.msg);
-										$(obj).html(warnning);
+										$(obj).html(success);
 										$(obj).attr("data-status","N");
 									}else{
 										ace_msg.danger(data.msg);
