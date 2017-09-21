@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.cloud.controller.bo.StatBO;
-import com.cloud.entity.Calendar;
 import com.cloud.entity.Comment;
 
 public interface CommentDAO extends BaseDAO<Comment, Serializable>{

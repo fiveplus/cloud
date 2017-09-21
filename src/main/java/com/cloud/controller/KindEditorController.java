@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,12 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.cloud.dao.UserFileDAO;
 import com.cloud.entity.User;
-import com.cloud.entity.UserFile;
-import com.cloud.service.UserFileService;
 import com.cloud.util.JacksonUtil;
-import com.cloud.util.StringUtil;
 /**
  * Kingeditor插件
  * @author hack

@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloud.controller.bo.GroupBO;
 import com.cloud.controller.bo.TreeBO;
-import com.cloud.dao.CommentDAO;
 import com.cloud.entity.Group;
 import com.cloud.entity.Project;
 import com.cloud.entity.Skin;

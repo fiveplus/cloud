@@ -12,6 +12,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "SYS_DEPT_PERMISSION")
 public class DeptPermission implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private String permissionId;
 	private Integer deptId;

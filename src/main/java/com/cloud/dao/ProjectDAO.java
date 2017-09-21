@@ -3,7 +3,6 @@ package com.cloud.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import com.cloud.entity.Permission;
 import com.cloud.entity.Project;
 
 public interface ProjectDAO extends BaseDAO<Project, Serializable>{

@@ -8,7 +8,6 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.transform.AliasToBeanResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cloud.dao.BaseDAO;
@@ -74,7 +73,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T, Serializable>{
 				query.setParameter(columns[i], objs[i]);
 			}
 		}
-		List list = query.list();
+		List<?> list = query.list();
 		return list;
 	}
 
@@ -88,7 +87,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T, Serializable>{
 		}
 		query.setFirstResult((page - 1)*pageSize);
 		query.setMaxResults(pageSize);
-		List list = query.list();
+		List<?> list = query.list();
 		return list;
 	}
 
@@ -113,7 +112,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T, Serializable>{
 				query.setParameter(i, objs[i]);
 			}
 		}
-		List list = query.list();
+		List<?> list = query.list();
 		return list;
 	}
 

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cloud.entity.Content;
 import com.cloud.entity.Department;
 import com.cloud.entity.Project;
 import com.cloud.entity.Theme;
@@ -21,7 +20,6 @@ import com.cloud.service.DepartmentService;
 import com.cloud.service.ProjectService;
 import com.cloud.service.SysLogService;
 import com.cloud.service.ThemeService;
-import com.cloud.util.StringUtil;
 /**
  * 主页
  * @author hack

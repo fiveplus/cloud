@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import com.cloud.controller.bo.KeyBO;
 import com.cloud.controller.bo.RankBO;
 import com.cloud.controller.bo.StatBO;
 import com.cloud.entity.Content;

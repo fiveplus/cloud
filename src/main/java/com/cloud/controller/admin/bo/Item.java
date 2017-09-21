@@ -1,12 +1,11 @@
 package com.cloud.controller.admin.bo;
 
-import java.io.Serializable;
 /**
  * 节点信息
  * @author hack
  *
  */
-public class Item implements Serializable{
+public class Item {
 	/**
 	 * 节点名字
 	 */

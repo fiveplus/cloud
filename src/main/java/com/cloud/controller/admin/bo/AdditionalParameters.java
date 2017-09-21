@@ -1,6 +1,5 @@
 package com.cloud.controller.admin.bo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author hack
  *
  */
-public class AdditionalParameters implements Serializable{
+public class AdditionalParameters {
 	/**
 	 * 子节点列表
 	 */

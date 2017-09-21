@@ -1,11 +1,10 @@
 package com.cloud.controller.admin.bo;
 
-import java.io.Serializable;
 import java.util.List;
 
 import com.cloud.entity.Permission;
 
-public class PermissionBO implements Serializable{
+public class PermissionBO {
 	private Permission permission;
 	private List<Permission> pers;
 	public Permission getPermission() {

@@ -14,7 +14,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="TBL_SKIN")
 public class Skin implements Serializable{
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private int imgIndex;
 	private User user;

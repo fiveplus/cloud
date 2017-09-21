@@ -15,6 +15,11 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "TBL_CALENDAR")
 public class Calendar implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private String title;
 	private String content;

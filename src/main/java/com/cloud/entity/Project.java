@@ -16,6 +16,11 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "TBL_PROJECT")
 public class Project implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private String name;
 	private User leader;

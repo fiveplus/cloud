@@ -1,5 +1,7 @@
 package com.cloud.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +13,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "SYS_MAIL_QUARTZ")
-public class MailQuartz {
+public class MailQuartz implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private String jobName;
 	private String cron;

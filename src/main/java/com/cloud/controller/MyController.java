@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cloud.controller.bo.StatBO;
 import com.cloud.entity.Project;
 import com.cloud.entity.SysLog;
-import com.cloud.entity.Theme;
 import com.cloud.entity.User;
 import com.cloud.service.CommentService;
 import com.cloud.service.ContentService;

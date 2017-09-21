@@ -1,9 +1,9 @@
 package com.cloud.controller.bo;
 
-import java.io.Serializable;
 
 
-public class GanttBO implements Serializable{
+public class GanttBO {
+
 	private String name;
 	private String desc;
 	private Value values;

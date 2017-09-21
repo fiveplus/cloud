@@ -12,6 +12,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TBL_USER_GROUP")
 public class UserGroup implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private Integer userId;
 	private Integer groupId;

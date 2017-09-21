@@ -1,7 +1,6 @@
 package com.cloud.dao;
 
 import java.io.Serializable;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public interface BaseDAO<T,PK extends Serializable> {

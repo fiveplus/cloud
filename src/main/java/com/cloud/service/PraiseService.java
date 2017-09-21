@@ -8,11 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.cloud.controller.bo.StatBO;
 import com.cloud.dao.PraiseDAO;
-import com.cloud.entity.Message;
 import com.cloud.entity.Praise;
 import com.cloud.entity.User;
 import com.cloud.service.PraiseService;
-import com.cloud.util.BeanUtil;
 
 @Service("praiseService")
 public class PraiseService extends BaseService<Praise, Integer>{

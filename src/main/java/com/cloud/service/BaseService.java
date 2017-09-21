@@ -29,6 +29,7 @@ public class BaseService<T,PK extends Serializable>{
 		baseDAO.persist(entity);		
 	}
 
+	@SuppressWarnings("unchecked")
 	public PK save(T entity) {
 		return (PK) baseDAO.save(entity);
 	}

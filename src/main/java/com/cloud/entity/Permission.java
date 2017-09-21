@@ -11,6 +11,11 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "SYS_PERMISSION")
 public class Permission implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private String id;
 	private String name;
 	private String parentId;

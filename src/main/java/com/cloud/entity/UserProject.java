@@ -14,6 +14,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TBL_USER_PROJECT")
 public class UserProject implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private User user;
 	private Project project;

@@ -2,13 +2,9 @@ package com.cloud.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cloud.dao.ProjectDAO;
-import com.cloud.entity.Progress;
 import com.cloud.entity.Project;
 
 @Repository("projectDAO")

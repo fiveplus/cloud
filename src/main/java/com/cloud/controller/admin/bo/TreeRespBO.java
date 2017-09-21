@@ -1,6 +1,5 @@
 package com.cloud.controller.admin.bo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +8,7 @@ import java.util.List;
  * @author hack
  *
  */
-public class TreeRespBO implements Serializable{
+public class TreeRespBO {
 	private List<Item> data = new ArrayList<Item>();
 	private String status;
 

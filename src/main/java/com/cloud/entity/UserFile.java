@@ -14,6 +14,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TBL_FILE")
 public class UserFile implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private String fileName;
 	private String url;

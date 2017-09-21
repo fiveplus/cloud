@@ -6,11 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cloud.dao.UserDAO;
-import com.cloud.entity.Project;
 import com.cloud.entity.User;
-import com.cloud.entity.UserProject;
 import com.cloud.service.UserService;
-import com.cloud.util.BeanUtil;
 
 @Service("userService")  
 public class UserService extends BaseService<User, Integer>{

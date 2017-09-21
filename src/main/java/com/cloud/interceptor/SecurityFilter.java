@@ -13,14 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.cloud.entity.Permission;
 import com.cloud.entity.User;
 import com.cloud.service.PermissionService;
-import com.cloud.util.PropertiesUtil;
 
 public class SecurityFilter implements Filter{
 

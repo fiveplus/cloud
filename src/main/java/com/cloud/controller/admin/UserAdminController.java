@@ -43,21 +43,21 @@ import com.cloud.util.StringUtil;
 public class UserAdminController {
 	private static final Logger LOGGER = Logger.getLogger(UserAdminController.class);  
 	 
-	 @Autowired  
-	 private UserService userService;
-	 @Autowired
-	 private DeptPermissionService deptPermissionService;
-	 @Autowired
-	 private PermissionService permissionService;
-	 @Autowired
-	 private DepartmentService departmentService;
-	 @Autowired
-	 private GroupService groupService;
-	 @Autowired
-	 private LevelService levelService;
+	@Autowired  
+	private UserService userService;
+	@Autowired
+	private DeptPermissionService deptPermissionService;
+	@Autowired
+	private PermissionService permissionService;
+	@Autowired
+	private DepartmentService departmentService;
+	@Autowired
+	private GroupService groupService;
+	@Autowired
+	private LevelService levelService;
 	 
-	 @RequestMapping("/login")
-	 public String login(String loginName,String password,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	@RequestMapping("/login")
+	public String login(String loginName,String password,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		 HttpSession session = request.getSession();
 		 User user = userService.getUserByLoginNameAndPassword(loginName, MD5.GetMD5Password(password));
 		 if(user == null){

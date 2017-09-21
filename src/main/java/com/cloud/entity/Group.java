@@ -17,6 +17,11 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "TBL_GROUP")
 public class Group implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private String name;
 	private Long createTime;

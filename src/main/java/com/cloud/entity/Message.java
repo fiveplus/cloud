@@ -15,6 +15,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TBL_MESSAGE")
 public class Message implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private User toUser;
 	private User fromUser;

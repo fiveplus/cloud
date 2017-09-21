@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cloud.controller.bo.KeyBO;
 import com.cloud.controller.bo.RankBO;
 import com.cloud.controller.bo.StatBO;
 import com.cloud.dao.ContentDAO;
