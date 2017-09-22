@@ -57,7 +57,7 @@ a{
 	border: 2px solid #fff;
 	transition:all 0.2s ease-in-out 0s;
 	border-radius:0px;
-	font-family: "微软雅黑";
+	font-family: "Microsoft Yahei";
 }
 .seletc-choose a:hover{
 	color: white;
@@ -89,7 +89,7 @@ a{
 	float:left;
 	width:80px;
 	font-size: 17px;
-	font-family: "微软雅黑";
+	font-family: "Microsoft Yahei";
 	color:#39D17E;
 	height:34px;
 	line-height: 34px;

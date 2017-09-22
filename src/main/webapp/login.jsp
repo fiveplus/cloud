@@ -18,7 +18,7 @@ request.setCharacterEncoding("UTF-8");
  * {margin:0; padding:0;}
  ul {list-style:none;}
  a {text-decoration:none;}
- html, body {width:100%;height:100%;font-family: "黑体"}
+ html, body {width:100%;height:100%;font-family: "Microsoft Yahei"}
 
 .clearfix:after,.clearfix:before{display:table;line-height:0;content:""}
 .clearfix:after{clear:both}
