@@ -17,6 +17,8 @@ import java.util.regex.Pattern;
 
 public class StringUtil {
 	
+	private StringUtil(){}
+	
 	public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 	public static final String DATE_FORMAT2 = "YYYY/MM/dd HH:mm";

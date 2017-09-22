@@ -3,6 +3,9 @@ package com.cloud.util;
 import java.security.MessageDigest;
 
 public class MD5 {
+	
+	private MD5(){}
+	
 	public static String md5Encode(String inStr) throws Exception{
 		MessageDigest md5 = null;
 		try{

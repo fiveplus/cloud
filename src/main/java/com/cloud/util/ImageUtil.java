@@ -14,6 +14,9 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
 public class ImageUtil {
+	
+	private ImageUtil(){}
+	
 	public static int getImageWidth(int port,String url){
 		try{
 			if(url.indexOf("attached")>-1){

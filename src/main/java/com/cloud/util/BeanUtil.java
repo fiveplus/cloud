@@ -8,6 +8,9 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 
 public class BeanUtil {
+	
+	private BeanUtil(){}
+	
 	/**
 	 * 重写工具类BeanUtils，如果为NULL则不复制属性值
 	 * @param source newClass

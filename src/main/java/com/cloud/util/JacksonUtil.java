@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class JacksonUtil {
+	
+	private JacksonUtil(){}
+	
 	public static ObjectMapper objectMapper;
 	
 	/** 

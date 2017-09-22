@@ -5,6 +5,8 @@ import java.lang.reflect.Type;
 import com.google.gson.Gson;
 
 public class GsonUtil {
+	
+	private GsonUtil(){}
 
 	private static Gson gson = new Gson();
 

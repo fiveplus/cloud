@@ -6,6 +6,8 @@ import org.apache.commons.codec.binary.Hex;
 
 public class CodeUtil {
 	
+	private CodeUtil(){}
+	
 	public static String hexSHA1(String value) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-1");

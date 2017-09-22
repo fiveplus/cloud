@@ -5,6 +5,9 @@ import java.io.InputStreamReader;
 import java.util.Properties;
 
 public class PropertiesUtil {
+	
+	private PropertiesUtil(){}
+	
 	private static String proFileName = "/config.properties";
 	private static Properties pro;
 	static{

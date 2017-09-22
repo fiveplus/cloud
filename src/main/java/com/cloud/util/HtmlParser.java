@@ -18,6 +18,8 @@ import org.jsoup.select.Elements;
  */
 public class HtmlParser {
 	
+	private HtmlParser(){}
+	
 	/**
 	 * 根据HTML解析Kineditor中文件下载的内容
 	 * @param html

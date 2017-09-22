@@ -38,7 +38,7 @@ public class RongController {
 	 private UserService userService;
 	 
 	 @RequestMapping("/get_token.json")
-	 public @ResponseBody SdkHttpResult get_token(HttpServletRequest request,Model model) throws Exception{
+	 public @ResponseBody SdkHttpResult get_token(HttpServletRequest request,Model model){
 		 HttpSession session = request.getSession();
 		 User user = (User)session.getAttribute("user");
 		 SdkHttpResult result = RongAPI.getToken(user.getId(), user.getUsername(), "");
@@ -46,7 +46,7 @@ public class RongController {
 	 }
 	 
 	 @RequestMapping("/send_message.json")
-	 public @ResponseBody Map<String,Object> send_message(int id,String message,HttpServletRequest request,Model model) throws Exception{
+	 public @ResponseBody Map<String,Object> send_message(int id,String message,HttpServletRequest request,Model model){
 		 HttpSession session = request.getSession();
 		 User user = (User)session.getAttribute("user");
 		 
