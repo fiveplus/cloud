@@ -42,7 +42,7 @@ input, textarea { font-size:1em; font-family:simsun; color:#000 }
 .leftmenu li div div a b { color:#fff; display:block; width:55px; float:left }
 .popadd { 
 	background:url(../images/lmpop01.png) no-repeat scroll 0px 0px transparent;
-	width:394px; 
+	width:424px; 
 	height:175px; 
 	position:absolute; 
 	top:0; 
@@ -52,7 +52,7 @@ input, textarea { font-size:1em; font-family:simsun; color:#000 }
 	padding:30px 40px;
 }
 .popadd i { float:left }
-.popadd_r { float:left; padding-left:20px; line-height:20px; color:#999; width:250px; overflow:hidden }
+.popadd_r { float:left; padding-left:20px; line-height:20px; color:#999; overflow:hidden }
 .popadd_r b { font-size:18px; font-weight:normal; font-family:微软雅黑; color:#000 }
 .cloud { background:url(../images/cloud.png) no-repeat center; height:55px; position:fixed; width:250px; bottom:20px; display:block }
 .contentbox { background:#fafafa; margin:0 0 0 263px; padding:0 20px; position:relative; overflow:visible }
