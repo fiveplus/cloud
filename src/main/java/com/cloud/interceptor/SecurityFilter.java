@@ -64,7 +64,6 @@ public class SecurityFilter implements Filter{
 		//String path = request.getContextPath();
 		//String path = PropertiesUtil.getValue("domain");
 		if(user == null){
-			System.out.println("uri:"+request_uri);
 			request.getRequestDispatcher("/login").forward(request, response);
 			return;
 		}else{
