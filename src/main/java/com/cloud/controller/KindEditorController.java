@@ -2,6 +2,7 @@ package com.cloud.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cloud.entity.User;
 import com.cloud.util.JacksonUtil;
 /**
@@ -41,110 +44,132 @@ public class KindEditorController {
 	private static final Logger LOGGER = Logger.getLogger(KindEditorController.class); 
 	
 	
-	@RequestMapping(value = "/upload")  
-	public @ResponseBody Map<String,Object> upload(@RequestParam(value = "imgFile",required = false) MultipartFile imgFile, HttpServletRequest request, ModelMap model){
-		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("user");
-		//文件保存路径
-		String savePath = request.getSession().getServletContext().getRealPath("/") + "attached/";
-		String pressPath = request.getSession().getServletContext().getRealPath("/") + "images/";
+	@RequestMapping(value = "/upload.json")  
+	public @ResponseBody void upload(@RequestParam(value = "imgFile",required = false) MultipartFile[] imgFile, HttpServletRequest request,HttpServletResponse response, ModelMap model){
 		
-		//TODO 用户路径
-		savePath += user.getId()+"/";
-		
-		//文件保存目录URL
-		String saveUrl = request.getContextPath() + "/attached/";
-		
-		saveUrl += user.getId()+"/";
-		
-		//定义允许上传的文件扩展名
-		HashMap<String, String> extMap = new HashMap<String, String>();
-		extMap.put("image", "gif,jpg,jpeg,png,bmp");
-		extMap.put("flash", "swf,flv");
-		extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
-		extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
-		
-		
-		if(imgFile.isEmpty()){
-			Map<String,Object> result = getError("请选择文件!");
-			return result;
-		}
-		
-		//创建用户目录
-		File userDir = new File(savePath);
-		if(!userDir.isDirectory()){
-			userDir.mkdirs();
-		}
-		
-		//检查目录
-		File uploadDir = new File(savePath);
-		if(!uploadDir.isDirectory()){
-			Map<String,Object> result = getError("上传目录不存在!");
-			return result;
-		}
-		
-		//检查写权限
-		if(!uploadDir.canWrite()){
-			Map<String,Object> result = getError("上传目录没有写权限!");
-			return result;
-		}
-		
-		String dirName = request.getParameter("dir");
-		if(dirName == null){
-			dirName = "image";
-		}
-		if(!extMap.containsKey(dirName)){
-			Map<String,Object> result = getError("目录名不正确!");
-			return result;
-		}
-		//创建文件夹
-		savePath += dirName + "/";
-		saveUrl += dirName + "/";
-		File saveDirFile = new File(savePath);
-		if(!saveDirFile.exists()){
-			saveDirFile.mkdirs();
-		} 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		String ymd = sdf.format(new Date());
-		savePath += ymd + "/";
-		saveUrl += ymd + "/";
-		File dirFile = new File(savePath);
-		if(!dirFile.exists()){
-			dirFile.mkdirs();
-		}
-		if(!dirFile.isDirectory()){
-			Map<String,Object> result = getError("上传目录不存在!");
-			return result;
-		}
-		//检查写权限
-		if(!dirFile.canWrite()){
-			Map<String,Object> result = getError("上传目录没有写权限!");
-			return result;
-		}
-		String fileName = imgFile.getOriginalFilename();
-		//检查扩展名
-		String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
-		if(!Arrays.<String>asList(extMap.get(dirName).split(",")).contains(fileExt)){
-			Map<String,Object> result = getError("上传文件扩展名是不允许的扩展名。\n只允许" + extMap.get(dirName) + "格式。");
-		    return result;
-		}
-		//重构上传图片的名称
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-		String newImgName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + fileExt;
-		
-		File targetFile = new File(savePath, newImgName);  
-		
-		//保存
-		try {
-			imgFile.transferTo(targetFile);
-		} catch (Exception e) {
+		try{
+			response.setCharacterEncoding("utf-8");
+			PrintWriter out = response.getWriter();
+			
+			HttpSession session = request.getSession();
+			User user = (User)session.getAttribute("user");
+			//文件保存路径
+			String savePath = request.getServletContext().getRealPath("/") + "attached/";
+			String pressPath = request.getServletContext().getRealPath("/") + "images/";
+			
+			//TODO 用户路径
+			savePath += user.getId()+"/";
+			
+			//文件保存目录URL
+			String saveUrl = request.getContextPath() + "/attached/";
+			
+			saveUrl += user.getId()+"/";
+			
+			//定义允许上传的文件扩展名
+			HashMap<String, String> extMap = new HashMap<String, String>();
+			extMap.put("image", "gif,jpg,jpeg,png,bmp");
+			extMap.put("flash", "swf,flv");
+			extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
+			extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
+
+			if(!ServletFileUpload.isMultipartContent(request)){
+				out.print(getError("请选择文件！"));
+				out.close();
+				return;
+			}
+			
+			//创建用户目录
+			File userDir = new File(savePath);
+			if(!userDir.isDirectory()){
+				userDir.mkdirs();
+			}
+			
+			//检查目录
+			File uploadDir = new File(savePath);
+			if(!uploadDir.isDirectory()){
+				out.print(getError("上传目录不存在!"));
+				out.close();
+				return;
+			}
+			
+			//检查写权限
+			if(!uploadDir.canWrite()){
+				out.print(getError("上传目录没有写权限!"));
+				out.close();
+				return;
+			}
+			
+			String dirName = request.getParameter("dir");
+			if(dirName == null){
+				dirName = "image";
+			}
+			if(!extMap.containsKey(dirName)){
+				out.print(getError("目录名不正确!"));
+				out.close();
+				return;
+			}
+			//创建文件夹
+			savePath += dirName + "/";
+			saveUrl += dirName + "/";
+			File saveDirFile = new File(savePath);
+			if(!saveDirFile.exists()){
+				saveDirFile.mkdirs();
+			} 
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			String ymd = sdf.format(new Date());
+			savePath += ymd + "/";
+			saveUrl += ymd + "/";
+			File dirFile = new File(savePath);
+			if(!dirFile.exists()){
+				dirFile.mkdirs();
+			}
+			if(!dirFile.isDirectory()){
+				out.print(getError("上传目录不存在!"));
+				out.close();
+				return;
+			}
+			//检查写权限
+			if(!dirFile.canWrite()){
+				out.print(getError("上传目录没有写权限!"));
+				out.close();
+				return;
+			}
+			
+			//遍历保存文件
+			for(MultipartFile iFile:imgFile){
+				String fileName = iFile.getOriginalFilename();
+				//检查扩展名
+				String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
+				if(!Arrays.<String>asList(extMap.get(dirName).split(",")).contains(fileExt)){
+					out.print(getError("上传文件扩展名是不允许的扩展名。\n只允许" + extMap.get(dirName) + "格式。"));
+					out.close();
+					return;
+				}
+				//重构上传图片的名称
+				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+				String newImgName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + fileExt;
+				
+				File targetFile = new File(savePath, newImgName);  
+				
+				//保存
+				try {
+					iFile.transferTo(targetFile);
+				} catch (Exception e) {
+					out.print(getError("上传文件失败!"));
+					out.close();
+					return;
+				}
+				JSONObject obj = new JSONObject();
+				obj.put("error", 0);
+				obj.put("url", saveUrl + "/" + newImgName);
+				
+				out.print(obj.toJSONString());
+				out.close();
+			}
+		}catch(IOException e){
 			e.printStackTrace();
 		}
 		
-		Map<String,Object> returnMap = new HashMap<String, Object>();
-		returnMap.put("error", 0);
-		returnMap.put("url", saveUrl + "/" + newImgName);
-		return returnMap;
 	}
 	
 	/**
@@ -176,7 +201,7 @@ public class KindEditorController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/manager")  
+	@RequestMapping(value = "/manager.json")  
 	public void manager(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");

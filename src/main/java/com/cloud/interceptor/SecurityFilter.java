@@ -48,6 +48,7 @@ public class SecurityFilter implements Filter{
 		HttpSession session = request.getSession();
 		
 		User user = (User)session.getAttribute("user");
+		
 		String uri = request.getRequestURI();
 		String request_uri = uri.substring(uri.lastIndexOf("/")+1);
 		request_uri = request_uri.toLowerCase();
@@ -60,10 +61,10 @@ public class SecurityFilter implements Filter{
 		}
 		
 		
-		
 		//String path = request.getContextPath();
 		//String path = PropertiesUtil.getValue("domain");
 		if(user == null){
+			System.out.println("uri:"+request_uri);
 			request.getRequestDispatcher("/login").forward(request, response);
 			return;
 		}else{

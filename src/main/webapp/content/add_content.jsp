@@ -122,8 +122,9 @@
 						editor = K.create('textarea[name="content"]', {
 								width:"100%",
 								cssPath : '${contextPath}/js/kindeditor-4.1.10/plugins/code/prettify.css',
-								uploadJson : '${contextPath}/ke/upload',
-								fileManagerJson : '${contextPath}/ke/manager',
+								uploadJson : '${contextPath}/ke/upload.json;jsessionid=${pageContext.session.id}',
+								allowImageUpload:true,
+								fileManagerJson : '${contextPath}/ke/manager.json',
 								allowFileManager : true,
 								resizeType : 0,
 								items:["source", "|", "undo", "redo", "|", "preview", "print", "template", "code", "cut", "copy", "paste", "plainpaste", "wordpaste",
