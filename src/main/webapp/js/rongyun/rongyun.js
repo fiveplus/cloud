@@ -16,7 +16,7 @@ var Color= new Array(9);
 	Color[15] = "11";
 	Color[16] = "00";
 var Time = new Map();
-//获取TOKEN
+//获取TOKEN 
 var path = $("meta[name='path']").attr("content")+"/";
 function rong_init() {
 	$.ajax( {
@@ -137,16 +137,16 @@ function message_listener(){
             switch(message.getMessageType()){
                 case RongIMClient.MessageType.TextMessage:
                     // do something...
-                	var msg = message.getContent();
-                	
-                	var uid = message.getSenderUserId();
-         
-                	var imgurl = $("#chat-div .chat-top-left img").attr("src");
-                	$("#chat-div .chat-center #mCSB_2_container").append(to_message_div(imgurl,msg));
-                	$("#chat-div .chat-center").mCustomScrollbar("scrollTo","last");
-                	if($("#chat-div").is(":hidden")){
-                		playa(uid);
-                	}
+	                	var msg = message.getContent();
+	                	
+	                	var uid = message.getSenderUserId();
+	         
+	                	var imgurl = $("#chat-div .chat-top-left img").attr("src");
+	                	$("#chat-div .chat-center #mCSB_2_container").append(to_message_div(imgurl,msg));
+	                	$("#chat-div .chat-center").mCustomScrollbar("scrollTo","last");
+	                	if($("#chat-div").is(":hidden")){
+	                		playa(uid);
+	                	}
                 	
                 	
                     break;
@@ -212,7 +212,7 @@ function to_message_div(imgurl,msg){
 	if(imgurl == ''){
 		imgurl = path+"images/main_56.png";
 	}else{
-		imgurl = path+imgurl;
+		imgurl = imgurl;
 	}
 	var html = "";
 	html+='<div class="chat-to">'+
@@ -232,7 +232,7 @@ function form_message_div(imgurl,msg){
 	if(imgurl == ''){
 		imgurl = path+"images/main_56.png";
 	}else{
-		imgurl = path+imgurl;
+		imgurl = imgurl;
 	}
 	var html = "";
 	html+='<div class="chat-form">'+

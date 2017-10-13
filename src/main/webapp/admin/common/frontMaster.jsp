@@ -27,6 +27,8 @@
 	<link href="${contextPath}/css/main.css" rel="stylesheet" type="text/css" />
 	<link href="${contextPath}/css/default.css" rel="stylesheet" type="text/css" />
 	
+	<!-- zhangshenwu插件 -->
+	<script src="${contextPath}/js/cloud-server.js" ></script>
 	
 	<!-- switchs插件 -->
 	<link href="${contextPath}/css/bootstrap/bootstrap-switch.css" rel="stylesheet" type="text/css" />
@@ -54,6 +56,7 @@
 	<script src="${contextPath}/js/scroll/jquery.mCustomScrollbar.min.js"></script>
 	
 	
+	
 	<!-- 融云WEB-SDK接入 -->
 	<script src="http://res.websdk.rongcloud.cn/RongIMClient-0.9.15.min.js"></script>
 	<script src="${contextPath}/js/rongyun/rongyun.js"></script>
@@ -67,9 +70,6 @@
 	<!-- jquery confirm -->
 	<link href="${contextPath}/css/jquery-confirm/jquery-confirm.css" rel="stylesheet" type="text/css" />
 	<script src="${contextPath}/css/jquery-confirm/jquery-confirm.js"></script>
-	
-	<!-- zhangshenwu插件 -->
-	<script src="${contextPath}/js/cloud-server.js" ></script>
 	
 	<fms:ContentPlaceHolder id="source" />	
 	
@@ -308,7 +308,7 @@
 			var action = $("#send-message-form").attr("action");
 			var alldata = $("#send-message-form").serialize();
 			
-			var imgurl = '${contextPath}/${user.portrait}';
+			var imgurl = '${contextPath}${user.portrait}';
 			var text = $("#send-message-form .chat-text").val();
 			if(text.trim()=='') return;
 			$("#send-message-form .chat-text").val("");
