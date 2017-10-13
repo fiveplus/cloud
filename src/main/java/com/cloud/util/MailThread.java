@@ -3,6 +3,9 @@ package com.cloud.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import com.cloud.controller.ApplicationController;
 import com.cloud.entity.User;
 /**
  * 开启线程执行群发邮件操作。
@@ -10,6 +13,7 @@ import com.cloud.entity.User;
  *
  */
 public class MailThread extends Thread{
+	private static final Logger LOGGER = Logger.getLogger(MailThread.class);
 	private List<User> users;
 	private String title;
 	private String content;
@@ -26,7 +30,7 @@ public class MailThread extends Thread{
 				to.add(user.getLoginName());
 				new MailUtil().sendMail(to, title, content, null);
 			}catch(Exception e){
-				e.printStackTrace();
+				LOGGER.error(e);
 			}
 		}
 	}
