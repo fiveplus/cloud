@@ -140,10 +140,15 @@ function message_listener(){
 	                	var msg = message.getContent();
 	                	
 	                	var uid = message.getSenderUserId();
-	         
-	                	var imgurl = $("#chat-div .chat-top-left img").attr("src");
-	                	$("#chat-div .chat-center #mCSB_2_container").append(to_message_div(imgurl,msg));
-	                	$("#chat-div .chat-center").mCustomScrollbar("scrollTo","last");
+	                	
+	                	var _uid = $("#chat-div").attr("user-id");
+	                	if(_uid == uid){
+	                		//如果是当前用户则加载消息。
+	                		var imgurl = $("#chat-div .chat-top-left img").attr("src");
+		                	$("#chat-div .chat-center #mCSB_2_container").append(to_message_div(imgurl,msg));
+		                	$("#chat-div .chat-center").mCustomScrollbar("scrollTo","last");
+	                	}
+	                	
 	                	if($("#chat-div").is(":hidden")){
 	                		playa(uid);
 	                	}

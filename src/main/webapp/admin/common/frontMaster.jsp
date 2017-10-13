@@ -122,7 +122,7 @@
 		</form>
 	</div>
 	
-	<div id="chat-div" style="padding:0;">
+	<div id="chat-div" style="padding:0;" user-id="0">
 		<form action="${contextPath}/rong/send_message.json" method="post" id="send-message-form">
 		<div class="chat-top">
 			<div class="chat-top-left">
@@ -520,9 +520,8 @@
 		}
 		
 		function show_chat(uid){
-
+			$("#chat-div").attr("user-id",uid);
 			$.ajax({
-				cache:true,
 				type:"POST",
 				url:"${contextPath}/rong/get_messages.json?id="+uid,
 				error: function(request) {
