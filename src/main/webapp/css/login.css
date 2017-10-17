@@ -2,8 +2,8 @@ body{
 	margin:0;
 	padding:0;
 	font-size: 12px;
-	font-family: "黑体";
 	background: #f7fafc;
+	font-family: "微软雅黑" ! important;
 }
 .main{
 	
@@ -38,7 +38,7 @@ body{
 	font-size: 18px;
 }
 .main-body .view-login{
-	padding:20px 0 40px 0;
+	padding:20px 0 100px 0;
 }
 .main-body .view-login .username input,.main-body .view-login .password input{
 	width:100%;
@@ -46,6 +46,10 @@ body{
 	font-size:14px;
 	padding:12px;
 	outline:none;
+	border: 0.5px solid #ccc;
+}
+.main-body .view-login .password{
+	margin-top:-1px;
 }
 .main-body .view-login .login-submit{
 	padding:15px 0;

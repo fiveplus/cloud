@@ -54,9 +54,12 @@ window.requestAnimFrame = (function() {
     //生成圆形粒子的颜色对象
     function Color(min){
          min = min || 0;
-         this.r = colorValue(min);
-         this.g = colorValue(min);
-         this.b = colorValue(min);
+         //this.r = colorValue(min);
+         //this.g = colorValue(min);
+         //this.b = colorValue(min);
+         this.r = 169;
+         this.g = 169;
+         this.b = 169;
          this.style = createColorStyle(this.r,this.g,this.b);
     }
     //创建圆形粒子对象
