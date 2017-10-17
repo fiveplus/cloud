@@ -142,6 +142,7 @@ function message_listener(){
 	                	var uid = message.getSenderUserId();
 	                	
 	                	var _uid = $("#chat-div").attr("user-id");
+	                	
 	                	if(_uid == uid){
 	                		//如果是当前用户则加载消息。
 	                		var imgurl = $("#chat-div .chat-top-left img").attr("src");
