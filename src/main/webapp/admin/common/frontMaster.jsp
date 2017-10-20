@@ -308,7 +308,7 @@
 			var action = $("#send-message-form").attr("action");
 			var alldata = $("#send-message-form").serialize();
 			
-			var imgurl = '${contextPath}${user.portrait}';
+			var imgurl = '${contextPath}/${user.portrait}';
 			var text = $("#send-message-form .chat-text").val();
 			if(text.trim()=='') return;
 			$("#send-message-form .chat-text").val("");
@@ -545,11 +545,11 @@
 					
 					for(var i = 0;i < vdata.msgs.length;i++){
 						if(u.id == vdata.msgs[i].toUser.id){
-							var html = form_message_div(vdata.msgs[i].fromUser.portrait,vdata.msgs[i].content);
+							var html = form_message_div("${contextPath}/" + vdata.msgs[i].fromUser.portrait,vdata.msgs[i].content);
 							$("#chat-div .chat-center #mCSB_2_container").append(html);
 						}
 						if(u.id == vdata.msgs[i].fromUser.id){
-							var html = to_message_div(vdata.msgs[i].fromUser.portrait,vdata.msgs[i].content);
+							var html = to_message_div("${contextPath}/" + vdata.msgs[i].fromUser.portrait,vdata.msgs[i].content);
 							$("#chat-div .chat-center #mCSB_2_container").append(html);
 						}
 					}
