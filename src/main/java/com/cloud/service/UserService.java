@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.cloud.dao.UserDAO;
 import com.cloud.entity.User;
 import com.cloud.service.UserService;
+import com.cloud.util.Resource;
 
 @Service("userService")  
 public class UserService extends BaseService<User, Integer>{
@@ -31,6 +32,13 @@ public class UserService extends BaseService<User, Integer>{
 		return userDAO.getUserToGroupId(groupId);
 	}
 
+	public void close(int id) {
+		User user = userDAO.get(id);
+		if(user != null) {
+			user.setStatus(Resource.N);
+			userDAO.update(user);
+		}
+	}
 	
 
 }

@@ -87,10 +87,10 @@ public class UserAdminController {
 		     List<Permission> parentMenu = permissionService.getParentMenu();
 		     //初始化
 		     for(Permission menu:parentMenu){
-		    	 PermissionBO pbo = new PermissionBO();
-	        	 pbo.setPermission(menu);
-	        	 pbo.setPers(new ArrayList<Permission>());
-	        	 pbos.add(pbo);
+			    	 PermissionBO pbo = new PermissionBO();
+		        	 pbo.setPermission(menu);
+		        	 pbo.setPers(new ArrayList<Permission>());
+		        	 pbos.add(pbo);
 		     }
 		     for(PermissionBO pbo:pbos){
 		    	 for(Permission per:pers){
@@ -291,8 +291,8 @@ public class UserAdminController {
 		 Map<String,Object> returnMap = new HashMap<String, Object>();
 		 int code = 200;
 		 String msg = "恭喜您，用户删除成功！";
-		 
-		 userService.delete(id);
+		 //TODO 关闭账户
+		 userService.close(id);
 		 returnMap.put("msg", msg);
 		 returnMap.put("code",code);
 		 return returnMap;
