@@ -15,6 +15,7 @@ import com.cloud.entity.MailQuartz;
 import com.cloud.quartz.MailQuartzJob;
 import com.cloud.quartz.QuartzManager;
 import com.cloud.service.MailQuartzService;
+import com.cloud.util.PropertiesUtil;
 
 
 public class SystemConfigListener implements ServletContextListener{
@@ -34,10 +35,15 @@ public class SystemConfigListener implements ServletContextListener{
 		WebApplicationContextUtils.getRequiredWebApplicationContext(context).getAutowireCapableBeanFactory().autowireBean(this);
 		//contextPath = context.getContextPath();
 		//contextPath = PropertiesUtil.getValue("domain");
-		//全站注入
+		//TODO 全站注入
 		String contextPath = context.getContextPath();
+		//TODO 网站title
+		String title = PropertiesUtil.getValue("websize.title");
+		//TODO 后台title
+		String adminTitle = PropertiesUtil.getValue("websize.adminTitle");
 		context.setAttribute("contextPath", contextPath);
-		
+		context.setAttribute("title", title);
+		context.setAttribute("adminTitle", adminTitle);
 		//TODO 定时器启动
 		List<MailQuartz> list =  mailQuartzService.findAll();
 		for(MailQuartz m:list){

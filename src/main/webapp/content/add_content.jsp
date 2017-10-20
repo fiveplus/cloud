@@ -4,7 +4,7 @@
 <%@taglib uri="/date-tag" prefix="date" %>
 <fms:ContentPage masterPageId="frontMaster">
 	<fms:Content contentPlaceHolderId="title">
-		碎片云3.0
+		${title}
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="source">
 		<!-- 导入外部css/js -->

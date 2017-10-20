@@ -4,7 +4,7 @@
 <%@taglib uri="/date-tag" prefix="date" %>
 <fms:ContentPage masterPageId="master">
 	<fms:Content contentPlaceHolderId="title">
-		Cloud Admin
+		${adminTitle}
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
 		<div class="breadcrumbs" id="breadcrumbs">

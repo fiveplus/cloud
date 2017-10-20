@@ -10,7 +10,7 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>碎片云-管理从碎片开始</title>
+<title>${title}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="renderer" content="webkit">
 <meta name="description" content="">

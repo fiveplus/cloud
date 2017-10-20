@@ -4,7 +4,7 @@
 <%@taglib uri="/date-tag" prefix="date" %>
 <fms:ContentPage masterPageId="master">
 	<fms:Content contentPlaceHolderId="title">
-		Nobmr Admin
+		${adminTitle}
 	</fms:Content>
 	<fms:Content contentPlaceHolderId="main">
 		<!-- main content -->
