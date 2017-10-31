@@ -18,6 +18,7 @@ $(function(){
 	login_xy();
 	
 	
+	
 	$("#login").click(function() {
 		var url = $("#loginform").attr("action");
 		var path = $("#loginform").attr("path");

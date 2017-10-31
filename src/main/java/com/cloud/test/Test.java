@@ -2,6 +2,7 @@ package com.cloud.test;
 
 
 
+import java.lang.reflect.Array;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
@@ -13,6 +14,7 @@ public class Test {
 	public static void main(String[] args) {
 		//A<User> a = new A<User>();
 		//a.a();
+		/*
 		User user = new User();
 		user.setId(1);
 		user.setLoginName("zhangsan");
@@ -27,8 +29,24 @@ public class Test {
 		
 		System.out.println(user.getLoginName()+" "+user.getCreateTime());
 		System.out.println(user2.getLoginName()+" "+user2.getCreateTime());
+		*/
 		
 	}
+	
+	
+	public static <T,U> T[] copyOf(U[] original, int newLength, Class<? extends T[]> newType) {
+        @SuppressWarnings("unchecked")
+        T[] copy = ((Object)newType == (Object)Object[].class)
+            ? (T[]) new Object[newLength]
+            : (T[]) Array.newInstance(newType.getComponentType(), newLength);
+        System.arraycopy(original, 0, copy, 0,
+                         Math.min(original.length, newLength));
+        T[] a = null;
+        boolean flag = (Object)newType == Object[].class;
+        
+        return copy;
+    }
+	
 }
 
 interface B<T>{

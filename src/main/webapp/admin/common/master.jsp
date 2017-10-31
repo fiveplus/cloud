@@ -115,7 +115,7 @@
 							<i class="icon-group"></i>
 						</button>
 
-						<a class="btn btn-danger" href="${contextPath}/user/updateUserInit?id=${user.id}">
+						<a class="btn btn-danger">
 							<i class="icon-cogs"></i>
 						</a>
 					</div>

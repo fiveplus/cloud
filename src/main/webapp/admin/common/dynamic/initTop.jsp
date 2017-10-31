@@ -225,7 +225,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</li>
 
 								<li>
-									<a href="${contextPath}/admin/user/updateUserInit?id=${user.id}">
+									<a href="${contextPath}/admin/user/uptUser?id=${user.id}">
 										<i class="icon-user"></i>
 										Settings
 									</a>
