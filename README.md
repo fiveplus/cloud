@@ -19,14 +19,14 @@ SpringMVC+Hibernate+ehcache+maven
 ### 2017-02-28
 tbl_content新增字段 address(帖子发布地址)
 ### 2017-03-06 
-tel_praise新增表
+tel_praise新增表<br/>
 <img src="http://git.oschina.net/uploads/images/2017/0306/190048_e9d18380_803453.png" width="600" /><br/>
 
 ### 2017-3-27 tbl_project新增字段
 tbl_project新增字段 status(标记项目是否删除)
 
 ### 2017-3-28 
-tbl_skin新增表
+tbl_skin新增表<br/>
 <img src="http://git.oschina.net/uploads/images/2017/0328/090426_afd8df83_803453.png" width="600" /><br/>
 
 ### 2017-4-1 表新增字段
