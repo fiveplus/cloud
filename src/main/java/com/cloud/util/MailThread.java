@@ -22,16 +22,26 @@ public class MailThread extends Thread{
 		this.title = title;
 		this.content = content;
 	}
+
+	private boolean validateEmail(String email){
+		String EMAIL_REGEX = "^(.+)@(.+)$";
+		boolean flag = email.matches(EMAIL_REGEX);
+		return flag;
+	}
 	
 	public void run() {
 		for(User user:users){
 			try{
-				List<String> to = new ArrayList<String>();
-				to.add(user.getLoginName());
-				new MailUtil().sendMail(to, title, content, null);
+				if(validateEmail(user.getLoginName())){
+					//TODO 验证邮箱格式正确
+					List<String> to = new ArrayList<String>();
+					to.add(user.getLoginName());
+					new MailUtil().sendMail(to, title, content, null);
+				}
 			}catch(Exception e){
 				LOGGER.error(e);
 			}
 		}
 	}
+
 }
