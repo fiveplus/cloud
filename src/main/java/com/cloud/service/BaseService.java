@@ -3,12 +3,15 @@ package com.cloud.service;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cloud.dao.BaseDAO;
 import com.cloud.util.BeanUtil;
 
 public class BaseService<T,PK extends Serializable>{
+
+	private static final Logger LOGGER = Logger.getLogger(BaseService.class);
 	
 	@Autowired
 	private BaseDAO<T, Serializable> baseDAO;
@@ -45,7 +48,7 @@ public class BaseService<T,PK extends Serializable>{
 			BeanUtil.copyProperties(entity, old);
 			baseDAO.update(old);	
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 	}
 

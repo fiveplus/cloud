@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.cloud.util.DateUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,7 +58,7 @@ public class UserAdminController {
 	private LevelService levelService;
 	 
 	@RequestMapping("/login")
-	public String login(String loginName,String password,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String login(String loginName,String password,HttpServletRequest request,HttpServletResponse response){
 		 HttpSession session = request.getSession();
 		 User user = userService.getUserByLoginNameAndPassword(loginName, MD5.GetMD5Password(password));
 		 if(user == null){
@@ -144,7 +145,7 @@ public class UserAdminController {
 	 }
 	 
 	 @RequestMapping("/save.json")
-	 public @ResponseBody Map<String,Object> save(User us,HttpServletRequest request,Model model) throws Exception{
+	 public @ResponseBody Map<String,Object> save(User us,HttpServletRequest request,Model model){
 		 Map<String,Object> returnMap = new HashMap<String, Object>();
 		 int code = 200;
 		 String msg = "恭喜您，用户创建成功!";
@@ -153,7 +154,7 @@ public class UserAdminController {
 			 int pid = Integer.parseInt(request.getParameter("parentid"));
 			 us.getGroup().setId(pid);
 		 }
-		 us.setCreateTime(StringUtil.getDateToLong(new Date()));
+		 us.setCreateTime(DateUtil.convertDate(new Date()));
 		 us.setPortrait("");
 		 us.setPassword(MD5.GetMD5Password("123456"));
 		 us.setStatus("Y");
@@ -274,7 +275,7 @@ public class UserAdminController {
 				 try {
 					 file.transferTo(targetFile);
 				 } catch (Exception e) {
-					 e.printStackTrace();
+					 LOGGER.error(e);
 				 }
 				 //更新user
 				 us.setPortrait("upload_images"+"/"+newImgName);

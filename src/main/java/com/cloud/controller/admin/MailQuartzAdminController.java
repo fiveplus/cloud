@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.cloud.util.DateUtil;
+import com.cloud.util.Resource;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,8 +67,8 @@ public class MailQuartzAdminController{
 		
 		MailQuartz m = mailQuartzService.getMailQuartzToJobName(mail.getJobName());
 		if(m == null){
-			mail.setCreateTime(StringUtil.getDateToLong(new Date()));
-			mail.setStatus("N");
+			mail.setCreateTime(DateUtil.convertDate(new Date()));
+			mail.setStatus(Resource.N);
 			mail.setUser(user);
 			int id = mailQuartzService.save(mail);
 			if(id > 0){
@@ -93,7 +95,7 @@ public class MailQuartzAdminController{
 	}
 	
 	@RequestMapping("/update.json")
-	public @ResponseBody Map<String,Object> update(MailQuartz mail,HttpServletRequest request,Model model) throws SchedulerException{
+	public @ResponseBody Map<String,Object> update(MailQuartz mail,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String,Object>();
 		int code = 200;
 		String msg = "恭喜您，邮件任务修改成功！";
@@ -129,7 +131,7 @@ public class MailQuartzAdminController{
 	}
 	
 	@RequestMapping("/delete.json")
-	public @ResponseBody Map<String,Object> delete(int id,HttpServletRequest request,Model model) throws SchedulerException{
+	public @ResponseBody Map<String,Object> delete(int id,HttpServletRequest request,Model model){
 		Map<String,Object> returnMap = new HashMap<String,Object>();
 		int code = 200;
 		String msg = "恭喜您，邮件任务删除成功。";

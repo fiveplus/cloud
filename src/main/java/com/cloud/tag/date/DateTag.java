@@ -1,5 +1,7 @@
 package com.cloud.tag.date;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,6 +19,8 @@ public class DateTag extends TagSupport{
 	 * 
 	 */
 	private static final long serialVersionUID = -991134678872622289L;
+
+	private static final Logger LOGGER = Logger.getLogger(DateTag.class);
 	
 	private String value;
 	
@@ -37,7 +41,7 @@ public class DateTag extends TagSupport{
 		try {
             pageContext.getOut().write(s);
         } catch (IOException e) {
-            e.printStackTrace();
+			LOGGER.error(e);
         }
 		return super.doStartTag();
 	}

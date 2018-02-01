@@ -15,8 +15,8 @@ import org.quartz.TriggerKey;
  *
  */
 public class QuartzManager {
-	private static String JOB_GROUP_NAME = "EXTJWEB_JOBGROUP_NAME";
-    private static String TRIGGER_GROUP_NAME = "EXTJWEB_TRIGGERGROUP_NAME";
+	private final static String JOB_GROUP_NAME = "EXTJWEB_JOBGROUP_NAME";
+    private final static String TRIGGER_GROUP_NAME = "EXTJWEB_TRIGGERGROUP_NAME";
     /**
      * 添加一个定时任务，使用默认任务组名，触发器名，触发器组名
      * @param sched 调度器
@@ -68,8 +68,8 @@ public class QuartzManager {
      * @param time 时间设置
      */
     public static void modifyJobTime(Scheduler sched,String jobName,String time){
-    	try {
-    		TriggerKey triggerKey = TriggerKey.triggerKey(jobName,JOB_GROUP_NAME);
+		try {
+			TriggerKey triggerKey = TriggerKey.triggerKey(jobName,JOB_GROUP_NAME);
 			CronTrigger trigger = (CronTrigger)sched.getTrigger(triggerKey);
 			if(trigger == null){
 				return;
