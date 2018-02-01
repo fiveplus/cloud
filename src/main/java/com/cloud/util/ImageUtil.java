@@ -1,5 +1,7 @@
 package com.cloud.util;
 
+import org.apache.log4j.Logger;
+
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,17 +18,19 @@ import javax.imageio.stream.ImageInputStream;
 public class ImageUtil {
 	
 	private ImageUtil(){}
+
+	private static final Logger LOGGER = Logger.getLogger(ImageUtil.class);
 	
 	public static int getImageWidth(int port,String url){
 		try{
 			if(url.indexOf("attached")>-1){
-				url = "http://127.0.0.1:"+port+url;
+				url = "http://localhost:"+port+url;
 			}
 			InputStream is = new URL(url).openStream();
 			BufferedImage img = ImageIO.read(is);
 			return img.getWidth();
 		}catch(Exception e){
-			//e.printStackTrace();
+			LOGGER.error(e);
 			return -1;
 		}
 	}
@@ -73,7 +77,7 @@ public class ImageUtil {
             // 保存新图片  
             ImageIO.write(bi, fileEx, new File(path)); 
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}finally{
 			try {
 	            if (is != null)
@@ -81,7 +85,7 @@ public class ImageUtil {
 	            if (iis != null) 
 	                iis.close(); 
 	        	} catch (Exception e) {
-					e.printStackTrace();
+					LOGGER.error(e);
 				}  
 		}
 	}

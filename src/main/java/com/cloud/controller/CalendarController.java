@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.cloud.util.DateUtil;
+import com.cloud.util.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,9 +69,9 @@ public class CalendarController {
 		c.setAssignUser(assignUser);
 		c.setContent(c.getContent());
 		c.setTitle(c.getTitle());
-		c.setStatus("Y");
-		c.setStartTime(StringUtil.getStringToLong(c.getStart(),"yyyy-MM-dd HH:mm"));
-		c.setEndTime(StringUtil.getStringToLong(c.getEnd(),"yyyy-MM-dd HH:mm"));
+		c.setStatus(Resource.Y);
+		c.setStartTime(DateUtil.convertDate(c.getStart(),"yyyy-MM-dd HH:mm"));
+		c.setEndTime(DateUtil.convertDate(c.getEnd(),"yyyy-MM-dd HH:mm"));
 		
 		String message = "恭喜您，事件插入成功。";
 		//TODO 判断是否重复
@@ -77,24 +79,6 @@ public class CalendarController {
 			message = "很抱歉，该时间段已被其他事件占用，请重新调整后提交日程！";
 		}else{
 			calendarService.save(c);
-			/*
-			if(id > 0){
-				//TODO 建立日志
-				//你的日程"title"发布成功，请等待用户username的审核哦～
-				String title = "日程消息";
-				String content = "日程 \""+StringUtil.substring(c.getTitle(), 10)+"\"安排成功,用户"+assignUser.getUsername()+"可删除您安排的事件，请时刻关注最新动态！";
-				SysLog log = new SysLog();
-				log.setTitle(title);
-				log.setContent(content);
-				log.setUser(user);
-				log.setCreateTime(StringUtil.getDateToLong(new Date()));
-				sysLogService.save(log);
-				
-				message = "恭喜您，日程创建成功。";
-			}else{
-				message = "很抱歉，日称创建失败!";
-			}
-			*/
 		}
 		
 		
@@ -120,8 +104,8 @@ public class CalendarController {
 			CalendarBO cbo = new CalendarBO();
 			cbo.setId(c.getId());
 			cbo.setTitle(c.getTitle());
-			cbo.setStart(StringUtil.getLongToString(c.getStartTime(),"yyyy-MM-dd'T'HH:mm:ss"));
-			cbo.setEnd(StringUtil.getLongToString(c.getEndTime(),"yyyy-MM-dd'T'HH:mm:ss"));
+			cbo.setStart(DateUtil.convertDate(c.getStartTime(),"yyyy-MM-dd'T'HH:mm:ss"));
+			cbo.setEnd(DateUtil.convertDate(c.getEndTime(),"yyyy-MM-dd'T'HH:mm:ss"));
 			bolist.add(cbo);
 		}
 		
@@ -137,9 +121,9 @@ public class CalendarController {
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		List<Calendar> calendars = calendarService.getCalendarToAssignUserAndStatus(user.getId(),"W");
-		
+
 		model.addAttribute("calendars",calendars);
-		
+
 		return "calendar/calexam";
 	}*/
 	
@@ -239,7 +223,7 @@ public class CalendarController {
 				log.setTitle(title);
 				log.setContent(content);
 				log.setUser(c.getCreateUser());
-				log.setCreateTime(StringUtil.getDateToLong(new Date()));
+				log.setCreateTime(DateUtil.convertDate(new Date()));
 				log.setIsRead("N");
 				sysLogService.save(log);
 				
