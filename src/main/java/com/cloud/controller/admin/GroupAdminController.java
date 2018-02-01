@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cloud.util.DateUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,7 +55,7 @@ public class GroupAdminController {
 		String msg = "恭喜您，组创建成功!";
 		
 		group.setInfo("");
-		group.setCreateTime(StringUtil.getDateToLong(new Date()));
+		group.setCreateTime(DateUtil.convertDate(new Date()));
 		if(group.getParent().getId() == null){
 			group.setParent(null);
 		}
