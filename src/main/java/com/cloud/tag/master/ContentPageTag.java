@@ -1,5 +1,7 @@
 package com.cloud.tag.master;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 public class ContentPageTag extends BodyTagSupport{
+	private static final Logger LOGGER = Logger.getLogger(ContentPageTag.class);
 	/**
 	 * 
 	 */
@@ -20,7 +23,7 @@ public class ContentPageTag extends BodyTagSupport{
 		try{
 			this.pageContext.getRequest().setCharacterEncoding("UTF-8");
 		}catch(Exception e){
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 		super.doInitBody();
 	}
@@ -43,9 +46,9 @@ public class ContentPageTag extends BodyTagSupport{
 			//System.out.println("master page content : "+bufferedResponse.getContent());
 			out.write(bufferedResponse.getContent());
 		}catch(ServletException e){
-			e.printStackTrace();
+			LOGGER.error(e);
 		}catch(IOException e){
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 		return SKIP_PAGE;
 	}

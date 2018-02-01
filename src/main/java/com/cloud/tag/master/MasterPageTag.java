@@ -1,5 +1,7 @@
 package com.cloud.tag.master;
 
+import org.apache.log4j.Logger;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyContent;
@@ -11,6 +13,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class MasterPageTag extends BodyTagSupport{
 
+	private static final Logger LOGGER = Logger.getLogger(MasterPageTag.class);
 	/**
 	 * 
 	 */
@@ -36,7 +39,7 @@ public class MasterPageTag extends BodyTagSupport{
 			this.bodyContent.clear();
 			out.write(content);
 		}catch(Exception e){
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 		return SKIP_PAGE; //不执行标签之后的内容
 	}

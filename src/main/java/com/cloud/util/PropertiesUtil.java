@@ -3,9 +3,12 @@ package com.cloud.util;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Properties;
+import org.apache.log4j.Logger;
 
 public class PropertiesUtil {
-	
+
+	private static final Logger LOGGER = Logger.getLogger(PropertiesUtil.class);
+
 	private PropertiesUtil(){}
 	
 	private static String proFileName = "/config.properties";
@@ -17,7 +20,7 @@ public class PropertiesUtil {
             pro.load(in);  
             in.close();  
         } catch (IOException e) {  
-            e.printStackTrace();  
+            LOGGER.error(e);
         }  
 	}
 	
@@ -26,7 +29,7 @@ public class PropertiesUtil {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(getValue("RONGYUN_KEY"));
+	    System.out.println(getValue("RONGYUN_KEY"));
 	}
 	
 

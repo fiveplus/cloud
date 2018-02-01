@@ -1,9 +1,13 @@
 package com.cloud.tag.master;
 
+import org.apache.log4j.Logger;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 public class ContentTag extends BodyTagSupport{
+
+	private static final Logger LOGGER = Logger.getLogger(ContentTag.class);
 
 	/**
 	 * 
@@ -24,7 +28,7 @@ public class ContentTag extends BodyTagSupport{
 			this.pageContext.getRequest().setAttribute(this.getContentPlaceHolderId(), content);
 			this.bodyContent.clear();
 		}catch(Exception e){
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 		return EVAL_PAGE;
 	}

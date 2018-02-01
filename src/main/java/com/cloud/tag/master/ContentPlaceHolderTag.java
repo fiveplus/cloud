@@ -1,10 +1,14 @@
 package com.cloud.tag.master;
 
+import org.apache.log4j.Logger;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
 public class ContentPlaceHolderTag extends TagSupport{
+
+	private static final Logger LOGGER = Logger.getLogger(ContentPlaceHolderTag.class);
 
 	/**
 	 * 
@@ -20,7 +24,7 @@ public class ContentPlaceHolderTag extends TagSupport{
 				out.write(obj.toString());
 			}
 		}catch(Exception e){
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 		return EVAL_PAGE;
 	}
