@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cloud.util.DateUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,22 +57,26 @@ public class ProgressController {
 	}
 	
 	@RequestMapping("/gantt.json")
-	public void gantt(int id,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		
-		PrintWriter out = response.getWriter(); 
-		response.setContentType("text/html");
-		
-		List<Progress> progresses = progressService.getProgressToProjectId(id);
-		String json = "[";
-		for(Progress p:progresses){
-			Value v = new Value(p.getStartTime().toString(),p.getEndTime().toString(),p.getTitle());
-			GanttBO gbo = new GanttBO(p.getUser().getUsername(), p.getTitle(), v);
-			json += gbo.toString()+",";
+	public void gantt(int id,HttpServletRequest request,HttpServletResponse response){
+		try{
+			PrintWriter out = response.getWriter();
+			response.setContentType("text/html");
+
+			List<Progress> progresses = progressService.getProgressToProjectId(id);
+			String json = "[";
+			for(Progress p:progresses){
+				Value v = new Value(p.getStartTime().toString(),p.getEndTime().toString(),p.getTitle());
+				GanttBO gbo = new GanttBO(p.getUser().getUsername(), p.getTitle(), v);
+				json += gbo.toString()+",";
+			}
+			json = json.substring(0, json.length()-1);
+			json += "]";
+
+			out.print(json);
+
+		}catch(Exception e){
+			LOGGER.error(e);
 		}
-		json = json.substring(0, json.length()-1);
-		json += "]";
-		
-		out.print(json);
 	}
 	
 	@RequestMapping("/save.json")
@@ -79,10 +84,10 @@ public class ProgressController {
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		
 		String dateRangePicker = (String)request.getParameter("dateRangePicker");
-		Map<String,Long> betweens = StringUtil.getBetweenTime2(dateRangePicker);
+		Map<String,Long> betweens = DateUtil.getBetweenTime2(dateRangePicker);
 		pg.setStartTime(betweens.get("beforeTime"));
 		pg.setEndTime(betweens.get("afterTime"));
-		pg.setCreateTime(StringUtil.getDateToLong(new Date()));
+		pg.setCreateTime(DateUtil.convertDate(new Date()));
 		pg.setStatus("Y");
 		
 		int id = progressService.save(pg);
@@ -104,7 +109,7 @@ public class ProgressController {
 		
 		Progress progress = progressService.get(id);
 		returnMap.put("progress", progress);
-		returnMap.put("dateRangePicker", StringUtil.getBetweenToString2(progress.getStartTime(), progress.getEndTime()));
+		returnMap.put("dateRangePicker", DateUtil.getBetweenToString2(progress.getStartTime(), progress.getEndTime()));
 
 		return returnMap;
 	}
@@ -115,7 +120,7 @@ public class ProgressController {
 		
 		String dateRangePicker = (String)request.getParameter("dateRangePicker");
 		
-		Map<String,Long> betweens = StringUtil.getBetweenTime2(dateRangePicker);
+		Map<String,Long> betweens = DateUtil.getBetweenTime2(dateRangePicker);
 		pg.setStartTime(betweens.get("beforeTime"));
 		pg.setEndTime(betweens.get("afterTime"));
 		

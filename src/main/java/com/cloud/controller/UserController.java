@@ -64,7 +64,7 @@ public class UserController {
 	 private SkinService skinService;
 	 
 	 @RequestMapping("/login.json")
-	 public @ResponseBody String login(String email,String password,HttpServletRequest request) throws Exception{
+	 public @ResponseBody String login(String email,String password,HttpServletRequest request){
 		 HttpSession session = request.getSession();
 		 User user = userService.getUserByLoginNameAndPassword(email,MD5.GetMD5Password(password));
 		 String result = "";
@@ -197,7 +197,7 @@ public class UserController {
 					//裁剪图片
 					 ImageUtil.cutImage(path+"/"+newImgName, x, y, width, height);
 				 } catch (Exception e) {
-					 e.printStackTrace();
+					 LOGGER.error(e);
 				 }
 				 //更新user
 				 us.setPortrait("upload_images"+"/"+newImgName);
@@ -213,7 +213,7 @@ public class UserController {
 	
 	 
 	 @RequestMapping("/checkpass.json")
-	 public @ResponseBody Map<String,Object> checkpass(String password,HttpServletRequest request,Model model) throws Exception{
+	 public @ResponseBody Map<String,Object> checkpass(String password,HttpServletRequest request,Model model){
 		 HttpSession session = request.getSession();
 		 User user = (User)session.getAttribute("user");
 		 Map<String,Object> returnMap = new HashMap<String, Object>();
@@ -233,7 +233,7 @@ public class UserController {
 	 }
 	 
 	 @RequestMapping("/updatepass.json")
-	 public @ResponseBody Map<String,Object> updatepass(String oldpass,String newpass,HttpServletRequest request,Model model) throws Exception{
+	 public @ResponseBody Map<String,Object> updatepass(String oldpass,String newpass,HttpServletRequest request,Model model){
 		 HttpSession session = request.getSession();
 		 User user = (User)session.getAttribute("user");
 		 Map<String,Object> returnMap = new HashMap<String, Object>();
