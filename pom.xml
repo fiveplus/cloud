@@ -285,6 +285,7 @@
 			</includes>
 		</resource>
   	</resources>
+
   	<plugins>  
 		<!-- compiler插件, 设定JDK版本 -->
 		<plugin>
