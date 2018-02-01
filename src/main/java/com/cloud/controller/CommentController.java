@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.cloud.util.DateUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,7 +53,7 @@ public class CommentController {
 		Date now = new Date();
 		
 		comment.setUser(user);
-		comment.setCreateTime(StringUtil.getDateToLong(now));
+		comment.setCreateTime(DateUtil.convertDate(now));
 		
 		int comment_id = commentService.save(comment);
 		
@@ -67,7 +68,7 @@ public class CommentController {
 		log.setTitle(title);
 		log.setContent(content);
 		log.setUser(c.getUser());
-		log.setCreateTime(StringUtil.getDateToLong(now));
+		log.setCreateTime(DateUtil.convertDate(now));
 		log.setIsRead("N");
 		sysLogService.save(log);
 		
@@ -97,7 +98,7 @@ public class CommentController {
 		User toUser = userService.get(comment.getToUser().getId());
 		comment.setUser(user);
 		comment.setCont(c);
-		comment.setCreateTime(StringUtil.getDateToLong(now));
+		comment.setCreateTime(DateUtil.convertDate(now));
 		comment.setComment(cmt);
 		comment.setToUser(toUser);
 		commentService.save(comment);
@@ -106,7 +107,7 @@ public class CommentController {
 		//TODO 发送消息到对应用户。
 		SysLog log = new SysLog();
 		log.setContent(content);
-		log.setCreateTime(StringUtil.getDateToLong(now));
+		log.setCreateTime(DateUtil.convertDate(now));
 		log.setUser(toUser);
 		log.setIsRead("N");
 		log.setTitle("回复消息");

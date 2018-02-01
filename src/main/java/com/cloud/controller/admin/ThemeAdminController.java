@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cloud.util.DateUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cloud.entity.Theme;
 import com.cloud.service.ThemeService;
 import com.cloud.util.PageUtil;
-import com.cloud.util.StringUtil;
 
 @Controller  
 @RequestMapping("/admin/theme") 
@@ -51,7 +51,7 @@ public class ThemeAdminController {
 		int code = 200;
 		String msg = "恭喜您，主题创建成功!";
 		
-		theme.setCreateTime(StringUtil.getDateToLong(new Date()));
+		theme.setCreateTime(DateUtil.convertDate(new Date()));
 		int id = themeService.save(theme);
 		if(id > 0){
 			

@@ -1,5 +1,7 @@
 package com.cloud.controller;
 
+import com.cloud.util.DateUtil;
+import com.cloud.util.Resource;
 import io.rong.models.SdkHttpResult;
 
 import java.util.ArrayList;
@@ -55,9 +57,9 @@ public class RongController {
 		 Message msg = new Message();
 		 msg.setFromUser(user);
 		 msg.setToUser(userService.get(id));
-		 msg.setCreateTime(StringUtil.getDateToLong(new Date()));
+		 msg.setCreateTime(DateUtil.convertDate(new Date()));
 		 msg.setContent(message);
-		 msg.setIsRead("N");
+		 msg.setIsRead(Resource.N);
 		 messageService.save(msg);
 		 
 		 List<String> toIds = new ArrayList<String>();
@@ -80,7 +82,7 @@ public class RongController {
 		 List<Message> msgs = messageService.getMessages(user.getId(),id);
 		 
 		 //TODO 修改未读消息为Y
-		 messageService.updateReadMessage(user.getId(),id , "Y");
+		 messageService.updateReadMessage(user.getId(),id , Resource.Y);
 		 
 		 returnMap.put("user", userService.get(id));
 		 returnMap.put("msgs", msgs);

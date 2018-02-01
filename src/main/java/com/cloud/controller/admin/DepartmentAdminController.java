@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cloud.util.DateUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,6 @@ import com.cloud.service.DepartmentService;
 import com.cloud.service.DeptPermissionService;
 import com.cloud.service.PermissionService;
 import com.cloud.util.PageUtil;
-import com.cloud.util.StringUtil;
 
 @Controller  
 @RequestMapping("/admin/dept") 
@@ -74,7 +74,7 @@ public class DepartmentAdminController {
 		String msg = "恭喜您，部门创建成功!";
 		int code = 200;
 		
-		dept.setCreateTime(StringUtil.getDateToLong(new Date()));
+		dept.setCreateTime(DateUtil.convertDate(new Date()));
 		int id = departmentService.save(dept);
 		if(id > 0){
 			

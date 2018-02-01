@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cloud.util.DateUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cloud.entity.Level;
 import com.cloud.service.LevelService;
 import com.cloud.util.PageUtil;
-import com.cloud.util.StringUtil;
 
 @Controller
 @RequestMapping("/admin/level")
@@ -50,7 +50,7 @@ public class LevelAdminController {
 	
 	@RequestMapping("/add")
 	public String add(Level level,HttpServletRequest request,Model model){
-		level.setCreateTime(StringUtil.getDateToLong(new Date()));
+		level.setCreateTime(DateUtil.convertDate(new Date()));
 		if(level.getLevel().getId() == null){
 			level.setLevel(null);
 		}

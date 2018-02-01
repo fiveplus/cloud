@@ -14,7 +14,7 @@ public class DateUtil {
 
     private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
-    private static final String DATE_FORMAT2 = "YYYY/MM/dd HH:mm";
+    public static final String DATE_FORMAT2 = "YYYY/MM/dd HH:mm";
 
     /**
      * 将Date转换为Long

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cloud.util.DateUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cloud.entity.Project;
 import com.cloud.service.ProjectService;
 import com.cloud.util.PageUtil;
-import com.cloud.util.StringUtil;
 
 @Controller  
 @RequestMapping("/admin/project") 
@@ -51,7 +51,7 @@ public class ProjectAdminController {
 		int code = 200;
 		String msg = "恭喜您，项目创建成功!";
 		
-		p.setCreateTime(StringUtil.getDateToLong(new Date()));
+		p.setCreateTime(DateUtil.convertDate(new Date()));
 		int id = projectService.save(p);
 		if(id > 0){
 			

@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cloud.util.DateUtil;
+import com.cloud.util.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,8 +58,8 @@ public class PermissionAdminController {
 		String msg = "恭喜您，权限创建成功!";
 		int code = 200;
 		
-		permission.setCreateTime(StringUtil.getDateToLong(new Date()));
-		permission.setStatus("Y");
+		permission.setCreateTime(DateUtil.convertDate(new Date()));
+		permission.setStatus(Resource.Y);
 		permission.setImageURL("");
 		String id = permissionService.save(permission);
 		if(id != null){

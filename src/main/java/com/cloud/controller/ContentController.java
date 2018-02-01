@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.cloud.util.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,11 +29,6 @@ import com.cloud.service.PraiseService;
 import com.cloud.service.ProjectService;
 import com.cloud.service.ThemeService;
 import com.cloud.service.UserFileService;
-import com.cloud.util.HtmlParser;
-import com.cloud.util.JacksonUtil;
-import com.cloud.util.PageUtil;
-import com.cloud.util.Resource;
-import com.cloud.util.StringUtil;
 
 @Controller  
 @RequestMapping("/content") 
@@ -83,7 +79,7 @@ public class ContentController {
 			 String str = StringUtil.HTML2Text(c.getContent());
 			 str = str.length() <= CONTENT_LENGTH ? str : (str.substring(0,CONTENT_LENGTH - 1) + "...");
 			 c.setStr(str);
-			 c.setImgs(StringUtil.getImgStr(port,c.getContent()));
+			 c.setImgs(StringUtil.getImagePath(port,c.getContent()));
 			 //是否被赞
 			 Praise p = praiseService.getPraiseByContentIdAndUserId(c.getId(), user.getId());
 			 c.setIsPraise(p == null ? -1 : 0);
@@ -118,7 +114,7 @@ public class ContentController {
 			 String str = StringUtil.HTML2Text(c.getContent());
 			 str = str.length() <= CONTENT_LENGTH ? str : (str.substring(0,CONTENT_LENGTH - 1) + "...");
 			 c.setStr(str);
-			 c.setImgs(StringUtil.getImgStr(port,c.getContent()));
+			 c.setImgs(StringUtil.getImagePath(port,c.getContent()));
 		 }
 		 returnMap.put("contents", list);
 		 returnMap.put("pu", pu);
@@ -144,7 +140,7 @@ public class ContentController {
 			 String str = StringUtil.HTML2Text(c.getContent());
 			 str = str.length() <= CONTENT_LENGTH ? str : (str.substring(0,CONTENT_LENGTH - 1) + "...");
 			 c.setStr(str);
-			 c.setImgs(StringUtil.getImgStr(port,c.getContent()));
+			 c.setImgs(StringUtil.getImagePath(port,c.getContent()));
 		 }
 		 returnMap.put("contents", list);
 		 returnMap.put("pu", pu);
@@ -177,10 +173,10 @@ public class ContentController {
 		 
 		 String remindTime = request.getParameter("remindTime");
 		 if(remindTime != null && !remindTime.equals("")){
-			 c.setRemindTime(StringUtil.getStringToLong(remindTime, StringUtil.DATE_FORMAT2));
+			 c.setRemindTime(DateUtil.convertDate(remindTime, DateUtil.DATE_FORMAT2));
 		 }
 		 
-		 c.setCreateTime(StringUtil.getDateToLong(new Date()));
+		 c.setCreateTime(DateUtil.convertDate(new Date()));
 		 c.setUser(user);
 		 if(c.getProject().getId() == 0){
 			 c.setProject(null);
@@ -205,7 +201,7 @@ public class ContentController {
 				 String text = file.get("text");
 				 UserFile f = new UserFile();
 				 f.setCont(c);
-				 f.setCreateTime(StringUtil.getDateToLong(new Date()));
+				 f.setCreateTime(DateUtil.convertDate(new Date()));
 				 f.setFileName(text);
 				 f.setUrl(href);
 				 f.setUser(user);
@@ -291,7 +287,7 @@ public class ContentController {
 		 Map<String,Object> returnMap = new HashMap<String, Object>();
 		 int code = 200;
 		 String message = "恭喜您，帖子修改成功！";
-		 c.setCreateTime(StringUtil.getDateToLong(new Date()));
+		 c.setCreateTime(DateUtil.convertDate(new Date()));
 		 if(c.getProject().getId() == null){
 			 c.setProject(null);
 		 }
@@ -306,7 +302,7 @@ public class ContentController {
 			 if(f == null){
 				 f = new UserFile();
 				 f.setCont(c);
-				 f.setCreateTime(StringUtil.getDateToLong(new Date()));
+				 f.setCreateTime(DateUtil.convertDate(new Date()));
 				 f.setFileName(text);
 				 f.setUrl(href);
 				 f.setUser(user);

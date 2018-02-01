@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cloud.util.DateUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cloud.entity.Content;
 import com.cloud.service.ContentService;
 import com.cloud.util.PageUtil;
-import com.cloud.util.StringUtil;
 /**
  * 发布
  * @author hack
@@ -34,7 +34,7 @@ public class ContentAdminController {
 		String dateRangePicker = request.getParameter("dateRangePicker");
 		Map<String,Long> betweens = null;
 		if(dateRangePicker != null && !dateRangePicker.equals("")){
-			betweens = StringUtil.getBetweenTime(dateRangePicker);
+			betweens = DateUtil.getBetweenTime(dateRangePicker);
 		}
 		String username = request.getParameter("username");
 		int count = contentService.getListCount(username,betweens);

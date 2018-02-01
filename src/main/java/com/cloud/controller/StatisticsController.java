@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.cloud.util.DateUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -82,7 +83,7 @@ public class StatisticsController {
 		List<StatBO> comments = init_daylist();
 		List<StatBO> praises = init_daylist();
 		
-		Map<String,Long> offsetTime = StringUtil.getBeforeTimeAndNowTime(-29);
+		Map<String,Long> offsetTime = DateUtil.getBeforeTimeAndNowTime(-29);
 		List<StatBO> clist = contentService.getCountToUserIdAndCreateTime(0,offsetTime);
 		List<StatBO> clist2 = commentService.getCountToUserIdAndCreateTime(0,offsetTime);
 		List<StatBO> plist = praiseService.getCountToUserIdAndCreateTime(0,offsetTime);
@@ -104,7 +105,7 @@ public class StatisticsController {
 		Map<String,Object> returnMap = new HashMap<String, Object>();
 		int code = 0;
 		String msg = "";
-		Map<String,Long> offsetTime = StringUtil.getBeforeTimeAndNowTime(-29);
+		Map<String,Long> offsetTime = DateUtil.getBeforeTimeAndNowTime(-29);
 		List<Theme> themes = themeService.findAll();
 		List<Department> ds = departmentService.findAll();
 		List<RankBO> depts = contentService.getCountToDeptNameAndCreateTime(offsetTime);
@@ -138,9 +139,9 @@ public class StatisticsController {
 	
 	private List<StatBO> update_daylist(List<StatBO> big,List<StatBO> small){
 		for(StatBO sb:big){
-			String bname = StringUtil.formatDate(sb.getName(), "yyyy-MM-dd");
+			String bname = DateUtil.convertDate(sb.getName(), "yyyy-MM-dd");
 			for(StatBO sbs:small){
-				String sname = StringUtil.formatDate(sbs.getName(), "yyyy-MM-dd");
+				String sname = DateUtil.convertDate(sbs.getName(), "yyyy-MM-dd");
 				if(sname.equals(bname)){
 					sb.setCount(sbs.getCount());
 					break;

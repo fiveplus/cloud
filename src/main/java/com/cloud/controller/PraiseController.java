@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.cloud.util.DateUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,7 @@ public class PraiseController {
 		}else{
 			praise = new Praise();
 			praise.setContentId(contentId);
-			praise.setCreateTime(StringUtil.getDateToLong(new Date()));
+			praise.setCreateTime(DateUtil.convertDate(new Date()));
 			praise.setUserId(user.getId());
 			praiseService.save(praise);
 		}

@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.cloud.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +38,7 @@ public class SkinController {
 			skin = new Skin();
 			skin.setImgIndex(imgIndex);
 			skin.setUser(user);
-			skin.setCreateTime(StringUtil.getDateToLong(new Date()));
+			skin.setCreateTime(DateUtil.convertDate(new Date()));
 			skinService.save(skin);
 		}
 		session.setAttribute("skin", skin);
