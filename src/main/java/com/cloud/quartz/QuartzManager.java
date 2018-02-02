@@ -36,7 +36,7 @@ public class QuartzManager {
     			sched.start();
     		}
     	}catch(Exception e){
-    		throw new RuntimeException(e);
+    		throw new RuntimeException("[Job Error]: " + e.toString());
     	}
     }
     
@@ -55,10 +55,10 @@ public class QuartzManager {
 			JobDetail jobDetail = JobBuilder.newJob(jobClass).withIdentity(jobName, jobGroupName).build();//任务名，任务组，任务执行类
 			//表达式调度构建器
 			CronScheduleBuilder schedBuilder = CronScheduleBuilder.cronSchedule(time);
-			CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(jobName, triggerGroupName).withSchedule(schedBuilder).build();
+			CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(triggerName, triggerGroupName).withSchedule(schedBuilder).build();
 			sched.scheduleJob(jobDetail,trigger);
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException("[Job Error]: " + e.toString());
 		}
     }
     /**
@@ -84,7 +84,7 @@ public class QuartzManager {
 				sched.rescheduleJob(triggerKey, trigger);
 			}
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException("[Job Error]: " + e.toString());
 		}
     }
     /**
@@ -111,7 +111,7 @@ public class QuartzManager {
 				sched.rescheduleJob(triggerKey, trigger);
     		}
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException("[Job Error]: " + e.toString());
 		}
     }
     
@@ -129,7 +129,7 @@ public class QuartzManager {
 			sched.unscheduleJob(triggerKey);//移除触发器
 			sched.deleteJob(jobKey);//删除任务
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException("[Job Error]: " + e.toString());
 		}
     }
     /**
@@ -149,7 +149,7 @@ public class QuartzManager {
 			sched.unscheduleJob(triggerKey);//移除触发器
 			sched.deleteJob(jobKey);//删除任务
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException("[Job Error]: " + e.toString());
 		}
     }
     /**
@@ -160,7 +160,7 @@ public class QuartzManager {
     	try {
 			sched.start();
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException("[Job Error]: " + e.toString());
 		}
     }
     /**
@@ -173,7 +173,7 @@ public class QuartzManager {
 				sched.shutdown();
 			}
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException("[Job Error]: " + e.toString());
 		}
     }
     
