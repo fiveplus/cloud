@@ -164,7 +164,14 @@ public class ContentController {
 		 
 		 return "content/add_content";
 	 }
-	 
+
+	/**
+	 * 帖子发布
+	 * @param c
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	 @RequestMapping("/save.json")
 	 public @ResponseBody Map<String,Object> save(Content c,HttpServletRequest request,Model model){
 		 HttpSession session = request.getSession();
